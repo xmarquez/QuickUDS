@@ -119,7 +119,7 @@ Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 Boulder: Lynne Rienner Publishers.
 
 Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
-of Political Regimes, 1800–2007. Comparative Political Studies 46 (12):
+of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
 1523-1554. Original data available at
 \url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}
 

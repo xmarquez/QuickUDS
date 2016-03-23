@@ -16,7 +16,7 @@ To view the documentation for the datasets, use:
 ?extended_uds
 ```
 
-For non-R users, there are csv versions of these datasets in the folder <https://github.com/xmarquez/QuickUDS/csvs-and-pdfs>. This folder also contains a pdf version of the documentation.
+For non-R users, there are csv versions of these datasets in the folder <https://github.com/xmarquez/QuickUDS/tree/master/csvs-and-pdfs>. This folder also contains a pdf version of the documentation.
 
 For a quick tour of how to use the functions in this package, see the package vignette.
 

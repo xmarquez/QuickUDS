@@ -1,0 +1,9 @@
+base
+knitr
+QuickUDS
+reshape2
+dplyr
+lattice
+mirt
+ggplot2
+lubridate

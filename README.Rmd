@@ -111,6 +111,9 @@ ggplot() +
   facet_wrap(~country_name,ncol=4) +
   geom_hline(yintercept = 0.5, color="red") +
   geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[1:112]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
+```
+
+```{r, cache = TRUE, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
 
 ggplot() + 
   geom_path(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 

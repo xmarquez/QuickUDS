@@ -85,7 +85,7 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions, see the package vignette.
 
-The existing UDS scores are available for `24111` country-years (`224` unique countries and non-sovereign territories):
+The extended UD scores are available for `24111` country-years (`224` unique countries and non-sovereign territories):
 
 ![](README-unnamed-chunk-6-1.png)<!-- -->
 

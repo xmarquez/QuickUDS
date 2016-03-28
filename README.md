@@ -18,7 +18,121 @@ To view the documentation for the datasets, use:
 
 For non-R users, there are csv versions of these datasets in the folder <https://github.com/xmarquez/QuickUDS/tree/master/csvs-and-pdfs>. This folder also contains a pdf version of the documentation.
 
-For a quick tour of how to use the functions in this package, see the package vignette.
+The `extended_uds` dataset can be generated with the following code:
+
+``` r
+# Generate Extended UDS
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(QuickUDS)
+#> Loading required package: mirt
+#> Loading required package: stats4
+#> Loading required package: lattice
+
+indexes <- c("arat_pmm","blm","bmr_democracy","bnr","bollen_pmm","doorenspleet","eiu","freedomhouse",
+             "freedomhouse_electoral","gwf","hadenius_pmm","kailitz_tri","lied","mainwaring","magaloni_regime_tri",
+             "munck_pmm","pacl","PEPS1v","pitf",
+             "polity2","polyarchy_contestation","prc_notrans","svolik","ulfelder","utip_dichotomous_strict",
+             "v2x_polyarchy","vanhanen_democratization","wahman_teorell_hadenius")
+
+data <- QuickUDS::democracy[ ,c("country_name","GWn","cown","year","region","continent","microstate","lat","lon","in_system",indexes)]
+data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
+data <- data %>% group_by(country_name,year) %>% mutate(measures_per_cy = n()) %>% ungroup()
+data <- reshape2::dcast(data, ... ~ variable)
+data <- data %>% arrange(country_name,year)
+
+data2 <- prepare_democracy(indexes)
+
+# The model converges after 2027 iterations
+extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+extended_scores <- democracy_scores(extended_model)
+extended_uds <- bind_cols(data,extended_scores)
+rm(data2,data,indexes,extended_scores)
+```
+
+(For the latest code used, always see <https://github.com/xmarquez/QuickUDS/blob/master/data-raw/Generate%20extended%20UDS%20data.R>)
+
+To generate a 0-1 index where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
+
+``` r
+cutpoints_extended <- cutpoints(extended_model)
+
+cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
+
+cutpoints_extended <- left_join(cutpoints_extended,democracy_long %>% select(variable,index_type)  %>% distinct())
+#> Joining by: "variable"
+#> Warning in left_join_impl(x, y, by$x, by$y): joining factor and character
+#> vector, coercing into character vector
+
+dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
+
+dichotomous_cutpoints <- mean(dichotomous_cutpoints$estimate)
+
+extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints, 
+                                        adj.pct025 = pct025 - dichotomous_cutpoints, 
+                                        adj.pct975 = pct975 - dichotomous_cutpoints,
+                                        index = pnorm(adj.z1),
+                                        index.pct025 = pnorm(adj.pct025),
+                                        index.pct975 = pnorm(adj.pct975))
+```
+
+For a more extended introduction to the available functions, see the package vignette.
+
+The existing UDS scores are available for `24111` country-years (`length(unique(extended_uds$country_name))` unique countries and non-sovereign territories):
+
+``` r
+library(ggplot2)
+
+extended_uds <- extended_uds %>% group_by(country_name) %>% mutate(group = PoliticalDatasets::count_sequence_breaks(year), group2 = PoliticalDatasets::count_sequence_breaks(in_system,seq_step = 0), group3 = paste(group,group2))
+
+data <- extended_uds
+
+countries <- unique(data$country_name)
+
+periods_of_independence <- data %>% group_by(country_name,group3,in_system) %>% summarise(start = min(year), end = max(year)) %>% filter(in_system)
+
+ggplot() + 
+  geom_path(data =data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
+  geom_ribbon(data = data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
+  theme_bw() + 
+  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
+  theme(legend.position="bottom") + 
+  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
+  facet_wrap(~country_name,ncol=4) +
+  geom_hline(yintercept = 0.5, color="red") +
+  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[1:112]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
+```
+
+![](README-unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+
+ggplot() + 
+  geom_path(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
+  geom_ribbon(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
+  theme_bw() + 
+  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
+  theme(legend.position="bottom") + 
+  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
+  facet_wrap(~country_name,ncol=4) +
+  geom_hline(yintercept = 0.5, color="red") +
+  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[113:224]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
+#> geom_path: Each group consists of only one observation. Do you need to
+#> adjust the group aesthetic?
+#> geom_path: Each group consists of only one observation. Do you need to
+#> adjust the group aesthetic?
+```
+
+![](README-unnamed-chunk-6-2.png)<!-- -->
+
+(Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the [Gleditsch and Ward list of statte system membership since 1816](http://privatewww.essex.ac.uk/~ksg/statelist.html), i.e., independent, or is a [microstate in Gleditsch's tentative list](http://privatewww.essex.ac.uk/~ksg/statelist.html)).
 
 If you find this package useful in your work, please cite:
 

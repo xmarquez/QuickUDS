@@ -87,14 +87,7 @@ For a more extended introduction to the available functions, see the package vig
 
 The existing UDS scores are available for `24111` country-years (`224` unique countries and non-sovereign territories):
 
-![](README-unnamed-chunk-6-1.png)<!-- -->
-
-    #> geom_path: Each group consists of only one observation. Do you need to
-    #> adjust the group aesthetic?
-    #> geom_path: Each group consists of only one observation. Do you need to
-    #> adjust the group aesthetic?
-
-![](README-unnamed-chunk-6-2.png)<!-- -->
+![](README-unnamed-chunk-6-1.png)<!-- -->![](README-unnamed-chunk-6-2.png)<!-- -->
 
 (Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the [Gleditsch and Ward list of statte system membership since 1816](http://privatewww.essex.ac.uk/~ksg/statelist.html), i.e., independent, or is a [microstate in Gleditsch's tentative list](http://privatewww.essex.ac.uk/~ksg/statelist.html)).
 

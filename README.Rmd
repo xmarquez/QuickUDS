@@ -88,9 +88,9 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions, see the package vignette.
 
-The existing UDS scores are available for ```r nrow(extended_uds)``` country-years (```length(unique(extended_uds$country_name))``` unique countries and non-sovereign territories):
+The existing UDS scores are available for ```r nrow(extended_uds)``` country-years (```r length(unique(extended_uds$country_name))``` unique countries and non-sovereign territories):
 
-```{r, cache = TRUE, fig.height=30}
+```{r, cache = TRUE, echo = FALSE, fig.height=30}
 library(ggplot2)
 
 extended_uds <- extended_uds %>% group_by(country_name) %>% mutate(group = PoliticalDatasets::count_sequence_breaks(year), group2 = PoliticalDatasets::count_sequence_breaks(in_system,seq_step = 0), group3 = paste(group,group2))

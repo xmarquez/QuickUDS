@@ -85,50 +85,14 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions, see the package vignette.
 
-The existing UDS scores are available for `24111` country-years (`length(unique(extended_uds$country_name))` unique countries and non-sovereign territories):
-
-``` r
-library(ggplot2)
-
-extended_uds <- extended_uds %>% group_by(country_name) %>% mutate(group = PoliticalDatasets::count_sequence_breaks(year), group2 = PoliticalDatasets::count_sequence_breaks(in_system,seq_step = 0), group3 = paste(group,group2))
-
-data <- extended_uds
-
-countries <- unique(data$country_name)
-
-periods_of_independence <- data %>% group_by(country_name,group3,in_system) %>% summarise(start = min(year), end = max(year)) %>% filter(in_system)
-
-ggplot() + 
-  geom_path(data =data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
-  geom_ribbon(data = data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
-  theme_bw() + 
-  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
-  theme(legend.position="bottom") + 
-  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
-  geom_hline(yintercept = 0.5, color="red") +
-  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[1:112]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
-```
+The existing UDS scores are available for `24111` country-years (`224` unique countries and non-sovereign territories):
 
 ![](README-unnamed-chunk-6-1.png)<!-- -->
 
-``` r
-
-ggplot() + 
-  geom_path(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
-  geom_ribbon(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
-  theme_bw() + 
-  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
-  theme(legend.position="bottom") + 
-  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
-  geom_hline(yintercept = 0.5, color="red") +
-  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[113:224]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
-#> geom_path: Each group consists of only one observation. Do you need to
-#> adjust the group aesthetic?
-#> geom_path: Each group consists of only one observation. Do you need to
-#> adjust the group aesthetic?
-```
+    #> geom_path: Each group consists of only one observation. Do you need to
+    #> adjust the group aesthetic?
+    #> geom_path: Each group consists of only one observation. Do you need to
+    #> adjust the group aesthetic?
 
 ![](README-unnamed-chunk-6-2.png)<!-- -->
 

@@ -22,7 +22,7 @@ opts_chunk$set(echo=TRUE,
 
 ## Preparing your democracy indexes
 
-Though you can use your own custom democracy indexes to generate latent (unified) democracy scores, the package provides a dataset, ```democracy```, which contains a large number of democracy measures (from 25 different datasets, of varying reliability and coverage) that you can use to generate custom unified democracy scores. (Use ```?democracy``` to view which measures are included in the dataset as well as links to their sources; they are also listed in the references below). For example, suppose we wanted to replicate exactly the [2011 release of the UD scores](http://www.unified-democracy-scores.org/archive.html). PMM's replication data for that release is included in the ```democracy``` dataset: we just need to select the variable names ending in ```_pmm``` and use the function ```prepare_democracy```
+Though you can use your own custom democracy indexes to generate latent (unified) democracy scores, the package provides a dataset, ```democracy```, which contains a large number of democracy measures (from more than 25 different datasets, of varying reliability and coverage) that you can use to generate custom unified democracy scores. (Use ```?democracy``` to view which measures are included in the dataset as well as links to their sources; they are also listed in the references below). For example, suppose we wanted to replicate exactly the [2011 release of the UD scores](http://www.unified-democracy-scores.org/archive.html). PMM's replication data for that release is included in the ```democracy``` dataset: we just need to select the variable names ending in ```_pmm``` and use the function ```prepare_democracy```
 
 ```{r}
 library(QuickUDS)
@@ -37,25 +37,47 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 
 ```prepare_data``` transforms selected democracy indexes into ordinal variables suitable for use with ```mirt```, mostly following the advice in Pemstein, Meserve, and Melton's original article (2010). In particular, ```prepare_data``` will try to do the following on any dataset (whether the included ```democracy``` dataset or your own dataset of democracy scores): 
 
-If a selected index contains the string ```arat```, the function assumes the index is Arat (1991)'s 0-109 democracy score, and cuts it into 7 intervals with the following cutoffs: 50, 60, 70, 80, 90, and 100. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton's advice).
+* If a selected index contains the string ```arat```, the function assumes the index is Arat (1991)'s 0-109 democracy score, and cuts it into 7 intervals with the following cutoffs: 50, 60, 70, 80, 90, and 100. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton's advice).
 
-If a selected index contains the string ```bollen```, the function assumes the index is Bollen's (2001)'s 0-100 democracy score, and cuts it into 10 intervals with the following cutoffs: 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10 (following Pemstein, Meserve, and Melton's advice).
+* If a selected index contains the string ```bollen```, the function assumes the index is Bollen's (2001)'s 0-100 democracy score, and cuts it into 10 intervals with the following cutoffs: 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10 (following Pemstein, Meserve, and Melton's advice).
 
-If a selected index contains the string ```eiu```, the function assumes the index is the Economist Intelligence Unit's 0-1 index of democracy, and it will round its value to the first decimal place and cut the result into 10 categories. The resulting score is ordinal from 1 to 11.
+* If a selected index contains the string ```eiu```, the function assumes the index is the Economist Intelligence Unit's 0-1 index of democracy, and it will round its value to the first decimal place and cut the result into 10 categories. The resulting score is ordinal from 1 to 11.
 
-If a selected index contains the string ```hadenius```, the function assumes the index is Hadenius (1992)'s 0-10 democracy score, and it will cut it into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8, and 9. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton's advice). 
+* If a selected index contains the string ```hadenius```, the function assumes the index is Hadenius (1992)'s 0-10 democracy score, and it will cut it into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8, and 9. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton's advice). 
 
-If the selected index contains the string ```munck```, the function assumes the index is Munck's (2009)'s 0-1 democracy score, and it will cut it into 4 intervals with the following cutoffs: 0.5,0.5,0.75, and 0.99. The resulting score is ordinal from 1 to 4 (following Pemstein, Meserve, and Melton's advice).
+* If the selected index contains the string ```munck```, the function assumes the index is Munck's (2009)'s 0-1 democracy score, and it will cut it into 4 intervals with the following cutoffs: 0.5,0.5,0.75, and 0.99. The resulting score is ordinal from 1 to 4 (following Pemstein, Meserve, and Melton's advice).
 
-If the selected index contains the string ```peps```, the function assumes the index is one of the variants of the Participation-Enhanced Polity Score (Moon et al 2006), and it will round its value (eliminating the decimal) and then transform it into an ordinal measure from 1 to 21.
+* If the selected index contains the string ```peps```, the function assumes the index is one of the variants of the Participation-Enhanced Polity Score (Moon et al 2006), and it will round its value (eliminating the decimal) and then transform it into an ordinal measure from 1 to 21.
 
-If the selected index contains the string ```polity```, the function assumes this is the Polity IV score, and it set any values below -10 to NA and then transform them into an ordinal measure from 1 to 21.
+* If the selected index contains the string ```polity```, the function assumes this is the Polity IV score, and it set any values below -10 to NA and then transform them into an ordinal measure from 1 to 21.
 
-If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut them into 20 categories. The resulting score is ordinal from 1 to 20.
+* If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut them into 20 categories. The resulting score is ordinal from 1 to 20.
 
-If the selected index contains the string ```vanhanen```, the assumes this is Vanhanen's (2012)'s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton's advice). The resulting score is ordinal from 1 to 8.
+* If the selected index contains the string ```vanhanen```, the assumes this is Vanhanen's (2012)'s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton's advice). The resulting score is ordinal from 1 to 8.
 
-```prepare_data``` will also work on column names that contain the following strings: ```blm``` (assumes it's from Bowman, Lehoucq, and Mahoney 2005), ```bmr``` (assumes it's from Boix, Miller, and Rosato 2012), ```doorenspleet``` (assumes it's from Doorenspleet 2000), ```e_v2x``` (assumes it's one of the "ordinal" indexes from the V-dem project, Coppedge at al 2015), ```freedomhouse``` (assumes it's from Freedom House - must be reversed so that "more freedom" is higher), ```gwf``` (assumes it's from Geddes, Wright, and Frantz 2014 - the dichotomous democracy indicator only), ```kailitz``` (assumes it's from from Kailitz 2013 - democracy/electoral autocracy/non-democracy indicator only), ```lied``` (assumes it's from Skaaning, Gerring, and Bartusevičius 2015), ```mainwaring``` (assumes it's from Mainwaring and Perez Linan 2008),```magaloni``` (assumes it's from Magaloni, Min and Chu 2013),  ```pacl``` (assumes it's from Cheibub, Gandhi, and Vreeland 2010), ```pitf``` (assumes it's the measure of democracy used in Goldstone et. al 2010 or Taylor and Ulfelder 2015), ```poliarchy``` (assumes it's from Coppedge and Reinicke 1991), ```prc``` (assumes it's from Gasiorowski 1996 or Reich 2002), ```przeworski``` (assumes it's from Przeworski 2010), ```svolik``` (assumes it's the democracy/dictatorship indicator from Svolik 2012), ```ulfelder``` (assumes it's from Ulfelder 2012), and ```wahman_teorell_hadenius``` (assumes it's a democracy/non-democracy indicator from Wahman, Teorell, and Hadenius 2013). In each of these cases the function ```prepare_data``` transforms the values of these scores by running ```as.numeric(unclass(factor(x)))```, which transforms each index into ordinal variables from 1 to the number of categories.
+```prepare_data``` will also work on column names that contain the following strings: 
+
+* ```blm``` (assumes it's from Bowman, Lehoucq, and Mahoney 2005)
+* ```bmr``` (assumes it's from Boix, Miller, and Rosato 2012)
+* ```doorenspleet``` (assumes it's from Doorenspleet 2000)
+* ```e_v2x``` (assumes it's one of the "ordinal" indexes from the V-dem project, Coppedge at al 2015)
+* ```freedomhouse``` (assumes it's from Freedom House - must be reversed so that "more freedom" is higher)
+* ```gwf``` (assumes it's from Geddes, Wright, and Frantz 2014 - the dichotomous democracy indicator only)
+* ```kailitz``` (assumes it's from from Kailitz 2013 - democracy/electoral autocracy/non-democracy indicator only)
+* ```lied``` (assumes it's from Skaaning, Gerring, and Bartusevičius 2015)
+* ```mainwaring``` (assumes it's from Mainwaring and Perez Linan 2008)
+* ```magaloni``` (assumes it's from Magaloni, Min and Chu 2013)
+* ```pacl``` (assumes it's from Cheibub, Gandhi, and Vreeland 2010)
+* ```pitf``` (assumes it's the measure of democracy used in Goldstone et. al 2010 or Taylor and Ulfelder 2015)
+* ```poliarchy``` (assumes it's from Coppedge and Reinicke 1991)
+* ```prc``` (assumes it's from Gasiorowski 1996 or Reich 2002)
+* ```przeworski``` (assumes it's the "regime" variable from Przeworski 2010)
+* ```svolik``` (assumes it's the democracy/dictatorship indicator from Svolik 2012)
+* ```ulfelder``` (assumes it's from Ulfelder 2012)
+* ```utip``` (assumes it's from Hsu 2008)
+* ```wahman_teorell_hadenius``` (assumes it's a democracy/non-democracy indicator from Wahman, Teorell, and Hadenius 2013). 
+
+In each of these cases the function ```prepare_data``` transforms the values of these scores by running ```as.numeric(unclass(factor(x)))```, which transforms each index into ordinal variables from 1 to the number of categories.
 
 If you are using democracy indexes not included in the ```democracy``` dataset, or want to use your own custom measures of democracy, or transform them in a very particular way, you simply need to ensure that there are no "blank" country-years in your data (i.e., country-years without any democracy measurements) and that the indexes you are using are ordinal measures from 1 to N with every category present in the data. ```mirt``` is pretty flexible and forgiving: it will accept ordinal variables in any range and will attempt to transform your indexes so that every category is within a distance of 1 of its neighboring categories. But it's useful to have a good sense of what the algorithm is doing to your data before you begin!
 
@@ -114,7 +136,7 @@ comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","
 Hmisc::rcorr(comparison %>% select(z1,mean) %>% as.matrix())
 ```
 
-(For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper Marquez 2015).
+(For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).
 
 ## Extending the model
 
@@ -145,6 +167,14 @@ extended_model
 extended_model@time
 extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 ```
+
+```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option:
+
+```{r}
+extended_model <- democracy_model(data,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+```
+
+Use ```?mirt``` for more details.
 
 One important point to note about latent variable democracy scores is that they are normalized with mean zero and standard deviation one, so a score of 1 just means that the country-year is 1 standard deviation more democratic than the average country-year in the sample. But this means that adding extra country-years to our model will typically result in scores that have a higher mean (though usually smaller standard errors) than the original UD model, given that the world has become substantially more democratic over the last two centuries:
 
@@ -217,7 +247,39 @@ These scores have a more natural interpretation when transformed to a 0-1 scale 
 extended_scores <- extended_scores %>% mutate(index = pnorm(adj.z1), index.pct025 = pnorm(adj.pct025), index.pct975 = pnorm(adj.pct975))
 ```
 
-A pre-computed version of the extended UDS scores, with data from all the indexes mentioned above, plus the participation-enhanced Polity Scores of Moon et al (2006), a trichotomous democracy indicator calculated from Magaloni, Min, and Chu's "Autocracies of the World" datset (Magaloni, Min and Chu 2013), a dichotomous democracy indicator calculated from Hsu (2008), and an indicator of democracy used by the Political Instability Task Force (Goldstein et. al 2010; Taylor and Ulfelder 2015), is included with the package; it can be loaded by simply typing ```extended_uds```. Use ```?extended_uds``` to examine the documentation for all its variables; see my working paper (Marquez 2015) for more detail on the data and its uses.
+It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model):
+
+```{r, echo = TRUE, cache = TRUE, fig.height=8, fig.width=7}
+cutpoints_extended <- cutpoints(extended_model)
+
+cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
+
+cutpoints_extended <- left_join(cutpoints_extended,democracy_long %>% select(variable,index_type)  %>% distinct())
+
+dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
+
+dichotomous_cutpoints <- mean(dichotomous_cutpoints$estimate)
+
+extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - dichotomous_cutpoints, 
+                                        adj.pct025 = pct025 - dichotomous_cutpoints, 
+                                        adj.pct975 = pct975 - dichotomous_cutpoints,
+                                        index = pnorm(adj.z1),
+                                        index.pct025 = pnorm(adj.pct025),
+                                        index.pct975 = pnorm(adj.pct975))
+
+ggplot(data = extended_scores %>% filter(country_name %in% countries), 
+       aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975)) + 
+  geom_path() + 
+  geom_ribbon(alpha=0.2) + 
+  theme_bw() + 
+  labs(x = "Year", y = "Latent unified democracy scores,\nper year\nconverted to 0-1 probability scale")  + 
+  theme(legend.position="bottom") + 
+  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
+  geom_hline(yintercept=0.5,color="red") +
+  facet_wrap(~country_name,ncol=2)  
+```
+
+A pre-computed version of the extended UDS scores, with data from all the indexes mentioned above, plus the participation-enhanced Polity Scores of Moon et al (2006), a trichotomous democracy indicator calculated from Magaloni, Min, and Chu's "Autocracies of the World" datset (Magaloni, Min and Chu 2013), a dichotomous democracy indicator calculated from Hsu (2008), and an indicator of democracy used by the Political Instability Task Force (Goldstein et. al 2010; Taylor and Ulfelder 2015), is included with the package; it can be loaded by simply typing ```extended_uds```. Use ```?extended_uds``` to examine the documentation for all its variables; see my working paper ([Marquez 2016](http://ssrn.com/abstract=2753830)) for more detail on the data and its uses.
 
 ## Extracting useful information from the model
 
@@ -333,6 +395,8 @@ Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. "Political Regim
 Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World, 1950-2012 (Version 1.0). Dataset, Stanford University. Original data and codebook available at http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/. 
 
 Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV: Political Regime Characteristics and Transitions, 1800-2012." Updated to 2015. Original data available from http://www.systemicpeace.org/polity/polity4.htm.
+
+Marquez, Xavier. 2016. "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830
 
 Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett, Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong (2006) "Voting Counts: Participation in the Measurement of Democracy" Studies in Comparative International Development 42, 2 (Summer, 2006). DOI:10.1007/BF02686309. The complete dataset is available here: http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm.
 

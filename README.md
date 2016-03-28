@@ -6,7 +6,7 @@ This package also includes an "extended UDS" dataset with latent democracy score
 To install, use:
 
 ``` r
-devtools::install_github(repo = "https://github.com/xmarquez/QuickUDS")
+devtools::install_github(repo = "xmarquez/QuickUDS")
 ```
 
 To view the documentation for the datasets, use:
@@ -59,7 +59,7 @@ rm(data2,data,indexes,extended_scores)
 
 (For the latest code used, always see <https://github.com/xmarquez/QuickUDS/blob/master/data-raw/Generate%20extended%20UDS%20data.R>)
 
-To generate a 0-1 index where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
+To generate a 0-1 index from these scores where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
 
 ``` r
 cutpoints_extended <- cutpoints(extended_model)

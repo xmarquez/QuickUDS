@@ -21,7 +21,7 @@ This package also includes an "extended UDS" dataset with latent democracy score
 To install, use:
 
 ```{r, echo=TRUE, eval=FALSE}
-devtools::install_github(repo = "https://github.com/xmarquez/QuickUDS")
+devtools::install_github(repo = "xmarquez/QuickUDS")
 
 ```
 
@@ -65,7 +65,7 @@ rm(data2,data,indexes,extended_scores)
 
 (For the latest code used, always see https://github.com/xmarquez/QuickUDS/blob/master/data-raw/Generate%20extended%20UDS%20data.R)
 
-To generate a 0-1 index where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
+To generate a 0-1 index from these scores where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
 
 ```{r, echo = TRUE, cache = TRUE}
 cutpoints_extended <- cutpoints(extended_model)
@@ -111,6 +111,7 @@ ggplot() +
   facet_wrap(~country_name,ncol=4) +
   geom_hline(yintercept = 0.5, color="red") +
   geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[1:112]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
+
 ```
 
 ```{r, cache = TRUE, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
@@ -125,6 +126,7 @@ ggplot() +
   facet_wrap(~country_name,ncol=4) +
   geom_hline(yintercept = 0.5, color="red") +
   geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[113:224]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
+
 ```
 
 (Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the [Gleditsch and Ward list of statte system membership since 1816](http://privatewww.essex.ac.uk/~ksg/statelist.html), i.e., independent, or is a [microstate in Gleditsch's tentative list](http://privatewww.essex.ac.uk/~ksg/statelist.html)).

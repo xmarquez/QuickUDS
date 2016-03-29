@@ -74,7 +74,7 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
                                         index.pct975 = pnorm(adj.pct975))
 ```
 
-For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/inst/doc/Replicating_and_extending_the_UD_scores.html).
+For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/vignettes).
 
 The extended UD scores are available for 24111 country-years (224 unique countries and non-sovereign territories):
 

@@ -32,6 +32,7 @@ extended_uds <- extended_uds %>% mutate(adj.index = pnorm(adj.z1), adj.index.pct
 devtools::use_data(extended_uds, overwrite=TRUE)
 
 # Quick visual test
+# library(gpplot2)
 # ggplot(data=extended_uds %>% filter(in_system | year < 1816, country_name %in% sample(unique(extended_uds$country_name),10)), aes(x=year,y=adj.z1,ymin=adj.pct025,max=adj.pct975,group=group3)) + geom_path()+geom_ribbon(alpha=0.2) + facet_wrap(~country_name) + geom_hline(yintercept=0,color="red")
 #
 # ggplot(data=extended_uds %>% filter(in_system | year < 1816,country_name == "Russia (Soviet Union)"), aes(x=year,y=adj.z1,ymin=adj.pct025,max=adj.pct975,group=group3)) + geom_path()+geom_ribbon(alpha=0.2) + facet_wrap(~country_name) + geom_hline(yintercept=0,color="red")

@@ -1,0 +1,31 @@
+citHeader("Please cite both Pemstein, Meserve, and Melton's original paper and the paper associated with this package:")
+
+citEntry(entry = "article",
+    title = "Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime Type",
+    author = "Daniel Pemstein",
+    author = "Stephen Meserve",
+    author = "James Melton",
+    journal = "Political Analysis",
+    Number = "4",
+    Pages = "426-449",
+    Volume = "18",
+    doi = "10.1093/pan/mpq020",
+    year = "2010",
+    textVersion  = paste("Pemstein, Daniel, Stephen Meserve, and James Melton. 2010.",
+      "Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.",
+      "Political Analysis 18 (4): 426-449.",
+      "DOI:10.1093/pan/mpq020")
+
+)
+
+citEntry(entry = "article",
+    title = "A Quick Method for Extending the Unified Democracy Scores",
+    author = "Xavier Marquez",
+    url = "http://ssrn.com/abstract=2753830",
+    journal = "Social Science Research Network Working Paper Series",
+    year = "2016",
+    textVersion  = paste("Marquez, Xavier. 2016.",
+      "A Quick Method for Extending the Unified Democracy Scores (March 23, 2016).",
+      "Available at SSRN: http://ssrn.com/abstract=2753830")
+
+)

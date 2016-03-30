@@ -15,8 +15,9 @@ the column names must contain at least one of the following strings:
 \code{lied}, \code{munck}, \code{pacl}, \code{peps}, \code{poliarchy},
 \code{polity}, \code{prc}, \code{przeworski}, \code{svolik},
 \code{ulfelder}, \code{utip}, \code{v2x}, \code{vanhanen_democratization},
-or \code{wahman_teorell_hadenius}. For details of these variables, see the
-documentation for \code{\link{democracy}}.}
+\code{vanhanen_pmm}, or \code{wahman_teorell_hadenius}. For
+details of these variables, see the documentation for
+\code{\link{democracy}}.}
 }
 \value{
 A data frame with the transformed scores, if any.
@@ -32,7 +33,7 @@ If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
 \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
 \code{hadenius}, \code{kailitz}, \code{lied}, \code{munck}, \code{pacl},
 \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
-\code{ulfelder}, \code{v2x}, \code{vanhanen_democratization}, or
+\code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
 \code{wahman_teorell_hadenius}, the function performs the following
 transformations:
 
@@ -75,10 +76,11 @@ measure from 1 to 21.
 dataset (Coppedge et al 2015) are included in the file, the function cuts
 them into 20 categories. The resulting score is ordinal from 1 to 20.
 
-\code{vanhanen_democratization}: Following Pemstein, Meserve, and Melton's replication code
-(Pemstein, Meserve, and Melton 2013), the function cuts Vanhanen's (2012)'s
-index of democratization into 8 intervals with the following cutoffs:
-5,10,15,20,25,30, and 35. The resulting score is ordinal from 1 to 8.
+\code{vanhanen_democratization} or \code{vanhanen_pmm}: Following Pemstein,
+Meserve, and Melton's replication code (Pemstein, Meserve, and Melton 2013),
+the function cuts Vanhanen's (2012)'s index of democratization into 8
+intervals with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting
+score is ordinal from 1 to 8.
 
 The function also recognizes the following column names (or partial column
 names - it also recognizes, e.g., blm_pmm) as measures of democracy:

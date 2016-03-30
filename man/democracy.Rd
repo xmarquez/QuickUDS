@@ -5,7 +5,7 @@
 \alias{democracy}
 \alias{democracy_long}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{data.frame} with 24149 rows and 71 columns.}
+\format{An object of class \code{data.frame} with 24149 rows and 73 columns.}
 \usage{
 democracy
 

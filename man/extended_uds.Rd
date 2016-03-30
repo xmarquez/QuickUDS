@@ -532,10 +532,10 @@ Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
   \item{se.z1}{The standard error of the latent variable. This is typically
   higher for years in the distant past or with few measurements.}
 
-  \item{pct975}{The top of the 95% confidence interval around z1. Calculated
+  \item{pct975}{The top of the 95 percent confidence interval around z1. Calculated
   as z1 + 1.96*se.z1.}
 
-  \item{pct025}{The bottom of the 95% confidence interval. Calculated as z1 -
+  \item{pct025}{The bottom of the 95 percent confidence interval. Calculated as z1 -
   1.96*se.z1.}
 
   \item{adj.z1}{The mean of the latent unfied democracy variable (the factor
@@ -543,11 +543,11 @@ Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
   the dichotomous measures of democracy used to generate it (essentially, z1
   - 0.64). See the vignette for this package for details.}
 
-  \item{adj.pct975}{The top of the 95% confidence interval around z1,
+  \item{adj.pct975}{The top of the 95 percent confidence interval around z1,
   adjusted to match the average cutpoints for the dichotomous measures of
   democracy used to generate it (essentially, pct975 - 0.64).}
 
-  \item{adj.pct025}{The bottom of the 95% confidence interval, adjusted to
+  \item{adj.pct025}{The bottom of the 95 percent confidence interval, adjusted to
   match the average cutpoints for the dichotomous measures of democracy used
   to generate it (essentially, pct025 - 0.64).}
 

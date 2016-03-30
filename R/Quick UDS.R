@@ -11,7 +11,7 @@
 #' \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
 #' \code{hadenius}, \code{kailitz}, \code{lied}, \code{munck}, \code{pacl},
 #' \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
-#' \code{ulfelder}, \code{v2x}, \code{vanhanen_democratization}, or
+#' \code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
 #' \code{wahman_teorell_hadenius}, the function performs the following
 #' transformations:
 #'
@@ -290,7 +290,7 @@ prepare_data <- function(data) {
     data[, grep("^hadenius", names(data), ignore.case=TRUE)] <- (plyr::colwise(hadenius, .cols = grep("^hadenius", names(data), ignore.case=TRUE)))(data)
     data[, grep("munck", names(data), ignore.case=TRUE)] <- (plyr::colwise(munck, .cols = grep("munck", names(data), ignore.case=TRUE)))(data)
     data[, grep("polity", names(data), ignore.case=TRUE)] <- (plyr::colwise(polity, .cols = grep("polity", names(data), ignore.case=TRUE)))(data)
-    data[, grep("vanhanen", names(data), ignore.case=TRUE)] <- (plyr::colwise(vanhanen, .cols = grep("vanhanen_democratization", names(data), ignore.case=TRUE)))(data)
+    data[, grep("vanhanen_democratization|vanhanen_pmm", names(data), ignore.case=TRUE)] <- (plyr::colwise(vanhanen, .cols = grep("vanhanen_democratization|vanhanen_pmm", names(data), ignore.case=TRUE)))(data)
     data[, grep("^v2x", names(data), ignore.case=TRUE)] <- (plyr::colwise(v2x, .cols = grep("^v2x", names(data), ignore.case=TRUE)))(data)
     data[, grep("^PEPS", names(data), ignore.case=TRUE)] <- (plyr::colwise(peps, .cols = grep("^PEPS", names(data), ignore.case=TRUE)))(data)
     data[, grep("blm|bmr|doorenspleet|freedomhouse|gwf|lied|mainwaring|magaloni|pacl|pitf|polyarchy|prc|przeworski|svolik|ulfelder|utip|kailitz|e_v2x_polyarchy_5C|wahman_teorell_hadenius", names(data), ignore.case=TRUE)] <- (plyr::colwise(other, .cols = grep("blm|bmr|doorenspleet|freedomhouse|gwf|lied|mainwaring|magaloni|pacl|pitf|polyarchy|prc|przeworski|svolik|ulfelder|utip|kailitz|e_v2x_polyarchy_5C|wahman_teorell_hadenius",

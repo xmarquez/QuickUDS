@@ -40,7 +40,7 @@ data <- data %>% arrange(country_name,year)
 
 data2 <- prepare_democracy(indexes)
 
-# The model converges after 2026 iterations, about 2.6 mins (160 secs) in my not-special desktop machine
+# The model converges after 1831 iterations, about 2.5 mins in my not-special desktop machine
 extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
 extended_scores <- democracy_scores(extended_model)
 extended_uds <- bind_cols(data,extended_scores)
@@ -59,8 +59,6 @@ cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
 cutpoints_extended <- left_join(cutpoints_extended,
                                 democracy_long %>% select(variable,index_type) %>% distinct())
 #> Joining by: "variable"
-#> Warning in left_join_impl(x, y, by$x, by$y): joining factor and character
-#> vector, coercing into character vector
 
 dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
 

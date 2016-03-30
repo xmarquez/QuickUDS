@@ -53,7 +53,7 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 
 * If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut them into 20 categories. The resulting score is ordinal from 1 to 20.
 
-* If the selected index contains the string ```vanhanen```, the assumes this is Vanhanen's (2012)'s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton's advice). The resulting score is ordinal from 1 to 8.
+* If the selected index contains the string ```vanhanen_democratization```, the function assumes this is Vanhanen's (2012)'s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton's advice). The resulting score is ordinal from 1 to 8.
 
 ```prepare_data``` will also work on column names that contain the following strings: 
 

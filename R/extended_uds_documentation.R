@@ -231,7 +231,7 @@
 #'   here for a small number of country-years.
 #'
 #'   Third, I have calculated some indexes (e.g., \code{magaloni_tri},
-#'   \code{uti_dichotmous_strict}) myself from the original datasets.
+#'   \code{utip_dichotmous_strict}) myself from the original datasets.
 #'
 #' @section Source Variables:
 #'
@@ -350,7 +350,7 @@
 #'   of Electoral Democracy. Comparative Political Studies 48 (12): 1491-1525.
 #'   Original data available from
 #'   \url{http://thedata.harvard.edu/dvn/dv/skaaning}. This is from V3 of the
-#'   dataset, updated to 2015 and revised in a few instances.
+#'   dataset, updated to 2015.
 #'
 #'   0 = nonelectoral,
 #'
@@ -512,17 +512,17 @@
 #'   1.96*se.z1.}
 #'
 #'   \item{adj.z1}{The mean of the latent unfied democracy variable (the factor
-#'   scores computed by the model), adjusted to match the level of the 2014
-#'   official UD release (essentially, z1 - 0.44). See the vignette for this
-#'   package for details.}
+#'   scores computed by the model), adjusted to match the average cutpoints for
+#'   the dichotomous measures of democracy used to generate it (essentially, z1
+#'   - 0.64). See the vignette for this package for details.}
 #'
 #'   \item{adj.pct975}{The top of the 95% confidence interval around z1,
-#'   adjusted to match the level of the 2014 official UD release (essentially,
-#'   pct975 - 0.44).}
+#'   adjusted to match the average cutpoints for the dichotomous measures of
+#'   democracy used to generate it (essentially, pct975 - 0.64).}
 #'
 #'   \item{adj.pct025}{The bottom of the 95% confidence interval, adjusted to
-#'   match the level of the 2014 official UD release (essentially, pct025 -
-#'   0.44).}
+#'   match the average cutpoints for the dichotomous measures of democracy used
+#'   to generate it (essentially, pct025 - 0.64).}
 #'
 #'   \item{group1}{Counts periods of uninterrupted measurement for a country
 #'   group. It changes value whenever the year-series "breaks" for a country.}
@@ -532,18 +532,19 @@
 #'
 #'   \item{group3}{Combined \code{group1} and \code{group2}.}
 #'
-#'   \item{adj.index}{A transformation of adj.z1 to a 0-1 scale, using the
-#'   normal cumulative distribution function. This form of the index has a
-#'   natural interpretation as the probability that a country-year is a
-#'   democracy. It could also be used in ordinal from, with values from 0 to 0.2
-#'   understood to be "closed autocracies," 0.2-0.4 "autocratic", 0.4-0.6
-#'   "hybrid", 0.6-0.8 "minimally democratic", and 0.8-1 "fully democratic".}
+#'   \item{index}{A transformation of adj.z1 to a 0-1 scale, using the normal
+#'   cumulative distribution function. See Marquez 2016 for more details. This
+#'   form of the index has a natural interpretation as the probability that a
+#'   country-year is a democracy. It could also be used in ordinal from, with
+#'   values from 0 to 0.2 understood to be "closed autocracies," 0.2-0.4
+#'   "autocratic", 0.4-0.6 "hybrid", 0.6-0.8 "minimally democratic", and 0.8-1
+#'   "fully democratic".}
 #'
-#'   \item{adj.index.pct025}{A transformation of adj.z1.pct025 to a 0-1 scale,
-#'   using the normal cumulative distribution function.}
+#'   \item{index.pct025}{A transformation of adj.z1.pct025 to a 0-1 scale, using
+#'   the normal cumulative distribution function.}
 #'
-#'   \item{adj.index.pct975}{A transformation of adj.z1.pct975 to a 0-1 scale,
-#'   using the normal cumulative distribution function.}}
+#'   \item{index.pct975}{A transformation of adj.z1.pct975 to a 0-1 scale, using
+#'   the normal cumulative distribution function.}}
 #' @template standard-variables
 #' @references
 #'
@@ -636,11 +637,13 @@
 #' and codebook available at
 #' \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}
 #'
-#'
 #' Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV:
 #' Political Regime Characteristics and Transitions, 1800-2012." Updated to
 #' 2015. Original data available from
 #' \url{http://www.systemicpeace.org/polity/polity4.htm}.
+#'
+#' Marquez, Xavier. 2016. A Quick Method for Extending the Unified Democracy
+#' Scores (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830
 #'
 #' Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett,
 #' Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong

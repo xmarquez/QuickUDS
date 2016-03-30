@@ -14,8 +14,8 @@ the column names must contain at least one of the following strings:
 \code{eiu}, \code{e_v2x}, \code{gwf}, \code{hadenius}, \code{kailitz},
 \code{lied}, \code{munck}, \code{pacl}, \code{peps}, \code{poliarchy},
 \code{polity}, \code{prc}, \code{przeworski}, \code{svolik},
-\code{ulfelder}, \code{v2x}, \code{vanhanen}, or
-\code{wahman_teorell_hadenius}. For details of these variables, see the
+\code{ulfelder}, \code{utip}, \code{v2x}, \code{vanhanen_democratization},
+or \code{wahman_teorell_hadenius}. For details of these variables, see the
 documentation for \code{\link{democracy}}.}
 }
 \value{
@@ -32,7 +32,7 @@ If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
 \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
 \code{hadenius}, \code{kailitz}, \code{lied}, \code{munck}, \code{pacl},
 \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
-\code{ulfelder}, \code{v2x}, \code{vanhanen}, or
+\code{ulfelder}, \code{v2x}, \code{vanhanen_democratization}, or
 \code{wahman_teorell_hadenius}, the function performs the following
 transformations:
 
@@ -75,9 +75,9 @@ measure from 1 to 21.
 dataset (Coppedge et al 2015) are included in the file, the function cuts
 them into 20 categories. The resulting score is ordinal from 1 to 20.
 
-\code{vanhanen}: Following Pemstein, Meserve, and Melton's replication code
+\code{vanhanen_democratization}: Following Pemstein, Meserve, and Melton's replication code
 (Pemstein, Meserve, and Melton 2013), the function cuts Vanhanen's (2012)'s
-0-100 democracy score into 8 intervals with the following cutoffs:
+index of democratization into 8 intervals with the following cutoffs:
 5,10,15,20,25,30, and 35. The resulting score is ordinal from 1 to 8.
 
 The function also recognizes the following column names (or partial column
@@ -96,11 +96,11 @@ and Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and
 Ulfelder 2015), \code{poliarchy} (from Coppedge and Reinicke 1991),
 \code{prc} (from Gasiorowski 1996 or Reich 2002), \code{przeworski} (from
 Przeworski 2010), \code{svolik} (from Svolik 2012, democracy/dictatorship
-indicator only), \code{ulfelder} (from Ulfelder 2012), and
-\code{wahman_teorell_hadenius} (from Wahman, Teorell, and Hadenius 2013). In
-each of these cases the function transforms the values of these scores by
-running \code{as.numeric(unclass(factor(x)))}, which transforms them into
-ordinal variables from 1 to the number of categories.
+indicator only), \code{ulfelder} (from Ulfelder 2012), \code{utip} (from Hsu
+2008), and \code{wahman_teorell_hadenius} (from Wahman, Teorell, and Hadenius
+2013). In each of these cases the function transforms the values of these
+scores by running \code{as.numeric(unclass(factor(x)))}, which transforms
+them into ordinal variables from 1 to the number of categories.
 
 For details of these scores, see the documentation for
 \code{\link{democracy}}.
@@ -178,6 +178,10 @@ University Press.
 
 Hadenius, Axel & Jan Teorell. 2007. "Pathways from Authoritarianism", Journal
 of Democracy 18(1): 143-156.
+
+Hsu, Sara "The Effect of Political Regimes on Inequality, 1963-2002," UTIP
+Working Paper No. 53 (2008), http://utip.gov.utexas.edu/papers/utip_53.pdf.
+Data available for download at http://utip.gov.utexas.edu/data/.
 
 Kailitz, Steffen. 2013. Classifying political regimes revisited: legitimation
 and durability. Democratization 20 (1): 39-60. Original data available at

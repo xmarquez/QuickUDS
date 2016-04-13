@@ -101,7 +101,7 @@ replication_2011_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    10.85     0.33     8.71     1.15     7.54     1.79     0.00
+##    10.78     0.36     8.69     1.18     7.49     1.73     0.00
 ```
 
 There is a convenient wrapper for ```mirt(data[ , indexes ] ,model = 1, itemtype = "graded", SE = TRUE)```, in case you just want to re-fit Pemstein, Meserve, and Melton's original model without any special tweaking:
@@ -125,19 +125,19 @@ replication_2011_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 144 EM iterations.
+## Converged within 1e-04 tolerance after 172 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 152303.6
+## Condition number of information matrix = 143579.1
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -55697.77
-## AIC = 111583.5; AICc = 111585.5
-## BIC = 112252.8; SABIC = 111954.1
+## Log-likelihood = -55697.82
+## AIC = 111583.6; AICc = 111585.6
+## BIC = 112252.9; SABIC = 111954.2
 ```
 
 ```r
@@ -147,11 +147,11 @@ summary(replication_2011_model)
 ```
 ##                     F1    h2
 ## arat_pmm         0.901 0.812
-## blm_pmm          0.993 0.985
+## blm_pmm          0.992 0.985
 ## bollen_pmm       0.951 0.904
 ## freedomhouse_pmm 0.941 0.885
-## hadenius_pmm     0.987 0.974
-## mainwaring_pmm   0.995 0.989
+## hadenius_pmm     0.986 0.973
+## mainwaring_pmm   0.994 0.989
 ## munck_pmm        0.955 0.912
 ## pacl_pmm         0.967 0.936
 ## polity_pmm       0.954 0.911
@@ -159,7 +159,7 @@ summary(replication_2011_model)
 ## prc_pmm          0.969 0.938
 ## vanhanen_pmm     0.928 0.861
 ## 
-## SS loadings:  11.038 
+## SS loadings:  11.036 
 ## Proportion Var:  0.92 
 ## 
 ## Factor correlations: 
@@ -193,12 +193,12 @@ head(replication_2011_scores)
 
 ```
 ##          z1     se.z1     pct975    pct025
-## 1 -1.885971 0.4863005 -0.9328221 -2.839120
-## 2 -1.885971 0.4863005 -0.9328221 -2.839120
-## 3 -1.573987 0.3233880 -0.9401463 -2.207827
-## 4 -1.573987 0.3233880 -0.9401463 -2.207827
-## 5 -1.447844 0.2294384 -0.9981444 -1.897543
-## 6 -1.573987 0.3233880 -0.9401463 -2.207827
+## 1 -1.885883 0.4862536 -0.9328262 -2.838940
+## 2 -1.885883 0.4862536 -0.9328262 -2.838940
+## 3 -1.573920 0.3233539 -0.9401460 -2.207693
+## 4 -1.573920 0.3233539 -0.9401460 -2.207693
+## 5 -1.447839 0.2294712 -0.9980751 -1.897602
+## 6 -1.573920 0.3233539 -0.9401460 -2.207693
 ```
 
 ```r
@@ -211,6 +211,26 @@ We can also check that these scores are, in fact, perfectly correlated with Pems
 
 ```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
 
 Hmisc::rcorr(comparison %>% select(z1,mean) %>% as.matrix())
@@ -268,19 +288,19 @@ extended_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 217 EM iterations.
+## Converged within 1e-04 tolerance after 172 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 115934.9
+## Condition number of information matrix = 116553.8
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -161653.5
-## AIC = 323601; AICc = 323602.8
-## BIC = 324789.5; SABIC = 324322.3
+## Log-likelihood = -161653.3
+## AIC = 323600.5; AICc = 323602.3
+## BIC = 324789; SABIC = 324321.8
 ```
 
 ```r
@@ -289,7 +309,7 @@ extended_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    32.22     0.97    24.13     5.67    18.45     7.10     0.00
+##    30.39     1.01    22.22     4.65    17.55     7.13     0.00
 ```
 
 ```r
@@ -301,16 +321,16 @@ extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 ## 
 ##    country_name   GWn  cown  year         z1     se.z1    pct025    pct975
 ##           (chr) (dbl) (dbl) (dbl)      (dbl)     (dbl)     (dbl)     (dbl)
-## 1   Afghanistan   700   700  1747 -0.6162223 0.6785283 -1.946138 0.7136931
-## 2   Afghanistan   700   700  1748 -0.6162223 0.6785283 -1.946138 0.7136931
-## 3   Afghanistan   700   700  1749 -0.6162223 0.6785283 -1.946138 0.7136931
-## 4   Afghanistan   700   700  1750 -0.6162223 0.6785283 -1.946138 0.7136931
-## 5   Afghanistan   700   700  1751 -0.6162223 0.6785283 -1.946138 0.7136931
-## 6   Afghanistan   700   700  1752 -0.6162223 0.6785283 -1.946138 0.7136931
-## 7   Afghanistan   700   700  1753 -0.6162223 0.6785283 -1.946138 0.7136931
-## 8   Afghanistan   700   700  1754 -0.6162223 0.6785283 -1.946138 0.7136931
-## 9   Afghanistan   700   700  1755 -0.6162223 0.6785283 -1.946138 0.7136931
-## 10  Afghanistan   700   700  1756 -0.6162223 0.6785283 -1.946138 0.7136931
+## 1   Afghanistan   700   700  1747 -0.6158403 0.6786449 -1.945984 0.7143037
+## 2   Afghanistan   700   700  1748 -0.6158403 0.6786449 -1.945984 0.7143037
+## 3   Afghanistan   700   700  1749 -0.6158403 0.6786449 -1.945984 0.7143037
+## 4   Afghanistan   700   700  1750 -0.6158403 0.6786449 -1.945984 0.7143037
+## 5   Afghanistan   700   700  1751 -0.6158403 0.6786449 -1.945984 0.7143037
+## 6   Afghanistan   700   700  1752 -0.6158403 0.6786449 -1.945984 0.7143037
+## 7   Afghanistan   700   700  1753 -0.6158403 0.6786449 -1.945984 0.7143037
+## 8   Afghanistan   700   700  1754 -0.6158403 0.6786449 -1.945984 0.7143037
+## 9   Afghanistan   700   700  1755 -0.6158403 0.6786449 -1.945984 0.7143037
+## 10  Afghanistan   700   700  1756 -0.6158403 0.6786449 -1.945984 0.7143037
 ## ..          ...   ...   ...   ...        ...       ...       ...       ...
 ```
 
@@ -361,7 +381,7 @@ mean_ud_period
 ```
 
 ```
-## [1] 0.483148
+## [1] 0.483806
 ```
 
 ```r
@@ -465,16 +485,16 @@ replication_2011_cutpoints
 ## 
 ##       par CI_2.5 CI_97.5 variable  type     estimate       pct975
 ##     (dbl)  (dbl)   (dbl)    (chr) (chr)        (dbl)        (dbl)
-## 1   3.536  3.310   3.763 arat_pmm    a1 -1.000000000 -1.000000000
-## 2   5.072  4.839   5.305 arat_pmm    d1 -1.434389140 -1.461933535
-## 3   3.599  3.394   3.805 arat_pmm    d2 -1.017816742 -1.025377644
-## 4   1.512  1.347   1.677 arat_pmm    d3 -0.427601810 -0.406948640
-## 5   0.152 -0.014   0.317 arat_pmm    d4 -0.042986425  0.004229607
-## 6  -1.485 -1.664  -1.305 arat_pmm    d5  0.419966063  0.502719033
-## 7  -5.022 -5.309  -4.734 arat_pmm    d6  1.420248869  1.603927492
-## 8  13.833  7.440  20.226  blm_pmm    a1 -1.000000000 -1.000000000
-## 9   0.057 -0.735   0.849  blm_pmm    d1 -0.004120581  0.098790323
-## 10 -6.525 -9.578  -3.471  blm_pmm    d2  0.471698113  1.287365591
+## 1   3.536  3.309   3.763 arat_pmm    a1 -1.000000000 -1.000000000
+## 2   5.071  4.838   5.304 arat_pmm    d1 -1.434106335 -1.462073134
+## 3   3.598  3.393   3.804 arat_pmm    d2 -1.017533937 -1.025385313
+## 4   1.511  1.346   1.676 arat_pmm    d3 -0.427319005 -0.406769417
+## 5   0.151 -0.015   0.317 arat_pmm    d4 -0.042703620  0.004533092
+## 6  -1.485 -1.665  -1.305 arat_pmm    d5  0.419966063  0.503173164
+## 7  -5.023 -5.310  -4.735 arat_pmm    d6  1.420531674  1.604714415
+## 8  13.624  7.372  19.876  blm_pmm    a1 -1.000000000           NA
+## 9   0.056 -0.730   0.841  blm_pmm    d1 -0.004110393           NA
+## 10 -6.444 -9.443  -3.445  blm_pmm    d2  0.472988843           NA
 ## ..    ...    ...     ...      ...   ...          ...          ...
 ## Variables not shown: pct025 (dbl)
 ```
@@ -493,6 +513,10 @@ ggplot(data = replication_2011_cutoffs, aes(x=variable,y = estimate, ymin = pct0
   geom_errorbar() + 
   geom_hline(yintercept =0, color="red") + 
   coord_flip()
+```
+
+```
+## Warning: Removed 2 rows containing missing values (geom_errorbar).
 ```
 
 ![](Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-16-1.png)
@@ -531,16 +555,16 @@ replication_2011_info
 ## 
 ##       rater theta         info
 ##       (chr) (dbl)        (dbl)
-## 1  arat_pmm  -6.0 1.216458e-06
-## 2  arat_pmm  -5.8 2.467471e-06
-## 3  arat_pmm  -5.6 5.005032e-06
-## 4  arat_pmm  -5.4 1.015223e-05
-## 5  arat_pmm  -5.2 2.059281e-05
-## 6  arat_pmm  -5.0 4.177044e-05
-## 7  arat_pmm  -4.8 8.472684e-05
-## 8  arat_pmm  -4.6 1.718581e-04
-## 9  arat_pmm  -4.4 3.485881e-04
-## 10 arat_pmm  -4.2 7.070377e-04
+## 1  arat_pmm  -6.0 1.216699e-06
+## 2  arat_pmm  -5.8 2.467860e-06
+## 3  arat_pmm  -5.6 5.005620e-06
+## 4  arat_pmm  -5.4 1.015302e-05
+## 5  arat_pmm  -5.2 2.059358e-05
+## 6  arat_pmm  -5.0 4.177033e-05
+## 7  arat_pmm  -4.8 8.472323e-05
+## 8  arat_pmm  -4.6 1.718439e-04
+## 9  arat_pmm  -4.4 3.485453e-04
+## 10 arat_pmm  -4.2 7.069227e-04
 ## ..      ...   ...          ...
 ```
 
@@ -563,7 +587,7 @@ prob_more(replication_2011_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.8780068
+## [1] 0.8780381
 ```
 
 ```r
@@ -571,7 +595,7 @@ prob_more(extended_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.7322454
+## [1] 0.7321254
 ```
 
 Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:
@@ -582,7 +606,7 @@ prob_more(replication_2011_scores, "United States of America","United States of 
 ```
 
 ```
-## [1] 0.9179374
+## [1] 0.9179108
 ```
 
 ```r
@@ -590,7 +614,7 @@ prob_more(extended_scores, "United States of America","United States of America"
 ```
 
 ```
-## [1] 0.9998778
+## [1] 0.999878
 ```
 
 If you find this package useful, cite both it and Pemstein, Meserve, and Melton's original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using ```citation```:
@@ -606,7 +630,7 @@ citation("QuickUDS")
 ## 
 ##   Xavier Marquez (2016). QuickUDS: Extend the Unified Democracy
 ##   Scores Backwards and Forwards in Time easily. R package version
-##   0.1.1. https://github.com/xmarquez/QuickUDS
+##   0.1.2. https://github.com/xmarquez/QuickUDS
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -614,13 +638,9 @@ citation("QuickUDS")
 ##     title = {QuickUDS: Extend the Unified Democracy Scores Backwards and Forwards in Time easily},
 ##     author = {Xavier Marquez},
 ##     year = {2016},
-##     note = {R package version 0.1.1},
+##     note = {R package version 0.1.2},
 ##     url = {https://github.com/xmarquez/QuickUDS},
 ##   }
-## 
-## ATTENTION: This citation information has been auto-generated from
-## the package DESCRIPTION file and may need manual editing, see
-## 'help("citation")'.
 ```
 
 # References

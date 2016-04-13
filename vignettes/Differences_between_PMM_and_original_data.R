@@ -3,6 +3,7 @@ library(knitr)
 library(QuickUDS)
 library(dplyr)
 opts_chunk$set(echo=TRUE)
+options(knitr.table.format = 'html')
 
 ## ----fh_pmm_comparison_setup---------------------------------------------
 library(QuickUDS)

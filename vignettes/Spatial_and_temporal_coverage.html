@@ -11,7 +11,7 @@
 
 <meta name="author" content="Xavier Marquez" />
 
-<meta name="date" content="2016-04-13" />
+<meta name="date" content="2016-04-14" />
 
 <title>Characteristics of Different Democracy Measures</title>
 
@@ -70,12 +70,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title">Characteristics of Different Democracy Measures</h1>
 <h4 class="author"><em>Xavier Marquez</em></h4>
-<h4 class="date"><em>2016-04-13</em></h4>
+<h4 class="date"><em>2016-04-14</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#general-characteristics">General Characteristics</a></li>
 <li><a href="#arat">Arat</a><ul>
 <li><a href="#coverage">Coverage</a></li>
 <li><a href="#distribution">Distribution</a></li>
@@ -195,14 +196,2787 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 
 <p>This vignette describes the temporal and spatial coverage of the democracy measures included in this package, notes their correlations, and documents any changes made to the original data sources.</p>
+<div id="general-characteristics" class="section level1">
+<h1>General Characteristics</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+<span class="kw">library</span>(QuickUDS)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw">print</span>(<span class="kw">kable</span>(democracy_long %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">group_by</span>(variable) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">distinct_countries =</span> <span class="kw">n_distinct</span>(country_name),
+                  <span class="dt">distinct_years =</span> <span class="kw">n_distinct</span>(year),
+                  <span class="dt">min_year =</span> <span class="kw">min</span>(year),
+                  <span class="dt">max_year =</span> <span class="kw">max</span>(year),
+                  <span class="dt">mean_year =</span> <span class="kw">mean</span>(year),
+                  <span class="dt">index_type =</span> <span class="kw">unique</span>(index_type),
+                  <span class="dt">num_values =</span> <span class="kw">n_distinct</span>(value),
+                  <span class="dt">mean =</span> <span class="kw">mean</span>(value),
+                  <span class="dt">median =</span> <span class="kw">median</span>(value),
+                  <span class="dt">min_value =</span> <span class="kw">min</span>(value),
+                  <span class="dt">max_value =</span> <span class="kw">max</span>(value),
+                  <span class="dt">sd =</span> <span class="kw">sd</span>(value)),
+      <span class="dt">digits =</span> <span class="dv">2</span>))</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+distinct_countries
+</th>
+<th style="text-align:right;">
+distinct_years
+</th>
+<th style="text-align:right;">
+min_year
+</th>
+<th style="text-align:right;">
+max_year
+</th>
+<th style="text-align:right;">
+mean_year
+</th>
+<th style="text-align:left;">
+index_type
+</th>
+<th style="text-align:right;">
+num_values
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+min_value
+</th>
+<th style="text-align:right;">
+max_value
+</th>
+<th style="text-align:right;">
+sd
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PEPS1i
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+204
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1949.74
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+726
+</td>
+<td style="text-align:right;">
+-3.20
+</td>
+<td style="text-align:right;">
+-7.00
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+6.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEPS1q
+</td>
+<td style="text-align:right;">
+176
+</td>
+<td style="text-align:right;">
+204
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1950.37
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+727
+</td>
+<td style="text-align:right;">
+-3.18
+</td>
+<td style="text-align:right;">
+-6.24
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+6.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEPS1v
+</td>
+<td style="text-align:right;">
+177
+</td>
+<td style="text-align:right;">
+204
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1932.32
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+1866
+</td>
+<td style="text-align:right;">
+-2.87
+</td>
+<td style="text-align:right;">
+-4.00
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+5.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEPS2i
+</td>
+<td style="text-align:right;">
+143
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1981.28
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+843
+</td>
+<td style="text-align:right;">
+3.72
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+-9.59
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+4.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEPS2q
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1978.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+856
+</td>
+<td style="text-align:right;">
+-1.13
+</td>
+<td style="text-align:right;">
+-1.46
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+6.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PEPS2v
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+1810
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1937.77
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+2414
+</td>
+<td style="text-align:right;">
+-2.43
+</td>
+<td style="text-align:right;">
+-3.55
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+5.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polity3
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+204
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1929.05
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+-1.13
+</td>
+<td style="text-align:right;">
+-3.00
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+7.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arat_pmm
+</td>
+<td style="text-align:right;">
+151
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+1948
+</td>
+<td style="text-align:right;">
+1982
+</td>
+<td style="text-align:right;">
+1967.70
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+73.20
+</td>
+<td style="text-align:right;">
+69.00
+</td>
+<td style="text-align:right;">
+29.00
+</td>
+<td style="text-align:right;">
+109.00
+</td>
+<td style="text-align:right;">
+18.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+blm
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1950.00
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+blm_pmm
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1973.00
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bmr_democracy
+</td>
+<td style="text-align:right;">
+212
+</td>
+<td style="text-align:right;">
+211
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1938.71
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bmr_democracy_omitteddata
+</td>
+<td style="text-align:right;">
+212
+</td>
+<td style="text-align:right;">
+211
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1938.89
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bnr
+</td>
+<td style="text-align:right;">
+192
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+1913
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+1969.50
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bollen_pmm
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1950
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1965.48
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+348
+</td>
+<td style="text-align:right;">
+55.46
+</td>
+<td style="text-align:right;">
+53.59
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+<td style="text-align:right;">
+33.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doorenspleet
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1921.29
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+eiu
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+2006.91
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+783
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+exconst
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.14
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+-88.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+17.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+exrec
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.73
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+-88.00
+</td>
+<td style="text-align:right;">
+8.00
+</td>
+<td style="text-align:right;">
+17.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+freedomhouse
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1994.87
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+4.26
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+2.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+freedomhouse_electoral
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2002.20
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.60
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+freedomhouse_pmm
+</td>
+<td style="text-align:right;">
+198
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1990.95
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+4.15
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+2.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gwf
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+270
+</td>
+<td style="text-align:right;">
+1741
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1969.92
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hadenius_pmm
+</td>
+<td style="text-align:right;">
+129
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1988
+</td>
+<td style="text-align:right;">
+1988
+</td>
+<td style="text-align:right;">
+1988.00
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+4.51
+</td>
+<td style="text-align:right;">
+3.10
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+3.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kailitz_binary
+</td>
+<td style="text-align:right;">
+198
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1982.69
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kailitz_tri
+</td>
+<td style="text-align:right;">
+198
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1982.69
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lied
+</td>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1938.91
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2.78
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+2.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lied_accountable
+</td>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1938.91
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lied_electoral
+</td>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1938.91
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lied_inclusive
+</td>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1938.91
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magaloni_democ_binary
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+1769
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+1972.44
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magaloni_regime_tri
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+1769
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+1972.44
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2.01
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mainwaring
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:right;">
+1953.60
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-0.32
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mainwaring_pmm
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:right;">
+1981.10
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+munck_pmm
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+1993.79
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pacl
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1981.94
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pacl_pmm
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1982.01
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pitf
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.44
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2.42
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+1.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pitf_binary
+</td>
+<td style="text-align:right;">
+185
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.44
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polcomp
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.45
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+-88.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+17.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polity
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.14
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+-4.12
+</td>
+<td style="text-align:right;">
+-3.00
+</td>
+<td style="text-align:right;">
+-88.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+17.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polity2
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+1938.15
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+-0.64
+</td>
+<td style="text-align:right;">
+-3.00
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+7.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polity_pmm
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1980.85
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+<td style="text-align:right;">
+-10.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+7.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polyarchy_contestation
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1993.11
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+5.82
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:right;">
+2.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polyarchy_pmm
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1993.12
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+6.33
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+polyarchy_reversed
+</td>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1993.11
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+6.35
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+3.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+prc
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+252
+</td>
+<td style="text-align:right;">
+1747
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1937.00
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+prc_notrans
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+252
+</td>
+<td style="text-align:right;">
+1747
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1936.50
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+prc_pmm
+</td>
+<td style="text-align:right;">
+148
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1974.83
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2.15
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+przeworski
+</td>
+<td style="text-align:right;">
+197
+</td>
+<td style="text-align:right;">
+221
+</td>
+<td style="text-align:right;">
+1788
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1950.24
+</td>
+<td style="text-align:left;">
+Ordinal
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1.79
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+svolik
+</td>
+<td style="text-align:right;">
+198
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+1921
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1980.99
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.44
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ulfelder
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+1955
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1984.84
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+utip_dichotomous
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:right;">
+1984.47
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.52
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+utip_dichotomous_strict
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:right;">
+1984.47
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+utip_trichotomous
+</td>
+<td style="text-align:right;">
+152
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:right;">
+1984.47
+</td>
+<td style="text-align:left;">
+Trichotomous
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_api
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+9268
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_delibdem
+</td>
+<td style="text-align:right;">
+171
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1961.00
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+9827
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_egaldem
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+10152
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_libdem
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+10593
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_mpi
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+6148
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_partipdem
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.97
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+9910
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+v2x_polyarchy
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+1900
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+1960.99
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+9268
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vanhanen_competition
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+203
+</td>
+<td style="text-align:right;">
+1810
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+1947.43
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+25.22
+</td>
+<td style="text-align:right;">
+20.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+70.00
+</td>
+<td style="text-align:right;">
+25.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vanhanen_democratization
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+203
+</td>
+<td style="text-align:right;">
+1810
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+1947.43
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+445
+</td>
+<td style="text-align:right;">
+8.43
+</td>
+<td style="text-align:right;">
+1.10
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vanhanen_participation
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+203
+</td>
+<td style="text-align:right;">
+1810
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+1947.43
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+760
+</td>
+<td style="text-align:right;">
+21.10
+</td>
+<td style="text-align:right;">
+14.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+71.00
+</td>
+<td style="text-align:right;">
+21.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+vanhanen_pmm
+</td>
+<td style="text-align:right;">
+192
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1981.71
+</td>
+<td style="text-align:left;">
+Continuous
+</td>
+<td style="text-align:right;">
+439
+</td>
+<td style="text-align:right;">
+11.31
+</td>
+<td style="text-align:right;">
+5.90
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+49.00
+</td>
+<td style="text-align:right;">
+12.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wahman_teorell_hadenius
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1991.93
+</td>
+<td style="text-align:left;">
+Dichotomous
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="arat" class="section level1">
 <h1>Arat</h1>
 <p>This is the dataset described in Arat 1991; the actual values are taken from Pemstein, Meserve, and Melton 2013 (the replication data for Pemstein, Meserve, and Melton 2010).</p>
 <div id="coverage" class="section level2">
 <h2>Coverage</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuickUDS)
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(ggplot2)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
 panel &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span><span class="kw">select</span>(country_name,year) %&gt;%<span class="st"> </span><span class="kw">distinct</span>()
 
@@ -567,692 +3341,1592 @@ data &lt;-<span class="st"> </span>democracy_long %&gt;%<span class="st"> </span
 <div id="index-construction-and-known-problems" class="section level2">
 <h2>Index construction and known problems</h2>
 <p>Note that 316 of the country-years in the Kailitz dataset are classified with more than one regime type.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">count</span>(<span class="dt">multiple_regimes =</span> <span class="kw">grepl</span>(<span class="st">&quot;-&quot;</span>,combined_regime)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">count</span>(<span class="dt">multiple_regimes =</span> <span class="kw">grepl</span>(<span class="st">&quot;-&quot;</span>,combined_regime))))</code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left">multiple_regimes</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+multiple_regimes
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="right">9290</td>
+<tr>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+9290
+</td>
 </tr>
-<tr class="even">
-<td align="left">TRUE</td>
-<td align="right">316</td>
+<tr>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+316
+</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
 <span class="st">        </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;-&quot;</span>,combined_regime)) %&gt;%
 <span class="st">        </span><span class="kw">group_by</span>(country_name) %&gt;%
 <span class="st">        </span><span class="kw">arrange</span>(country_name,year) %&gt;%
 <span class="st">        </span><span class="kw">group_by</span>(combined_regime, <span class="dt">add=</span><span class="ot">TRUE</span>) %&gt;%
-<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max =</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()))</code></pre></div>
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max =</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>())))</code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left">country_name</th>
-<th align="left">combined_regime</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+country_name
+</th>
+<th style="text-align:left;">
+combined_regime
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Afghanistan</td>
-<td align="left">Electoral Autocracy-Personalist Autocracy</td>
-<td align="right">2010</td>
-<td align="right">2010</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Algeria</td>
-<td align="left">Electoral Autocracy-One party Autocracy</td>
-<td align="right">1989</td>
-<td align="right">1991</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-One party Autocracy
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Angola</td>
-<td align="left">Electoral Autocracy-State Failure or Occupation</td>
-<td align="right">2010</td>
-<td align="right">2010</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Benin</td>
-<td align="left">Electoral Autocracy-Personalist Autocracy</td>
-<td align="right">1960</td>
-<td align="right">1962</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Benin
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Benin</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1965</td>
-<td align="right">1974</td>
-<td align="right">8</td>
+<tr>
+<td style="text-align:left;">
+Benin
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1965
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
-<tr class="even">
-<td align="left">Benin</td>
-<td align="left">Personalist Autocracy-Transition</td>
-<td align="right">1963</td>
-<td align="right">1971</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Benin
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Burundi</td>
-<td align="left">Electoral Autocracy-State Failure or Occupation</td>
-<td align="right">1993</td>
-<td align="right">1995</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Burundi
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="even">
-<td align="left">Burundi</td>
-<td align="left">One party Autocracy-Personalist Autocracy</td>
-<td align="right">1982</td>
-<td align="right">1983</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Burundi
+</td>
+<td style="text-align:left;">
+One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1982
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="left">Communist Ideocracy-State Failure or Occupation</td>
-<td align="right">1981</td>
-<td align="right">1990</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="even">
-<td align="left">Central African Republic</td>
-<td align="left">Electoral Autocracy-One party Autocracy</td>
-<td align="right">1991</td>
-<td align="right">1992</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Central African Republic
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-One party Autocracy
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Colombia</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1947</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Colombia
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Colombia</td>
-<td align="left">State Failure or Occupation-Transition</td>
-<td align="right">1948</td>
-<td align="right">1952</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+Colombia
+</td>
+<td style="text-align:left;">
+State Failure or Occupation-Transition
+</td>
+<td style="text-align:right;">
+1948
+</td>
+<td style="text-align:right;">
+1952
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Cuba</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1951</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Cuba
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1951
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">Ecuador</td>
-<td align="left">Electoral Autocracy-Personalist Autocracy</td>
-<td align="right">1970</td>
-<td align="right">1971</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Ecuador
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1970
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Ecuador</td>
-<td align="left">Electoral Autocracy-Transition</td>
-<td align="right">2000</td>
-<td align="right">2001</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Ecuador
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Transition
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Guinea-Bissau</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1980</td>
-<td align="right">1983</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Guinea-Bissau
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Guinea-Bissau</td>
-<td align="left">Military Autocracy-Transition</td>
-<td align="right">2004</td>
-<td align="right">2004</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Guinea-Bissau
+</td>
+<td style="text-align:left;">
+Military Autocracy-Transition
+</td>
+<td style="text-align:right;">
+2004
+</td>
+<td style="text-align:right;">
+2004
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Haiti</td>
-<td align="left">Electoral Autocracy-Transition</td>
-<td align="right">1946</td>
-<td align="right">1947</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Haiti
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Honduras</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1957</td>
-<td align="right">1962</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Honduras
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1957
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">Indonesia</td>
-<td align="left">Personalist Autocracy-Transition</td>
-<td align="right">1952</td>
-<td align="right">1967</td>
-<td align="right">12</td>
+<tr>
+<td style="text-align:left;">
+Indonesia
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1952
+</td>
+<td style="text-align:right;">
+1967
+</td>
+<td style="text-align:right;">
+12
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Kuwait</td>
-<td align="left">Monarchy-State Failure or Occupation</td>
-<td align="right">1990</td>
-<td align="right">1990</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Kuwait
+</td>
+<td style="text-align:left;">
+Monarchy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Lebanon</td>
-<td align="left">State Failure or Occupation-Transition</td>
-<td align="right">2000</td>
-<td align="right">2001</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Lebanon
+</td>
+<td style="text-align:left;">
+State Failure or Occupation-Transition
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Lesotho</td>
-<td align="left">Electoral Autocracy-State Failure or Occupation</td>
-<td align="right">1998</td>
-<td align="right">1999</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Lesotho</td>
-<td align="left">Electoral Autocracy-Transition</td>
-<td align="right">2000</td>
-<td align="right">2001</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Transition
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Liberia</td>
-<td align="left">Personalist Autocracy-State Failure or Occupation</td>
-<td align="right">1990</td>
-<td align="right">1990</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Liberia
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Madagascar (Malagasy)</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1972</td>
-<td align="right">1974</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Madagascar (Malagasy)
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Madagascar (Malagasy)</td>
-<td align="left">Personalist Autocracy-Transition</td>
-<td align="right">1975</td>
-<td align="right">1975</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Madagascar (Malagasy)
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Mauritania</td>
-<td align="left">Electoral Autocracy-Military Autocracy</td>
-<td align="right">2008</td>
-<td align="right">2008</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Mauritania
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Military Autocracy
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+2008
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Mozambique</td>
-<td align="left">Personalist Autocracy-Transition</td>
-<td align="right">1991</td>
-<td align="right">1993</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Mozambique
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="even">
-<td align="left">Nicaragua</td>
-<td align="left">Communist Ideocracy-Electoral Autocracy</td>
-<td align="right">1984</td>
-<td align="right">1989</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Nicaragua
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-Electoral Autocracy
+</td>
+<td style="text-align:right;">
+1984
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Nicaragua</td>
-<td align="left">Communist Ideocracy-State Failure or Occupation</td>
-<td align="right">1980</td>
-<td align="right">1981</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Nicaragua
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Nicaragua</td>
-<td align="left">Communist Ideocracy-Transition</td>
-<td align="right">1982</td>
-<td align="right">1983</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Nicaragua
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-Transition
+</td>
+<td style="text-align:right;">
+1982
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Nicaragua</td>
-<td align="left">Electoral Autocracy-Personalist Autocracy</td>
-<td align="right">1972</td>
-<td align="right">1972</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Nicaragua
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+1972
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Nicaragua</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1973</td>
-<td align="right">1973</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Nicaragua
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1973
+</td>
+<td style="text-align:right;">
+1973
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Niger</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">2000</td>
-<td align="right">2010</td>
-<td align="right">11</td>
+<tr>
+<td style="text-align:left;">
+Niger
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
-<tr class="even">
-<td align="left">Peru</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1963</td>
-<td align="right">1967</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+1967
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Philippines</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1971</td>
-<td align="right">26</td>
+<tr>
+<td style="text-align:left;">
+Philippines
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:right;">
+26
+</td>
 </tr>
-<tr class="even">
-<td align="left">Philippines</td>
-<td align="left">Liberal Democracy-Personalist Autocracy</td>
-<td align="right">1994</td>
-<td align="right">2002</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+Philippines
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Portugal</td>
-<td align="left">Military Autocracy-Transition</td>
-<td align="right">1974</td>
-<td align="right">1975</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Portugal
+</td>
+<td style="text-align:left;">
+Military Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Seychelles</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">2007</td>
-<td align="right">2010</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Seychelles
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Seychelles</td>
-<td align="left">Liberal Democracy-Transition</td>
-<td align="right">1976</td>
-<td align="right">1976</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Seychelles
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Transition
+</td>
+<td style="text-align:right;">
+1976
+</td>
+<td style="text-align:right;">
+1976
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Somalia</td>
-<td align="left">Liberal Democracy-Transition</td>
-<td align="right">1960</td>
-<td align="right">1968</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+Somalia
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Transition
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1968
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Somalia</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1969</td>
-<td align="right">1990</td>
-<td align="right">22</td>
+<tr>
+<td style="text-align:left;">
+Somalia
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1969
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+22
+</td>
 </tr>
-<tr class="even">
-<td align="left">Somalia</td>
-<td align="left">Military Autocracy-State Failure or Occupation</td>
-<td align="right">1991</td>
-<td align="right">1991</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Somalia
+</td>
+<td style="text-align:left;">
+Military Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Spain</td>
-<td align="left">Military Autocracy-One party Autocracy-Personalist Autocracy</td>
-<td align="right">1946</td>
-<td align="right">1974</td>
-<td align="right">29</td>
+<tr>
+<td style="text-align:left;">
+Spain
+</td>
+<td style="text-align:left;">
+Military Autocracy-One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+29
+</td>
 </tr>
-<tr class="even">
-<td align="left">Sri Lanka (Ceylon)</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1960</td>
-<td align="right">2010</td>
-<td align="right">51</td>
+<tr>
+<td style="text-align:left;">
+Sri Lanka (Ceylon)
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+51
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Sri Lanka (Ceylon)</td>
-<td align="left">Electoral Autocracy-Transition</td>
-<td align="right">1948</td>
-<td align="right">1959</td>
-<td align="right">12</td>
+<tr>
+<td style="text-align:left;">
+Sri Lanka (Ceylon)
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Transition
+</td>
+<td style="text-align:right;">
+1948
+</td>
+<td style="text-align:right;">
+1959
+</td>
+<td style="text-align:right;">
+12
+</td>
 </tr>
-<tr class="even">
-<td align="left">Syria</td>
-<td align="left">One party Autocracy-Personalist Autocracy</td>
-<td align="right">2000</td>
-<td align="right">2010</td>
-<td align="right">11</td>
+<tr>
+<td style="text-align:left;">
+Syria
+</td>
+<td style="text-align:left;">
+One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Tunisia</td>
-<td align="left">One party Autocracy-Personalist Autocracy</td>
-<td align="right">1975</td>
-<td align="right">1978</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Tunisia
+</td>
+<td style="text-align:left;">
+One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+1978
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="even">
-<td align="left">Venezuela</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">1948</td>
-<td align="right">1957</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:left;">
+Venezuela
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1948
+</td>
+<td style="text-align:right;">
+1957
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Yemen (Arab Republic of Yemen)</td>
-<td align="left">Monarchy-Transition</td>
-<td align="right">1946</td>
-<td align="right">1947</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Yemen (Arab Republic of Yemen)
+</td>
+<td style="text-align:left;">
+Monarchy-Transition
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
 </tbody>
 </table>
 <p>The following are especially troublesome, since the multiple categories do not make sense:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(kailitz.yearly %&gt;%<span class="st"> </span>
 <span class="st">        </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;-&quot;</span>,combined_regime)) %&gt;%
 <span class="st">        </span><span class="kw">group_by</span>(country_name) %&gt;%
 <span class="st">        </span><span class="kw">arrange</span>(country_name,year) %&gt;%
 <span class="st">        </span><span class="kw">group_by</span>(combined_regime, <span class="dt">add=</span><span class="ot">TRUE</span>) %&gt;%
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max =</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
-<span class="st">        </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;democracy&quot;</span>,combined_regime, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>)))</code></pre></div>
+<span class="st">        </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;democracy&quot;</span>,combined_regime, <span class="dt">ignore.case=</span><span class="ot">TRUE</span>))))</code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left">country_name</th>
-<th align="left">combined_regime</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+country_name
+</th>
+<th style="text-align:left;">
+combined_regime
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Colombia</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1947</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:left;">
+Colombia
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="left">Cuba</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1951</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Cuba
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1951
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Honduras</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1957</td>
-<td align="right">1962</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:left;">
+Honduras
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1957
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="even">
-<td align="left">Niger</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">2000</td>
-<td align="right">2010</td>
-<td align="right">11</td>
+<tr>
+<td style="text-align:left;">
+Niger
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+11
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Peru</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1963</td>
-<td align="right">1967</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+1967
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="even">
-<td align="left">Philippines</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1946</td>
-<td align="right">1971</td>
-<td align="right">26</td>
+<tr>
+<td style="text-align:left;">
+Philippines
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:right;">
+26
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Philippines</td>
-<td align="left">Liberal Democracy-Personalist Autocracy</td>
-<td align="right">1994</td>
-<td align="right">2002</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+Philippines
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="even">
-<td align="left">Seychelles</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">2007</td>
-<td align="right">2010</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:left;">
+Seychelles
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+2007
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Seychelles</td>
-<td align="left">Liberal Democracy-Transition</td>
-<td align="right">1976</td>
-<td align="right">1976</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:left;">
+Seychelles
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Transition
+</td>
+<td style="text-align:right;">
+1976
+</td>
+<td style="text-align:right;">
+1976
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="left">Somalia</td>
-<td align="left">Liberal Democracy-Transition</td>
-<td align="right">1960</td>
-<td align="right">1968</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:left;">
+Somalia
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Transition
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1968
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Sri Lanka (Ceylon)</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">1960</td>
-<td align="right">2010</td>
-<td align="right">51</td>
+<tr>
+<td style="text-align:left;">
+Sri Lanka (Ceylon)
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+51
+</td>
 </tr>
 </tbody>
 </table>
 <p>I have constructed the index to classify a country as “democratic” only if it is not also classified as a non-democratic regime as well. Here are the index counts for each regime type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(kailitz.yearly %&gt;%
-<span class="st">        </span><span class="kw">count</span>(kailitz_binary,kailitz_tri,combined_regime))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(kailitz.yearly %&gt;%
+<span class="st">        </span><span class="kw">count</span>(kailitz_binary,kailitz_tri,combined_regime)))</code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="right">kailitz_binary</th>
-<th align="right">kailitz_tri</th>
-<th align="left">combined_regime</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:right;">
+kailitz_binary
+</th>
+<th style="text-align:right;">
+kailitz_tri
+</th>
+<th style="text-align:left;">
+combined_regime
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Communist Ideocracy</td>
-<td align="right">788</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Communist Ideocracy
+</td>
+<td style="text-align:right;">
+788
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Communist Ideocracy-Electoral Autocracy</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-Electoral Autocracy
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Communist Ideocracy-State Failure or Occupation</td>
-<td align="right">12</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+12
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Communist Ideocracy-Transition</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Communist Ideocracy-Transition
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Electoral Autocracy-Military Autocracy</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Military Autocracy
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Electoral Autocracy-One party Autocracy</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-One party Autocracy
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Electoral Autocracy-Personalist Autocracy</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Electoral Autocracy-State Failure or Occupation</td>
-<td align="right">6</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+6
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Electoral Autocracy-Transition</td>
-<td align="right">18</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Transition
+</td>
+<td style="text-align:right;">
+18
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Liberal Democracy-Personalist Autocracy</td>
-<td align="right">9</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+9
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Liberal Democracy-Transition</td>
-<td align="right">10</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Liberal Democracy-Transition
+</td>
+<td style="text-align:right;">
+10
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Military Autocracy</td>
-<td align="right">570</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Military Autocracy
+</td>
+<td style="text-align:right;">
+570
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Military Autocracy-One party Autocracy-Personalist Autocracy</td>
-<td align="right">29</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Military Autocracy-One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+29
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Military Autocracy-Personalist Autocracy</td>
-<td align="right">48</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Military Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+48
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Military Autocracy-State Failure or Occupation</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Military Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Military Autocracy-Transition</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Military Autocracy-Transition
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Monarchy</td>
-<td align="right">987</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Monarchy
+</td>
+<td style="text-align:right;">
+987
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Monarchy-State Failure or Occupation</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Monarchy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Monarchy-Transition</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Monarchy-Transition
+</td>
+<td style="text-align:right;">
+2
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">One party Autocracy</td>
-<td align="right">486</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+One party Autocracy
+</td>
+<td style="text-align:right;">
+486
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">One party Autocracy-Personalist Autocracy</td>
-<td align="right">17</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+One party Autocracy-Personalist Autocracy
+</td>
+<td style="text-align:right;">
+17
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Personalist Autocracy</td>
-<td align="right">463</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Personalist Autocracy
+</td>
+<td style="text-align:right;">
+463
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Personalist Autocracy-State Failure or Occupation</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-State Failure or Occupation
+</td>
+<td style="text-align:right;">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Personalist Autocracy-Transition</td>
-<td align="right">20</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Personalist Autocracy-Transition
+</td>
+<td style="text-align:right;">
+20
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">State Failure or Occupation</td>
-<td align="right">245</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+State Failure or Occupation
+</td>
+<td style="text-align:right;">
+245
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">State Failure or Occupation-Transition</td>
-<td align="right">7</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+State Failure or Occupation-Transition
+</td>
+<td style="text-align:right;">
+7
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">Transition</td>
-<td align="right">319</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Transition
+</td>
+<td style="text-align:right;">
+319
+</td>
 </tr>
-<tr class="even">
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">Electoral Autocracy</td>
-<td align="right">1477</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Electoral Autocracy
+</td>
+<td style="text-align:right;">
+1477
+</td>
 </tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">Electoral Autocracy-Liberal Democracy</td>
-<td align="right">111</td>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Electoral Autocracy-Liberal Democracy
+</td>
+<td style="text-align:right;">
+111
+</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="left">Liberal Democracy</td>
-<td align="right">3955</td>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Liberal Democracy
+</td>
+<td style="text-align:right;">
+3955
+</td>
 </tr>
 </tbody>
 </table>
@@ -1438,1147 +5112,2911 @@ data &lt;-<span class="st"> </span><span class="kw">left_join</span>(panel,data)
 <div id="known-problems" class="section level2">
 <h2>Known problems</h2>
 <p>The <code>Polity3</code> variable is different from the <code>polity2</code> variable in the following cases, mostly due to the different way in which Moon et al recode transitional periods, but in some cases due to revisions in the underlying Polity IV dataset since 2006:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(democracy %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(democracy %&gt;%
 <span class="st">        </span><span class="kw">filter</span>(Polity3 !=<span class="st"> </span>polity2) %&gt;%
 <span class="st">        </span><span class="kw">group_by</span>(country_name,Polity3,polity2,polity) %&gt;%
-<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">min</span>(year), <span class="dt">max =</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()))</code></pre></div>
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">min</span>(year), <span class="dt">max =</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>())))</code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left">country_name</th>
-<th align="right">Polity3</th>
-<th align="right">polity2</th>
-<th align="right">polity</th>
-<th align="right">years</th>
-<th align="right">max</th>
-<th align="right">n</th>
+<tr>
+<th style="text-align:left;">
+country_name
+</th>
+<th style="text-align:right;">
+Polity3
+</th>
+<th style="text-align:right;">
+polity2
+</th>
+<th style="text-align:right;">
+polity
+</th>
+<th style="text-align:right;">
+years
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Afghanistan</td>
-<td align="right">-7</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1978</td>
-<td align="right">1978</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Albania</td>
-<td align="right">-9</td>
-<td align="right">-5</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Albania</td>
-<td align="right">-9</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1939</td>
-<td align="right">1944</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="left">Angola</td>
-<td align="right">-6</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1991</td>
-<td align="right">1991</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Angola</td>
-<td align="right">-5</td>
-<td align="right">-1</td>
-<td align="right">-88</td>
-<td align="right">1993</td>
-<td align="right">1994</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Angola</td>
-<td align="right">-4</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1995</td>
-<td align="right">1996</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Angola</td>
-<td align="right">-3</td>
-<td align="right">-2</td>
-<td align="right">-2</td>
-<td align="right">2002</td>
-<td align="right">2003</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Argentina</td>
-<td align="right">-4</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1956</td>
-<td align="right">1956</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Austria</td>
-<td align="right">0</td>
-<td align="right">-1</td>
-<td align="right">-88</td>
-<td align="right">1933</td>
-<td align="right">1933</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Austria</td>
-<td align="right">8</td>
-<td align="right">5</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Bhutan</td>
-<td align="right">-8</td>
-<td align="right">-10</td>
-<td align="right">-10</td>
-<td align="right">1953</td>
-<td align="right">2003</td>
-<td align="right">51</td>
-</tr>
-<tr class="even">
-<td align="left">Bolivia</td>
-<td align="right">-5</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1952</td>
-<td align="right">1952</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Bolivia</td>
-<td align="right">-3</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1955</td>
-<td align="right">1955</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Botswana</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">1969</td>
-<td align="right">1986</td>
-<td align="right">18</td>
-</tr>
-<tr class="odd">
-<td align="left">Botswana</td>
-<td align="right">8</td>
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">1987</td>
-<td align="right">1996</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">Botswana</td>
-<td align="right">9</td>
-<td align="right">8</td>
-<td align="right">8</td>
-<td align="right">1997</td>
-<td align="right">2003</td>
-<td align="right">7</td>
-</tr>
-<tr class="odd">
-<td align="left">Brazil</td>
-<td align="right">-5</td>
-<td align="right">-6</td>
-<td align="right">-88</td>
-<td align="right">1932</td>
-<td align="right">1932</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Bulgaria</td>
-<td align="right">-8</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1944</td>
-<td align="right">1944</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Bulgaria</td>
-<td align="right">-7</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Bulgaria</td>
-<td align="right">-6</td>
-<td align="right">-7</td>
-<td align="right">-88</td>
-<td align="right">1934</td>
-<td align="right">1934</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Burundi</td>
-<td align="right">-7</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1992</td>
-<td align="right">1992</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="right">-8</td>
-<td align="right">-7</td>
-<td align="right">-88</td>
-<td align="right">1970</td>
-<td align="right">1970</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="right">-2</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1988</td>
-<td align="right">1988</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="right">-1</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1989</td>
-<td align="right">1989</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="right">-1</td>
-<td align="right">1</td>
-<td align="right">-88</td>
-<td align="right">1990</td>
-<td align="right">1990</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Cambodia (Kampuchea)</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">-88</td>
-<td align="right">1991</td>
-<td align="right">1992</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Chad</td>
-<td align="right">-7</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1984</td>
-<td align="right">1984</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Chad</td>
-<td align="right">-7</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1978</td>
-<td align="right">1978</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Chad</td>
-<td align="right">-7</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1979</td>
-<td align="right">1983</td>
-<td align="right">5</td>
-</tr>
-<tr class="even">
-<td align="left">Chile</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1924</td>
-<td align="right">1924</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">China</td>
-<td align="right">-1</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1913</td>
-<td align="right">1913</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Comoros</td>
-<td align="right">4</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1995</td>
-<td align="right">1995</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Croatia</td>
-<td align="right">7</td>
-<td align="right">8</td>
-<td align="right">8</td>
-<td align="right">2000</td>
-<td align="right">2003</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Cuba</td>
-<td align="right">-8</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1960</td>
-<td align="right">1960</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Czechoslovakia</td>
-<td align="right">-7</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1968</td>
-<td align="right">1968</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Denmark</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">-88</td>
-<td align="right">1904</td>
-<td align="right">1904</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Denmark</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">-88</td>
-<td align="right">1905</td>
-<td align="right">1905</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Denmark</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">-88</td>
-<td align="right">1906</td>
-<td align="right">1906</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Denmark</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">-88</td>
-<td align="right">1909</td>
-<td align="right">1909</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Denmark</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">-88</td>
-<td align="right">1910</td>
-<td align="right">1910</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Denmark</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">-88</td>
-<td align="right">1911</td>
-<td align="right">1911</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Dominican Republic</td>
-<td align="right">-3</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1861</td>
-<td align="right">1864</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Estonia</td>
-<td align="right">6</td>
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">1999</td>
-<td align="right">1999</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Estonia</td>
-<td align="right">6</td>
-<td align="right">9</td>
-<td align="right">9</td>
-<td align="right">2000</td>
-<td align="right">2003</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Fiji</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">-88</td>
-<td align="right">2000</td>
-<td align="right">2000</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">France</td>
-<td align="right">-7</td>
-<td align="right">-8</td>
-<td align="right">-88</td>
-<td align="right">1860</td>
-<td align="right">1860</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">France</td>
-<td align="right">0</td>
-<td align="right">-1</td>
-<td align="right">-88</td>
-<td align="right">1871</td>
-<td align="right">1871</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Guinea-Bissau</td>
-<td align="right">5</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1998</td>
-<td align="right">1998</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Guinea-Bissau</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">-88</td>
-<td align="right">1999</td>
-<td align="right">1999</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Haiti</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">-88</td>
-<td align="right">1999</td>
-<td align="right">1999</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Hungary</td>
-<td align="right">-5</td>
-<td align="right">-6</td>
-<td align="right">-88</td>
-<td align="right">1918</td>
-<td align="right">1918</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Hungary</td>
-<td align="right">-5</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1946</td>
-<td align="right">1946</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Hungary</td>
-<td align="right">-3</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Indonesia</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">1999</td>
-<td align="right">2003</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="left">Iran (Persia)</td>
-<td align="right">-9</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1979</td>
-<td align="right">1979</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Iran (Persia)</td>
-<td align="right">-8</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1980</td>
-<td align="right">1980</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Iran (Persia)</td>
-<td align="right">-8</td>
-<td align="right">-1</td>
-<td align="right">-88</td>
-<td align="right">1921</td>
-<td align="right">1921</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Iran (Persia)</td>
-<td align="right">-7</td>
-<td align="right">-6</td>
-<td align="right">-88</td>
-<td align="right">1924</td>
-<td align="right">1924</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Iran (Persia)</td>
-<td align="right">-7</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1923</td>
-<td align="right">1981</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Iran (Persia)</td>
-<td align="right">-7</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1922</td>
-<td align="right">1922</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Italy/Sardinia</td>
-<td align="right">-7</td>
-<td align="right">-4</td>
-<td align="right">-4</td>
-<td align="right">1861</td>
-<td align="right">1861</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Italy/Sardinia</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Italy/Sardinia</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">-88</td>
-<td align="right">1946</td>
-<td align="right">1946</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Italy/Sardinia</td>
-<td align="right">7</td>
-<td align="right">8</td>
-<td align="right">-88</td>
-<td align="right">1947</td>
-<td align="right">1947</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Korea, People’s Republic of</td>
-<td align="right">-9</td>
-<td align="right">-10</td>
-<td align="right">-10</td>
-<td align="right">1994</td>
-<td align="right">2003</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">Laos</td>
-<td align="right">-7</td>
-<td align="right">-5</td>
-<td align="right">-88</td>
-<td align="right">1974</td>
-<td align="right">1974</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Laos</td>
-<td align="right">-6</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1973</td>
-<td align="right">1973</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Lesotho</td>
-<td align="right">8</td>
-<td align="right">0</td>
-<td align="right">-77</td>
-<td align="right">1998</td>
-<td align="right">1998</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Lesotho</td>
-<td align="right">8</td>
-<td align="right">2</td>
-<td align="right">-88</td>
-<td align="right">1999</td>
-<td align="right">1999</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Lesotho</td>
-<td align="right">8</td>
-<td align="right">4</td>
-<td align="right">-88</td>
-<td align="right">2000</td>
-<td align="right">2000</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Lesotho</td>
-<td align="right">8</td>
-<td align="right">6</td>
-<td align="right">-88</td>
-<td align="right">2001</td>
-<td align="right">2001</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Liberia</td>
-<td align="right">-1</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1996</td>
-<td align="right">1996</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Luxembourg</td>
-<td align="right">2</td>
-<td align="right">-3</td>
-<td align="right">-3</td>
-<td align="right">1879</td>
-<td align="right">1879</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Luxembourg</td>
-<td align="right">10</td>
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">1919</td>
-<td align="right">1919</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Malawi</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">2001</td>
-<td align="right">2002</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Malawi</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">2003</td>
-<td align="right">2003</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Malawi</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">1994</td>
-<td align="right">2000</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="left">Mali</td>
-<td align="right">6</td>
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">2002</td>
-<td align="right">2003</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Mexico</td>
-<td align="right">-8</td>
-<td align="right">-9</td>
-<td align="right">-88</td>
-<td align="right">1879</td>
-<td align="right">1879</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Mexico</td>
-<td align="right">-7</td>
-<td align="right">-8</td>
-<td align="right">-88</td>
-<td align="right">1878</td>
-<td align="right">1878</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Morocco</td>
-<td align="right">-5</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1961</td>
-<td align="right">1962</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Morocco</td>
-<td align="right">-2</td>
-<td align="right">-3</td>
-<td align="right">-3</td>
-<td align="right">1963</td>
-<td align="right">1964</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Mozambique</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1994</td>
-<td align="right">2003</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">Niger</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1999</td>
-<td align="right">2003</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="left">Papua New Guinea</td>
-<td align="right">10</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">1975</td>
-<td align="right">2003</td>
-<td align="right">29</td>
-</tr>
-<tr class="even">
-<td align="left">Peru</td>
-<td align="right">-3</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1919</td>
-<td align="right">1919</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Peru</td>
-<td align="right">-1</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1932</td>
-<td align="right">1932</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Peru</td>
-<td align="right">2</td>
-<td align="right">-6</td>
-<td align="right">-6</td>
-<td align="right">1948</td>
-<td align="right">1949</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Peru</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">-88</td>
-<td align="right">1979</td>
-<td align="right">1979</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Peru</td>
-<td align="right">4</td>
-<td align="right">-6</td>
-<td align="right">-6</td>
-<td align="right">1962</td>
-<td align="right">1962</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Peru</td>
-<td align="right">4</td>
-<td align="right">-2</td>
-<td align="right">-2</td>
-<td align="right">1950</td>
-<td align="right">1955</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="left">Peru</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1956</td>
-<td align="right">1961</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="left">Poland</td>
-<td align="right">-7</td>
-<td align="right">-5</td>
-<td align="right">-88</td>
-<td align="right">1946</td>
-<td align="right">1946</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Poland</td>
-<td align="right">-7</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1945</td>
-<td align="right">1945</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Portugal</td>
-<td align="right">-4</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1820</td>
-<td align="right">1821</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Portugal</td>
-<td align="right">-3</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1833</td>
-<td align="right">1833</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Rumania</td>
-<td align="right">-6</td>
-<td align="right">-7</td>
-<td align="right">-88</td>
-<td align="right">1940</td>
-<td align="right">1940</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Rumania</td>
-<td align="right">-1</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1989</td>
-<td align="right">1989</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Russia (Soviet Union)</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">1993</td>
-<td align="right">1999</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="left">Russia (Soviet Union)</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1992</td>
-<td align="right">1992</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Russia (Soviet Union)</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">2000</td>
-<td align="right">2003</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Rwanda</td>
-<td align="right">-6</td>
-<td align="right">-7</td>
-<td align="right">-7</td>
-<td align="right">1993</td>
-<td align="right">1993</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Serbia</td>
-<td align="right">-2</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1868</td>
-<td align="right">1868</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Sierra Leone</td>
-<td align="right">5</td>
-<td align="right">2</td>
-<td align="right">-88</td>
-<td align="right">2001</td>
-<td align="right">2001</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Sri Lanka (Ceylon)</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">2003</td>
-<td align="right">2003</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Sweden</td>
-<td align="right">-8</td>
-<td align="right">-9</td>
-<td align="right">-88</td>
-<td align="right">1811</td>
-<td align="right">1811</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Sweden</td>
-<td align="right">-1</td>
-<td align="right">-2</td>
-<td align="right">-88</td>
-<td align="right">1908</td>
-<td align="right">1908</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Sweden</td>
-<td align="right">7</td>
-<td align="right">8</td>
-<td align="right">-88</td>
-<td align="right">1915</td>
-<td align="right">1915</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Tanzania/Tanganyika</td>
-<td align="right">-7</td>
-<td align="right">-6</td>
-<td align="right">-6</td>
-<td align="right">1961</td>
-<td align="right">1991</td>
-<td align="right">31</td>
-</tr>
-<tr class="even">
-<td align="left">Tanzania/Tanganyika</td>
-<td align="right">-6</td>
-<td align="right">-5</td>
-<td align="right">-5</td>
-<td align="right">1992</td>
-<td align="right">1994</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="left">Tanzania/Tanganyika</td>
-<td align="right">2</td>
-<td align="right">-1</td>
-<td align="right">-1</td>
-<td align="right">2000</td>
-<td align="right">2003</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Thailand</td>
-<td align="right">-5</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1934</td>
-<td align="right">1934</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Togo</td>
-<td align="right">-4</td>
-<td align="right">-3</td>
-<td align="right">-88</td>
-<td align="right">1992</td>
-<td align="right">1992</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Uganda</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">-88</td>
-<td align="right">1966</td>
-<td align="right">1966</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Ukraine</td>
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1993</td>
-<td align="right">1993</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Ukraine</td>
-<td align="right">6</td>
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">1994</td>
-<td align="right">1995</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Ukraine</td>
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">2000</td>
-<td align="right">2003</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Yugoslavia</td>
-<td align="right">-5</td>
-<td align="right">-4</td>
-<td align="right">-88</td>
-<td align="right">1944</td>
-<td align="right">1944</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Zambia</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">2001</td>
-<td align="right">2003</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">-7</td>
-<td align="right">-4</td>
-<td align="right">-4</td>
-<td align="right">2002</td>
-<td align="right">2003</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">-6</td>
-<td align="right">-4</td>
-<td align="right">-4</td>
-<td align="right">2001</td>
-<td align="right">2001</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">-6</td>
-<td align="right">-3</td>
-<td align="right">-3</td>
-<td align="right">1999</td>
-<td align="right">1999</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">-5</td>
-<td align="right">-3</td>
-<td align="right">-3</td>
-<td align="right">2000</td>
-<td align="right">2000</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">-88</td>
-<td align="right">1979</td>
-<td align="right">1979</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Zimbabwe (Rhodesia)</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">1980</td>
-<td align="right">1982</td>
-<td align="right">3</td>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1978
+</td>
+<td style="text-align:right;">
+1978
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1939
+</td>
+<td style="text-align:right;">
+1944
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1956
+</td>
+<td style="text-align:right;">
+1956
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1933
+</td>
+<td style="text-align:right;">
+1933
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bhutan
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-10
+</td>
+<td style="text-align:right;">
+-10
+</td>
+<td style="text-align:right;">
+1953
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bolivia
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1952
+</td>
+<td style="text-align:right;">
+1952
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bolivia
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1955
+</td>
+<td style="text-align:right;">
+1955
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Botswana
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1969
+</td>
+<td style="text-align:right;">
+1986
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Botswana
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1987
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Botswana
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1997
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1932
+</td>
+<td style="text-align:right;">
+1932
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bulgaria
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1944
+</td>
+<td style="text-align:right;">
+1944
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bulgaria
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bulgaria
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1934
+</td>
+<td style="text-align:right;">
+1934
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Burundi
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1970
+</td>
+<td style="text-align:right;">
+1970
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1988
+</td>
+<td style="text-align:right;">
+1988
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1990
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia (Kampuchea)
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chad
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1984
+</td>
+<td style="text-align:right;">
+1984
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chad
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1978
+</td>
+<td style="text-align:right;">
+1978
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chad
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chile
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1924
+</td>
+<td style="text-align:right;">
+1924
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+China
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1913
+</td>
+<td style="text-align:right;">
+1913
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Comoros
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Croatia
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cuba
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Czechoslovakia
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1968
+</td>
+<td style="text-align:right;">
+1968
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1904
+</td>
+<td style="text-align:right;">
+1904
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1905
+</td>
+<td style="text-align:right;">
+1905
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1906
+</td>
+<td style="text-align:right;">
+1906
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1909
+</td>
+<td style="text-align:right;">
+1909
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1910
+</td>
+<td style="text-align:right;">
+1910
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1911
+</td>
+<td style="text-align:right;">
+1911
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dominican Republic
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1861
+</td>
+<td style="text-align:right;">
+1864
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Estonia
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Estonia
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiji
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1860
+</td>
+<td style="text-align:right;">
+1860
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1871
+</td>
+<td style="text-align:right;">
+1871
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Guinea-Bissau
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Guinea-Bissau
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Haiti
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hungary
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1918
+</td>
+<td style="text-align:right;">
+1918
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hungary
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hungary
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Indonesia
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1921
+</td>
+<td style="text-align:right;">
+1921
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1924
+</td>
+<td style="text-align:right;">
+1924
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1923
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Iran (Persia)
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1922
+</td>
+<td style="text-align:right;">
+1922
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Italy/Sardinia
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+1861
+</td>
+<td style="text-align:right;">
+1861
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Italy/Sardinia
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Italy/Sardinia
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Italy/Sardinia
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+1947
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Korea, People’s Republic of
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+-10
+</td>
+<td style="text-align:right;">
+-10
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Laos
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Laos
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1973
+</td>
+<td style="text-align:right;">
+1973
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-77
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1998
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lesotho
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Liberia
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+1996
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Luxembourg
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+1879
+</td>
+<td style="text-align:right;">
+1879
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Luxembourg
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Malawi
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Malawi
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Malawi
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mali
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mexico
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1879
+</td>
+<td style="text-align:right;">
+1879
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mexico
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1878
+</td>
+<td style="text-align:right;">
+1878
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Morocco
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1961
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Morocco
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:right;">
+1964
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mozambique
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Niger
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Papua New Guinea
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1975
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1932
+</td>
+<td style="text-align:right;">
+1932
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+1948
+</td>
+<td style="text-align:right;">
+1949
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+1962
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+1950
+</td>
+<td style="text-align:right;">
+1955
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Peru
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1956
+</td>
+<td style="text-align:right;">
+1961
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Poland
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1946
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Poland
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1945
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Portugal
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1820
+</td>
+<td style="text-align:right;">
+1821
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Portugal
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1833
+</td>
+<td style="text-align:right;">
+1833
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rumania
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1940
+</td>
+<td style="text-align:right;">
+1940
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rumania
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+1989
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Russia (Soviet Union)
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Russia (Soviet Union)
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Russia (Soviet Union)
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rwanda
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Serbia
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1868
+</td>
+<td style="text-align:right;">
+1868
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sierra Leone
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sri Lanka (Ceylon)
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sweden
+</td>
+<td style="text-align:right;">
+-8
+</td>
+<td style="text-align:right;">
+-9
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1811
+</td>
+<td style="text-align:right;">
+1811
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sweden
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-2
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1908
+</td>
+<td style="text-align:right;">
+1908
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sweden
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1915
+</td>
+<td style="text-align:right;">
+1915
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tanzania/Tanganyika
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+1961
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tanzania/Tanganyika
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tanzania/Tanganyika
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+-1
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Thailand
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1934
+</td>
+<td style="text-align:right;">
+1934
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Togo
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1992
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Uganda
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1966
+</td>
+<td style="text-align:right;">
+1966
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ukraine
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1993
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ukraine
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ukraine
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yugoslavia
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1944
+</td>
+<td style="text-align:right;">
+1944
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zambia
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+-7
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+2002
+</td>
+<td style="text-align:right;">
+2003
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+-4
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+2001
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+-6
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+-5
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+-3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-88
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1979
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zimbabwe (Rhodesia)
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1980
+</td>
+<td style="text-align:right;">
+1982
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
 </tbody>
 </table>
@@ -2668,82 +8106,82 @@ data &lt;-<span class="st"> </span><span class="kw">left_join</span>(panel,data)
 <span class="st">  </span><span class="kw">facet_wrap</span>(~variable, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAABC1BMVEUAAAAAADoAAGYAOpAAZrYZGT0ZGT4ZGV0ZPXsZXV0ZXZYaGhotGRk6AAA6ADo6AGY6OgA6OpA6ZmY6kLY6kNs9GRk9GT09GV09PV09PXs9e3s9e5Y9e7E+GS0+YH9QLRlQLS1Qb39ZWVldGRldGT1dGV1dPRldXV1de3tdlsxgf39mAABmADpmAGZmZmZmtrZmtv9vf397PRl7PT17ez17e117lnt7scx/f3+QOgCQOjqQ2/+WXRmWXT2Wll2WzLGWzMyxez2xll2xzLGxzMy2ZgC2kDq225C2/7a2///Mll3MsXvMzJbMzLHMzMzbkDrbtrbb///l5eX6+vr/tmb/25D//7b//9v///9VneKsAAAACXBIWXMAAA7DAAAOwwHHb6hkAAALWUlEQVR4nO2dC3/jRhXFlSbbXdYEaMluWQgsNW0hpEBogUzIQhO6BppsbZJ1HH3/T8LceUh3JEtXsscPyef8dmN5pJlz/ddoRhq9khSqVbLpALZdACQIgAQBkCAAEgRAghYBpNarzbh624UAjdcptRHXzBaABFsAEmwBSLAFIMEWgARbABJsAUiwBSDBdjFAt59cVZZcN6+lTFFzAa02gHefnW8FoPKSLCWbBKD5KV0G9CnF8Oa5Lun6+fhmMBg8H9/+7IunV7cvBoMTPe+f9OHn+6jNPPp4cq4X+ctgcPzuNzSt/z7VP0gX8+TcppgSzST91NsfOtdf/5WMshJaBmDmGy8q9PuvTqyvSTbeYxbJD5YE9CGZZD4n4xv9U16cjGmSZrzQQWdx+HVi55ml6Ycc80Wun72ldXbz7C2l+BIJDuX4lXN9TT/w2JfQNgCab72+1X9vX31rfU026+0j0YVcP1kO0C8peirPVWbtcPvSmJhQXpoVzOZr+XkEwC7tfqJLobDY1kHL2Jm3n/zeAzqhCuFLaBuAS6RFda26PmaRMG+dQoUsu4m9PqHCjI/dduz6vs4hsPlWbh6568CzH39lsrstbeB+UF6i/n/z7M8M0M2zf+UltAqAeenq8/W5nyZD521TriMAMjVo/O7zb74+N2vGre+bMD47f34NYoDyFtVtFqzE2hrULgDu9Y+/vXrrpn2S83aRLgvoQ1vYm9+9ekslj9/YNWGagJfnWShmPm+DXp7nLYj58fq3uQ3BbCFP/Ycp0W4TrA0y7QMroVUAvkUyIAfHma9bI7oUlxKjDfrU+t9Qt/T9V4PBL2yVH/tO5IrNr+jFrmwrMaCW1XQhtiehFFciTQa92Ovf6p6Pl9AqAL8tme7q82zaLed7MfrQhfx86f2g3LNGkXapfaSvT4pzVhpABED5Ts58SfNbRloGtNIAlgZ0++Jp7fqx803XYGvwspEWAa04gAg1aE1SG3EFoKa2ACTYApBgi1PPgu1CgOzHPUt6z6bbpgsZVDzXNhm8LQBVpHtbAKpI97YAVJHubQGoIt3bAlBFurcFoIp0bwtAFeneFoAq0r3ttgEaDoeFdBXPtUGGoQ/A2wJQmA5AQgYAEjIAkJABgIQMACRkACAhAwAJGQBIyABAQgYAEjIAkJAhDqD3Rvfv56ttejBDx1dIV2twDfyHgS1qUJiOTUzIAEBCBgASMgCQkAGAhAwAJGQAICEDAAkZAEjIAEBCBgASMgCQkAGAhAwAJGQAICEDAAkZAEjIAEBCBgASMrQG9HCY7N+l6eNF8sF3Pi1CqL0BNDs9SicHaTo6oH/xQu0NoIcff5fOvrzU/8xktFD7Bsh9xAu1N4Bmp2fpJDnLASVa6n510vEVUjJAK3QN/IeBbYNG+qcXZ6hBdcImJkjTQSNdJSIzQjdfo2lidhRnp9hRdDK7hpZKlSKE2mFAo/27h0O+QZUVIdTuAqIdn2mi/+dbVEkRQu02oJGGMwEgq/ImdjA73b+bnWITs5rTSCd7l48XNXx2HFADqeYh9Q/Q48VRKkk1D6l/gKiRlqSah9Q/QLX9u5NqHlL/AOk22grdvBUa6TAdgIQMjfaDsImlNYD0werkIH04rOnMIoTaXUA02jHdv0snNeMdEULtMqAzM7iaD7CWFSHU7gKiPelwBLqsCKF2F5AZ5xgd1W9iK7y1bbj9N9SNDsIR6DmA6lZB72tQA6nmIQFQY+f+ANLb1/7dqG7QI0KoHQY03buc0JBrDaEIoXYXEHXz1INh0N4lzNtRJEA47eMSqmrQCIcaVhVt0CTBwarV3F4sSfYuS+m5IoTaZUCyVPOQAKixc18A6Q2s7qRqrFC7Cyili4OS+pOHEULtMqBUZBQh1I4DsogqdxUjhNptQFNN50zvMlbtK0YItcOAaDfIkqk82ogQancBzU5r9xFjhdpdQCTpEhjVPKT+A3q8MB0abqjj4oDoquAfXeJK+0AMkLuDBfdqBGKAHBXc7VOl6f6/aZ8IN9RlKhysTnULPd3D/WJcwYEYXejxiDsOi8oZERkNCI10UdnB6ujIHHKgm+fiB6u0o3iGG+qYcLCKg9W6DI1OHEpSzUPqHyDcq4F7NWozNDntgwvJuS1OHIbpcg1yBxS4/MUlVAHCBVQuIQQ0SjLhxKFVVQ2qk2oeUv8ANZFqHlIPAdHRKbr5GkAj7CgGtvPuF5OkmofUR0A4Fgtsy0fz4gVmuw3IPDxIkGoeUv8A4WA1xn7QCu/9G27/HYcNANmP3axB2MSabWK144qqeUhZOp3yrli+k4CiPyawd4BiD5j1DlDsAbO+AYr+mMDeAPK9WOxnufYGUBOp5iEBUFPnHgF6OFzFLZn9ATQ15zOi39TbG0D+6o7YT6DqDSA/orjQjqItvd+AlqpBuwBogTbIDKGw0hcAlGMRAA35/HiA8mJX0YvtGiBZKnQAoKJU6FAPyDluGpDNtzwge9bn4bD27KEKHXYJED3vn3+ai8qpPaq743CXAGVPDfJnoOluQ+lWhB0CxC6SZvtB0iv8dggQOzHP9qQ1q9ob6qjM4lRp7pw54UKlKa8MUJVDI4n+xZ9QASivQR7Qw+HeZf0tmTtUg1g7w55hpisTADllz9nmD9yWXuG3S4DckZg+FGM7QmikuewlitmWRm31w0d36OYrNbFn6evuONxtQPOkQoctBpS7AhAAqfCXFEsBIBX+kryUea55aQAEQNy1N4C8z3oB5a55aQDUY0A+lk0BClwBCID6Ash83yCgClcAAiAASgEoGqD5rgAEQB0BFN6RZgCxqfs5afRxX7xlzk/dz0nLDRR3HfL5gf+yrsPC1FKA7AdqUJUUjx+AylI8fgAqS/H4AagsxePfFKBFXAEIgAAIgAAIgABIkuLxA1BZiscPQGUpHj8AlaV4/ABUluLxA1BZiscPQGUpHj8AlaV4/ABUluLxA5BR2xvqdg5Q2yvtdw1Q63s1dg1Q67t9dhfQql/hV1YGaK2ula/wkwAxuPdsgfdsum26kMFHGsG1TQZvC0AV6d42QiO9SKh9A7S+V/h1FdDaXuHXVUCBVPOQAKi9cykdgIT0HgKyStR8tU2XMmzGdRlAQta26e0yrNsVgIR0ABLSlwC0GwIgQQAkCIAEAZCgBQCxMxzByQ56xulZPpk9wop9CZafsrdxsmXMsErZYzOuCwFiQx98FISeEDd1z4Cd8ncqsC/BqImZ5wLKl5mdUlLZYzOuiwBig2fBONpUr4vHC7syR/xJnvmXcNwtZY/dy5aZJB+70cvQYzOu6SKA2PBrOBKbWz/+naWxL6Xl/dMa82X+Zx5JWPbYjGsaG5Cznn35k/yBy+xLcXm/6oMM7QGtzjU2IP/wRXrA6ewP/kGM+Zfi8lnF5xlaA1qha2RAE/6Y7nAjqPhpvOn0M9oCWqVrGrORLrwvaV6oxeYyaFV5qM0b6dW6pjG7eaqwTv7hgqUvYYebNQbBMiauxt38il0XAuTOcNCK4Cc77KvYz0z6hL8C0H0pLp+tvUIGE2rZYzOuONQQBUCCAEgQAAkCIEEAJAiABHUBEHsXwfoFQIIASNAWArIvHKBx1JE5iiBAhpH5M8lGlNejLQRkX8A02r+jo0UazOCA6Lvwbqa42kJAZgRjdnpkjiqpOjFA9tUotS97j6xtBMTOVExpG2OAbDJ/68eqtY2AzGDM/p0ZjfhPWIPsWa2k7g2MkbWVgKYf/FcDMfWksIlNa1++uAptJaDZ6R91K2NamqnfxI4MrPX3+FsJSPfvB77y6D5dU3m82L97vEhsL5aO1liPthPQ1DQyE3p9oIZB1UaTSv7k94PW2IltKaAtEgAJAiBBACQIgAQBkCAAEgRAggBIEAAJAiBB/wdHxe/GfeMIXwAAAABJRU5ErkJggg==" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(democracy %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">kable</span>(democracy %&gt;%<span class="st"> </span>
 <span class="st">        </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(polyarchy_reversed)) %&gt;%<span class="st"> </span>
 <span class="st">        </span><span class="kw">count</span>(polyarchy_reversed,polyarchy_contestation),
-      <span class="dt">caption =</span> <span class="st">&quot;Relationship between reversed polyarchy measure and polyarchy contestation measure&quot;</span>)</code></pre></div>
-<table>
-<caption>Relationship between reversed polyarchy measure and polyarchy contestation measure</caption>
-<thead>
-<tr class="header">
-<th align="right">polyarchy_reversed</th>
-<th align="right">polyarchy_contestation</th>
-<th align="right">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">35</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">12</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">24</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">22</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">17</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">16</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">33</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">19</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="right">7</td>
-<td align="right">21</td>
-</tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="right">8</td>
-<td align="right">35</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">113</td>
-</tr>
-</tbody>
-</table>
+      <span class="dt">caption =</span> <span class="st">&quot;Relationship between reversed polyarchy measure and polyarchy contestation measure&quot;</span>))</code></pre></div>
+<pre><code>## &lt;table&gt;
+## &lt;caption&gt;Relationship between reversed polyarchy measure and polyarchy contestation measure&lt;/caption&gt;
+##  &lt;thead&gt;
+##   &lt;tr&gt;
+##    &lt;th style=&quot;text-align:right;&quot;&gt; polyarchy_reversed &lt;/th&gt;
+##    &lt;th style=&quot;text-align:right;&quot;&gt; polyarchy_contestation &lt;/th&gt;
+##    &lt;th style=&quot;text-align:right;&quot;&gt; n &lt;/th&gt;
+##   &lt;/tr&gt;
+##  &lt;/thead&gt;
+## &lt;tbody&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 0 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 1 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 35 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 1 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 2 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 2 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 2 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 24 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 22 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 4 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 4 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 17 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 5 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 4 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 16 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 5 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 5 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 10 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 6 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 5 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 33 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 7 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 6 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 19 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 7 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 21 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 35 &lt;/td&gt;
+##   &lt;/tr&gt;
+##   &lt;tr&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 10 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+##    &lt;td style=&quot;text-align:right;&quot;&gt; 113 &lt;/td&gt;
+##   &lt;/tr&gt;
+## &lt;/tbody&gt;
+## &lt;/table&gt;</code></pre>
 </div>
 </div>
 <div id="political-regime-change-prcgasiorowski-dataset" class="section level1">
@@ -2786,7 +8224,7 @@ data &lt;-<span class="st"> </span><span class="kw">left_join</span>(panel,data)
 </div>
 <div id="distribution-22" class="section level2">
 <h2>Distribution</h2>
-<p>This index is known to have problems, given the confusing documentation in the original dataset regarding its construction. Use with care.</p>
+<p>It is not clear that this index is correctly constructed, given the confusing documentation in the original dataset. Use with care.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> data) +
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x=</span>value)) +
 <span class="st">  </span><span class="kw">theme_bw</span>() +

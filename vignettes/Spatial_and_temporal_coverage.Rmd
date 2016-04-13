@@ -19,11 +19,37 @@ library(dplyr)
 library(ggplot2)
 library(GGally)
 opts_chunk$set(echo=TRUE)
-
+options(knitr.table.format = 'html')
 
 ```
 
 This vignette describes the temporal and spatial coverage of the democracy measures included in this package,  notes their correlations, and documents any changes made to the original data sources.
+
+# General Characteristics
+
+```{r general_characteristics, results = 'asis'}
+library(knitr)
+library(QuickUDS)
+library(dplyr)
+
+print(kable(democracy_long %>% 
+        group_by(variable) %>%
+        summarise(distinct_countries = n_distinct(country_name),
+                  distinct_years = n_distinct(year),
+                  min_year = min(year),
+                  max_year = max(year),
+                  mean_year = mean(year),
+                  index_type = unique(index_type),
+                  num_values = n_distinct(value),
+                  mean = mean(value),
+                  median = median(value),
+                  min_value = min(value),
+                  max_value = max(value),
+                  sd = sd(value)),
+      digits = 2))
+
+```
+
 
 # Arat
 
@@ -32,8 +58,7 @@ This is the dataset described in Arat 1991; the actual values are taken from Pem
 ## Coverage
 
 ```{r arat_coverage, fig.width=7,fig.height=7}
-library(QuickUDS)
-library(dplyr)
+
 library(ggplot2)
 
 panel <- democracy %>% select(country_name,year) %>% distinct()
@@ -440,36 +465,36 @@ ggplot(data = data) +
 
 Note that 316 of the country-years in the Kailitz dataset are classified with more than one regime type. 
 
-```{r kailitz_classification_problems_1}
-kable(kailitz.yearly %>% 
-        count(multiple_regimes = grepl("-",combined_regime)))
+```{r kailitz_classification_problems_1, results='asis'}
+print(kable(kailitz.yearly %>% 
+        count(multiple_regimes = grepl("-",combined_regime))))
 
-kable(kailitz.yearly %>% 
+print(kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
-        summarise(min = min(year), max = max(year), n = n()))
+        summarise(min = min(year), max = max(year), n = n())))
 
 ```
 
 The following are especially troublesome, since the multiple categories do not make sense:
 
-```{r kailitz_classification_problems_2}
-kable(kailitz.yearly %>% 
+```{r kailitz_classification_problems_2, results='asis'}
+print(kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
         summarise(min = min(year), max = max(year), n = n()) %>%
-        filter(grepl("democracy",combined_regime, ignore.case=TRUE)))
+        filter(grepl("democracy",combined_regime, ignore.case=TRUE))))
 ```
 
 I have constructed the index to classify a country as "democratic" only if it is not also classified as a non-democratic regime as well. Here are the index counts for each regime type:
 
-```{r kailitz_index_count}
-kable(kailitz.yearly %>%
-        count(kailitz_binary,kailitz_tri,combined_regime))
+```{r kailitz_index_count, results = 'asis'}
+print(kable(kailitz.yearly %>%
+        count(kailitz_binary,kailitz_tri,combined_regime)))
 ```
 
 # LIED
@@ -677,11 +702,11 @@ ggcorr(data = democracy %>% select(PEPS1i:PEPS2v), label=TRUE,label_round=3) + s
 
 The `Polity3` variable is different from the `polity2` variable in the following cases, mostly due to the different way in which Moon et al recode transitional periods, but in some cases due to revisions in the underlying Polity IV dataset since 2006:
 
-```{r peps_problems}
-kable(democracy %>%
+```{r peps_problems, results='asis'}
+print(kable(democracy %>%
         filter(Polity3 != polity2) %>%
         group_by(country_name,Polity3,polity2,polity) %>%
-        summarise(years = min(year), max = max(year), n = n()))
+        summarise(years = min(year), max = max(year), n = n())))
 
 ```
 
@@ -783,10 +808,10 @@ ggplot(data = data) +
   labs(y = "Country-years") +
   facet_wrap(~variable, ncol=2)
 
-kable(democracy %>% 
+print(kable(democracy %>% 
         filter(!is.na(polyarchy_reversed)) %>% 
         count(polyarchy_reversed,polyarchy_contestation),
-      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure")
+      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure"))
 
 ```
 
@@ -836,7 +861,7 @@ spatial_coverage(data)
 
 ## Distribution
 
-This index is known to have problems, given the confusing documentation in the original dataset regarding its construction. Use with care.
+It is not clear that this index is correctly constructed, given the confusing documentation in the original dataset. Use with care.
 
 ```{r pipe_distribution}
 

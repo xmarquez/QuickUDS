@@ -5,12 +5,33 @@ library(dplyr)
 library(ggplot2)
 library(GGally)
 opts_chunk$set(echo=TRUE)
+options(knitr.table.format = 'html')
 
+
+## ----general_characteristics, results = 'asis'---------------------------
+library(knitr)
+library(QuickUDS)
+library(dplyr)
+
+print(kable(democracy_long %>% 
+        group_by(variable) %>%
+        summarise(distinct_countries = n_distinct(country_name),
+                  distinct_years = n_distinct(year),
+                  min_year = min(year),
+                  max_year = max(year),
+                  mean_year = mean(year),
+                  index_type = unique(index_type),
+                  num_values = n_distinct(value),
+                  mean = mean(value),
+                  median = median(value),
+                  min_value = min(value),
+                  max_value = max(value),
+                  sd = sd(value)),
+      digits = 2))
 
 
 ## ----arat_coverage, fig.width=7,fig.height=7-----------------------------
-library(QuickUDS)
-library(dplyr)
+
 library(ggplot2)
 
 panel <- democracy %>% select(country_name,year) %>% distinct()
@@ -298,30 +319,30 @@ ggplot(data = data) +
   facet_wrap(~variable, ncol=2)
 
 
-## ----kailitz_classification_problems_1-----------------------------------
-kable(kailitz.yearly %>% 
-        count(multiple_regimes = grepl("-",combined_regime)))
+## ----kailitz_classification_problems_1, results='asis'-------------------
+print(kable(kailitz.yearly %>% 
+        count(multiple_regimes = grepl("-",combined_regime))))
 
-kable(kailitz.yearly %>% 
+print(kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
-        summarise(min = min(year), max = max(year), n = n()))
+        summarise(min = min(year), max = max(year), n = n())))
 
 
-## ----kailitz_classification_problems_2-----------------------------------
-kable(kailitz.yearly %>% 
+## ----kailitz_classification_problems_2, results='asis'-------------------
+print(kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
         summarise(min = min(year), max = max(year), n = n()) %>%
-        filter(grepl("democracy",combined_regime, ignore.case=TRUE)))
+        filter(grepl("democracy",combined_regime, ignore.case=TRUE))))
 
-## ----kailitz_index_count-------------------------------------------------
-kable(kailitz.yearly %>%
-        count(kailitz_binary,kailitz_tri,combined_regime))
+## ----kailitz_index_count, results = 'asis'-------------------------------
+print(kable(kailitz.yearly %>%
+        count(kailitz_binary,kailitz_tri,combined_regime)))
 
 ## ----lied_coverage, fig.width=7,fig.height=7-----------------------------
 
@@ -458,11 +479,11 @@ library(GGally)
 ggcorr(data = democracy %>% select(PEPS1i:PEPS2v), label=TRUE,label_round=3) + scale_fill_gradient2(midpoint = 0.7)
 
 
-## ----peps_problems-------------------------------------------------------
-kable(democracy %>%
+## ----peps_problems, results='asis'---------------------------------------
+print(kable(democracy %>%
         filter(Polity3 != polity2) %>%
         group_by(country_name,Polity3,polity2,polity) %>%
-        summarise(years = min(year), max = max(year), n = n()))
+        summarise(years = min(year), max = max(year), n = n())))
 
 
 ## ----pitf_coverage, fig.width=7,fig.height=7-----------------------------
@@ -533,10 +554,10 @@ ggplot(data = data) +
   labs(y = "Country-years") +
   facet_wrap(~variable, ncol=2)
 
-kable(democracy %>% 
+print(kable(democracy %>% 
         filter(!is.na(polyarchy_reversed)) %>% 
         count(polyarchy_reversed,polyarchy_contestation),
-      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure")
+      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure"))
 
 
 ## ----prc_coverage, fig.width=7,fig.height=7------------------------------

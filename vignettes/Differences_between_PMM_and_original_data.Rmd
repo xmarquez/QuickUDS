@@ -17,6 +17,7 @@ library(knitr)
 library(QuickUDS)
 library(dplyr)
 opts_chunk$set(echo=TRUE)
+options(knitr.table.format = 'html')
 ```
 
 # Differences between PMM's replication data and the original data sources

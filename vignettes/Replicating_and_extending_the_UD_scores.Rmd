@@ -18,9 +18,7 @@ The basic procedure for replicating or extending the UD scores is as follows. Fi
 
 ```{r, include=FALSE}
 library(knitr)
-opts_chunk$set(echo=TRUE,
-               # cache.rebuild = TRUE,
-               cache=TRUE)
+opts_chunk$set(echo=TRUE)
 ```
 
 ## Preparing your democracy indexes
@@ -252,7 +250,7 @@ extended_scores <- extended_scores %>% mutate(index = pnorm(adj.z1), index.pct02
 
 It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model):
 
-```{r, echo = TRUE, cache = TRUE, fig.height=8, fig.width=7}
+```{r, fig.height=8, fig.width=7}
 cutpoints_extended <- cutpoints(extended_model)
 
 cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")

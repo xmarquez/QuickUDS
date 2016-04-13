@@ -58,7 +58,7 @@ of Regime Type." In: Harvard Dataverse.
 }
 \seealso{
 Other democracy: \code{\link{democracy}},
-  \code{\link{extended_uds}},
+  \code{\link{extended_uds}}, \code{\link{kailitz}},
   \code{\link{original.pmm.democracy.data.1946.2008}}
 }
 \keyword{datasets}

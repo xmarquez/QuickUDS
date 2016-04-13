@@ -497,7 +497,7 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' \code{\link{fscores}} directly.
 #'
 #' @param model a \code{\link{SingleGroupClass-class}} model produced by
-#'   \code{\link{democracy_data}}.
+#'   \code{\link{democracy_model}}.
 #' @param ... Other parameters passed on to \code{\link{fscores}}.
 #'
 #' @return A data frame with latent variable democracy scores (posterior means)
@@ -509,7 +509,7 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #'
 #' @examples
 #' # Not run:
-#' # Requires reshape2
+#' # Requires reshape2 and dplyr
 #' # data <- prepare_data(democracy)
 #' # data <- reshape2::melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
 #' # data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
@@ -519,7 +519,7 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' # replication_2011_scores <- democracy_scores(replication_2011_model)
 #' # Requires dplyr
 #' # replication_2011 <- bind_cols(data %>% dplyr::select(country_name, GWn, year, region, continent,
-#'                                in_system,num_measures),replication_2011)
+#' #                              in_system,num_measures),replication_2011)
 democracy_scores <- function(model, ...) {
   stopifnot(class(model) == "SingleGroupClass")
   scores <- mirt::fscores(model, full.scores = TRUE, full.scores.SE = TRUE, ...)

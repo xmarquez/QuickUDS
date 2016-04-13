@@ -21,9 +21,20 @@ For non-R users, there are csv versions of these datasets [here](https://github.
 The `extended_uds` dataset can be generated with the following code:
 
 ``` r
-# Generate Extended UDS
 library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(QuickUDS)
+#> Loading required package: mirt
+#> Warning: package 'mirt' was built under R version 3.2.4
+#> Loading required package: stats4
+#> Loading required package: lattice
 
 indexes <- c("arat_pmm","blm","bmr_democracy","bnr","bollen_pmm","doorenspleet","eiu","freedomhouse",
              "freedomhouse_electoral","gwf","hadenius_pmm","kailitz_tri","lied","mainwaring",
@@ -31,6 +42,7 @@ indexes <- c("arat_pmm","blm","bmr_democracy","bnr","bollen_pmm","doorenspleet",
              "polyarchy_contestation","prc_notrans","svolik","ulfelder","utip_dichotomous_strict",
              "v2x_polyarchy","vanhanen_democratization","wahman_teorell_hadenius")
 
+# Generate Extended UDS
 data <- QuickUDS::democracy[ ,c("country_name","GWn","cown","year","region",
                                 "continent","microstate","lat","lon","in_system",indexes)]
 data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
@@ -40,11 +52,72 @@ data <- data %>% arrange(country_name,year)
 
 data2 <- prepare_democracy(indexes)
 
-# The model converges after 1831 iterations, about 2.5 mins in my not-special desktop machine
-extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+# The model converges after 1936 iterations, about 2.5 mins (156 secs) in my not-special desktop machine
+extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500))
 extended_scores <- democracy_scores(extended_model)
 extended_uds <- bind_cols(data,extended_scores)
-rm(data2,data,indexes,extended_scores)
+
+extended_model@time
+#>    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
+#>   160.16     1.41   147.97    92.53    55.38    10.63     0.05
+extended_model
+#> 
+#> Call:
+#> mirt::mirt(data = data[, columns], model = model, itemtype = itemtype, 
+#>     SE = SE, verbose = FALSE, technical = ..2)
+#> 
+#> Full-information item factor analysis with 1 factor(s).
+#> Converged within 1e-04 tolerance after 1936 EM iterations.
+#> mirt version: 1.16 
+#> M-step optimizer: BFGS 
+#> EM acceleration: Ramsay
+#> Number of rectangular quadrature: 61
+#> 
+#> Information matrix estimated with method: crossprod
+#> Condition number of information matrix = 11961.02
+#> Second-order test: model is a possible local maximum
+#> 
+#> Log-likelihood = -201095
+#> AIC = 402548; AICc = 402550.7
+#> BIC = 403996.3; SABIC = 403427.4
+summary(extended_model)
+#>                             F1    h2
+#> arat_pmm                 0.896 0.802
+#> blm                      0.979 0.959
+#> bmr_democracy            0.980 0.961
+#> bnr                      0.966 0.934
+#> bollen_pmm               0.921 0.849
+#> doorenspleet             0.966 0.933
+#> eiu                      0.889 0.791
+#> freedomhouse             0.930 0.865
+#> freedomhouse_electoral   0.986 0.972
+#> gwf                      0.963 0.927
+#> hadenius_pmm             0.950 0.902
+#> kailitz_tri              0.936 0.875
+#> lied                     0.915 0.838
+#> mainwaring               0.970 0.942
+#> magaloni_regime_tri      0.957 0.916
+#> munck_pmm                0.940 0.883
+#> pacl                     0.956 0.914
+#> PEPS1v                   0.992 0.984
+#> pitf                     0.976 0.952
+#> polity2                  0.989 0.978
+#> polyarchy_contestation   0.944 0.891
+#> prc_notrans              0.953 0.907
+#> svolik                   0.957 0.917
+#> ulfelder                 0.969 0.940
+#> utip_dichotomous_strict  0.951 0.905
+#> v2x_polyarchy            0.935 0.875
+#> vanhanen_democratization 0.934 0.872
+#> wahman_teorell_hadenius  0.991 0.983
+#> 
+#> SS loadings:  25.466 
+#> Proportion Var:  0.91 
+#> 
+#> Factor correlations: 
+#> 
+#>    F1
+#> F1  1
 ```
 
 (For the latest code used, always see <https://github.com/xmarquez/QuickUDS/blob/master/data-raw/Generate%20extended%20UDS%20data.R>)
@@ -74,7 +147,7 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/vignettes).
 
-The extended UD scores are available for 24111 country-years (224 unique countries and non-sovereign territories):
+The extended UD scores are available for `24120` country-years (`224` unique countries and non-sovereign territories):
 
 ![](README-unnamed-chunk-6-1.png)
 

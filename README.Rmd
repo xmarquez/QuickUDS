@@ -10,8 +10,7 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-",
-  cache.rebuild = FALSE
+  fig.path = "README-"
 )
 ```
 
@@ -37,8 +36,7 @@ For non-R users, there are csv versions of these datasets [here](https://github.
 
 The ```extended_uds``` dataset can be generated with the following code:
 
-```{r, echo=TRUE, cache = TRUE}
-# Generate Extended UDS
+```{r, echo=TRUE}
 library(dplyr)
 library(QuickUDS)
 
@@ -48,6 +46,7 @@ indexes <- c("arat_pmm","blm","bmr_democracy","bnr","bollen_pmm","doorenspleet",
              "polyarchy_contestation","prc_notrans","svolik","ulfelder","utip_dichotomous_strict",
              "v2x_polyarchy","vanhanen_democratization","wahman_teorell_hadenius")
 
+# Generate Extended UDS
 data <- QuickUDS::democracy[ ,c("country_name","GWn","cown","year","region",
                                 "continent","microstate","lat","lon","in_system",indexes)]
 data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
@@ -57,11 +56,15 @@ data <- data %>% arrange(country_name,year)
 
 data2 <- prepare_democracy(indexes)
 
-# The model converges after 1831 iterations, about 2.5 mins in my not-special desktop machine
-extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+# The model converges after 1936 iterations, about 2.5 mins (156 secs) in my not-special desktop machine
+extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500))
 extended_scores <- democracy_scores(extended_model)
 extended_uds <- bind_cols(data,extended_scores)
-rm(data2,data,indexes,extended_scores)
+
+extended_model@time
+extended_model
+summary(extended_model)
+
 
 ```
 
@@ -69,7 +72,7 @@ rm(data2,data,indexes,extended_scores)
 
 To generate a 0-1 index from these scores where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
 
-```{r, echo = TRUE, cache = TRUE}
+```{r, echo = TRUE}
 cutpoints_extended <- cutpoints(extended_model)
 
 cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
@@ -89,11 +92,11 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
                                         index.pct975 = pnorm(adj.pct975))
 ```
 
-For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/vignettes).
+For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/vignettes). 
 
 The extended UD scores are available for ```r nrow(extended_uds)``` country-years (```r length(unique(extended_uds$country_name))``` unique countries and non-sovereign territories):
 
-```{r, cache = TRUE, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
+```{r, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
 library(ggplot2)
 
 extended_uds <- extended_uds %>% group_by(country_name) %>% mutate(group = PoliticalDatasets::count_sequence_breaks(year), group2 = PoliticalDatasets::count_sequence_breaks(in_system,seq_step = 0), group3 = paste(group,group2))
@@ -117,7 +120,7 @@ ggplot() +
 
 ```
 
-```{r, cache = TRUE, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
+```{r, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
 
 ggplot() + 
   geom_path(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 

@@ -4,7 +4,7 @@
 \name{extended_uds}
 \alias{extended_uds}
 \title{Extended UDS}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24111 rows and 52 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24120 rows and 52 columns.}
 \usage{
 extended_uds
 }
@@ -748,6 +748,7 @@ Politics 19 (1): 19-34.
 }
 \seealso{
 Other democracy: \code{\link{democracy}},
+  \code{\link{kailitz}},
   \code{\link{original.pmm.democracy.data.1946.2008}},
   \code{\link{uds_2014}}
 }

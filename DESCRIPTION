@@ -1,23 +1,25 @@
 Package: QuickUDS
 Type: Package
 Title: Extend the Unified Democracy Scores Backwards and Forwards in Time easily
-Version: 0.1.1
+Version: 0.1.2
 Date: 2016-03-30
-Author: Xavier Marquez
-Maintainer: Xavier Marquez <marquez.x@gmail.com>
-Description: Convenience functions to extend the Unified Democracy Scores of Pemstein, Meserve, and Melton. These are basically a wrapper for the package mirt. The package includes an "extended UDS" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy. The extended scores are described in more detail in Marquez, Xavier, "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830
+Authors@R: person("Xavier", "Marquez", role=c("aut", "cre"),
+  email = "marquez.x@gmail.com")
+Description: This package contains convenience functions to extend the Unified Democracy Scores of Pemstein, Meserve, and Melton. The package also includes an "extended UDS" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy.
 License: GPL-2
 LazyData: TRUE
 Imports:
-    mirt,
     reshape2,
     dplyr,
-    stringr
+    stringr,
+    plyr
 Depends:
     mirt
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2,
+    GGally
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 URL: https://github.com/xmarquez/QuickUDS

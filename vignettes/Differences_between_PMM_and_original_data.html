@@ -1,0 +1,3575 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Xavier Marquez" />
+
+<meta name="date" content="2016-04-13" />
+
+<title>Differences between PMM’s replication data and original democracy data sources</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Differences between PMM’s replication data and original democracy data sources</h1>
+<h4 class="author"><em>Xavier Marquez</em></h4>
+<h4 class="date"><em>2016-04-13</em></h4>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#differences-between-pmms-replication-data-and-the-original-data-sources">Differences between PMM’s replication data and the original data sources</a><ul>
+<li><a href="#freedom-house">Freedom House</a></li>
+<li><a href="#the-mainwaring-et-al.-dataset">The Mainwaring et al. dataset</a></li>
+<li><a href="#the-ddpaclaclp-dataset">The DD/PACL/ACLP dataset</a></li>
+<li><a href="#the-polity-iv-dataset">The Polity IV dataset</a></li>
+<li><a href="#the-polyarchy-dataset">The Polyarchy dataset</a></li>
+<li><a href="#the-political-regime-change-prc-dataset">The Political Regime Change (PRC) dataset</a></li>
+<li><a href="#vanhanen-dataset">Vanhanen dataset</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<div id="differences-between-pmms-replication-data-and-the-original-data-sources" class="section level1">
+<h1>Differences between PMM’s replication data and the original data sources</h1>
+<p>This package incorporates the replication dataset for Pemstein, Meserve, and Melton (2010) in its replication data (Pemstein, Meserve, and Melton 2013). These measures are labeled <code>_pmm</code> in the <code>democracy</code> dataset. However, some of these measures (Freedom House, Mainwaring et al, DD/PACL, Polity IV, Polyarchy, PRC, Vanhanen) differ from the original sources in a small number of cases, for a number of reasons having to do with data revisions after 2008 and transcription errors. This vignette documents these differences.</p>
+<div id="freedom-house" class="section level2">
+<h2>Freedom House</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuickUDS)
+<span class="kw">library</span>(dplyr)
+comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,freedomhouse,freedomhouse_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &gt;=<span class="st"> </span><span class="dv">1946</span>, year &lt;=<span class="st"> </span><span class="dv">2008</span>)</code></pre></div>
+<p>There are in total 255 differences between PMM’s data and the current Freedom House data (Freedom House 2016). These differences seem to be due to data revisions since 2010 in the Freedom House dataset.</p>
+<p>The main problem is the treatment of 1981, which is conventionally taken to be “missing data” in the Freedom House series but which appears to be interpolated in PMM’s replication dataset. But there is also one data point for 1972 (South Africa) for which the original data gives two values (a value for the “competitive” white regime and a value for the less free overall regime) and which is assigned an <code>NA</code> value in this package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(freedomhouse_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(freedomhouse)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(freedomhouse_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(freedomhouse)) |<span class="st"> </span>
+<span class="st">                 </span>(freedomhouse_pmm !=<span class="st"> </span>freedomhouse)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,freedomhouse_pmm,freedomhouse) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">&quot;, &quot;</span>), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's FH values and current FH data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;Freedom House value in PMM&quot;</span>,
+                    <span class="st">&quot;Latest Freedom House data&quot;</span>,<span class="st">&quot;years affected&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s FH values and current FH data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">Freedom House value in PMM</th>
+<th align="right">Latest Freedom House data</th>
+<th align="left">years affected</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Albania</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Algeria</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Andorra</td>
+<td align="right">NA</td>
+<td align="right">4.0</td>
+<td align="left">1973, 1974, 1975, 1976</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Andorra</td>
+<td align="right">NA</td>
+<td align="right">4.5</td>
+<td align="left">1972</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Angola</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Antigua &amp; Barbuda</td>
+<td align="right">5.5</td>
+<td align="right">6.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Antigua &amp; Barbuda</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Argentina</td>
+<td align="right">5.0</td>
+<td align="right">2.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Argentina</td>
+<td align="right">5.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Australia</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Austria</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bahamas</td>
+<td align="right">6.0</td>
+<td align="right">6.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bahamas</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bahrain</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bangladesh</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Barbados</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Belgium</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Belize</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Benin</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bhutan</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bolivia</td>
+<td align="right">5.5</td>
+<td align="right">2.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bolivia</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Botswana</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">5.0</td>
+<td align="right">4.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">5.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Brunei</td>
+<td align="right">NA</td>
+<td align="right">2.5</td>
+<td align="left">1972, 1973, 1974, 1975, 1976</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Bulgaria</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Burkina Faso (Upper Volta)</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Burundi</td>
+<td align="right">2.0</td>
+<td align="right">1.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Burundi</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cambodia (Kampuchea)</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cameroon</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Canada</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cape Verde</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Central African Republic</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chad</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Colombia</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Comoros</td>
+<td align="right">4.0</td>
+<td align="right">3.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Comoros</td>
+<td align="right">4.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Congo</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Congo</td>
+<td align="right">4.0</td>
+<td align="right">5.0</td>
+<td align="left">1993</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Congo, Democratic Republic of (Zaire)</td>
+<td align="right">1.5</td>
+<td align="right">2.0</td>
+<td align="left">1977, 1978, 1982</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Congo, Democratic Republic of (Zaire)</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Costa Rica</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cote D’Ivoire</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="left">1980</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cote D’Ivoire</td>
+<td align="right">3.0</td>
+<td align="right">2.5</td>
+<td align="left">1999</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cote D’Ivoire</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cuba</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cyprus</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Czechoslovakia</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Djibouti</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dominica</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dominican Republic</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">East Timor</td>
+<td align="right">NA</td>
+<td align="right">3.0</td>
+<td align="left">1999</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">East Timor</td>
+<td align="right">NA</td>
+<td align="right">3.5</td>
+<td align="left">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">East Timor</td>
+<td align="right">NA</td>
+<td align="right">4.0</td>
+<td align="left">2001</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ecuador</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Egypt</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">El Salvador</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Equatorial Guinea</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ethiopia</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiji</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Finland</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">France</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Gabon</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Gambia</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">German Democratic Republic</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German Federal Republic</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ghana</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Greece</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Grenada</td>
+<td align="right">2.0</td>
+<td align="right">2.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Grenada</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guatemala</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Guinea</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guinea-Bissau</td>
+<td align="right">1.5</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Guinea-Bissau</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guyana</td>
+<td align="right">3.0</td>
+<td align="right">3.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Guyana</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Haiti</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Honduras</td>
+<td align="right">5.0</td>
+<td align="right">5.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Honduras</td>
+<td align="right">5.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hungary</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Iceland</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">India</td>
+<td align="right">4.5</td>
+<td align="right">4.0</td>
+<td align="left">1976</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">India</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Indonesia</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Iran (Persia)</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Iraq</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ireland</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Israel</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Italy/Sardinia</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Jamaica</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Japan</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Jordan</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kenya</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Kiribati</td>
+<td align="right">6.5</td>
+<td align="right">6.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kiribati</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Korea, People’s Republic of</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Korea, Republic of</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Korea, Republic of</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kuwait</td>
+<td align="right">4.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Laos</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lebanon</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lesotho</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Liberia</td>
+<td align="right">2.5</td>
+<td align="right">2.0</td>
+<td align="left">2001</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Liberia</td>
+<td align="right">3.0</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Liberia</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Libya</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Luxembourg</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Madagascar (Malagasy)</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Malawi</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Malaysia</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Maldives</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mali</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Malta</td>
+<td align="right">5.0</td>
+<td align="right">5.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Malta</td>
+<td align="right">5.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mauritania</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mauritius</td>
+<td align="right">6.0</td>
+<td align="right">5.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mauritius</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mexico</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Monaco</td>
+<td align="right">NA</td>
+<td align="right">5.0</td>
+<td align="left">1972, 1973, 1974, 1975, 1976</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Monaco</td>
+<td align="right">NA</td>
+<td align="right">6.5</td>
+<td align="left">1993, 1994, 1995, 1996, 1997, 1998, 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">Mongolia</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Morocco</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mozambique</td>
+<td align="right">1.5</td>
+<td align="right">1.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mozambique</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Myanmar (Burma)</td>
+<td align="right">1.0</td>
+<td align="right">1.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Myanmar (Burma)</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Namibia</td>
+<td align="right">NA</td>
+<td align="right">2.5</td>
+<td align="left">1972, 1973, 1974</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Namibia</td>
+<td align="right">NA</td>
+<td align="right">4.5</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Nauru</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nepal</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Netherlands</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">New Zealand</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Nicaragua</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Niger</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Nigeria</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Norway</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Oman</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pakistan</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Panama</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Panama</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Papua New Guinea</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Paraguay</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Peru</td>
+<td align="right">5.0</td>
+<td align="right">4.5</td>
+<td align="left">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="right">5.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Philippines</td>
+<td align="right">3.0</td>
+<td align="right">3.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Philippines</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="right">2.5</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Poland</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Portugal</td>
+<td align="right">6.5</td>
+<td align="right">6.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Portugal</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Qatar</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Rumania</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Russia (Soviet Union)</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Rwanda</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Saint Lucia</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Saint Vincent and the Grenadines</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Samoa/Western Samoa</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">San Marino</td>
+<td align="right">NA</td>
+<td align="right">6.0</td>
+<td align="left">1972, 1973, 1974, 1975, 1976</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Saudi Arabia</td>
+<td align="right">1.5</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Saudi Arabia</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senegal</td>
+<td align="right">4.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Seychelles</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sierra Leone</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Singapore</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Solomon Islands</td>
+<td align="right">6.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Somalia</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">South Africa</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1972, 1981</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Spain</td>
+<td align="right">6.5</td>
+<td align="right">5.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Spain</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sri Lanka (Ceylon)</td>
+<td align="right">4.5</td>
+<td align="right">5.5</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sri Lanka (Ceylon)</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sudan</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Surinam</td>
+<td align="right">1.5</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Surinam</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Surinam</td>
+<td align="right">4.5</td>
+<td align="right">3.0</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Swaziland</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="left">1978</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Swaziland</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sweden</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Switzerland</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Syria</td>
+<td align="right">1.5</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Syria</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">São Tomé and Principe</td>
+<td align="right">1.0</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">São Tomé and Principe</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Taiwan</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="left">1980</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Taiwan</td>
+<td align="right">3.0</td>
+<td align="right">5.0</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Taiwan</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Taiwan</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="left">1978</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Tajikistan</td>
+<td align="right">5.0</td>
+<td align="right">3.0</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tanzania/Tanganyika</td>
+<td align="right">2.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Thailand</td>
+<td align="right">4.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Togo</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Tonga</td>
+<td align="right">4.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Trinidad and Tobago</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Tunisia</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tuvalu</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Uganda</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Uganda</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">United Arab Emirates</td>
+<td align="right">3.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">United Kingdom</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">United States of America</td>
+<td align="right">7.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Uruguay</td>
+<td align="right">3.5</td>
+<td align="right">3.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Uruguay</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Vanuatu</td>
+<td align="right">5.0</td>
+<td align="right">6.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Vanuatu</td>
+<td align="right">5.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Venezuela</td>
+<td align="right">6.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Vietnam, Democratic Republic of</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Yemen (Arab Republic of Yemen)</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Yemen, People’s Republic of</td>
+<td align="right">1.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Yugoslavia</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Zambia</td>
+<td align="right">2.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Zimbabwe (Rhodesia)</td>
+<td align="right">3.5</td>
+<td align="right">4.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Zimbabwe (Rhodesia)</td>
+<td align="right">3.5</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-mainwaring-et-al.-dataset" class="section level2">
+<h2>The Mainwaring et al. dataset</h2>
+<p>PMM’s replication data is actually missing a fair number of the data points in the original data by Mainwaring et al (Mainwaring, Brinks, and Perez Linan 2008), but the original data is not missing any of their data points, and there are no differences between the data points wherever both the original and the replication data have values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,mainwaring,mainwaring_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(mainwaring_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(mainwaring)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(mainwaring_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(mainwaring)) |<span class="st"> </span>
+<span class="st">                 </span>(mainwaring_pmm !=<span class="st"> </span>mainwaring)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,mainwaring_pmm,mainwaring) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's Mainwaring et al values and original Mainwaring et al data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;Mainwaring et al value in PMM&quot;</span>,
+                    <span class="st">&quot;Mainwaring et al value in original dataset&quot;</span>,<span class="st">&quot;min year&quot;</span>, <span class="st">&quot;max year&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s Mainwaring et al values and original Mainwaring et al data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">Mainwaring et al value in PMM</th>
+<th align="right">Mainwaring et al value in original dataset</th>
+<th align="right">min year</th>
+<th align="right">max year</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bolivia</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1946</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1964</td>
+<td align="right">1984</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1954</td>
+<td align="right">1955</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1946</td>
+<td align="right">2007</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1946</td>
+<td align="right">1972</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">Costa Rica</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1946</td>
+<td align="right">1947</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Cuba</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1952</td>
+<td align="right">2007</td>
+<td align="right">56</td>
+</tr>
+<tr class="even">
+<td align="left">Cuba</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1946</td>
+<td align="right">1951</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Dominican Republic</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1961</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">El Salvador</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1966</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">Haiti</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1994</td>
+<td align="right">49</td>
+</tr>
+<tr class="even">
+<td align="left">Honduras</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1956</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Mexico</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1987</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="left">Nicaragua</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1983</td>
+<td align="right">38</td>
+</tr>
+<tr class="odd">
+<td align="left">Panama</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1946</td>
+<td align="right">1947</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Paraguay</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1946</td>
+<td align="right">1988</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1946</td>
+<td align="right">1947</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Uruguay</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1946</td>
+<td align="right">1972</td>
+<td align="right">27</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-ddpaclaclp-dataset" class="section level2">
+<h2>The DD/PACL/ACLP dataset</h2>
+<p>A few country-years in the original PACL/DD dataset (Cheibub, Gandhi, and Vreeland 2010) are missing from PMM’s replication dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,pacl,pacl_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pacl_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(pacl)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pacl_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(pacl)) |<span class="st"> </span>
+<span class="st">                 </span>(pacl_pmm !=<span class="st"> </span>pacl)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,pacl_pmm,pacl) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's PACL values and original PACL data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;PACL value in PMM&quot;</span>,
+                    <span class="st">&quot;Original PACL data&quot;</span>,<span class="st">&quot;min year&quot;</span>, <span class="st">&quot;max year&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s PACL values and original PACL data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">PACL value in PMM</th>
+<th align="right">Original PACL data</th>
+<th align="right">min year</th>
+<th align="right">max year</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Liechtenstein</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1946</td>
+<td align="right">1991</td>
+<td align="right">41</td>
+</tr>
+<tr class="even">
+<td align="left">Marshall Islands</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1990</td>
+<td align="right">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nauru</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1968</td>
+<td align="right">1971</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Zimbabwe (Rhodesia)</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">1965</td>
+<td align="right">1966</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-polity-iv-dataset" class="section level2">
+<h2>The Polity IV dataset</h2>
+<p>There are 202 country-years where PMM’s replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,polity2,polity_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(polity_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(polity2)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(polity_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(polity2)) |<span class="st"> </span>
+<span class="st">                 </span>(polity_pmm !=<span class="st"> </span>polity2)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,polity_pmm,polity2) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's Polity2 values and latest Polity IV data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;Polity2 value in PMM&quot;</span>,
+                    <span class="st">&quot;Latest Polity IV data&quot;</span>,<span class="st">&quot;min year&quot;</span>, <span class="st">&quot;max year&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s Polity2 values and latest Polity IV data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">Polity2 value in PMM</th>
+<th align="right">Latest Polity IV data</th>
+<th align="right">min year</th>
+<th align="right">max year</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bhutan</td>
+<td align="right">-6</td>
+<td align="right">-5</td>
+<td align="right">2005</td>
+<td align="right">2007</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Cape Verde</td>
+<td align="right">NA</td>
+<td align="right">-4</td>
+<td align="right">1975</td>
+<td align="right">1984</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">Cape Verde</td>
+<td align="right">NA</td>
+<td align="right">-3</td>
+<td align="right">1985</td>
+<td align="right">1989</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Cape Verde</td>
+<td align="right">NA</td>
+<td align="right">-2</td>
+<td align="right">1990</td>
+<td align="right">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cape Verde</td>
+<td align="right">NA</td>
+<td align="right">8</td>
+<td align="right">1991</td>
+<td align="right">2000</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Cape Verde</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">2001</td>
+<td align="right">2008</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Czech Republic</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">2006</td>
+<td align="right">2008</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Czechoslovakia</td>
+<td align="right">-1</td>
+<td align="right">2</td>
+<td align="right">1947</td>
+<td align="right">1947</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ethiopia</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1993</td>
+<td align="right">1993</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ethiopia</td>
+<td align="right">1</td>
+<td align="right">-3</td>
+<td align="right">2005</td>
+<td align="right">2008</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Jamaica</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">1959</td>
+<td align="right">1961</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Korea, People’s Republic of</td>
+<td align="right">-9</td>
+<td align="right">-10</td>
+<td align="right">1994</td>
+<td align="right">2008</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">Kosovo</td>
+<td align="right">NA</td>
+<td align="right">8</td>
+<td align="right">2008</td>
+<td align="right">2008</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lebanon</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">2005</td>
+<td align="right">2008</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Luxembourg</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">1946</td>
+<td align="right">2008</td>
+<td align="right">63</td>
+</tr>
+<tr class="even">
+<td align="left">Moldova</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">2005</td>
+<td align="right">2008</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Montenegro</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">2008</td>
+<td align="right">2008</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Montenegro</td>
+<td align="right">NA</td>
+<td align="right">9</td>
+<td align="right">2006</td>
+<td align="right">2007</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Mozambique</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">1994</td>
+<td align="right">2008</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">Myanmar (Burma)</td>
+<td align="right">-8</td>
+<td align="right">-6</td>
+<td align="right">2008</td>
+<td align="right">2008</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Oman</td>
+<td align="right">NA</td>
+<td align="right">-6</td>
+<td align="right">1946</td>
+<td align="right">1950</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Senegal</td>
+<td align="right">8</td>
+<td align="right">7</td>
+<td align="right">2007</td>
+<td align="right">2008</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Serbia</td>
+<td align="right">6</td>
+<td align="right">8</td>
+<td align="right">2006</td>
+<td align="right">2006</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Serbia</td>
+<td align="right">NA</td>
+<td align="right">8</td>
+<td align="right">2007</td>
+<td align="right">2008</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Singapore</td>
+<td align="right">NA</td>
+<td align="right">7</td>
+<td align="right">1959</td>
+<td align="right">1962</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Surinam</td>
+<td align="right">NA</td>
+<td align="right">-6</td>
+<td align="right">1982</td>
+<td align="right">1986</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Surinam</td>
+<td align="right">NA</td>
+<td align="right">-1</td>
+<td align="right">1980</td>
+<td align="right">1989</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Surinam</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">1990</td>
+<td align="right">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Surinam</td>
+<td align="right">NA</td>
+<td align="right">5</td>
+<td align="right">1975</td>
+<td align="right">2008</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="left">Yugoslavia</td>
+<td align="right">NA</td>
+<td align="right">6</td>
+<td align="right">2006</td>
+<td align="right">2006</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-polyarchy-dataset" class="section level2">
+<h2>The Polyarchy dataset</h2>
+<p>22 country-years differ between PMM’s replication data and the original Polyarchy dataset (Coppedge and Reinicke 1991), and four are missing. These seem to be due to simple transcription errors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,polyarchy_reversed,polyarchy_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(polyarchy_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(polyarchy_reversed)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(polyarchy_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(polyarchy_reversed)) |<span class="st"> </span>
+<span class="st">                 </span>(polyarchy_pmm !=<span class="st"> </span>polyarchy_reversed)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,polyarchy_pmm,polyarchy_reversed) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's Polyarchy values and original Polyarchy data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;Polyarchy value in PMM&quot;</span>,
+                    <span class="st">&quot;Original Polyarchy data&quot;</span>,<span class="st">&quot;min year&quot;</span>, <span class="st">&quot;max year&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s Polyarchy values and original Polyarchy data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">Polyarchy value in PMM</th>
+<th align="right">Original Polyarchy data</th>
+<th align="right">min year</th>
+<th align="right">max year</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Algeria</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Brunei</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">1985</td>
+<td align="right">1985</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Burundi</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Colombia</td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">East Timor</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Egypt</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Eritrea</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Fiji</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German Federal Republic</td>
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Iran (Persia)</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mongolia</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Myanmar (Burma)</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Oman</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Panama</td>
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Poland</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Russia (Soviet Union)</td>
+<td align="right">8</td>
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">San Marino</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">1985</td>
+<td align="right">1985</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senegal</td>
+<td align="right">7</td>
+<td align="right">9</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Solomon Islands</td>
+<td align="right">7</td>
+<td align="right">9</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tonga</td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Uganda</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ukraine</td>
+<td align="right">9</td>
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Uruguay</td>
+<td align="right">9</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Venezuela</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Western Sahara</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Zimbabwe (Rhodesia)</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">2000</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-political-regime-change-prc-dataset" class="section level2">
+<h2>The Political Regime Change (PRC) dataset</h2>
+<p>The PRC dataset (Gasiorowski 1996, revised in Reich 2002) has more than one value per country-year for some country-years due to transitions between regimes; and these transitions are not consistently treated in PMM’s replication dataset (sometimes the value for the beginning of the year is used, sometimes the value for the end of the year, and sometimes the value for the middle of the year). In this package, I use the last value in a given year for the regime in the PRC dataset, which results in the following differences:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,prc,prc_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(prc_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(prc)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(prc_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(prc)) |<span class="st"> </span>
+<span class="st">                 </span>(prc_pmm !=<span class="st"> </span>prc)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,prc_pmm,prc) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">&quot;, &quot;</span>), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's PRC values and original PRC data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;PRC value in PMM&quot;</span>,
+                    <span class="st">&quot;Original PRC data&quot;</span>,<span class="st">&quot;years affected&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s PRC values and original PRC data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">PRC value in PMM</th>
+<th align="right">Original PRC data</th>
+<th align="left">years affected</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Albania</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Algeria</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Argentina</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1983</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Argentina</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1955</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1972, 1990</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Bangladesh</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1974</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1971</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Benin</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1963</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bolivia</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bolivia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bolivia</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1964</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Bosnia-Herzegovina</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1998</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bulgaria</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Burkina Faso (Upper Volta)</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1969</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Burkina Faso (Upper Volta)</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1980</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Burundi</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Burundi</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1996</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cambodia (Kampuchea)</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1955, 1993</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Cambodia (Kampuchea)</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1957</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Central African Republic</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Central African Republic</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1993</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chad</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1996</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Chile</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1952</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1973</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Colombia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1958</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Colombia</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1949</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Congo</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Congo</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Congo</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1997</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Congo</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1963</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Costa Rica</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1949</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Cote D’Ivoire</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1995</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Croatia</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Czechoslovakia</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Czechoslovakia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Czechoslovakia</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">1947</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dominican Republic</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">1978</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dominican Republic</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1963</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ecuador</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1975</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ecuador</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1948</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ecuador</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1968, 1979</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Ecuador</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1963, 1970</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Ecuador</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1984</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Estonia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ethiopia</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1995</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Gabon</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1994</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Georgia</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German Democratic Republic</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1946, 1947, 1948, 1990</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">German Federal Republic</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1949</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">German Federal Republic</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="left">1946, 1947, 1948</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Ghana</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1978</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ghana</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ghana</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1969, 1979</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Ghana</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Greece</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1950</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Greece</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">1974</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guatemala</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1983</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Guatemala</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1996</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guatemala</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1954</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Haiti</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1994</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Haiti</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Honduras</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1957</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Honduras</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1954, 1963</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Honduras</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1996</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Hungary</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Kenya</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kenya</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1979</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Kenya</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Korea, Republic of</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1987</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Korea, Republic of</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1948</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kuwait</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1961, 1962</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Laos</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1957</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Latvia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Latvia</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lebanon</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lebanon</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lithuania</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lithuania</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Madagascar (Malagasy)</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Malawi</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1993</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mexico</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mexico</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1997</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Mongolia</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mongolia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Namibia</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1998</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nigeria</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1975</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Nigeria</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1979</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nigeria</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1983</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Pakistan</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pakistan</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1958, 1977</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Pakistan</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Panama</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Panama</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1994</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1977</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Peru</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1956, 1963</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1980</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Peru</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1948, 1962, 1968</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Philippines</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1953</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Philippines</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1972</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Poland</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1946</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Portugal</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1976</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Rumania</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Russia (Soviet Union)</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Rwanda</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1963</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Rwanda</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="left">1961</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senegal</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1974</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Senegal</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1962</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sierra Leone</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1968</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovakia</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">1998</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Slovenia</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="left">1989</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovenia</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Spain</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1976</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sri Lanka (Ceylon)</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1983</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sudan</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1964</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sudan</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1958</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sudan</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="left">1955</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Taiwan</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1988</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Taiwan</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Tanzania/Tanganyika</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1995</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tanzania/Tanganyika</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1965</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Tanzania/Tanganyika</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1962</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Thailand</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1973</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Thailand</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1986</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Thailand</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">1992</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Thailand</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1947</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Thailand</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1976</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">1961</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1983</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1980</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey (Ottoman Empire)</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">1957</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Ukraine</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Uruguay</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Venezuela</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1947</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Venezuela</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="left">1948</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Vietnam, Republic of</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1954</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Yemen (Arab Republic of Yemen)</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="left">1946, 1947</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Yugoslavia</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Yugoslavia</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="left">1992, 1993, 1994, 1995, 1996, 1997, 1998</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Zambia</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">1990</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Zambia</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="left">1991</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Zambia</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">1971</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>166 data points differ between the two data sources.</p>
+</div>
+<div id="vanhanen-dataset" class="section level2">
+<h2>Vanhanen dataset</h2>
+<p>There are some missing values in PMM’s data compared to the original Vanhanen dataset (Vanhanen 2012):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,vanhanen_democratization,vanhanen_pmm) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+
+<span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(vanhanen_pmm) &amp;<span class="st"> </span><span class="kw">is.na</span>(vanhanen_democratization)) |<span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(vanhanen_pmm) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(vanhanen_democratization)) |<span class="st"> </span>
+<span class="st">                 </span>(vanhanen_pmm !=<span class="st"> </span>vanhanen_democratization)) %&gt;%
+<span class="st">        </span><span class="kw">group_by</span>(country_name,vanhanen_pmm,vanhanen_democratization) %&gt;%
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">&quot;, &quot;</span>), <span class="dt">n =</span> <span class="kw">n</span>()),
+      <span class="dt">caption =</span> <span class="st">&quot;Differences between PMM's Vanhanen values and original Vanhanen data&quot;</span>,
+      <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Country name&quot;</span>,<span class="st">&quot;Vanhanen value in PMM&quot;</span>,
+                    <span class="st">&quot;Original Vanhanen data&quot;</span>,<span class="st">&quot;years affected&quot;</span>,<span class="st">&quot;n&quot;</span>))</code></pre></div>
+<table>
+<caption>Differences between PMM’s Vanhanen values and original Vanhanen data</caption>
+<thead>
+<tr class="header">
+<th align="left">Country name</th>
+<th align="right">Vanhanen value in PMM</th>
+<th align="right">Original Vanhanen data</th>
+<th align="left">years affected</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Burundi</td>
+<td align="right">NA</td>
+<td align="right">2.5</td>
+<td align="left">1961</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Japan</td>
+<td align="right">NA</td>
+<td align="right">32.8</td>
+<td align="left">2008</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Montenegro</td>
+<td align="right">NA</td>
+<td align="right">19.5</td>
+<td align="left">2003, 2004, 2005</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Morocco</td>
+<td align="right">NA</td>
+<td align="right">5.1</td>
+<td align="left">2003, 2004, 2005, 2006</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Myanmar (Burma)</td>
+<td align="right">NA</td>
+<td align="right">1.8</td>
+<td align="left">1947</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Rumania</td>
+<td align="right">NA</td>
+<td align="right">22.8</td>
+<td align="left">2003</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Rumania</td>
+<td align="right">NA</td>
+<td align="right">25.3</td>
+<td align="left">2004, 2005, 2006</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Vietnam, Republic of</td>
+<td align="right">NA</td>
+<td align="right">0.0</td>
+<td align="left">1954</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010. “Democracy and Dictatorship Revisited.” Public Choice. 143(1):67-101. Original data available at <a href="https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited" class="uri">https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited</a>.</p>
+<p>Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New Brunswuck, NJ: Transaction pp. 47-68.</p>
+<p>Freedom House. 2016. “Freedom in the World.” Original data available at <a href="http://www.freedomhouse.org" class="uri">http://www.freedomhouse.org</a>.</p>
+<p>Gasiorowski, Mark J. 1996. “An Overview of the Political Regime Change Dataset.” Comparative Political Studies 29(4):469-483.</p>
+<p>Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. “Political Regimes in Latin America, 1900-2007.” Original data available from <a href="http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf" class="uri">http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf</a>.</p>
+<p>Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. “Polity IV: Political Regime Characteristics and Transitions, 1800-2012.” Updated to 2015. Original data available from <a href="http://www.systemicpeace.org/polity/polity4.htm" class="uri">http://www.systemicpeace.org/polity/polity4.htm</a>.</p>
+<p>Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime Type. Political Analysis 18 (4): 426-449.</p>
+<p>Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. “Replication data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.” In: Harvard Dataverse. <a href="http://hdl.handle.net/1902.1/PMM" class="uri">http://hdl.handle.net/1902.1/PMM</a></p>
+<p>Reich, G. 2002. Categorizing Political Regimes: New Data for Old Problems. Democratization 9 (4): 1-24. <a href="http://www.tandfonline.com/doi/pdf/10.1080/714000289" class="uri">http://www.tandfonline.com/doi/pdf/10.1080/714000289</a>.</p>
+<p>Vanhanen, Tatu. 2012. “FSD1289 Measures of Democracy 1810-2012.” Original data available from <a href="http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html" class="uri">http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html</a></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

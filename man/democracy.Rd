@@ -5,7 +5,7 @@
 \alias{democracy}
 \alias{democracy_long}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{data.frame} with 24149 rows and 73 columns.}
+\format{An object of class \code{data.frame} with 24157 rows and 79 columns.}
 \usage{
 democracy
 
@@ -54,7 +54,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   democracy (\code{ulfelder}), based on a recoding of the Polity IV data
   (Ulfelder 2012); the Political Instability Task Force's dichotomous
   indicator of democracy (\code{pitf_binary}) based on the \code{parcomp} and
-  \code{exrec} variables of the \code{\link{polity}} dataset (Taylor and
+  \code{exrec} variables of the Polity IV dataset (Taylor and
   Ulfelder 2015); and a number of dichotomous democracy/non-democracy
   indicators (\code{gwf}, \code{kalitz_binary}, \code{magaloni_democ_binary},
   \code{svolik}, \code{utip_dichotomous}, \code{utip_dichotomous_strict},
@@ -63,11 +63,11 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Frantz 2014; Hsu 2008; Kailitz 2013; Magaloni, Min, Chu 2013; Svolik 2012; Wahman,
   Teorell, and Hadenius 2013). These are all highly but not perfectly
   correlated with one another, with correlation coefficients ranging from
-  0.72 to 0.94.
+  0.69 to 0.95.
 
-  Of these, only Doorenspleet's measure gives special weight to the extent of
+  Of these, only Doorenspleet's and BNR's measures give special weight to the extent of
   suffrage in determining whether a country is democratic; not surprisingly,
-  it displays the lowest correlation with the other dichotmous indicators of
+  they tend to display the lowest correlation with the other dichotmous indicators of
   democracy. All of these indexes have world-wide spatial scope, though they differ
   greatly in temporal coverage. Indexes using the Polity dataset
   as their basis (e.g., \code{doorenspleet}, \code{pitf}) have the widest
@@ -83,15 +83,14 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \code{blm_pmm}; see Bowman, Lehoucq, and Mahoney 2005), the trichotomous
   measure of democracy in Latin America by Mainwaring, Brinks, and Perez
   Linan (\code{mainwaring}, \code{mainwaring_pmm}), the "Political Regime
-  Change" dataset (\code{prc} and \code{prc_pmm}, though this indicator also
-  includes a code for "transition") described in Gasiorowski 1996 and
+  Change" dataset (\code{prc_notrans}) described in Gasiorowski 1996 and
   extended in Reich 2002; and a couple of measures taken from datasets of
   autocratic regimes that explicitly distinguish between full democracies,
   electoral or multiparty autocracies, and other autocracies
   (\code{magaloni_regime_tri}, \code{kailitz_tri}, \code{utip_trichotomous}). Both \code{blm} and
   \code{mainwaring} are regional indexes developed by scholars with
   Latin-American expertise; the rest have world-wide scope. These correlate
-  with other at levels ranging from 0.74 to 0.92.
+  with other at levels ranging from 0.71 to 0.9.
 }
 
 \section{Ordinal indexes of democracy}{
@@ -99,10 +98,11 @@ A dataset containing all (or nearly all) extant democracy indexes.
 
   These indexes distinguish more than three "degrees" of democracy, but they
   are not explicitly continuous. They include V-dem ordinal indexes of
-  democracy (\code{e_v2x_*}); Freedom House's 14 category freedom index
-  (\code{freedomhouse}, \code{freedomhouse_pmm}); the 7 category Lexical
-  Index of Democracy (\code{lied}, from Skaaning, Gerring,  Bartusevicius
-  2015); a 5 category indicator of democracy used by the
+  democracy (no longer included in this dataset, but available as
+  \code{e_v2x_*} in previous versions); Freedom House's 14 category freedom
+  index (\code{freedomhouse}, \code{freedomhouse_pmm}); the 7 category
+  Lexical Index of Democracy (\code{lied}, from Skaaning, Gerring,
+  Bartusevicius 2015); a 5 category indicator of democracy used by the
   Political Instability Task Force based on the \code{parcomp} and
   \code{exrec} variables of the Polity dataset (\code{pitf}, described in
   Goldstone et al 2010); the Polity IV polity and polity2 variables
@@ -117,14 +117,14 @@ A dataset containing all (or nearly all) extant democracy indexes.
   the V-dem indexes go back to 1900 and include many "non-sovereign"
   territories (colonies, etc.).
 
-  Correlations between these measures vary from a low of 0.64 (pitf and
-  Przeworski) to a high of 0.94 (pitf and polity). Except for the PIPE
+  Correlations between these measures vary from a low of 0.64 (\code{pitf} and
+  \code{przeworski}) to a high of 0.94 (\code{pitf} and \code{polity}). Except for the PIPE
   measure, all of these indexes are meant to capture "thicker" conceptions of
-  democracy. The Freedom House measure puts some emphasis on civil and
-  political rights; Polity and PITF focus on differences in "authority
+  democracy. The \code{freedomhouse} measure puts some emphasis on civil and
+  political rights; \code{polity} and \code{pitf} focus on differences in "authority
   patterns" (though they tend to downplay the scope of participation);
-  Poliarchy tries to operationalize both the participation and contestation
-  dimensions of Dahl's "Poliarchy" concept; and LIED tries to incorporate the
+  \code{polyarchy} tries to operationalize both the participation and contestation
+  dimensions of Dahl's "Polyarchy" concept; and \code{lied} tries to incorporate the
   degree of suffrage using measures originally collected for the PIPE dataset.
 }
 
@@ -140,17 +140,17 @@ A dataset containing all (or nearly all) extant democracy indexes.
   (\code{munck_pmm}); several variants of the Participation-Enhanced Polity
   Scores (\code{PEPS*}, from Moon et al 2006); continuous indexes of
   democracy from V-dem (\code{v2x_*}); and Vanahnen's index of
-  democratization (\code{vanhanen}, \code{vanhanen_full}). Vanhanen and PEPS
-  give special weight to participation; the EIU index combines a very wide
-  variety of indicators of democracy. Only Vanahanen, the V-dem measures, and
-  PEPS have long temporal coverage; the EIU has broad spatial coverage but is
-  only available for a short time series. Arat and Bollen go back only until
-  the 1950s, though they do have reasonable spatial coverage.
+  democratization (\code{vanhanen}, \code{vanhanen_full}). Vanhanen, some of
+  the V-dem indexes, and PEPS give special weight to participation; the EIU
+  index combines a very wide variety of indicators of democracy. Only
+  Vanahanen, the V-dem measures, and PEPS have long temporal coverage; the
+  EIU has broad spatial coverage but is only available for a short time
+  series. Arat and Bollen go back only until the 1950s, though they do have
+  reasonable spatial coverage.
 
   Correlations vary from a low of -0.05 (Munck and the EIU, 126 country-year
-  overlap) to 0.9 or thereabouts for Bollen and Arat, and Vanhanen and the
-  various PEPS measures. The lowest correlations are typically with the EIU measure
-  of democracy.
+  overlap) to over 0.9. The lowest correlations are typically with the EIU
+  measure of democracy.
 }
 
 \section{Spatial and temporal organization}{
@@ -198,6 +198,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   single year, which sometimes results in two or three regimes when a
   transition occurs); I have tried my best to transform their coding so that
   all datapoints conform to convention, but some errors may remain.
+
+  A full discussion of the temporal and geographic coverage of these
+  variables, is available in a package vignette
+  (\link{Spatial_and_temporal_coverage}).
 }
 
 \section{A note on sources}{
@@ -215,7 +219,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \code{freedomhouse} conventionally does not; and there are a number of
   divergences between PMM's \code{prc_pmm} data and the \code{prc} dataset
   available from Reich 2002 that seem to have something to do with the
-  treatment of country-years that include transition periods.
+  treatment of country-years that include transition periods. A more extended
+  discussion of the differences between the PMM replication data and the
+  "original" data is available in a package vignette
+  (\link{Differences_between_PMM_and_original_data})
 
   Second, I have constructed the \code{przeworski} and \code{pitf*} variables
   following the instructions in the source, but have not found the data
@@ -231,8 +238,9 @@ A dataset containing all (or nearly all) extant democracy indexes.
   data between 2010 and today.)
 
   Third, on at least one occasion I have recalculated an index from its
-  original sources in different ways (see the \code{utip_dichotomous}, \code{utip_dichotomous_strict}, and
-  \code{utip_trichotomous}  variables), since the original data does not provide an unambiguous measure.
+  original sources in different ways (see the \code{utip_dichotomous},
+  \code{utip_dichotomous_strict}, and \code{utip_trichotomous}  variables),
+  since the original data does not provide an unambiguous measure.
 }
 
 \section{Variable Description}{
@@ -271,7 +279,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \item{bmr_democracy}{Dichotomous measure of regime type from Boix, Carles,
   Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set of
   Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
-  1523-1554. Original data availabe at
+  1523-1554. Original data available at
   \url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}.
    1 = democracy. N = 16986.}
 
@@ -294,9 +302,11 @@ A dataset containing all (or nearly all) extant democracy indexes.
   description available at
   \url{http://users.clas.ufl.edu/bernhard/content/data/data.htm} This
   indicator has been put in country-year format, extending to 1913, with the
-  help of the panel of independent states by Gleditsch and Ward; it
-  originally included only the country-year spells for democratic countries
-  to 1913.}
+  help of the panel of independent states by Gleditsch and Ward; independent
+  countries (not microstates) that were not included in the original dataset
+  are assumed to be non-democratic for the period. See the vignette
+  \link{Spatial_and_temporal_coverage} for more information about the
+  additional country-years generated in this way.}
 
   \item{bollen_pmm}{0-100 index of democracy from Bollen, Kenneth A. 2001.
   "Cross-National Indicators of Liberal Democracy, 1950-1990." 2nd ICPSR
@@ -315,17 +325,6 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \url{http://dx.doi.org/10.1017/S0043887100016580}. 1 = authoritarian, 2 =
   democracy. Omits periods of interruption.}
 
-  \item{e_v2x_polyarchy_5C}{5-category ordinal index of poliarchy from V-dem.
-  See Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik
-  Skaaning, and Jan Teorell, with David Altman, Michael Bernhard, M. Steven
-  Fish, Adam Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela
-  Paxton, Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida
-  Andersson, Valeriya Mechkova, Farhad Miri. 2015. V-Dem Codebook v5.
-  Varieties of Democracy (V-Dem) Project. Original data available at
-  \url{https://v-dem.net/en/data/}. According to the codebook, "one can
-  interpret 0.0  as "Closed Autocratic", 0.25  as "Autocratic", 0.5  as
-  "Ambivalent", 0.75  as "Minimally Democratic", and 1.0  as "Democratic."}
-
   \item{eiu}{0-1 index of democracy from the updated version of the Economist
   Intelligence Unit. 2012. Democracy Index 2012: Democracy at a Standstill. 0
   = least democratic, 1 = most democratic. Taken from
@@ -343,8 +342,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Stephen A. Meserve, and James Melton. 2013. "Replication data for:
   Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime
   Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. Goes
-  from 1 (least democratic) to 7 (most democratic). In this version index
-  stops at 2008. It also includes a value for 1981.}
+  from 1 (least democratic) to 7 (most democratic). In this version the index
+  stops at 2008. It also includes a value for 1981. For more on the
+  differences between this variable and the current FH Freedom in the World
+  index, see \link{Differences_between_PMM_and_original_data}.}
 
   \item{freedomhouse_electoral}{An indicator of whether a country is an
   "electoral democracy" in Freedom House's estimation (1 = yes, 0 - no).
@@ -356,8 +357,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown and Regime
   Transitions: A New Data Set. Perspectives on Politics 12 (1): 313-331.
   Original data available at \url{http://dictators.la.psu.edu/}. 0 =
-  autocracy, 1 = democracy. Calculated from Geddes, Wright, and Frantz's case
-  variable for years before 1945.}
+  autocracy, 1 = democracy. Extended beyond 1945 using Geddes, Wright, and
+  Frantz's case variable, which encodes information about the first year of
+  the regime. For more detail on the resulting additional country-years, see
+  the vignette at \link{Spatial_and_temporal_coverage}.}
 
   \item{hadenius_pmm}{0-10 index of democracy from Hadenius, Axel. 1992.
   Democracy and Development. Cambridge: Cambridge University Press. Taken
@@ -384,28 +387,26 @@ A dataset containing all (or nearly all) extant democracy indexes.
   of Electoral Democracy. Comparative Political Studies 48 (12): 1491-1525.
   Original data available from
   \url{http://thedata.harvard.edu/dvn/dv/skaaning}. This is from V3 of the
-  dataset, updated to 2015 and revised in a few instances.
+  dataset, updated to 2015.
 
   0 = nonelectoral,
 
   1 = one- or no- party elections,
 
-  2 = limited competition multiparty elections
-  for legislature only,
+  2 = limited competition multiparty elections for legislature only,
 
-  3 = Limited competition multiparty elections for both
-  executive and legislature,
+  3 = Limited competition multiparty elections for both executive and
+  legislature,
 
-  4 = Competitive elections for executive and
-  legislative, limited suffrage,
+  4 = Competitive elections for executive and legislative, limited suffrage,
 
   5 = Male democracy,
 
-  6 = Electoral
-  democracy.}
+  6 = Electoral democracy.}
 
   \item{lied_electoral}{A 0-2 index of the degree to which policymakers are
-  elected, calculated from the sum of \code{exselec} and \code{legselec} variables in the LIED dataset:
+  elected, calculated from the sum of \code{exselec} and \code{legselec}
+  variables in the LIED dataset:
 
   0: No elections for either legislature or executive.
 
@@ -413,19 +414,20 @@ A dataset containing all (or nearly all) extant democracy indexes.
 
   2: Elections for both legislature and executive.}
 
-  \item{lied_accountable}{A 0-2 index of the degree to which opposition can hold
-  the government accountable, calculated from the sum of \code{opposition}
-  and \code{competition} variables in the LIED dataset:
+  \item{lied_accountable}{A 0-2 index of the degree to which opposition can
+  hold the government accountable, calculated from the sum of
+  \code{opposition} and \code{competition} variables in the LIED dataset:
 
   0: No opposition.
 
-  1: There is an opposition, but limited competition, or (very rarely, 4 country years)
-  competition but no genuine opposition.
+  1: There is an opposition, but limited competition, or (very rarely, 4
+  country years) competition but no genuine opposition.
 
   2: Non-restricted competition with multiple parties.}
 
-  \item{lied_inclusive}{A 0-2 index of the degree of suffrage, calculated from the
-  sum of \code{male_suffrage} and \code{female_suffrage} variables in the LIED dataset:
+  \item{lied_inclusive}{A 0-2 index of the degree of suffrage, calculated
+  from the sum of \code{male_suffrage} and \code{female_suffrage} variables
+  in the LIED dataset:
 
   0: Class-restricted or no suffrage.
 
@@ -443,14 +445,21 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Stephen A. Meserve, and James Melton. 2013. "Replication data for:
   Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime
   Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. In
-  this version the indicator goes only to 1945, though it is otherwise the same.}
+  this version the indicator goes only to 1945, and it is missing some
+  country-years. For more on the differences between this variable and the
+  original Mainwaring et al data, see
+  \link{Differences_between_PMM_and_original_data}.}
 
   \item{magaloni_democ_binary}{Dichotomous democracy indicator from Magaloni,
   Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
   1950-2012 (Version 1.0). Dataset, Stanford University. Original data and
   codebook available at
   \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}.
-  0 = autocracy (all types including multiparty autocracy), 1 = democracy.}
+  0 = autocracy (all types including multiparty autocracy), 1 = democracy.
+  Extended beyond 1950 using the duration_nr variable of the original
+  dataset, which encodes information about the first year of each regime. For
+  more detail on the resulting additional country-years, see the vignette at
+  \link{Spatial_and_temporal_coverage}.}
 
   \item{magaloni_regime_tri}{Trichotomous democracy indicator fromMagaloni,
   Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
@@ -458,7 +467,11 @@ A dataset containing all (or nearly all) extant democracy indexes.
   codebook available at
   \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}.
   1 = autocracy (all types except multipary autocracy), 2 = multiparty
-  autocracy, 3 = democracy.}
+  autocracy, 3 = democracy. Extended beyond 1950 using the duration_nr
+  variable of the original dataset, which encodes information about the first
+  year of each regime. For more detail on the resulting additional
+  country-years, see the vignette at
+  \link{Spatial_and_temporal_coverage}.}
 
   \item{munck_pmm}{0-1 index of democracy from Munck, Gerardo L. 2009.
   Measuring Democracy: A Bridge Between Scholarship and Politics. Baltimore:
@@ -479,7 +492,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Meserve, and James Melton. 2013. "Replication data for: Democratic
   Compromise: A Latent Variable Analysis of Ten Measures of Regime Type." In:
   Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. This is missing
-  a couple of countries in the original dataset.}
+  a couple of countries in the original dataset; for more detail on the
+  missing cases, see \link{Differences_between_PMM_and_original_data}.}
 
   \item{PEPS1i}{Participation-Enhanced Polity Score 1, polity score adjusted
   using IDEA Votes/Voting age population. From Bruce E. Moon, Jennifer Harvey
@@ -579,7 +593,9 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Stephen A. Meserve, and James Melton. 2013. "Replication data for:
   Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime
   Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. In
-  this version the indicator only goes to 1945.}
+  this version the indicator only goes to 1945, and it differs from
+  \code{polity2} in a few cases. For more detail on the differences, see
+  \link{Differences_between_PMM_and_original_data}.}
 
   \item{Polity3}{Cleaned up version of polity score from Bruce E. Moon,
   Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett, Joshua J.
@@ -587,7 +603,9 @@ A dataset containing all (or nearly all) extant democracy indexes.
   "Voting Counts: Participation in the Measurement of Democracy" Studies in
   Comparative International Development 42, 2 (Summer, 2006). The complete
   dataset is available here:
-  \url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}.}
+  \url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}. This differs
+  from rom \code{polity2} in a few cases. For more detail on the differences,
+  see \link{Spatial_and_temporal_coverage}. }
 
   \item{polyarchy_reversed}{0-10 index of democracy from Coppedge, Michael
   and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On Measuring
@@ -673,7 +691,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Meserve, and James Melton. 2013. "Replication data for: Democratic
   Compromise: A Latent Variable Analysis of Ten Measures of Regime Type." In:
   Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. In this version
-  the indicator only goes to 1945.}
+  the indicator only goes to 1945. It also differs from the original data in
+  a few cases. For more detail on the differences, see  For more detail on
+  the differences, see
+  \link{Differences_between_PMM_and_original_data}.}
 
   \item{prc_notrans}{Same as \code{prc} but sets all 2 (transition) regimes to NA.}
 
@@ -723,7 +744,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   The Politics of Authoritarian Rule. Cambridge and New York: Cambridge
   University Press. Original data available from
   \url{http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/}.
-   1 = authoritarian, 2 = democracy.}
+  1 = authoritarian, 2 = democracy. This is extended for a few countries from
+  the \code{o_startdate} variable in the original dataset. For more detail on
+  the resulting additional country-years, see the vignette at
+  \link{Spatial_and_temporal_coverage}.}
 
   \item{ulfelder}{Dichotomous indicator of democracy from Ulfelder, Jay.
   2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
@@ -747,12 +771,66 @@ A dataset containing all (or nearly all) extant democracy indexes.
   party democracy, 0 otherwise. The category of "one party democracy" is not
   well documented.}
 
-  \item{v2x_poliarchy}{Continuous poliarchy index from V-dem. Coppedge,
+  \item{v2x_api}{Additive polyarchy index from V-dem version 6. Coppedge,
   Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
   Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
   Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
   Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_delibdem}{Deliberative democracy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_egaldem}{Egalitarian democracy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_libdem}{Egalitarian democracy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_mpi}{Multiplicative polyarchy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_partipdem}{Participatory democracy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  (V-Dem) Project. Original data available at
+  \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
+
+  \item{v2x_polyarchy}{Continuous polyarchy index from V-dem version 6. Coppedge,
+  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
+  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
   (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
@@ -769,7 +847,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   parliament. The distribution of seats is used also in cases in which it
   seems to indicate power relations more realistically than the distribution
   of votes." Its maximum value is 70. See documentation for Vanhanen's data
-  for details (\code{\link{vanhanen}}).}
+  for details.}
 
   \item{vanhanen_participation}{Index of participation from Vanhanen, Tatu.
   2012. "FSD1289 Measures of Democracy 1810-2012." Original data available
@@ -780,8 +858,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   participation (= Participation). This percentage is calculated from the
   total population, not from the adult or enfranchized population." It is
   zero by construction in cases where no popular elections exist. May be
-  modified by referenda. See documentation for Vanhanen's data for details
-  (\code{\link{vanhanen}}).}
+  modified by referenda. See documentation for Vanhanen's data for details.}
 
   \item{vanhanen_democratization}{Index of democratization from Vanhanen,
   Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original data
@@ -988,7 +1065,7 @@ Arat, Zehra F. 1991. Democracy and human rights in developing countries.
   York: Cambridge University Press. Original data available from
   \url{http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/}.
 
-  Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
+  Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
   Democracy Status (May 20, 2015). Available at SSRN:
   \url{http://ssrn.com/abstract=2726962} or
   \url{http://dx.doi.org/10.2139/ssrn.2726962}
@@ -1006,6 +1083,7 @@ Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 }
 \seealso{
 Other democracy: \code{\link{extended_uds}},
+  \code{\link{kailitz}},
   \code{\link{original.pmm.democracy.data.1946.2008}},
   \code{\link{uds_2014}}
 }

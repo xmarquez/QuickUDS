@@ -168,7 +168,8 @@ data available from
 }
 \seealso{
 Other democracy: \code{\link{democracy}},
-  \code{\link{extended_uds}}, \code{\link{uds_2014}}
+  \code{\link{extended_uds}}, \code{\link{kailitz}},
+  \code{\link{uds_2014}}
 }
 \keyword{datasets}
 

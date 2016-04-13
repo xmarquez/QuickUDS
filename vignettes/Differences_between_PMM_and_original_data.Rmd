@@ -1,0 +1,218 @@
+---
+title: "Differences between PMM's replication data and original democracy data sources"
+author: "Xavier Marquez"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Differences between PMM's replication data and original democracy data sources}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+library(knitr)
+library(QuickUDS)
+library(dplyr)
+opts_chunk$set(echo=TRUE)
+```
+
+# Differences between PMM's replication data and the original data sources
+
+This package incorporates the replication dataset for Pemstein, Meserve, and Melton (2010) in its replication data (Pemstein, Meserve, and Melton 2013). These measures are labeled `_pmm` in the `democracy` dataset. However, some of these measures (Freedom House, Mainwaring et al, DD/PACL, Polity IV, Polyarchy, PRC, Vanhanen) differ from the original sources in a small number of cases, for a number of reasons having to do with data revisions after 2008 and transcription errors. This vignette documents these differences.
+
+## Freedom House
+
+```{r fh_pmm_comparison_setup}
+library(QuickUDS)
+library(dplyr)
+comparison <- democracy %>% 
+  select(country_name,GWn,year,freedomhouse,freedomhouse_pmm) %>% 
+  filter(year >= 1946, year <= 2008)
+```
+
+There are in total `r nrow(comparison %>% filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | (freedomhouse_pmm != freedomhouse)))` differences between PMM's data and the current Freedom House data (Freedom House 2016). These differences seem to be due to data revisions since 2010 in the Freedom House dataset. 
+
+The main problem is the treatment of 1981, which is conventionally taken to be "missing data" in the Freedom House series but which appears to be interpolated in PMM's replication dataset. But there is also one data point for 1972 (South Africa) for which the original data gives two values (a value for the "competitive" white regime and a value for the less free overall regime) and which is assigned an `NA` value in this package.
+
+```{r fh_pmm_comparison_1981_1972}
+
+kable(comparison %>% 
+        filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | 
+                 (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | 
+                 (freedomhouse_pmm != freedomhouse)) %>%
+        group_by(country_name,freedomhouse_pmm,freedomhouse) %>%
+        summarise(years = paste(year,collapse=", "), n = n()),
+      caption = "Differences between PMM's FH values and current FH data",
+      col.names = c("Country name","Freedom House value in PMM",
+                    "Latest Freedom House data","years affected","n"))
+
+```
+
+## The Mainwaring et al. dataset
+
+PMM's replication data is actually missing a fair number of the data points in the original data by Mainwaring et al (Mainwaring, Brinks, and Perez Linan 2008), but the original data is not missing any of their data points, and there are no differences between the data points wherever both the original and the replication data have values. 
+
+```{r mainwaring_pmm_comparison_1}
+comparison <- democracy %>% 
+  select(country_name,GWn,year,mainwaring,mainwaring_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(mainwaring_pmm) & is.na(mainwaring)) | 
+                 (is.na(mainwaring_pmm) & !is.na(mainwaring)) | 
+                 (mainwaring_pmm != mainwaring)) %>%
+        group_by(country_name,mainwaring_pmm,mainwaring) %>%
+        summarise(min = min(year), max= max(year), n = n()),
+      caption = "Differences between PMM's Mainwaring et al values and original Mainwaring et al data",
+      col.names = c("Country name","Mainwaring et al value in PMM",
+                    "Mainwaring et al value in original dataset","min year", "max year","n"))
+
+```
+
+## The DD/PACL/ACLP dataset
+
+A few country-years in the original PACL/DD dataset (Cheibub, Gandhi, and Vreeland 2010) are missing from PMM's replication dataset.
+
+```{r pacl_pmm_comparison}
+comparison <- democracy %>% 
+  select(country_name,GWn,year,pacl,pacl_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(pacl_pmm) & is.na(pacl)) | 
+                 (is.na(pacl_pmm) & !is.na(pacl)) | 
+                 (pacl_pmm != pacl)) %>%
+        group_by(country_name,pacl_pmm,pacl) %>%
+        summarise(min = min(year), max= max(year), n = n()),
+      caption = "Differences between PMM's PACL values and original PACL data",
+      col.names = c("Country name","PACL value in PMM",
+                    "Original PACL data","min year", "max year","n"))
+```
+
+
+## The Polity IV dataset
+
+There are 202 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
+
+```{r polity_pmm_comparison}
+comparison <- democracy %>% 
+  select(country_name,GWn,year,polity2,polity_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(polity_pmm) & is.na(polity2)) | 
+                 (is.na(polity_pmm) & !is.na(polity2)) | 
+                 (polity_pmm != polity2)) %>%
+        group_by(country_name,polity_pmm,polity2) %>%
+        summarise(min = min(year), max= max(year), n = n()),
+      caption = "Differences between PMM's Polity2 values and latest Polity IV data",
+      col.names = c("Country name","Polity2 value in PMM",
+                    "Latest Polity IV data","min year", "max year","n"))
+```
+
+## The Polyarchy dataset
+
+22 country-years differ between PMM's replication data and the original Polyarchy dataset (Coppedge and Reinicke 1991), and four are missing. These seem to be due to simple transcription errors.
+
+```{r polyarchy_pmm_comparison}
+
+comparison <- democracy %>% 
+  select(country_name,GWn,year,polyarchy_reversed,polyarchy_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(polyarchy_pmm) & is.na(polyarchy_reversed)) | 
+                 (is.na(polyarchy_pmm) & !is.na(polyarchy_reversed)) | 
+                 (polyarchy_pmm != polyarchy_reversed)) %>%
+        group_by(country_name,polyarchy_pmm,polyarchy_reversed) %>%
+        summarise(min = min(year), max= max(year), n = n()),
+      caption = "Differences between PMM's Polyarchy values and original Polyarchy data",
+      col.names = c("Country name","Polyarchy value in PMM",
+                    "Original Polyarchy data","min year", "max year","n"))
+```
+
+## The Political Regime Change (PRC) dataset
+
+The PRC dataset (Gasiorowski 1996, revised in Reich 2002) has more than one value per country-year for some country-years due to transitions between regimes; and these transitions are not consistently treated in PMM's replication dataset (sometimes the value for the beginning of the year is used, sometimes the value for the end of the year, and sometimes the value for the middle of the year). In this package, I use the last value in a given year for the regime in the PRC dataset, which results in the following differences:
+
+```{r prc_pmm_comparison_1}
+comparison <- democracy %>% 
+  select(country_name,GWn,year,prc,prc_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(prc_pmm) & is.na(prc)) | 
+                 (is.na(prc_pmm) & !is.na(prc)) | 
+                 (prc_pmm != prc)) %>%
+        group_by(country_name,prc_pmm,prc) %>%
+        summarise(years = paste(year,collapse=", "), n = n()),
+      caption = "Differences between PMM's PRC values and original PRC data",
+      col.names = c("Country name","PRC value in PMM",
+                    "Original PRC data","years affected","n"))
+```
+
+`r nrow(comparison %>% filter((!is.na(prc_pmm) & is.na(prc)) | (is.na(prc_pmm) & !is.na(prc)) | (prc_pmm != prc)))` data points differ between the two data sources.
+
+## Vanhanen dataset
+
+There are some missing values in PMM's data compared to the original Vanhanen dataset (Vanhanen 2012):
+
+```{r vanhanen_pmm_comparison}
+
+comparison <- democracy %>% 
+  select(country_name,GWn,year,vanhanen_democratization,vanhanen_pmm) %>% 
+  filter(year <= 2008, year >=1946)
+
+kable(comparison %>% 
+        filter((!is.na(vanhanen_pmm) & is.na(vanhanen_democratization)) | 
+                 (is.na(vanhanen_pmm) & !is.na(vanhanen_democratization)) | 
+                 (vanhanen_pmm != vanhanen_democratization)) %>%
+        group_by(country_name,vanhanen_pmm,vanhanen_democratization) %>%
+        summarise(years = paste(year,collapse=", "), n = n()),
+      caption = "Differences between PMM's Vanhanen values and original Vanhanen data",
+      col.names = c("Country name","Vanhanen value in PMM",
+                    "Original Vanhanen data","years affected","n"))
+
+```
+
+# References
+
+Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010.
+"Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101.
+Original data available at
+https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited.
+
+Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In
+On Measuring Democracy: Its Consequences and Concomitants, ed. Alex
+Inkeles. New Brunswuck, NJ: Transaction pp. 47-68.
+
+Freedom House. 2016. "Freedom in the World." Original data available at
+http://www.freedomhouse.org.
+
+Gasiorowski, Mark J. 1996. "An Overview of the Political Regime Change
+Dataset." Comparative Political Studies 29(4):469-483.
+
+Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. "Political
+Regimes in Latin America, 1900-2007." Original data available from
+http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf.
+
+Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV:
+Political Regime Characteristics and Transitions, 1800-2012." Updated to
+2015. Original data available from http://www.systemicpeace.org/polity/polity4.htm.
+
+Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic
+Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.
+Political Analysis 18 (4): 426-449.
+
+Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
+data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
+of Regime Type." In: Harvard Dataverse. http://hdl.handle.net/1902.1/PMM
+
+Reich, G. 2002. Categorizing Political Regimes: New Data for Old Problems.
+Democratization 9 (4): 1-24. http://www.tandfonline.com/doi/pdf/10.1080/714000289.
+
+Vanhanen, Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original
+data available from http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html

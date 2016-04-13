@@ -36,1567 +36,231 @@ kable(comparison %>%
                     "Latest Freedom House data","years affected","n"))
 ```
 
-<table>
-<caption>Differences between PMM's FH values and current FH data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> Freedom House value in PMM </th>
-   <th style="text-align:right;"> Latest Freedom House data </th>
-   <th style="text-align:left;"> years affected </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Afghanistan </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Albania </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algeria </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Andorra </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:left;"> 1973, 1974, 1975, 1976 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Andorra </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> 1972 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Antigua &amp; Barbuda </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Antigua &amp; Barbuda </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Argentina </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Argentina </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Australia </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Austria </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bahamas </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bahamas </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bahrain </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bangladesh </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bangladesh </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Barbados </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Belgium </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Belize </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Benin </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bhutan </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Botswana </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brunei </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1972, 1973, 1974, 1975, 1976 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bulgaria </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burkina Faso (Upper Volta) </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cameroon </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Canada </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Central African Republic </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chad </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> China </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Comoros </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Comoros </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:left;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo, Democratic Republic of (Zaire) </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1977, 1978, 1982 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo, Democratic Republic of (Zaire) </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Costa Rica </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cote D’Ivoire </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cote D’Ivoire </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cote D’Ivoire </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cyprus </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Djibouti </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominica </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominican Republic </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East Timor </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East Timor </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:left;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East Timor </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:left;"> 2001 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Egypt </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> El Salvador </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Equatorial Guinea </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ethiopia </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Fiji </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Finland </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> France </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Gabon </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Gambia </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Democratic Republic </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Federal Republic </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ghana </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Greece </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Grenada </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Grenada </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guatemala </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guyana </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guyana </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hungary </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iceland </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> India </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:left;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> India </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Indonesia </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iraq </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ireland </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Israel </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Italy/Sardinia </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jamaica </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Japan </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jordan </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kenya </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kiribati </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kiribati </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, People's Republic of </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, Republic of </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, Republic of </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kuwait </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Laos </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lebanon </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Liberia </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 2001 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Liberia </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Liberia </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Libya </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Luxembourg </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Madagascar (Malagasy) </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malawi </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malaysia </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Maldives </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mali </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malta </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malta </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mauritania </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mauritius </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mauritius </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Monaco </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:left;"> 1972, 1973, 1974, 1975, 1976 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Monaco </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:left;"> 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mongolia </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Morocco </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mozambique </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mozambique </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Myanmar (Burma) </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Myanmar (Burma) </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Namibia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1972, 1973, 1974 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Namibia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nauru </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nepal </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Netherlands </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> New Zealand </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Niger </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nigeria </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Norway </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oman </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pakistan </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Papua New Guinea </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Paraguay </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:left;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Qatar </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rwanda </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Saint Lucia </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Saint Vincent and the Grenadines </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Samoa/Western Samoa </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> San Marino </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:left;"> 1972, 1973, 1974, 1975, 1976 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Saudi Arabia </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Saudi Arabia </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Senegal </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Seychelles </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sierra Leone </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Singapore </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Solomon Islands </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Somalia </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> South Africa </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1972, 1981 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Spain </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Spain </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> 5.5 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sudan </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Swaziland </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Swaziland </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sweden </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Switzerland </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Syria </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Syria </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> São Tomé and Principe </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> São Tomé and Principe </td>
-   <td style="text-align:right;"> 1.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tajikistan </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> 2.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 4.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Togo </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tonga </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Trinidad and Tobago </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tunisia </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tuvalu </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uganda </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uganda </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> United Arab Emirates </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> United Kingdom </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> United States of America </td>
-   <td style="text-align:right;"> 7.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uruguay </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 3.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uruguay </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Vanuatu </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> 6.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Vanuatu </td>
-   <td style="text-align:right;"> 5.0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Venezuela </td>
-   <td style="text-align:right;"> 6.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Vietnam, Democratic Republic of </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yemen (Arab Republic of Yemen) </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yemen, People's Republic of </td>
-   <td style="text-align:right;"> 1.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yugoslavia </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zambia </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> 4.0 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> 3.5 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name                          | Freedom House value in PMM| Latest Freedom House data|years affected                                                                           |  n|
+|:-------------------------------------|--------------------------:|-------------------------:|:----------------------------------------------------------------------------------------|--:|
+|Afghanistan                           |                        1.0|                        NA|1981                                                                                     |  1|
+|Albania                               |                        1.0|                        NA|1981                                                                                     |  1|
+|Algeria                               |                        2.0|                        NA|1981                                                                                     |  1|
+|Andorra                               |                         NA|                       4.0|1973, 1974, 1975, 1976                                                                   |  4|
+|Andorra                               |                         NA|                       4.5|1972                                                                                     |  1|
+|Angola                                |                        1.0|                        NA|1981                                                                                     |  1|
+|Antigua & Barbuda                     |                        5.5|                       6.0|1982                                                                                     |  1|
+|Antigua & Barbuda                     |                        5.5|                        NA|1981                                                                                     |  1|
+|Argentina                             |                        5.0|                       2.5|1982                                                                                     |  1|
+|Argentina                             |                        5.0|                        NA|1981                                                                                     |  1|
+|Australia                             |                        7.0|                        NA|1981                                                                                     |  1|
+|Austria                               |                        7.0|                        NA|1981                                                                                     |  1|
+|Bahamas                               |                        6.0|                       6.5|1982                                                                                     |  1|
+|Bahamas                               |                        6.0|                        NA|1981                                                                                     |  1|
+|Bahrain                               |                        3.0|                        NA|1981                                                                                     |  1|
+|Bangladesh                            |                        2.5|                       3.0|1982                                                                                     |  1|
+|Bangladesh                            |                        2.5|                        NA|1981                                                                                     |  1|
+|Barbados                              |                        7.0|                        NA|1981                                                                                     |  1|
+|Belgium                               |                        7.0|                        NA|1981                                                                                     |  1|
+|Belize                                |                        6.5|                        NA|1981                                                                                     |  1|
+|Benin                                 |                        1.5|                        NA|1981                                                                                     |  1|
+|Bhutan                                |                        3.0|                        NA|1981                                                                                     |  1|
+|Bolivia                               |                        5.5|                       2.5|1982                                                                                     |  1|
+|Bolivia                               |                        5.5|                        NA|1981                                                                                     |  1|
+|Botswana                              |                        5.5|                        NA|1981                                                                                     |  1|
+|Brazil                                |                        5.0|                       4.5|1982                                                                                     |  1|
+|Brazil                                |                        5.0|                        NA|1981                                                                                     |  1|
+|Brunei                                |                         NA|                       2.5|1972, 1973, 1974, 1975, 1976                                                             |  5|
+|Bulgaria                              |                        1.0|                        NA|1981                                                                                     |  1|
+|Burkina Faso (Upper Volta)            |                        2.5|                        NA|1981                                                                                     |  1|
+|Burundi                               |                        2.0|                       1.5|1982                                                                                     |  1|
+|Burundi                               |                        2.0|                        NA|1981                                                                                     |  1|
+|Cambodia (Kampuchea)                  |                        1.0|                        NA|1981                                                                                     |  1|
+|Cameroon                              |                        2.0|                        NA|1981                                                                                     |  1|
+|Canada                                |                        7.0|                        NA|1981                                                                                     |  1|
+|Cape Verde                            |                        2.0|                        NA|1981                                                                                     |  1|
+|Central African Republic              |                        2.0|                        NA|1981                                                                                     |  1|
+|Chad                                  |                        1.5|                        NA|1981                                                                                     |  1|
+|Chile                                 |                        2.5|                        NA|1981                                                                                     |  1|
+|China                                 |                        2.0|                        NA|1981                                                                                     |  1|
+|Colombia                              |                        5.5|                        NA|1981                                                                                     |  1|
+|Comoros                               |                        4.0|                       3.5|1982                                                                                     |  1|
+|Comoros                               |                        4.0|                        NA|1981                                                                                     |  1|
+|Congo                                 |                        1.5|                        NA|1981                                                                                     |  1|
+|Congo                                 |                        4.0|                       5.0|1993                                                                                     |  1|
+|Congo, Democratic Republic of (Zaire) |                        1.5|                       2.0|1977, 1978, 1982                                                                         |  3|
+|Congo, Democratic Republic of (Zaire) |                        1.5|                        NA|1981                                                                                     |  1|
+|Costa Rica                            |                        7.0|                        NA|1981                                                                                     |  1|
+|Cote D’Ivoire                         |                        2.5|                       3.0|1980                                                                                     |  1|
+|Cote D’Ivoire                         |                        3.0|                       2.5|1999                                                                                     |  1|
+|Cote D’Ivoire                         |                        3.0|                        NA|1981                                                                                     |  1|
+|Cuba                                  |                        2.0|                        NA|1981                                                                                     |  1|
+|Cyprus                                |                        6.5|                        NA|1981                                                                                     |  1|
+|Czechoslovakia                        |                        1.5|                        NA|1981                                                                                     |  1|
+|Denmark                               |                        7.0|                        NA|1981                                                                                     |  1|
+|Djibouti                              |                        2.5|                        NA|1981                                                                                     |  1|
+|Dominica                              |                        6.0|                        NA|1981                                                                                     |  1|
+|Dominican Republic                    |                        6.5|                        NA|1981                                                                                     |  1|
+|East Timor                            |                         NA|                       3.0|1999                                                                                     |  1|
+|East Timor                            |                         NA|                       3.5|2000                                                                                     |  1|
+|East Timor                            |                         NA|                       4.0|2001                                                                                     |  1|
+|Ecuador                               |                        6.0|                        NA|1981                                                                                     |  1|
+|Egypt                                 |                        3.0|                        NA|1981                                                                                     |  1|
+|El Salvador                           |                        3.5|                        NA|1981                                                                                     |  1|
+|Equatorial Guinea                     |                        1.5|                        NA|1981                                                                                     |  1|
+|Ethiopia                              |                        1.0|                        NA|1981                                                                                     |  1|
+|Fiji                                  |                        6.0|                        NA|1981                                                                                     |  1|
+|Finland                               |                        6.0|                        NA|1981                                                                                     |  1|
+|France                                |                        6.5|                        NA|1981                                                                                     |  1|
+|Gabon                                 |                        2.0|                        NA|1981                                                                                     |  1|
+|Gambia                                |                        4.5|                        NA|1981                                                                                     |  1|
+|German Democratic Republic            |                        1.0|                        NA|1981                                                                                     |  1|
+|German Federal Republic               |                        6.5|                        NA|1981                                                                                     |  1|
+|Ghana                                 |                        2.5|                        NA|1981                                                                                     |  1|
+|Greece                                |                        6.5|                        NA|1981                                                                                     |  1|
+|Grenada                               |                        2.0|                       2.5|1982                                                                                     |  1|
+|Grenada                               |                        2.0|                        NA|1981                                                                                     |  1|
+|Guatemala                             |                        2.0|                        NA|1981                                                                                     |  1|
+|Guinea                                |                        1.0|                        NA|1981                                                                                     |  1|
+|Guinea-Bissau                         |                        1.5|                       2.0|1982                                                                                     |  1|
+|Guinea-Bissau                         |                        1.5|                        NA|1981                                                                                     |  1|
+|Guyana                                |                        3.0|                       3.5|1982                                                                                     |  1|
+|Guyana                                |                        3.0|                        NA|1981                                                                                     |  1|
+|Haiti                                 |                        1.5|                        NA|1981                                                                                     |  1|
+|Honduras                              |                        5.0|                       5.5|1982                                                                                     |  1|
+|Honduras                              |                        5.0|                        NA|1981                                                                                     |  1|
+|Hungary                               |                        2.5|                        NA|1981                                                                                     |  1|
+|Iceland                               |                        7.0|                        NA|1981                                                                                     |  1|
+|India                                 |                        4.5|                       4.0|1976                                                                                     |  1|
+|India                                 |                        5.5|                        NA|1981                                                                                     |  1|
+|Indonesia                             |                        3.0|                        NA|1981                                                                                     |  1|
+|Iran (Persia)                         |                        2.0|                        NA|1981                                                                                     |  1|
+|Iraq                                  |                        1.5|                        NA|1981                                                                                     |  1|
+|Ireland                               |                        7.0|                        NA|1981                                                                                     |  1|
+|Israel                                |                        6.0|                        NA|1981                                                                                     |  1|
+|Italy/Sardinia                        |                        6.5|                        NA|1981                                                                                     |  1|
+|Jamaica                               |                        5.5|                        NA|1981                                                                                     |  1|
+|Japan                                 |                        7.0|                        NA|1981                                                                                     |  1|
+|Jordan                                |                        2.0|                        NA|1981                                                                                     |  1|
+|Kenya                                 |                        3.0|                        NA|1981                                                                                     |  1|
+|Kiribati                              |                        6.5|                       6.0|1982                                                                                     |  1|
+|Kiribati                              |                        6.5|                        NA|1981                                                                                     |  1|
+|Korea, People's Republic of           |                        1.0|                        NA|1981                                                                                     |  1|
+|Korea, Republic of                    |                        2.5|                       3.0|1982                                                                                     |  1|
+|Korea, Republic of                    |                        2.5|                        NA|1981                                                                                     |  1|
+|Kuwait                                |                        4.0|                        NA|1981                                                                                     |  1|
+|Laos                                  |                        1.0|                        NA|1981                                                                                     |  1|
+|Lebanon                               |                        3.5|                        NA|1981                                                                                     |  1|
+|Lesotho                               |                        3.0|                        NA|1981                                                                                     |  1|
+|Liberia                               |                        2.5|                       2.0|2001                                                                                     |  1|
+|Liberia                               |                        3.0|                       2.0|1982                                                                                     |  1|
+|Liberia                               |                        3.0|                        NA|1981                                                                                     |  1|
+|Libya                                 |                        2.0|                        NA|1981                                                                                     |  1|
+|Luxembourg                            |                        7.0|                        NA|1981                                                                                     |  1|
+|Madagascar (Malagasy)                 |                        2.0|                        NA|1981                                                                                     |  1|
+|Malawi                                |                        1.5|                        NA|1981                                                                                     |  1|
+|Malaysia                              |                        4.5|                        NA|1981                                                                                     |  1|
+|Maldives                              |                        3.0|                        NA|1981                                                                                     |  1|
+|Mali                                  |                        1.5|                        NA|1981                                                                                     |  1|
+|Malta                                 |                        5.0|                       5.5|1982                                                                                     |  1|
+|Malta                                 |                        5.0|                        NA|1981                                                                                     |  1|
+|Mauritania                            |                        1.5|                        NA|1981                                                                                     |  1|
+|Mauritius                             |                        6.0|                       5.5|1982                                                                                     |  1|
+|Mauritius                             |                        6.0|                        NA|1981                                                                                     |  1|
+|Mexico                                |                        4.5|                        NA|1981                                                                                     |  1|
+|Monaco                                |                         NA|                       5.0|1972, 1973, 1974, 1975, 1976                                                             |  5|
+|Monaco                                |                         NA|                       6.5|1993, 1994, 1995, 1996, 1997, 1998, 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 | 15|
+|Mongolia                              |                        1.0|                        NA|1981                                                                                     |  1|
+|Morocco                               |                        3.5|                        NA|1981                                                                                     |  1|
+|Mozambique                            |                        1.5|                       1.0|1982                                                                                     |  1|
+|Mozambique                            |                        1.5|                        NA|1981                                                                                     |  1|
+|Myanmar (Burma)                       |                        1.0|                       1.5|1982                                                                                     |  1|
+|Myanmar (Burma)                       |                        1.0|                        NA|1981                                                                                     |  1|
+|Namibia                               |                         NA|                       2.5|1972, 1973, 1974                                                                         |  3|
+|Namibia                               |                         NA|                       4.5|1989                                                                                     |  1|
+|Nauru                                 |                        6.0|                        NA|1981                                                                                     |  1|
+|Nepal                                 |                        4.5|                        NA|1981                                                                                     |  1|
+|Netherlands                           |                        7.0|                        NA|1981                                                                                     |  1|
+|New Zealand                           |                        7.0|                        NA|1981                                                                                     |  1|
+|Nicaragua                             |                        2.5|                        NA|1981                                                                                     |  1|
+|Niger                                 |                        1.5|                        NA|1981                                                                                     |  1|
+|Nigeria                               |                        5.5|                        NA|1981                                                                                     |  1|
+|Norway                                |                        7.0|                        NA|1981                                                                                     |  1|
+|Oman                                  |                        2.0|                        NA|1981                                                                                     |  1|
+|Pakistan                              |                        2.0|                        NA|1981                                                                                     |  1|
+|Panama                                |                        3.5|                       3.0|1982                                                                                     |  1|
+|Panama                                |                        3.5|                        NA|1981                                                                                     |  1|
+|Papua New Guinea                      |                        6.0|                        NA|1981                                                                                     |  1|
+|Paraguay                              |                        3.0|                        NA|1981                                                                                     |  1|
+|Peru                                  |                        5.0|                       4.5|2000                                                                                     |  1|
+|Peru                                  |                        5.5|                        NA|1981                                                                                     |  1|
+|Philippines                           |                        3.0|                       3.5|1982                                                                                     |  1|
+|Philippines                           |                        3.0|                        NA|1981                                                                                     |  1|
+|Poland                                |                        2.5|                       2.0|1982                                                                                     |  1|
+|Poland                                |                        2.5|                        NA|1981                                                                                     |  1|
+|Portugal                              |                        6.5|                       6.0|1982                                                                                     |  1|
+|Portugal                              |                        6.5|                        NA|1981                                                                                     |  1|
+|Qatar                                 |                        3.0|                        NA|1981                                                                                     |  1|
+|Rumania                               |                        1.5|                        NA|1981                                                                                     |  1|
+|Russia (Soviet Union)                 |                        1.5|                        NA|1981                                                                                     |  1|
+|Rwanda                                |                        2.0|                        NA|1981                                                                                     |  1|
+|Saint Lucia                           |                        6.0|                        NA|1981                                                                                     |  1|
+|Saint Vincent and the Grenadines      |                        6.0|                        NA|1981                                                                                     |  1|
+|Samoa/Western Samoa                   |                        4.5|                        NA|1981                                                                                     |  1|
+|San Marino                            |                         NA|                       6.0|1972, 1973, 1974, 1975, 1976                                                             |  5|
+|Saudi Arabia                          |                        1.5|                       2.0|1982                                                                                     |  1|
+|Saudi Arabia                          |                        1.5|                        NA|1981                                                                                     |  1|
+|Senegal                               |                        4.0|                        NA|1981                                                                                     |  1|
+|Seychelles                            |                        2.0|                        NA|1981                                                                                     |  1|
+|Sierra Leone                          |                        3.0|                        NA|1981                                                                                     |  1|
+|Singapore                             |                        3.5|                        NA|1981                                                                                     |  1|
+|Solomon Islands                       |                        6.0|                        NA|1981                                                                                     |  1|
+|Somalia                               |                        1.0|                        NA|1981                                                                                     |  1|
+|South Africa                          |                        2.5|                        NA|1972, 1981                                                                               |  2|
+|Spain                                 |                        6.5|                       5.5|1982                                                                                     |  1|
+|Spain                                 |                        6.5|                        NA|1981                                                                                     |  1|
+|Sri Lanka (Ceylon)                    |                        4.5|                       5.5|1982                                                                                     |  1|
+|Sri Lanka (Ceylon)                    |                        4.5|                        NA|1981                                                                                     |  1|
+|Sudan                                 |                        3.0|                        NA|1981                                                                                     |  1|
+|Surinam                               |                        1.5|                       2.0|1982                                                                                     |  1|
+|Surinam                               |                        1.5|                        NA|1981                                                                                     |  1|
+|Surinam                               |                        4.5|                       3.0|1990                                                                                     |  1|
+|Swaziland                             |                        2.5|                       3.0|1978                                                                                     |  1|
+|Swaziland                             |                        3.0|                        NA|1981                                                                                     |  1|
+|Sweden                                |                        7.0|                        NA|1981                                                                                     |  1|
+|Switzerland                           |                        7.0|                        NA|1981                                                                                     |  1|
+|Syria                                 |                        1.5|                       2.0|1982                                                                                     |  1|
+|Syria                                 |                        1.5|                        NA|1981                                                                                     |  1|
+|São Tomé and Principe                 |                        1.0|                       2.0|1982                                                                                     |  1|
+|São Tomé and Principe                 |                        1.0|                        NA|1981                                                                                     |  1|
+|Taiwan                                |                        2.5|                       3.0|1980                                                                                     |  1|
+|Taiwan                                |                        3.0|                       5.0|1991                                                                                     |  1|
+|Taiwan                                |                        3.0|                        NA|1981                                                                                     |  1|
+|Taiwan                                |                        3.5|                       3.0|1978                                                                                     |  1|
+|Tajikistan                            |                        5.0|                       3.0|1991                                                                                     |  1|
+|Tanzania/Tanganyika                   |                        2.0|                        NA|1981                                                                                     |  1|
+|Thailand                              |                        4.5|                        NA|1981                                                                                     |  1|
+|Togo                                  |                        1.5|                        NA|1981                                                                                     |  1|
+|Tonga                                 |                        4.0|                        NA|1981                                                                                     |  1|
+|Trinidad and Tobago                   |                        6.5|                        NA|1981                                                                                     |  1|
+|Tunisia                               |                        3.0|                        NA|1981                                                                                     |  1|
+|Turkey (Ottoman Empire)               |                        3.5|                       3.0|1982                                                                                     |  1|
+|Turkey (Ottoman Empire)               |                        3.5|                        NA|1981                                                                                     |  1|
+|Tuvalu                                |                        6.5|                        NA|1981                                                                                     |  1|
+|Uganda                                |                        3.5|                       3.0|1982                                                                                     |  1|
+|Uganda                                |                        3.5|                        NA|1981                                                                                     |  1|
+|United Arab Emirates                  |                        3.0|                        NA|1981                                                                                     |  1|
+|United Kingdom                        |                        7.0|                        NA|1981                                                                                     |  1|
+|United States of America              |                        7.0|                        NA|1981                                                                                     |  1|
+|Uruguay                               |                        3.5|                       3.0|1982                                                                                     |  1|
+|Uruguay                               |                        3.5|                        NA|1981                                                                                     |  1|
+|Vanuatu                               |                        5.0|                       6.0|1982                                                                                     |  1|
+|Vanuatu                               |                        5.0|                        NA|1981                                                                                     |  1|
+|Venezuela                             |                        6.5|                        NA|1981                                                                                     |  1|
+|Vietnam, Democratic Republic of       |                        1.5|                        NA|1981                                                                                     |  1|
+|Yemen (Arab Republic of Yemen)        |                        2.5|                        NA|1981                                                                                     |  1|
+|Yemen, People's Republic of           |                        1.5|                        NA|1981                                                                                     |  1|
+|Yugoslavia                            |                        2.5|                        NA|1981                                                                                     |  1|
+|Zambia                                |                        2.5|                        NA|1981                                                                                     |  1|
+|Zimbabwe (Rhodesia)                   |                        3.5|                       4.0|1982                                                                                     |  1|
+|Zimbabwe (Rhodesia)                   |                        3.5|                        NA|1981                                                                                     |  1|
 
 ## The Mainwaring et al. dataset
 
@@ -1619,165 +283,28 @@ kable(comparison %>%
                     "Mainwaring et al value in original dataset","min year", "max year","n"))
 ```
 
-<table>
-<caption>Differences between PMM's Mainwaring et al values and original Mainwaring et al data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> Mainwaring et al value in PMM </th>
-   <th style="text-align:right;"> Mainwaring et al value in original dataset </th>
-   <th style="text-align:right;"> min year </th>
-   <th style="text-align:right;"> max year </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1964 </td>
-   <td style="text-align:right;"> 1984 </td>
-   <td style="text-align:right;"> 21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1954 </td>
-   <td style="text-align:right;"> 1955 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 39 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 27 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Costa Rica </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 56 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1951 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominican Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1961 </td>
-   <td style="text-align:right;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> El Salvador </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1966 </td>
-   <td style="text-align:right;"> 21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1956 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1987 </td>
-   <td style="text-align:right;"> 42 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1983 </td>
-   <td style="text-align:right;"> 38 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Paraguay </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1988 </td>
-   <td style="text-align:right;"> 43 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uruguay </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 27 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name       | Mainwaring et al value in PMM| Mainwaring et al value in original dataset| min year| max year|  n|
+|:------------------|-----------------------------:|------------------------------------------:|--------:|--------:|--:|
+|Bolivia            |                            NA|                                         -1|     1946|     1946|  1|
+|Brazil             |                            NA|                                         -1|     1964|     1984| 21|
+|Brazil             |                            NA|                                          0|     1954|     1955|  2|
+|Brazil             |                            NA|                                          1|     1946|     2007| 39|
+|Chile              |                            NA|                                          1|     1946|     1972| 27|
+|Costa Rica         |                            NA|                                          1|     1946|     1947|  2|
+|Cuba               |                            NA|                                         -1|     1952|     2007| 56|
+|Cuba               |                            NA|                                          0|     1946|     1951|  6|
+|Dominican Republic |                            NA|                                         -1|     1946|     1961| 16|
+|El Salvador        |                            NA|                                         -1|     1946|     1966| 21|
+|Haiti              |                            NA|                                         -1|     1946|     1994| 49|
+|Honduras           |                            NA|                                         -1|     1946|     1956| 11|
+|Mexico             |                            NA|                                         -1|     1946|     1987| 42|
+|Nicaragua          |                            NA|                                         -1|     1946|     1983| 38|
+|Panama             |                            NA|                                          0|     1946|     1947|  2|
+|Paraguay           |                            NA|                                         -1|     1946|     1988| 43|
+|Peru               |                            NA|                                          0|     1946|     1947|  2|
+|Uruguay            |                            NA|                                          1|     1946|     1972| 27|
 
 ## The DD/PACL/ACLP dataset
 
@@ -1800,53 +327,14 @@ kable(comparison %>%
                     "Original PACL data","min year", "max year","n"))
 ```
 
-<table>
-<caption>Differences between PMM's PACL values and original PACL data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> PACL value in PMM </th>
-   <th style="text-align:right;"> Original PACL data </th>
-   <th style="text-align:right;"> min year </th>
-   <th style="text-align:right;"> max year </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Liechtenstein </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 41 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Marshall Islands </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nauru </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1968 </td>
-   <td style="text-align:right;"> 1971 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1965 </td>
-   <td style="text-align:right;"> 1966 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name        | PACL value in PMM| Original PACL data| min year| max year|  n|
+|:-------------------|-----------------:|------------------:|--------:|--------:|--:|
+|Liechtenstein       |                NA|                  1|     1946|     1991| 41|
+|Marshall Islands    |                NA|                  1|     1990|     1990|  1|
+|Nauru               |                NA|                  1|     1968|     1971|  4|
+|Zimbabwe (Rhodesia) |                NA|                  0|     1965|     1966|  2|
 
 
 ## The Polity IV dataset
@@ -1870,261 +358,40 @@ kable(comparison %>%
                     "Latest Polity IV data","min year", "max year","n"))
 ```
 
-<table>
-<caption>Differences between PMM's Polity2 values and latest Polity IV data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> Polity2 value in PMM </th>
-   <th style="text-align:right;"> Latest Polity IV data </th>
-   <th style="text-align:right;"> min year </th>
-   <th style="text-align:right;"> max year </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Bhutan </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 1984 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cape Verde </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czech Republic </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ethiopia </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ethiopia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Jamaica </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1959 </td>
-   <td style="text-align:right;"> 1961 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, People's Republic of </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> -10 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kosovo </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lebanon </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Luxembourg </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 63 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Moldova </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Montenegro </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Montenegro </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mozambique </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Myanmar (Burma) </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oman </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1950 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Senegal </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Serbia </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Serbia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Singapore </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1959 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 1986 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Surinam </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 23 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yugoslavia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name                | Polity2 value in PMM| Latest Polity IV data| min year| max year|  n|
+|:---------------------------|--------------------:|---------------------:|--------:|--------:|--:|
+|Bhutan                      |                   -6|                    -5|     2005|     2007|  3|
+|Cape Verde                  |                   NA|                    -4|     1975|     1984| 10|
+|Cape Verde                  |                   NA|                    -3|     1985|     1989|  5|
+|Cape Verde                  |                   NA|                    -2|     1990|     1990|  1|
+|Cape Verde                  |                   NA|                     8|     1991|     2000| 10|
+|Cape Verde                  |                   NA|                    10|     2001|     2008|  8|
+|Czech Republic              |                    8|                     9|     2006|     2008|  3|
+|Czechoslovakia              |                   -1|                     2|     1947|     1947|  1|
+|Ethiopia                    |                    0|                     1|     1993|     1993|  1|
+|Ethiopia                    |                    1|                    -3|     2005|     2008|  4|
+|Jamaica                     |                   NA|                    10|     1959|     1961|  2|
+|Korea, People's Republic of |                   -9|                   -10|     1994|     2008| 15|
+|Kosovo                      |                   NA|                     8|     2008|     2008|  1|
+|Lebanon                     |                    7|                     6|     2005|     2008|  4|
+|Luxembourg                  |                   NA|                    10|     1946|     2008| 63|
+|Moldova                     |                    8|                     9|     2005|     2008|  4|
+|Montenegro                  |                    8|                     9|     2008|     2008|  1|
+|Montenegro                  |                   NA|                     9|     2006|     2007|  2|
+|Mozambique                  |                    6|                     5|     1994|     2008| 15|
+|Myanmar (Burma)             |                   -8|                    -6|     2008|     2008|  1|
+|Oman                        |                   NA|                    -6|     1946|     1950|  5|
+|Senegal                     |                    8|                     7|     2007|     2008|  2|
+|Serbia                      |                    6|                     8|     2006|     2006|  1|
+|Serbia                      |                   NA|                     8|     2007|     2008|  2|
+|Singapore                   |                   NA|                     7|     1959|     1962|  3|
+|Surinam                     |                   NA|                    -6|     1982|     1986|  5|
+|Surinam                     |                   NA|                    -1|     1980|     1989|  5|
+|Surinam                     |                   NA|                     2|     1990|     1990|  1|
+|Surinam                     |                   NA|                     5|     1975|     2008| 23|
+|Yugoslavia                  |                   NA|                     6|     2006|     2006|  1|
 
 ## The Polyarchy dataset
 
@@ -2147,229 +414,36 @@ kable(comparison %>%
                     "Original Polyarchy data","min year", "max year","n"))
 ```
 
-<table>
-<caption>Differences between PMM's Polyarchy values and original Polyarchy data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> Polyarchy value in PMM </th>
-   <th style="text-align:right;"> Original Polyarchy data </th>
-   <th style="text-align:right;"> min year </th>
-   <th style="text-align:right;"> max year </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Algeria </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brunei </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> East Timor </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Egypt </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Eritrea </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Fiji </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Federal Republic </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mongolia </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Myanmar (Burma) </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oman </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> San Marino </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Senegal </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Solomon Islands </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tonga </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uganda </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ukraine </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uruguay </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Venezuela </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Western Sahara </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name            | Polyarchy value in PMM| Original Polyarchy data| min year| max year|  n|
+|:-----------------------|----------------------:|-----------------------:|--------:|--------:|--:|
+|Algeria                 |                      7|                       6|     2000|     2000|  1|
+|Brunei                  |                     NA|                       3|     1985|     1985|  1|
+|Burundi                 |                      4|                       5|     2000|     2000|  1|
+|Colombia                |                      7|                       8|     2000|     2000|  1|
+|East Timor              |                     NA|                      10|     2000|     2000|  1|
+|Egypt                   |                      6|                       4|     2000|     2000|  1|
+|Eritrea                 |                      2|                       3|     2000|     2000|  1|
+|Fiji                    |                      4|                       5|     2000|     2000|  1|
+|German Federal Republic |                      9|                      10|     2000|     2000|  1|
+|Iran (Persia)           |                      3|                       5|     2000|     2000|  1|
+|Mongolia                |                      8|                       9|     2000|     2000|  1|
+|Myanmar (Burma)         |                      0|                       1|     2000|     2000|  1|
+|Oman                    |                      2|                       3|     2000|     2000|  1|
+|Panama                  |                      9|                      10|     2000|     2000|  1|
+|Poland                  |                      8|                      10|     2000|     2000|  1|
+|Russia (Soviet Union)   |                      8|                       6|     2000|     2000|  1|
+|San Marino              |                     NA|                      10|     1985|     1985|  1|
+|Senegal                 |                      7|                       9|     2000|     2000|  1|
+|Solomon Islands         |                      7|                       9|     2000|     2000|  1|
+|Tonga                   |                      7|                       8|     2000|     2000|  1|
+|Uganda                  |                      7|                       6|     2000|     2000|  1|
+|Ukraine                 |                      9|                       6|     2000|     2000|  1|
+|Uruguay                 |                      9|                      10|     2000|     2000|  1|
+|Venezuela               |                      8|                      10|     2000|     2000|  1|
+|Western Sahara          |                     NA|                       0|     2000|     2000|  1|
+|Zimbabwe (Rhodesia)     |                      7|                       6|     2000|     2000|  1|
 
 ## The Political Regime Change (PRC) dataset
 
@@ -2392,1021 +466,153 @@ kable(comparison %>%
                     "Original PRC data","years affected","n"))
 ```
 
-<table>
-<caption>Differences between PMM's PRC values and original PRC data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> PRC value in PMM </th>
-   <th style="text-align:right;"> Original PRC data </th>
-   <th style="text-align:left;"> years affected </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Albania </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algeria </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Argentina </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1983 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Argentina </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1955 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bangladesh </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1972, 1990 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bangladesh </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1974 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bangladesh </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1971 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Benin </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1963 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1964 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bosnia-Herzegovina </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1998 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bulgaria </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burkina Faso (Upper Volta) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1969 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burkina Faso (Upper Volta) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1996 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1955, 1993 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1957 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Central African Republic </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Central African Republic </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chad </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1996 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1952 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1973 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1958 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1949 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1997 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Congo </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1963 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Costa Rica </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1949 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cote D’Ivoire </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1995 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Croatia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominican Republic </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominican Republic </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1963 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1975 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1948 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1968, 1979 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1963, 1970 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1984 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Estonia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ethiopia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1995 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Gabon </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1994 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Georgia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Democratic Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1946, 1947, 1948, 1990 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Federal Republic </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1949 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> German Federal Republic </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1946, 1947, 1948 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ghana </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ghana </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ghana </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1969, 1979 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ghana </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1982 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Greece </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1950 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Greece </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1974 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guatemala </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1983 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guatemala </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1996 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guatemala </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1954 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1994 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1957 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1954, 1963 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1996 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hungary </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kenya </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kenya </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1979 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kenya </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, Republic of </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1987 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, Republic of </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1948 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kuwait </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1961, 1962 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Laos </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1957 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Latvia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Latvia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lebanon </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lebanon </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lithuania </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lithuania </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Madagascar (Malagasy) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malawi </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1997 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mongolia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mongolia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Namibia </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1998 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nigeria </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1975 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nigeria </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1979 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nigeria </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1983 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pakistan </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pakistan </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1958, 1977 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pakistan </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Panama </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1994 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1977 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1956, 1963 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1948, 1962, 1968 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1953 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1972 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1946 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rwanda </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1963 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rwanda </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> 1961 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Senegal </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1974 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Senegal </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1962 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sierra Leone </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1968 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Slovakia </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1998 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Slovenia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Slovenia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Spain </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1983 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sudan </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1964 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sudan </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1958 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sudan </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1955 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Taiwan </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1995 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1965 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1962 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1973 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1986 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1961 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1983 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Turkey (Ottoman Empire) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1957 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ukraine </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uruguay </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1981 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Venezuela </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Venezuela </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1948 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Vietnam, Republic of </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1954 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yemen (Arab Republic of Yemen) </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1946, 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yugoslavia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yugoslavia </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> 1992, 1993, 1994, 1995, 1996, 1997, 1998 </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zambia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zambia </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zambia </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> 1971 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name                   | PRC value in PMM| Original PRC data|years affected                           |  n|
+|:------------------------------|----------------:|-----------------:|:----------------------------------------|--:|
+|Albania                        |                1|                 2|1990                                     |  1|
+|Algeria                        |                1|                 2|1988                                     |  1|
+|Argentina                      |                2|                 4|1983                                     |  1|
+|Argentina                      |                3|                 1|1955                                     |  1|
+|Bangladesh                     |                1|                 2|1972, 1990                               |  2|
+|Bangladesh                     |                3|                 1|1974                                     |  1|
+|Bangladesh                     |               NA|                 1|1971                                     |  1|
+|Benin                          |                4|                 1|1963                                     |  1|
+|Bolivia                        |                1|                 2|1981                                     |  1|
+|Bolivia                        |                2|                 4|1982                                     |  1|
+|Bolivia                        |                3|                 1|1964                                     |  1|
+|Bosnia-Herzegovina             |                2|                 3|1998                                     |  1|
+|Bulgaria                       |                2|                 4|1990                                     |  1|
+|Burkina Faso (Upper Volta)     |                1|                 2|1969                                     |  1|
+|Burkina Faso (Upper Volta)     |                4|                 1|1980                                     |  1|
+|Burundi                        |                1|                 2|1992                                     |  1|
+|Burundi                        |                3|                 1|1996                                     |  1|
+|Cambodia (Kampuchea)           |                1|                 3|1955, 1993                               |  2|
+|Cambodia (Kampuchea)           |                3|                 1|1957                                     |  1|
+|Central African Republic       |                1|                 2|1991                                     |  1|
+|Central African Republic       |                2|                 3|1993                                     |  1|
+|Chad                           |                1|                 3|1996                                     |  1|
+|Chile                          |                1|                 2|1988                                     |  1|
+|Chile                          |                3|                 4|1952                                     |  1|
+|Chile                          |                4|                 1|1973                                     |  1|
+|Colombia                       |                2|                 4|1958                                     |  1|
+|Colombia                       |                3|                 1|1949                                     |  1|
+|Congo                          |                1|                 2|1991                                     |  1|
+|Congo                          |                2|                 4|1992                                     |  1|
+|Congo                          |                3|                 1|1997                                     |  1|
+|Congo                          |                4|                 1|1963                                     |  1|
+|Costa Rica                     |                2|                 4|1949                                     |  1|
+|Cote D’Ivoire                  |                1|                 3|1995                                     |  1|
+|Croatia                        |               NA|                 3|1990                                     |  1|
+|Czechoslovakia                 |                1|                 2|1989                                     |  1|
+|Czechoslovakia                 |                2|                 4|1990                                     |  1|
+|Czechoslovakia                 |                4|                 2|1947                                     |  1|
+|Dominican Republic             |                1|                 4|1978                                     |  1|
+|Dominican Republic             |                4|                 1|1963                                     |  1|
+|Ecuador                        |                1|                 2|1975                                     |  1|
+|Ecuador                        |                1|                 3|1948                                     |  1|
+|Ecuador                        |                2|                 3|1968, 1979                               |  2|
+|Ecuador                        |                3|                 1|1963, 1970                               |  2|
+|Ecuador                        |                3|                 4|1984                                     |  1|
+|Estonia                        |                2|                 4|1992                                     |  1|
+|Ethiopia                       |                2|                 3|1995                                     |  1|
+|Gabon                          |                1|                 2|1994                                     |  1|
+|Georgia                        |                2|                 3|1992                                     |  1|
+|German Democratic Republic     |               NA|                 1|1946, 1947, 1948, 1990                   |  4|
+|German Federal Republic        |                2|                 4|1949                                     |  1|
+|German Federal Republic        |               NA|                 2|1946, 1947, 1948                         |  3|
+|Ghana                          |                1|                 2|1978                                     |  1|
+|Ghana                          |                2|                 3|1992                                     |  1|
+|Ghana                          |                2|                 4|1969, 1979                               |  2|
+|Ghana                          |                4|                 1|1982                                     |  1|
+|Greece                         |                1|                 3|1950                                     |  1|
+|Greece                         |                1|                 4|1974                                     |  1|
+|Guatemala                      |                1|                 2|1983                                     |  1|
+|Guatemala                      |                3|                 4|1996                                     |  1|
+|Guatemala                      |                4|                 1|1954                                     |  1|
+|Haiti                          |                1|                 3|1994                                     |  1|
+|Haiti                          |                3|                 1|1991                                     |  1|
+|Honduras                       |                1|                 3|1957                                     |  1|
+|Honduras                       |                3|                 1|1954, 1963                               |  2|
+|Honduras                       |                3|                 4|1996                                     |  1|
+|Hungary                        |                2|                 4|1989                                     |  1|
+|Kenya                          |                1|                 2|1991                                     |  1|
+|Kenya                          |                1|                 3|1979                                     |  1|
+|Kenya                          |                2|                 3|1992                                     |  1|
+|Korea, Republic of             |                1|                 2|1987                                     |  1|
+|Korea, Republic of             |                4|                 1|1948                                     |  1|
+|Kuwait                         |               NA|                 1|1961, 1962                               |  2|
+|Laos                           |                3|                 4|1957                                     |  1|
+|Latvia                         |                2|                 4|1991                                     |  1|
+|Latvia                         |               NA|                 2|1990                                     |  1|
+|Lebanon                        |                1|                 2|1989                                     |  1|
+|Lebanon                        |                2|                 3|1992                                     |  1|
+|Lithuania                      |                2|                 4|1992                                     |  1|
+|Lithuania                      |               NA|                 2|1990                                     |  1|
+|Madagascar (Malagasy)          |                1|                 2|1991                                     |  1|
+|Malawi                         |                1|                 2|1993                                     |  1|
+|Mexico                         |                1|                 3|1988                                     |  1|
+|Mexico                         |                3|                 4|1997                                     |  1|
+|Mongolia                       |                1|                 2|1988                                     |  1|
+|Mongolia                       |                2|                 4|1990                                     |  1|
+|Namibia                        |                4|                 3|1998                                     |  1|
+|Nigeria                        |                1|                 2|1975                                     |  1|
+|Nigeria                        |                2|                 3|1979                                     |  1|
+|Nigeria                        |                3|                 1|1983                                     |  1|
+|Pakistan                       |                1|                 4|1988                                     |  1|
+|Pakistan                       |                3|                 1|1958, 1977                               |  2|
+|Pakistan                       |                4|                 3|1990                                     |  1|
+|Panama                         |                1|                 3|1989                                     |  1|
+|Panama                         |                3|                 4|1994                                     |  1|
+|Peru                           |                1|                 2|1977                                     |  1|
+|Peru                           |                1|                 3|1956, 1963                               |  2|
+|Peru                           |                2|                 4|1980                                     |  1|
+|Peru                           |                3|                 1|1948, 1962, 1968                         |  3|
+|Philippines                    |                3|                 4|1953                                     |  1|
+|Philippines                    |                4|                 1|1972                                     |  1|
+|Poland                         |                2|                 4|1990                                     |  1|
+|Poland                         |               NA|                 1|1946                                     |  1|
+|Portugal                       |                2|                 4|1976                                     |  1|
+|Rumania                        |                3|                 4|1992                                     |  1|
+|Russia (Soviet Union)          |                1|                 2|1991                                     |  1|
+|Rwanda                         |                4|                 1|1963                                     |  1|
+|Rwanda                         |                4|                NA|1961                                     |  1|
+|Senegal                        |                1|                 2|1974                                     |  1|
+|Senegal                        |                3|                 1|1962                                     |  1|
+|Sierra Leone                   |                4|                 3|1968                                     |  1|
+|Slovakia                       |                3|                 4|1998                                     |  1|
+|Slovenia                       |               NA|                 2|1989                                     |  1|
+|Slovenia                       |               NA|                 4|1990                                     |  1|
+|Spain                          |                1|                 2|1976                                     |  1|
+|Sri Lanka (Ceylon)             |                4|                 3|1983                                     |  1|
+|Sudan                          |                1|                 2|1964                                     |  1|
+|Sudan                          |                3|                 1|1958                                     |  1|
+|Sudan                          |               NA|                 3|1955                                     |  1|
+|Taiwan                         |                1|                 2|1988                                     |  1|
+|Taiwan                         |                2|                 3|1991                                     |  1|
+|Tanzania/Tanganyika            |                2|                 3|1995                                     |  1|
+|Tanzania/Tanganyika            |                3|                 1|1965                                     |  1|
+|Tanzania/Tanganyika            |                4|                 3|1962                                     |  1|
+|Thailand                       |                1|                 2|1973                                     |  1|
+|Thailand                       |                1|                 3|1986                                     |  1|
+|Thailand                       |                1|                 4|1992                                     |  1|
+|Thailand                       |                3|                 1|1947                                     |  1|
+|Thailand                       |                4|                 1|1976                                     |  1|
+|Turkey (Ottoman Empire)        |                1|                 4|1961                                     |  1|
+|Turkey (Ottoman Empire)        |                2|                 3|1983                                     |  1|
+|Turkey (Ottoman Empire)        |                4|                 1|1980                                     |  1|
+|Turkey (Ottoman Empire)        |                4|                 3|1957                                     |  1|
+|Ukraine                        |                2|                 3|1991                                     |  1|
+|Uruguay                        |                1|                 2|1981                                     |  1|
+|Venezuela                      |                2|                 4|1947                                     |  1|
+|Venezuela                      |                4|                 1|1948                                     |  1|
+|Vietnam, Republic of           |               NA|                 1|1954                                     |  1|
+|Yemen (Arab Republic of Yemen) |               NA|                 1|1946, 1947                               |  2|
+|Yugoslavia                     |                1|                 3|1990                                     |  1|
+|Yugoslavia                     |               NA|                 3|1992, 1993, 1994, 1995, 1996, 1997, 1998 |  7|
+|Zambia                         |                1|                 2|1990                                     |  1|
+|Zambia                         |                2|                 4|1991                                     |  1|
+|Zambia                         |                3|                 1|1971                                     |  1|
 
 166 data points differ between the two data sources.
 
@@ -3431,76 +637,18 @@ kable(comparison %>%
                     "Original Vanhanen data","years affected","n"))
 ```
 
-<table>
-<caption>Differences between PMM's Vanhanen values and original Vanhanen data</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Country name </th>
-   <th style="text-align:right;"> Vanhanen value in PMM </th>
-   <th style="text-align:right;"> Original Vanhanen data </th>
-   <th style="text-align:left;"> years affected </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2.5 </td>
-   <td style="text-align:left;"> 1961 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Japan </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 32.8 </td>
-   <td style="text-align:left;"> 2008 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Montenegro </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 19.5 </td>
-   <td style="text-align:left;"> 2003, 2004, 2005 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Morocco </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 5.1 </td>
-   <td style="text-align:left;"> 2003, 2004, 2005, 2006 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Myanmar (Burma) </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1.8 </td>
-   <td style="text-align:left;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 22.8 </td>
-   <td style="text-align:left;"> 2003 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 25.3 </td>
-   <td style="text-align:left;"> 2004, 2005, 2006 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Vietnam, Republic of </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0 </td>
-   <td style="text-align:left;"> 1954 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|Country name         | Vanhanen value in PMM| Original Vanhanen data|years affected         |  n|
+|:--------------------|---------------------:|----------------------:|:----------------------|--:|
+|Burundi              |                    NA|                    2.5|1961                   |  1|
+|Japan                |                    NA|                   32.8|2008                   |  1|
+|Montenegro           |                    NA|                   19.5|2003, 2004, 2005       |  3|
+|Morocco              |                    NA|                    5.1|2003, 2004, 2005, 2006 |  4|
+|Myanmar (Burma)      |                    NA|                    1.8|1947                   |  1|
+|Rumania              |                    NA|                   22.8|2003                   |  1|
+|Rumania              |                    NA|                   25.3|2004, 2005, 2006       |  3|
+|Vietnam, Republic of |                    NA|                    0.0|1954                   |  1|
 
 # References
 

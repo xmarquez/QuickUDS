@@ -31,1017 +31,76 @@ print(kable(democracy_long %>%
       digits = 2))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> variable </th>
-   <th style="text-align:right;"> distinct_countries </th>
-   <th style="text-align:right;"> distinct_years </th>
-   <th style="text-align:right;"> min_year </th>
-   <th style="text-align:right;"> max_year </th>
-   <th style="text-align:right;"> mean_year </th>
-   <th style="text-align:left;"> index_type </th>
-   <th style="text-align:right;"> num_values </th>
-   <th style="text-align:right;"> mean </th>
-   <th style="text-align:right;"> median </th>
-   <th style="text-align:right;"> min_value </th>
-   <th style="text-align:right;"> max_value </th>
-   <th style="text-align:right;"> sd </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> PEPS1i </td>
-   <td style="text-align:right;"> 175 </td>
-   <td style="text-align:right;"> 204 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1949.74 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 726 </td>
-   <td style="text-align:right;"> -3.20 </td>
-   <td style="text-align:right;"> -7.00 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 6.57 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PEPS1q </td>
-   <td style="text-align:right;"> 176 </td>
-   <td style="text-align:right;"> 204 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1950.37 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 727 </td>
-   <td style="text-align:right;"> -3.18 </td>
-   <td style="text-align:right;"> -6.24 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 6.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PEPS1v </td>
-   <td style="text-align:right;"> 177 </td>
-   <td style="text-align:right;"> 204 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1932.32 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 1866 </td>
-   <td style="text-align:right;"> -2.87 </td>
-   <td style="text-align:right;"> -4.00 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 5.66 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PEPS2i </td>
-   <td style="text-align:right;"> 143 </td>
-   <td style="text-align:right;"> 59 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1981.28 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 843 </td>
-   <td style="text-align:right;"> 3.72 </td>
-   <td style="text-align:right;"> 5.00 </td>
-   <td style="text-align:right;"> -9.59 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 4.39 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PEPS2q </td>
-   <td style="text-align:right;"> 165 </td>
-   <td style="text-align:right;"> 59 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1978.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 856 </td>
-   <td style="text-align:right;"> -1.13 </td>
-   <td style="text-align:right;"> -1.46 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 6.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PEPS2v </td>
-   <td style="text-align:right;"> 168 </td>
-   <td style="text-align:right;"> 194 </td>
-   <td style="text-align:right;"> 1810 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1937.77 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 2414 </td>
-   <td style="text-align:right;"> -2.43 </td>
-   <td style="text-align:right;"> -3.55 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 5.78 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Polity3 </td>
-   <td style="text-align:right;"> 181 </td>
-   <td style="text-align:right;"> 204 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1929.05 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> -1.13 </td>
-   <td style="text-align:right;"> -3.00 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 7.05 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> arat_pmm </td>
-   <td style="text-align:right;"> 151 </td>
-   <td style="text-align:right;"> 35 </td>
-   <td style="text-align:right;"> 1948 </td>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 1967.70 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 77 </td>
-   <td style="text-align:right;"> 73.20 </td>
-   <td style="text-align:right;"> 69.00 </td>
-   <td style="text-align:right;"> 29.00 </td>
-   <td style="text-align:right;"> 109.00 </td>
-   <td style="text-align:right;"> 18.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> blm </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1950.00 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.25 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.36 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> blm_pmm </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 55 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1973.00 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.36 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.41 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bmr_democracy </td>
-   <td style="text-align:right;"> 212 </td>
-   <td style="text-align:right;"> 211 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1938.71 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.32 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.47 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bmr_democracy_omitteddata </td>
-   <td style="text-align:right;"> 212 </td>
-   <td style="text-align:right;"> 211 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1938.89 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.32 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.47 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bnr </td>
-   <td style="text-align:right;"> 192 </td>
-   <td style="text-align:right;"> 93 </td>
-   <td style="text-align:right;"> 1913 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 1969.50 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.34 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.47 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> bollen_pmm </td>
-   <td style="text-align:right;"> 161 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1950 </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1965.48 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 348 </td>
-   <td style="text-align:right;"> 55.46 </td>
-   <td style="text-align:right;"> 53.59 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 100.00 </td>
-   <td style="text-align:right;"> 33.70 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> doorenspleet </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 195 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 1921.29 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1.18 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.38 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> eiu </td>
-   <td style="text-align:right;"> 175 </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 1996 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 2006.91 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 783 </td>
-   <td style="text-align:right;"> 0.47 </td>
-   <td style="text-align:right;"> 0.45 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.97 </td>
-   <td style="text-align:right;"> 0.24 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> exconst </td>
-   <td style="text-align:right;"> 186 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.14 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 0.07 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> -88.00 </td>
-   <td style="text-align:right;"> 7.00 </td>
-   <td style="text-align:right;"> 17.29 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> exrec </td>
-   <td style="text-align:right;"> 186 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.73 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 0.84 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> -88.00 </td>
-   <td style="text-align:right;"> 8.00 </td>
-   <td style="text-align:right;"> 17.61 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> freedomhouse </td>
-   <td style="text-align:right;"> 200 </td>
-   <td style="text-align:right;"> 43 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1994.87 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 4.26 </td>
-   <td style="text-align:right;"> 4.50 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 7.00 </td>
-   <td style="text-align:right;"> 2.06 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> freedomhouse_electoral </td>
-   <td style="text-align:right;"> 196 </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 2002.20 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.60 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> freedomhouse_pmm </td>
-   <td style="text-align:right;"> 198 </td>
-   <td style="text-align:right;"> 37 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1990.95 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 4.15 </td>
-   <td style="text-align:right;"> 4.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 7.00 </td>
-   <td style="text-align:right;"> 2.07 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> gwf </td>
-   <td style="text-align:right;"> 154 </td>
-   <td style="text-align:right;"> 270 </td>
-   <td style="text-align:right;"> 1741 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1969.92 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1.43 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hadenius_pmm </td>
-   <td style="text-align:right;"> 129 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 1988 </td>
-   <td style="text-align:right;"> 1988 </td>
-   <td style="text-align:right;"> 1988.00 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 51 </td>
-   <td style="text-align:right;"> 4.51 </td>
-   <td style="text-align:right;"> 3.10 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 3.56 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> kailitz_binary </td>
-   <td style="text-align:right;"> 198 </td>
-   <td style="text-align:right;"> 66 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1982.69 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.41 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> kailitz_tri </td>
-   <td style="text-align:right;"> 198 </td>
-   <td style="text-align:right;"> 66 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1982.69 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.99 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.91 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lied </td>
-   <td style="text-align:right;"> 223 </td>
-   <td style="text-align:right;"> 216 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1938.91 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 2.78 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 6.00 </td>
-   <td style="text-align:right;"> 2.35 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lied_accountable </td>
-   <td style="text-align:right;"> 223 </td>
-   <td style="text-align:right;"> 216 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1938.91 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.94 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.87 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lied_electoral </td>
-   <td style="text-align:right;"> 223 </td>
-   <td style="text-align:right;"> 216 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1938.91 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1.38 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.85 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> lied_inclusive </td>
-   <td style="text-align:right;"> 223 </td>
-   <td style="text-align:right;"> 216 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1938.91 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1.17 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.94 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> magaloni_democ_binary </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 244 </td>
-   <td style="text-align:right;"> 1769 </td>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 1972.44 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.42 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> magaloni_regime_tri </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 244 </td>
-   <td style="text-align:right;"> 1769 </td>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 1972.44 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2.01 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 0.92 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> mainwaring </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 108 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 1953.60 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -0.32 </td>
-   <td style="text-align:right;"> -1.00 </td>
-   <td style="text-align:right;"> -1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.84 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> mainwaring_pmm </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:right;"> 62 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 1981.10 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.12 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> -1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.85 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> munck_pmm </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 2005 </td>
-   <td style="text-align:right;"> 1993.79 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 0.84 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.26 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pacl </td>
-   <td style="text-align:right;"> 196 </td>
-   <td style="text-align:right;"> 63 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1981.94 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.44 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pacl_pmm </td>
-   <td style="text-align:right;"> 196 </td>
-   <td style="text-align:right;"> 63 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1982.01 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.44 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pitf </td>
-   <td style="text-align:right;"> 185 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.44 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2.42 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 5.00 </td>
-   <td style="text-align:right;"> 1.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pitf_binary </td>
-   <td style="text-align:right;"> 185 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.44 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1.36 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polcomp </td>
-   <td style="text-align:right;"> 186 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.45 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 1.29 </td>
-   <td style="text-align:right;"> 6.00 </td>
-   <td style="text-align:right;"> -88.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 17.77 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polity </td>
-   <td style="text-align:right;"> 186 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.14 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> -4.12 </td>
-   <td style="text-align:right;"> -3.00 </td>
-   <td style="text-align:right;"> -88.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 17.67 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polity2 </td>
-   <td style="text-align:right;"> 186 </td>
-   <td style="text-align:right;"> 215 </td>
-   <td style="text-align:right;"> 1800 </td>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 1938.15 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> -0.64 </td>
-   <td style="text-align:right;"> -3.00 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 7.07 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polity_pmm </td>
-   <td style="text-align:right;"> 167 </td>
-   <td style="text-align:right;"> 63 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1980.85 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 21 </td>
-   <td style="text-align:right;"> 0.13 </td>
-   <td style="text-align:right;"> -1.00 </td>
-   <td style="text-align:right;"> -10.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 7.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polyarchy_contestation </td>
-   <td style="text-align:right;"> 196 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1993.11 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 5.82 </td>
-   <td style="text-align:right;"> 6.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 9.00 </td>
-   <td style="text-align:right;"> 2.90 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polyarchy_pmm </td>
-   <td style="text-align:right;"> 194 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1993.12 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 6.33 </td>
-   <td style="text-align:right;"> 7.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 3.51 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> polyarchy_reversed </td>
-   <td style="text-align:right;"> 196 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1985 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1993.11 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 6.35 </td>
-   <td style="text-align:right;"> 7.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 10.00 </td>
-   <td style="text-align:right;"> 3.52 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> prc </td>
-   <td style="text-align:right;"> 149 </td>
-   <td style="text-align:right;"> 252 </td>
-   <td style="text-align:right;"> 1747 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1937.00 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 4.00 </td>
-   <td style="text-align:right;"> 1.30 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> prc_notrans </td>
-   <td style="text-align:right;"> 149 </td>
-   <td style="text-align:right;"> 252 </td>
-   <td style="text-align:right;"> 1747 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1936.50 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 4.00 </td>
-   <td style="text-align:right;"> 1.31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> prc_pmm </td>
-   <td style="text-align:right;"> 148 </td>
-   <td style="text-align:right;"> 53 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1974.83 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2.15 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 4.00 </td>
-   <td style="text-align:right;"> 1.37 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> przeworski </td>
-   <td style="text-align:right;"> 197 </td>
-   <td style="text-align:right;"> 221 </td>
-   <td style="text-align:right;"> 1788 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1950.24 </td>
-   <td style="text-align:left;"> Ordinal </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1.79 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 3.00 </td>
-   <td style="text-align:right;"> 0.81 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> svolik </td>
-   <td style="text-align:right;"> 198 </td>
-   <td style="text-align:right;"> 88 </td>
-   <td style="text-align:right;"> 1921 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1980.99 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1.44 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> ulfelder </td>
-   <td style="text-align:right;"> 167 </td>
-   <td style="text-align:right;"> 56 </td>
-   <td style="text-align:right;"> 1955 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1984.84 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.41 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> utip_dichotomous </td>
-   <td style="text-align:right;"> 152 </td>
-   <td style="text-align:right;"> 44 </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 1984.47 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.52 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> utip_dichotomous_strict </td>
-   <td style="text-align:right;"> 152 </td>
-   <td style="text-align:right;"> 44 </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 1984.47 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.48 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.50 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> utip_trichotomous </td>
-   <td style="text-align:right;"> 152 </td>
-   <td style="text-align:right;"> 44 </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 2006 </td>
-   <td style="text-align:right;"> 1984.47 </td>
-   <td style="text-align:left;"> Trichotomous </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.99 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 2.00 </td>
-   <td style="text-align:right;"> 0.98 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_api </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 9268 </td>
-   <td style="text-align:right;"> 0.47 </td>
-   <td style="text-align:right;"> 0.42 </td>
-   <td style="text-align:right;"> 0.02 </td>
-   <td style="text-align:right;"> 0.98 </td>
-   <td style="text-align:right;"> 0.31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_delibdem </td>
-   <td style="text-align:right;"> 171 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1961.00 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 9827 </td>
-   <td style="text-align:right;"> 0.21 </td>
-   <td style="text-align:right;"> 0.07 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.93 </td>
-   <td style="text-align:right;"> 0.27 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_egaldem </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 10152 </td>
-   <td style="text-align:right;"> 0.25 </td>
-   <td style="text-align:right;"> 0.15 </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> 0.92 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_libdem </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 10593 </td>
-   <td style="text-align:right;"> 0.26 </td>
-   <td style="text-align:right;"> 0.15 </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> 0.93 </td>
-   <td style="text-align:right;"> 0.25 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_mpi </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 6148 </td>
-   <td style="text-align:right;"> 0.18 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.93 </td>
-   <td style="text-align:right;"> 0.28 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_partipdem </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.97 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 9910 </td>
-   <td style="text-align:right;"> 0.20 </td>
-   <td style="text-align:right;"> 0.11 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.84 </td>
-   <td style="text-align:right;"> 0.21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> v2x_polyarchy </td>
-   <td style="text-align:right;"> 172 </td>
-   <td style="text-align:right;"> 116 </td>
-   <td style="text-align:right;"> 1900 </td>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 1960.99 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 9268 </td>
-   <td style="text-align:right;"> 0.32 </td>
-   <td style="text-align:right;"> 0.21 </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> 0.96 </td>
-   <td style="text-align:right;"> 0.28 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> vanhanen_competition </td>
-   <td style="text-align:right;"> 193 </td>
-   <td style="text-align:right;"> 203 </td>
-   <td style="text-align:right;"> 1810 </td>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 1947.43 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 694 </td>
-   <td style="text-align:right;"> 25.22 </td>
-   <td style="text-align:right;"> 20.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 70.00 </td>
-   <td style="text-align:right;"> 25.17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> vanhanen_democratization </td>
-   <td style="text-align:right;"> 193 </td>
-   <td style="text-align:right;"> 203 </td>
-   <td style="text-align:right;"> 1810 </td>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 1947.43 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 445 </td>
-   <td style="text-align:right;"> 8.43 </td>
-   <td style="text-align:right;"> 1.10 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 49.00 </td>
-   <td style="text-align:right;"> 11.68 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> vanhanen_participation </td>
-   <td style="text-align:right;"> 193 </td>
-   <td style="text-align:right;"> 203 </td>
-   <td style="text-align:right;"> 1810 </td>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 1947.43 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 760 </td>
-   <td style="text-align:right;"> 21.10 </td>
-   <td style="text-align:right;"> 14.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 71.00 </td>
-   <td style="text-align:right;"> 21.88 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> vanhanen_pmm </td>
-   <td style="text-align:right;"> 192 </td>
-   <td style="text-align:right;"> 63 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1981.71 </td>
-   <td style="text-align:left;"> Continuous </td>
-   <td style="text-align:right;"> 439 </td>
-   <td style="text-align:right;"> 11.31 </td>
-   <td style="text-align:right;"> 5.90 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 49.00 </td>
-   <td style="text-align:right;"> 12.67 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> wahman_teorell_hadenius </td>
-   <td style="text-align:right;"> 193 </td>
-   <td style="text-align:right;"> 39 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1991.93 </td>
-   <td style="text-align:left;"> Dichotomous </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.42 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> 1.00 </td>
-   <td style="text-align:right;"> 0.49 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|variable                  | distinct_countries| distinct_years| min_year| max_year| mean_year|index_type   | num_values|  mean| median| min_value| max_value|    sd|
+|:-------------------------|------------------:|--------------:|--------:|--------:|---------:|:------------|----------:|-----:|------:|---------:|---------:|-----:|
+|PEPS1i                    |                175|            204|     1800|     2003|   1949.74|Continuous   |        726| -3.20|  -7.00|    -10.00|     10.00|  6.57|
+|PEPS1q                    |                176|            204|     1800|     2003|   1950.37|Continuous   |        727| -3.18|  -6.24|    -10.00|     10.00|  6.49|
+|PEPS1v                    |                177|            204|     1800|     2003|   1932.32|Continuous   |       1866| -2.87|  -4.00|    -10.00|     10.00|  5.66|
+|PEPS2i                    |                143|             59|     1945|     2003|   1981.28|Continuous   |        843|  3.72|   5.00|     -9.59|     10.00|  4.39|
+|PEPS2q                    |                165|             59|     1945|     2003|   1978.99|Continuous   |        856| -1.13|  -1.46|    -10.00|     10.00|  6.91|
+|PEPS2v                    |                168|            194|     1810|     2003|   1937.77|Continuous   |       2414| -2.43|  -3.55|    -10.00|     10.00|  5.78|
+|Polity3                   |                181|            204|     1800|     2003|   1929.05|Ordinal      |         21| -1.13|  -3.00|    -10.00|     10.00|  7.05|
+|arat_pmm                  |                151|             35|     1948|     1982|   1967.70|Continuous   |         77| 73.20|  69.00|     29.00|    109.00| 18.91|
+|blm                       |                  5|            101|     1900|     2000|   1950.00|Trichotomous |          3|  0.25|   0.00|      0.00|      1.00|  0.36|
+|blm_pmm                   |                  5|             55|     1946|     2000|   1973.00|Trichotomous |          3|  0.36|   0.00|      0.00|      1.00|  0.41|
+|bmr_democracy             |                212|            211|     1800|     2010|   1938.71|Dichotomous  |          2|  0.32|   0.00|      0.00|      1.00|  0.47|
+|bmr_democracy_omitteddata |                212|            211|     1800|     2010|   1938.89|Dichotomous  |          2|  0.32|   0.00|      0.00|      1.00|  0.47|
+|bnr                       |                192|             93|     1913|     2005|   1969.50|Dichotomous  |          2|  0.34|   0.00|      0.00|      1.00|  0.47|
+|bollen_pmm                |                161|              5|     1950|     1980|   1965.48|Continuous   |        348| 55.46|  53.59|      0.00|    100.00| 33.70|
+|doorenspleet              |                172|            195|     1800|     1994|   1921.29|Dichotomous  |          2|  1.18|   1.00|      1.00|      2.00|  0.38|
+|eiu                       |                175|             16|     1996|     2014|   2006.91|Continuous   |        783|  0.47|   0.45|      0.00|      0.97|  0.24|
+|exconst                   |                186|            215|     1800|     2014|   1938.14|Ordinal      |         10|  0.07|   3.00|    -88.00|      7.00| 17.29|
+|exrec                     |                186|            215|     1800|     2014|   1938.73|Ordinal      |         11|  0.84|   3.00|    -88.00|      8.00| 17.61|
+|freedomhouse              |                200|             43|     1972|     2015|   1994.87|Ordinal      |         13|  4.26|   4.50|      1.00|      7.00|  2.06|
+|freedomhouse_electoral    |                196|             27|     1989|     2015|   2002.20|Dichotomous  |          2|  0.60|   1.00|      0.00|      1.00|  0.49|
+|freedomhouse_pmm          |                198|             37|     1972|     2008|   1990.95|Ordinal      |         13|  4.15|   4.00|      1.00|      7.00|  2.07|
+|gwf                       |                154|            270|     1741|     2010|   1969.92|Dichotomous  |          2|  1.43|   1.00|      1.00|      2.00|  0.49|
+|hadenius_pmm              |                129|              1|     1988|     1988|   1988.00|Continuous   |         51|  4.51|   3.10|      0.00|     10.00|  3.56|
+|kailitz_binary            |                198|             66|     1945|     2010|   1982.69|Dichotomous  |          2|  0.41|   0.00|      0.00|      1.00|  0.49|
+|kailitz_tri               |                198|             66|     1945|     2010|   1982.69|Trichotomous |          3|  0.99|   1.00|      0.00|      2.00|  0.91|
+|lied                      |                223|            216|     1800|     2015|   1938.91|Ordinal      |          7|  2.78|   3.00|      0.00|      6.00|  2.35|
+|lied_accountable          |                223|            216|     1800|     2015|   1938.91|Trichotomous |          3|  0.94|   1.00|      0.00|      2.00|  0.87|
+|lied_electoral            |                223|            216|     1800|     2015|   1938.91|Trichotomous |          3|  1.38|   2.00|      0.00|      2.00|  0.85|
+|lied_inclusive            |                223|            216|     1800|     2015|   1938.91|Trichotomous |          3|  1.17|   2.00|      0.00|      2.00|  0.94|
+|magaloni_democ_binary     |                172|            244|     1769|     2012|   1972.44|Dichotomous  |          2|  0.42|   0.00|      0.00|      1.00|  0.49|
+|magaloni_regime_tri       |                172|            244|     1769|     2012|   1972.44|Trichotomous |          3|  2.01|   2.00|      1.00|      3.00|  0.92|
+|mainwaring                |                 20|            108|     1900|     2007|   1953.60|Trichotomous |          3| -0.32|  -1.00|     -1.00|      1.00|  0.84|
+|mainwaring_pmm            |                 18|             62|     1946|     2007|   1981.10|Trichotomous |          3|  0.12|   0.00|     -1.00|      1.00|  0.85|
+|munck_pmm                 |                 18|             19|     1960|     2005|   1993.79|Continuous   |         21|  0.84|   1.00|      0.00|      1.00|  0.26|
+|pacl                      |                196|             63|     1946|     2008|   1981.94|Dichotomous  |          2|  0.44|   0.00|      0.00|      1.00|  0.50|
+|pacl_pmm                  |                196|             63|     1946|     2008|   1982.01|Dichotomous  |          2|  0.44|   0.00|      0.00|      1.00|  0.50|
+|pitf                      |                185|            215|     1800|     2014|   1938.44|Ordinal      |          5|  2.42|   2.00|      1.00|      5.00|  1.48|
+|pitf_binary               |                185|            215|     1800|     2014|   1938.44|Dichotomous  |          2|  1.36|   1.00|      1.00|      2.00|  0.48|
+|polcomp                   |                186|            215|     1800|     2014|   1938.45|Ordinal      |         13|  1.29|   6.00|    -88.00|     10.00| 17.77|
+|polity                    |                186|            215|     1800|     2014|   1938.14|Ordinal      |         24| -4.12|  -3.00|    -88.00|     10.00| 17.67|
+|polity2                   |                186|            215|     1800|     2014|   1938.15|Ordinal      |         21| -0.64|  -3.00|    -10.00|     10.00|  7.07|
+|polity_pmm                |                167|             63|     1946|     2008|   1980.85|Ordinal      |         21|  0.13|  -1.00|    -10.00|     10.00|  7.50|
+|polyarchy_contestation    |                196|              2|     1985|     2000|   1993.11|Ordinal      |          9|  5.82|   6.00|      1.00|      9.00|  2.90|
+|polyarchy_pmm             |                194|              2|     1985|     2000|   1993.12|Ordinal      |         11|  6.33|   7.00|      0.00|     10.00|  3.51|
+|polyarchy_reversed        |                196|              2|     1985|     2000|   1993.11|Ordinal      |         11|  6.35|   7.00|      0.00|     10.00|  3.52|
+|prc                       |                149|            252|     1747|     1998|   1937.00|Ordinal      |          4|  2.00|   1.00|      1.00|      4.00|  1.30|
+|prc_notrans               |                149|            252|     1747|     1998|   1936.50|Trichotomous |          3|  2.00|   1.00|      1.00|      4.00|  1.31|
+|prc_pmm                   |                148|             53|     1946|     1998|   1974.83|Ordinal      |          4|  2.15|   1.00|      1.00|      4.00|  1.37|
+|przeworski                |                197|            221|     1788|     2008|   1950.24|Ordinal      |          4|  1.79|   2.00|      0.00|      3.00|  0.81|
+|svolik                    |                198|             88|     1921|     2008|   1980.99|Dichotomous  |          2|  1.44|   1.00|      1.00|      2.00|  0.50|
+|ulfelder                  |                167|             56|     1955|     2010|   1984.84|Dichotomous  |          2|  0.41|   0.00|      0.00|      1.00|  0.49|
+|utip_dichotomous          |                152|             44|     1963|     2006|   1984.47|Dichotomous  |          2|  0.52|   1.00|      0.00|      1.00|  0.50|
+|utip_dichotomous_strict   |                152|             44|     1963|     2006|   1984.47|Dichotomous  |          2|  0.48|   0.00|      0.00|      1.00|  0.50|
+|utip_trichotomous         |                152|             44|     1963|     2006|   1984.47|Trichotomous |          3|  0.99|   1.00|      0.00|      2.00|  0.98|
+|v2x_api                   |                172|            116|     1900|     2015|   1960.99|Continuous   |       9268|  0.47|   0.42|      0.02|      0.98|  0.31|
+|v2x_delibdem              |                171|            116|     1900|     2015|   1961.00|Continuous   |       9827|  0.21|   0.07|      0.00|      0.93|  0.27|
+|v2x_egaldem               |                172|            116|     1900|     2015|   1960.99|Continuous   |      10152|  0.25|   0.15|      0.01|      0.92|  0.25|
+|v2x_libdem                |                172|            116|     1900|     2015|   1960.99|Continuous   |      10593|  0.26|   0.15|      0.01|      0.93|  0.25|
+|v2x_mpi                   |                172|            116|     1900|     2015|   1960.99|Continuous   |       6148|  0.18|   0.00|      0.00|      0.93|  0.28|
+|v2x_partipdem             |                172|            116|     1900|     2015|   1960.97|Continuous   |       9910|  0.20|   0.11|      0.00|      0.84|  0.21|
+|v2x_polyarchy             |                172|            116|     1900|     2015|   1960.99|Continuous   |       9268|  0.32|   0.21|      0.01|      0.96|  0.28|
+|vanhanen_competition      |                193|            203|     1810|     2012|   1947.43|Continuous   |        694| 25.22|  20.00|      0.00|     70.00| 25.17|
+|vanhanen_democratization  |                193|            203|     1810|     2012|   1947.43|Continuous   |        445|  8.43|   1.10|      0.00|     49.00| 11.68|
+|vanhanen_participation    |                193|            203|     1810|     2012|   1947.43|Continuous   |        760| 21.10|  14.00|      0.00|     71.00| 21.88|
+|vanhanen_pmm              |                192|             63|     1946|     2008|   1981.71|Continuous   |        439| 11.31|   5.90|      0.00|     49.00| 12.67|
+|wahman_teorell_hadenius   |                193|             39|     1972|     2010|   1991.93|Dichotomous  |          2|  0.42|   0.00|      0.00|      1.00|  0.49|
 
 
 # Arat
@@ -1647,24 +706,12 @@ print(kable(kailitz.yearly %>%
         count(multiple_regimes = grepl("-",combined_regime))))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> multiple_regimes </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:right;"> 9290 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:right;"> 316 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|multiple_regimes |    n|
+|:----------------|----:|
+|FALSE            | 9290|
+|TRUE             |  316|
 
 ```r
 print(kable(kailitz.yearly %>% 
@@ -1675,376 +722,61 @@ print(kable(kailitz.yearly %>%
         summarise(min = min(year), max = max(year), n = n())))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> country_name </th>
-   <th style="text-align:left;"> combined_regime </th>
-   <th style="text-align:right;"> min </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Afghanistan </td>
-   <td style="text-align:left;"> Electoral Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Algeria </td>
-   <td style="text-align:left;"> Electoral Autocracy-One party Autocracy </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:left;"> Electoral Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Benin </td>
-   <td style="text-align:left;"> Electoral Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Benin </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1965 </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Benin </td>
-   <td style="text-align:left;"> Personalist Autocracy-Transition </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 1971 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:left;"> Electoral Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1995 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:left;"> One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 1983 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:left;"> Communist Ideocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1981 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Central African Republic </td>
-   <td style="text-align:left;"> Electoral Autocracy-One party Autocracy </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:left;"> State Failure or Occupation-Transition </td>
-   <td style="text-align:right;"> 1948 </td>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1951 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:left;"> Electoral Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1970 </td>
-   <td style="text-align:right;"> 1971 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ecuador </td>
-   <td style="text-align:left;"> Electoral Autocracy-Transition </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1983 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:left;"> Military Autocracy-Transition </td>
-   <td style="text-align:right;"> 2004 </td>
-   <td style="text-align:right;"> 2004 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:left;"> Electoral Autocracy-Transition </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1957 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Indonesia </td>
-   <td style="text-align:left;"> Personalist Autocracy-Transition </td>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 1967 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Kuwait </td>
-   <td style="text-align:left;"> Monarchy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lebanon </td>
-   <td style="text-align:left;"> State Failure or Occupation-Transition </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:left;"> Electoral Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:left;"> Electoral Autocracy-Transition </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Liberia </td>
-   <td style="text-align:left;"> Personalist Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Madagascar (Malagasy) </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Madagascar (Malagasy) </td>
-   <td style="text-align:left;"> Personalist Autocracy-Transition </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mauritania </td>
-   <td style="text-align:left;"> Electoral Autocracy-Military Autocracy </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mozambique </td>
-   <td style="text-align:left;"> Personalist Autocracy-Transition </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:left;"> Communist Ideocracy-Electoral Autocracy </td>
-   <td style="text-align:right;"> 1984 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:left;"> Communist Ideocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1981 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:left;"> Communist Ideocracy-Transition </td>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 1983 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:left;"> Electoral Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Nicaragua </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1973 </td>
-   <td style="text-align:right;"> 1973 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Niger </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 1967 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1971 </td>
-   <td style="text-align:right;"> 26 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:left;"> Liberal Democracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:left;"> Military Autocracy-Transition </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Seychelles </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Seychelles </td>
-   <td style="text-align:left;"> Liberal Democracy-Transition </td>
-   <td style="text-align:right;"> 1976 </td>
-   <td style="text-align:right;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Somalia </td>
-   <td style="text-align:left;"> Liberal Democracy-Transition </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 1968 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Somalia </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1969 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 22 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Somalia </td>
-   <td style="text-align:left;"> Military Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Spain </td>
-   <td style="text-align:left;"> Military Autocracy-One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 29 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 51 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:left;"> Electoral Autocracy-Transition </td>
-   <td style="text-align:right;"> 1948 </td>
-   <td style="text-align:right;"> 1959 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Syria </td>
-   <td style="text-align:left;"> One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tunisia </td>
-   <td style="text-align:left;"> One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 1978 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Venezuela </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1948 </td>
-   <td style="text-align:right;"> 1957 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yemen (Arab Republic of Yemen) </td>
-   <td style="text-align:left;"> Monarchy-Transition </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|country_name                   |combined_regime                                              |  min|  max|  n|
+|:------------------------------|:------------------------------------------------------------|----:|----:|--:|
+|Afghanistan                    |Electoral Autocracy-Personalist Autocracy                    | 2010| 2010|  1|
+|Algeria                        |Electoral Autocracy-One party Autocracy                      | 1989| 1991|  3|
+|Angola                         |Electoral Autocracy-State Failure or Occupation              | 2010| 2010|  1|
+|Benin                          |Electoral Autocracy-Personalist Autocracy                    | 1960| 1962|  3|
+|Benin                          |Military Autocracy-Personalist Autocracy                     | 1965| 1974|  8|
+|Benin                          |Personalist Autocracy-Transition                             | 1963| 1971|  4|
+|Burundi                        |Electoral Autocracy-State Failure or Occupation              | 1993| 1995|  3|
+|Burundi                        |One party Autocracy-Personalist Autocracy                    | 1982| 1983|  2|
+|Cambodia (Kampuchea)           |Communist Ideocracy-State Failure or Occupation              | 1981| 1990| 10|
+|Central African Republic       |Electoral Autocracy-One party Autocracy                      | 1991| 1992|  2|
+|Colombia                       |Electoral Autocracy-Liberal Democracy                        | 1946| 1947|  2|
+|Colombia                       |State Failure or Occupation-Transition                       | 1948| 1952|  5|
+|Cuba                           |Electoral Autocracy-Liberal Democracy                        | 1946| 1951|  6|
+|Ecuador                        |Electoral Autocracy-Personalist Autocracy                    | 1970| 1971|  2|
+|Ecuador                        |Electoral Autocracy-Transition                               | 2000| 2001|  2|
+|Guinea-Bissau                  |Military Autocracy-Personalist Autocracy                     | 1980| 1983|  4|
+|Guinea-Bissau                  |Military Autocracy-Transition                                | 2004| 2004|  1|
+|Haiti                          |Electoral Autocracy-Transition                               | 1946| 1947|  2|
+|Honduras                       |Electoral Autocracy-Liberal Democracy                        | 1957| 1962|  6|
+|Indonesia                      |Personalist Autocracy-Transition                             | 1952| 1967| 12|
+|Kuwait                         |Monarchy-State Failure or Occupation                         | 1990| 1990|  1|
+|Lebanon                        |State Failure or Occupation-Transition                       | 2000| 2001|  2|
+|Lesotho                        |Electoral Autocracy-State Failure or Occupation              | 1998| 1999|  2|
+|Lesotho                        |Electoral Autocracy-Transition                               | 2000| 2001|  2|
+|Liberia                        |Personalist Autocracy-State Failure or Occupation            | 1990| 1990|  1|
+|Madagascar (Malagasy)          |Military Autocracy-Personalist Autocracy                     | 1972| 1974|  3|
+|Madagascar (Malagasy)          |Personalist Autocracy-Transition                             | 1975| 1975|  1|
+|Mauritania                     |Electoral Autocracy-Military Autocracy                       | 2008| 2008|  1|
+|Mozambique                     |Personalist Autocracy-Transition                             | 1991| 1993|  3|
+|Nicaragua                      |Communist Ideocracy-Electoral Autocracy                      | 1984| 1989|  6|
+|Nicaragua                      |Communist Ideocracy-State Failure or Occupation              | 1980| 1981|  2|
+|Nicaragua                      |Communist Ideocracy-Transition                               | 1982| 1983|  2|
+|Nicaragua                      |Electoral Autocracy-Personalist Autocracy                    | 1972| 1972|  1|
+|Nicaragua                      |Military Autocracy-Personalist Autocracy                     | 1973| 1973|  1|
+|Niger                          |Electoral Autocracy-Liberal Democracy                        | 2000| 2010| 11|
+|Peru                           |Electoral Autocracy-Liberal Democracy                        | 1963| 1967|  5|
+|Philippines                    |Electoral Autocracy-Liberal Democracy                        | 1946| 1971| 26|
+|Philippines                    |Liberal Democracy-Personalist Autocracy                      | 1994| 2002|  9|
+|Portugal                       |Military Autocracy-Transition                                | 1974| 1975|  2|
+|Seychelles                     |Electoral Autocracy-Liberal Democracy                        | 2007| 2010|  4|
+|Seychelles                     |Liberal Democracy-Transition                                 | 1976| 1976|  1|
+|Somalia                        |Liberal Democracy-Transition                                 | 1960| 1968|  9|
+|Somalia                        |Military Autocracy-Personalist Autocracy                     | 1969| 1990| 22|
+|Somalia                        |Military Autocracy-State Failure or Occupation               | 1991| 1991|  1|
+|Spain                          |Military Autocracy-One party Autocracy-Personalist Autocracy | 1946| 1974| 29|
+|Sri Lanka (Ceylon)             |Electoral Autocracy-Liberal Democracy                        | 1960| 2010| 51|
+|Sri Lanka (Ceylon)             |Electoral Autocracy-Transition                               | 1948| 1959| 12|
+|Syria                          |One party Autocracy-Personalist Autocracy                    | 2000| 2010| 11|
+|Tunisia                        |One party Autocracy-Personalist Autocracy                    | 1975| 1978|  4|
+|Venezuela                      |Military Autocracy-Personalist Autocracy                     | 1948| 1957| 10|
+|Yemen (Arab Republic of Yemen) |Monarchy-Transition                                          | 1946| 1947|  2|
 
 The following are especially troublesome, since the multiple categories do not make sense:
 
@@ -2059,96 +791,21 @@ print(kable(kailitz.yearly %>%
         filter(grepl("democracy",combined_regime, ignore.case=TRUE))))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> country_name </th>
-   <th style="text-align:left;"> combined_regime </th>
-   <th style="text-align:right;"> min </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Colombia </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1951 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Honduras </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1957 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Niger </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 1967 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1971 </td>
-   <td style="text-align:right;"> 26 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Philippines </td>
-   <td style="text-align:left;"> Liberal Democracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Seychelles </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Seychelles </td>
-   <td style="text-align:left;"> Liberal Democracy-Transition </td>
-   <td style="text-align:right;"> 1976 </td>
-   <td style="text-align:right;"> 1976 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Somalia </td>
-   <td style="text-align:left;"> Liberal Democracy-Transition </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 1968 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 51 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|country_name       |combined_regime                         |  min|  max|  n|
+|:------------------|:---------------------------------------|----:|----:|--:|
+|Colombia           |Electoral Autocracy-Liberal Democracy   | 1946| 1947|  2|
+|Cuba               |Electoral Autocracy-Liberal Democracy   | 1946| 1951|  6|
+|Honduras           |Electoral Autocracy-Liberal Democracy   | 1957| 1962|  6|
+|Niger              |Electoral Autocracy-Liberal Democracy   | 2000| 2010| 11|
+|Peru               |Electoral Autocracy-Liberal Democracy   | 1963| 1967|  5|
+|Philippines        |Electoral Autocracy-Liberal Democracy   | 1946| 1971| 26|
+|Philippines        |Liberal Democracy-Personalist Autocracy | 1994| 2002|  9|
+|Seychelles         |Electoral Autocracy-Liberal Democracy   | 2007| 2010|  4|
+|Seychelles         |Liberal Democracy-Transition            | 1976| 1976|  1|
+|Somalia            |Liberal Democracy-Transition            | 1960| 1968|  9|
+|Sri Lanka (Ceylon) |Electoral Autocracy-Liberal Democracy   | 1960| 2010| 51|
 
 I have constructed the index to classify a country as "democratic" only if it is not also classified as a non-democratic regime as well. Here are the index counts for each regime type:
 
@@ -2158,198 +815,40 @@ print(kable(kailitz.yearly %>%
         count(kailitz_binary,kailitz_tri,combined_regime)))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> kailitz_binary </th>
-   <th style="text-align:right;"> kailitz_tri </th>
-   <th style="text-align:left;"> combined_regime </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Communist Ideocracy </td>
-   <td style="text-align:right;"> 788 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Communist Ideocracy-Electoral Autocracy </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Communist Ideocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Communist Ideocracy-Transition </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Electoral Autocracy-Military Autocracy </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Electoral Autocracy-One party Autocracy </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Electoral Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Electoral Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Electoral Autocracy-Transition </td>
-   <td style="text-align:right;"> 18 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Liberal Democracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Liberal Democracy-Transition </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Military Autocracy </td>
-   <td style="text-align:right;"> 570 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Military Autocracy-One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 29 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Military Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 48 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Military Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Military Autocracy-Transition </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Monarchy </td>
-   <td style="text-align:right;"> 987 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Monarchy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Monarchy-Transition </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> One party Autocracy </td>
-   <td style="text-align:right;"> 486 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> One party Autocracy-Personalist Autocracy </td>
-   <td style="text-align:right;"> 17 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Personalist Autocracy </td>
-   <td style="text-align:right;"> 463 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Personalist Autocracy-State Failure or Occupation </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Personalist Autocracy-Transition </td>
-   <td style="text-align:right;"> 20 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> State Failure or Occupation </td>
-   <td style="text-align:right;"> 245 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> State Failure or Occupation-Transition </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:left;"> Transition </td>
-   <td style="text-align:right;"> 319 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> Electoral Autocracy </td>
-   <td style="text-align:right;"> 1477 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> Electoral Autocracy-Liberal Democracy </td>
-   <td style="text-align:right;"> 111 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> Liberal Democracy </td>
-   <td style="text-align:right;"> 3955 </td>
-  </tr>
-</tbody>
-</table>
+
+
+| kailitz_binary| kailitz_tri|combined_regime                                              |    n|
+|--------------:|-----------:|:------------------------------------------------------------|----:|
+|              0|           0|Communist Ideocracy                                          |  788|
+|              0|           0|Communist Ideocracy-Electoral Autocracy                      |    6|
+|              0|           0|Communist Ideocracy-State Failure or Occupation              |   12|
+|              0|           0|Communist Ideocracy-Transition                               |    2|
+|              0|           0|Electoral Autocracy-Military Autocracy                       |    1|
+|              0|           0|Electoral Autocracy-One party Autocracy                      |    5|
+|              0|           0|Electoral Autocracy-Personalist Autocracy                    |    7|
+|              0|           0|Electoral Autocracy-State Failure or Occupation              |    6|
+|              0|           0|Electoral Autocracy-Transition                               |   18|
+|              0|           0|Liberal Democracy-Personalist Autocracy                      |    9|
+|              0|           0|Liberal Democracy-Transition                                 |   10|
+|              0|           0|Military Autocracy                                           |  570|
+|              0|           0|Military Autocracy-One party Autocracy-Personalist Autocracy |   29|
+|              0|           0|Military Autocracy-Personalist Autocracy                     |   48|
+|              0|           0|Military Autocracy-State Failure or Occupation               |    1|
+|              0|           0|Military Autocracy-Transition                                |    3|
+|              0|           0|Monarchy                                                     |  987|
+|              0|           0|Monarchy-State Failure or Occupation                         |    1|
+|              0|           0|Monarchy-Transition                                          |    2|
+|              0|           0|One party Autocracy                                          |  486|
+|              0|           0|One party Autocracy-Personalist Autocracy                    |   17|
+|              0|           0|Personalist Autocracy                                        |  463|
+|              0|           0|Personalist Autocracy-State Failure or Occupation            |    1|
+|              0|           0|Personalist Autocracy-Transition                             |   20|
+|              0|           0|State Failure or Occupation                                  |  245|
+|              0|           0|State Failure or Occupation-Transition                       |    7|
+|              0|           0|Transition                                                   |  319|
+|              0|           1|Electoral Autocracy                                          | 1477|
+|              0|           1|Electoral Autocracy-Liberal Democracy                        |  111|
+|              1|           2|Liberal Democracy                                            | 3955|
 
 # LIED
 
@@ -2660,1146 +1159,135 @@ print(kable(democracy %>%
         summarise(years = min(year), max = max(year), n = n())))
 ```
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> country_name </th>
-   <th style="text-align:right;"> Polity3 </th>
-   <th style="text-align:right;"> polity2 </th>
-   <th style="text-align:right;"> polity </th>
-   <th style="text-align:right;"> years </th>
-   <th style="text-align:right;"> max </th>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Afghanistan </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1978 </td>
-   <td style="text-align:right;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Albania </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Albania </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1939 </td>
-   <td style="text-align:right;"> 1944 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1995 </td>
-   <td style="text-align:right;"> 1996 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Angola </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Argentina </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1956 </td>
-   <td style="text-align:right;"> 1956 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Austria </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1933 </td>
-   <td style="text-align:right;"> 1933 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Austria </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bhutan </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -10 </td>
-   <td style="text-align:right;"> -10 </td>
-   <td style="text-align:right;"> 1953 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 51 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bolivia </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1955 </td>
-   <td style="text-align:right;"> 1955 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Botswana </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1969 </td>
-   <td style="text-align:right;"> 1986 </td>
-   <td style="text-align:right;"> 18 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Botswana </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1987 </td>
-   <td style="text-align:right;"> 1996 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Botswana </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 1997 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Brazil </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1932 </td>
-   <td style="text-align:right;"> 1932 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bulgaria </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1944 </td>
-   <td style="text-align:right;"> 1944 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bulgaria </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Bulgaria </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1934 </td>
-   <td style="text-align:right;"> 1934 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Burundi </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1970 </td>
-   <td style="text-align:right;"> 1970 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1988 </td>
-   <td style="text-align:right;"> 1988 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1990 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cambodia (Kampuchea) </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chad </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1984 </td>
-   <td style="text-align:right;"> 1984 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chad </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1978 </td>
-   <td style="text-align:right;"> 1978 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chad </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1983 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Chile </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1924 </td>
-   <td style="text-align:right;"> 1924 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> China </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1913 </td>
-   <td style="text-align:right;"> 1913 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Comoros </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1995 </td>
-   <td style="text-align:right;"> 1995 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Croatia </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Cuba </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 1960 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Czechoslovakia </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1968 </td>
-   <td style="text-align:right;"> 1968 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1904 </td>
-   <td style="text-align:right;"> 1904 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1905 </td>
-   <td style="text-align:right;"> 1905 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1906 </td>
-   <td style="text-align:right;"> 1906 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1909 </td>
-   <td style="text-align:right;"> 1909 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1910 </td>
-   <td style="text-align:right;"> 1910 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Denmark </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1911 </td>
-   <td style="text-align:right;"> 1911 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Dominican Republic </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1861 </td>
-   <td style="text-align:right;"> 1864 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Estonia </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Estonia </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Fiji </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> France </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1860 </td>
-   <td style="text-align:right;"> 1860 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> France </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1871 </td>
-   <td style="text-align:right;"> 1871 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Guinea-Bissau </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Haiti </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hungary </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1918 </td>
-   <td style="text-align:right;"> 1918 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hungary </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hungary </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Indonesia </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1921 </td>
-   <td style="text-align:right;"> 1921 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1924 </td>
-   <td style="text-align:right;"> 1924 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1923 </td>
-   <td style="text-align:right;"> 1981 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iran (Persia) </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1922 </td>
-   <td style="text-align:right;"> 1922 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Italy/Sardinia </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> 1861 </td>
-   <td style="text-align:right;"> 1861 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Italy/Sardinia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Italy/Sardinia </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Italy/Sardinia </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 1947 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Korea, People's Republic of </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> -10 </td>
-   <td style="text-align:right;"> -10 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Laos </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 1974 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Laos </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1973 </td>
-   <td style="text-align:right;"> 1973 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -77 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1998 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Lesotho </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Liberia </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1996 </td>
-   <td style="text-align:right;"> 1996 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Luxembourg </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 1879 </td>
-   <td style="text-align:right;"> 1879 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Luxembourg </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1919 </td>
-   <td style="text-align:right;"> 1919 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malawi </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malawi </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Malawi </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mali </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1879 </td>
-   <td style="text-align:right;"> 1879 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mexico </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1878 </td>
-   <td style="text-align:right;"> 1878 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Morocco </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1961 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Morocco </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 1963 </td>
-   <td style="text-align:right;"> 1964 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Mozambique </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Niger </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Papua New Guinea </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1975 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 29 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1919 </td>
-   <td style="text-align:right;"> 1919 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1932 </td>
-   <td style="text-align:right;"> 1932 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 1948 </td>
-   <td style="text-align:right;"> 1949 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> 1950 </td>
-   <td style="text-align:right;"> 1955 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Peru </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1956 </td>
-   <td style="text-align:right;"> 1961 </td>
-   <td style="text-align:right;"> 6 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1946 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poland </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1945 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1820 </td>
-   <td style="text-align:right;"> 1821 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Portugal </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1833 </td>
-   <td style="text-align:right;"> 1833 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1940 </td>
-   <td style="text-align:right;"> 1940 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rumania </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 1989 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Russia (Soviet Union) </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Rwanda </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Serbia </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1868 </td>
-   <td style="text-align:right;"> 1868 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sierra Leone </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sri Lanka (Ceylon) </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sweden </td>
-   <td style="text-align:right;"> -8 </td>
-   <td style="text-align:right;"> -9 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1811 </td>
-   <td style="text-align:right;"> 1811 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sweden </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -2 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1908 </td>
-   <td style="text-align:right;"> 1908 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Sweden </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1915 </td>
-   <td style="text-align:right;"> 1915 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> 1961 </td>
-   <td style="text-align:right;"> 1991 </td>
-   <td style="text-align:right;"> 31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Tanzania/Tanganyika </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> -1 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thailand </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1934 </td>
-   <td style="text-align:right;"> 1934 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Togo </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Uganda </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1966 </td>
-   <td style="text-align:right;"> 1966 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ukraine </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1993 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ukraine </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1994 </td>
-   <td style="text-align:right;"> 1995 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Ukraine </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Yugoslavia </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1944 </td>
-   <td style="text-align:right;"> 1944 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zambia </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> -7 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 2003 </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> -4 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 2001 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> -6 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1999 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> -5 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> -3 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 2000 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> -88 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1979 </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Zimbabwe (Rhodesia) </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 1980 </td>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-</tbody>
-</table>
+
+
+|country_name                | Polity3| polity2| polity| years|  max|  n|
+|:---------------------------|-------:|-------:|------:|-----:|----:|--:|
+|Afghanistan                 |      -7|       0|    -77|  1978| 1978|  1|
+|Albania                     |      -9|      -5|    -88|  1945| 1945|  1|
+|Albania                     |      -9|       0|    -77|  1939| 1944|  6|
+|Angola                      |      -6|      -3|    -88|  1991| 1991|  1|
+|Angola                      |      -5|      -1|    -88|  1993| 1994|  2|
+|Angola                      |      -4|      -2|    -88|  1995| 1996|  2|
+|Angola                      |      -3|      -2|     -2|  2002| 2003|  2|
+|Argentina                   |      -4|      -3|    -88|  1956| 1956|  1|
+|Austria                     |       0|      -1|    -88|  1933| 1933|  1|
+|Austria                     |       8|       5|    -88|  1945| 1945|  1|
+|Bhutan                      |      -8|     -10|    -10|  1953| 2003| 51|
+|Bolivia                     |      -5|      -4|    -88|  1952| 1952|  1|
+|Bolivia                     |      -3|      -4|    -88|  1955| 1955|  1|
+|Botswana                    |       7|       6|      6|  1969| 1986| 18|
+|Botswana                    |       8|       7|      7|  1987| 1996| 10|
+|Botswana                    |       9|       8|      8|  1997| 2003|  7|
+|Brazil                      |      -5|      -6|    -88|  1932| 1932|  1|
+|Bulgaria                    |      -8|      -2|    -88|  1944| 1944|  1|
+|Bulgaria                    |      -7|      -4|    -88|  1945| 1945|  1|
+|Bulgaria                    |      -6|      -7|    -88|  1934| 1934|  1|
+|Burundi                     |      -7|      -3|    -88|  1992| 1992|  1|
+|Cambodia (Kampuchea)        |      -8|      -7|    -88|  1970| 1970|  1|
+|Cambodia (Kampuchea)        |      -2|       0|    -88|  1988| 1988|  1|
+|Cambodia (Kampuchea)        |      -1|       0|    -88|  1989| 1989|  1|
+|Cambodia (Kampuchea)        |      -1|       1|    -88|  1990| 1990|  1|
+|Cambodia (Kampuchea)        |       0|       1|    -88|  1991| 1992|  2|
+|Chad                        |      -7|      -4|    -88|  1984| 1984|  1|
+|Chad                        |      -7|      -3|    -88|  1978| 1978|  1|
+|Chad                        |      -7|       0|    -77|  1979| 1983|  5|
+|Chile                       |       1|       0|    -88|  1924| 1924|  1|
+|China                       |      -1|      -2|    -88|  1913| 1913|  1|
+|Comoros                     |       4|       0|    -77|  1995| 1995|  1|
+|Croatia                     |       7|       8|      8|  2000| 2003|  4|
+|Cuba                        |      -8|      -4|    -88|  1960| 1960|  1|
+|Czechoslovakia              |      -7|       0|    -77|  1968| 1968|  1|
+|Denmark                     |       0|       1|    -88|  1904| 1904|  1|
+|Denmark                     |       1|       2|    -88|  1905| 1905|  1|
+|Denmark                     |       2|       3|    -88|  1906| 1906|  1|
+|Denmark                     |       5|       4|    -88|  1909| 1909|  1|
+|Denmark                     |       6|       5|    -88|  1910| 1910|  1|
+|Denmark                     |       7|       6|    -88|  1911| 1911|  1|
+|Dominican Republic          |      -3|       0|    -77|  1861| 1864|  4|
+|Estonia                     |       6|       7|      7|  1999| 1999|  1|
+|Estonia                     |       6|       9|      9|  2000| 2003|  4|
+|Fiji                        |       6|       5|    -88|  2000| 2000|  1|
+|France                      |      -7|      -8|    -88|  1860| 1860|  1|
+|France                      |       0|      -1|    -88|  1871| 1871|  1|
+|Guinea-Bissau               |       5|       0|    -77|  1998| 1998|  1|
+|Guinea-Bissau               |       5|       3|    -88|  1999| 1999|  1|
+|Haiti                       |       3|       2|    -88|  1999| 1999|  1|
+|Hungary                     |      -5|      -6|    -88|  1918| 1918|  1|
+|Hungary                     |      -5|      -4|    -88|  1946| 1946|  1|
+|Hungary                     |      -3|      -2|    -88|  1945| 1945|  1|
+|Indonesia                   |       7|       6|      6|  1999| 2003|  5|
+|Iran (Persia)               |      -9|       0|    -88|  1979| 1979|  1|
+|Iran (Persia)               |      -8|      -2|    -88|  1980| 1980|  1|
+|Iran (Persia)               |      -8|      -1|    -88|  1921| 1921|  1|
+|Iran (Persia)               |      -7|      -6|    -88|  1924| 1924|  1|
+|Iran (Persia)               |      -7|      -4|    -88|  1923| 1981|  2|
+|Iran (Persia)               |      -7|      -3|    -88|  1922| 1922|  1|
+|Italy/Sardinia              |      -7|      -4|     -4|  1861| 1861|  1|
+|Italy/Sardinia              |       1|       2|    -88|  1945| 1945|  1|
+|Italy/Sardinia              |       4|       5|    -88|  1946| 1946|  1|
+|Italy/Sardinia              |       7|       8|    -88|  1947| 1947|  1|
+|Korea, People's Republic of |      -9|     -10|    -10|  1994| 2003| 10|
+|Laos                        |      -7|      -5|    -88|  1974| 1974|  1|
+|Laos                        |      -6|      -2|    -88|  1973| 1973|  1|
+|Lesotho                     |       8|       0|    -77|  1998| 1998|  1|
+|Lesotho                     |       8|       2|    -88|  1999| 1999|  1|
+|Lesotho                     |       8|       4|    -88|  2000| 2000|  1|
+|Lesotho                     |       8|       6|    -88|  2001| 2001|  1|
+|Liberia                     |      -1|       0|    -88|  1996| 1996|  1|
+|Luxembourg                  |       2|      -3|     -3|  1879| 1879|  1|
+|Luxembourg                  |      10|       7|      7|  1919| 1919|  1|
+|Malawi                      |       5|       4|      4|  2001| 2002|  2|
+|Malawi                      |       6|       5|      5|  2003| 2003|  1|
+|Malawi                      |       7|       6|      6|  1994| 2000|  7|
+|Mali                        |       6|       7|      7|  2002| 2003|  2|
+|Mexico                      |      -8|      -9|    -88|  1879| 1879|  1|
+|Mexico                      |      -7|      -8|    -88|  1878| 1878|  1|
+|Morocco                     |      -5|      -4|    -88|  1961| 1962|  2|
+|Morocco                     |      -2|      -3|     -3|  1963| 1964|  2|
+|Mozambique                  |       6|       5|      5|  1994| 2003| 10|
+|Niger                       |       4|       5|      5|  1999| 2003|  5|
+|Papua New Guinea            |      10|       4|      4|  1975| 2003| 29|
+|Peru                        |      -3|      -4|    -88|  1919| 1919|  1|
+|Peru                        |      -1|       0|    -88|  1932| 1932|  1|
+|Peru                        |       2|      -6|     -6|  1948| 1949|  2|
+|Peru                        |       2|       3|    -88|  1979| 1979|  1|
+|Peru                        |       4|      -6|     -6|  1962| 1962|  1|
+|Peru                        |       4|      -2|     -2|  1950| 1955|  6|
+|Peru                        |       4|       5|      5|  1956| 1961|  6|
+|Poland                      |      -7|      -5|    -88|  1946| 1946|  1|
+|Poland                      |      -7|      -2|    -88|  1945| 1945|  1|
+|Portugal                    |      -4|      -3|    -88|  1820| 1821|  2|
+|Portugal                    |      -3|      -4|    -88|  1833| 1833|  1|
+|Rumania                     |      -6|      -7|    -88|  1940| 1940|  1|
+|Rumania                     |      -1|      -2|    -88|  1989| 1989|  1|
+|Russia (Soviet Union)       |       4|       3|      3|  1993| 1999|  7|
+|Russia (Soviet Union)       |       6|       5|      5|  1992| 1992|  1|
+|Russia (Soviet Union)       |       7|       6|      6|  2000| 2003|  4|
+|Rwanda                      |      -6|      -7|     -7|  1993| 1993|  1|
+|Serbia                      |      -2|      -3|    -88|  1868| 1868|  1|
+|Sierra Leone                |       5|       2|    -88|  2001| 2001|  1|
+|Sri Lanka (Ceylon)          |       6|       5|      5|  2003| 2003|  1|
+|Sweden                      |      -8|      -9|    -88|  1811| 1811|  1|
+|Sweden                      |      -1|      -2|    -88|  1908| 1908|  1|
+|Sweden                      |       7|       8|    -88|  1915| 1915|  1|
+|Tanzania/Tanganyika         |      -7|      -6|     -6|  1961| 1991| 31|
+|Tanzania/Tanganyika         |      -6|      -5|     -5|  1992| 1994|  3|
+|Tanzania/Tanganyika         |       2|      -1|     -1|  2000| 2003|  4|
+|Thailand                    |      -5|      -4|    -88|  1934| 1934|  1|
+|Togo                        |      -4|      -3|    -88|  1992| 1992|  1|
+|Uganda                      |       1|       0|    -88|  1966| 1966|  1|
+|Ukraine                     |       6|       5|      5|  1993| 1993|  1|
+|Ukraine                     |       6|       7|      7|  1994| 1995|  2|
+|Ukraine                     |       7|       6|      6|  2000| 2003|  4|
+|Yugoslavia                  |      -5|      -4|    -88|  1944| 1944|  1|
+|Zambia                      |       1|       5|      5|  2001| 2003|  3|
+|Zimbabwe (Rhodesia)         |      -7|      -4|     -4|  2002| 2003|  2|
+|Zimbabwe (Rhodesia)         |      -6|      -4|     -4|  2001| 2001|  1|
+|Zimbabwe (Rhodesia)         |      -6|      -3|     -3|  1999| 1999|  1|
+|Zimbabwe (Rhodesia)         |      -5|      -3|     -3|  2000| 2000|  1|
+|Zimbabwe (Rhodesia)         |       5|       4|    -88|  1979| 1979|  1|
+|Zimbabwe (Rhodesia)         |       5|       4|      4|  1980| 1982|  3|
 
 # PITF
 
@@ -3948,78 +1436,22 @@ print(kable(democracy %>%
 ```
 
 ```
-## <table>
-## <caption>Relationship between reversed polyarchy measure and polyarchy contestation measure</caption>
-##  <thead>
-##   <tr>
-##    <th style="text-align:right;"> polyarchy_reversed </th>
-##    <th style="text-align:right;"> polyarchy_contestation </th>
-##    <th style="text-align:right;"> n </th>
-##   </tr>
-##  </thead>
-## <tbody>
-##   <tr>
-##    <td style="text-align:right;"> 0 </td>
-##    <td style="text-align:right;"> 1 </td>
-##    <td style="text-align:right;"> 35 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 1 </td>
-##    <td style="text-align:right;"> 2 </td>
-##    <td style="text-align:right;"> 12 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 2 </td>
-##    <td style="text-align:right;"> 2 </td>
-##    <td style="text-align:right;"> 24 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 3 </td>
-##    <td style="text-align:right;"> 3 </td>
-##    <td style="text-align:right;"> 22 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 4 </td>
-##    <td style="text-align:right;"> 4 </td>
-##    <td style="text-align:right;"> 17 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 5 </td>
-##    <td style="text-align:right;"> 4 </td>
-##    <td style="text-align:right;"> 16 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 5 </td>
-##    <td style="text-align:right;"> 5 </td>
-##    <td style="text-align:right;"> 10 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 6 </td>
-##    <td style="text-align:right;"> 5 </td>
-##    <td style="text-align:right;"> 33 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 7 </td>
-##    <td style="text-align:right;"> 6 </td>
-##    <td style="text-align:right;"> 19 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 8 </td>
-##    <td style="text-align:right;"> 7 </td>
-##    <td style="text-align:right;"> 21 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 9 </td>
-##    <td style="text-align:right;"> 8 </td>
-##    <td style="text-align:right;"> 35 </td>
-##   </tr>
-##   <tr>
-##    <td style="text-align:right;"> 10 </td>
-##    <td style="text-align:right;"> 9 </td>
-##    <td style="text-align:right;"> 113 </td>
-##   </tr>
-## </tbody>
-## </table>
+## 
+## 
+## | polyarchy_reversed| polyarchy_contestation|   n|
+## |------------------:|----------------------:|---:|
+## |                  0|                      1|  35|
+## |                  1|                      2|  12|
+## |                  2|                      2|  24|
+## |                  3|                      3|  22|
+## |                  4|                      4|  17|
+## |                  5|                      4|  16|
+## |                  5|                      5|  10|
+## |                  6|                      5|  33|
+## |                  7|                      6|  19|
+## |                  8|                      7|  21|
+## |                  9|                      8|  35|
+## |                 10|                      9| 113|
 ```
 
 # Political Regime Change (PRC)/Gasiorowski dataset

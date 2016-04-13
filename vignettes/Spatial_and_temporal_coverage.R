@@ -5,7 +5,7 @@ library(dplyr)
 library(ggplot2)
 library(GGally)
 opts_chunk$set(echo=TRUE)
-options(knitr.table.format = 'html')
+options(knitr.table.format = 'markdown')
 
 
 ## ----general_characteristics, results = 'asis'---------------------------

@@ -4,7 +4,7 @@
 \name{extended_uds}
 \alias{extended_uds}
 \title{Extended UDS}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24120 rows and 52 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24109 rows and 52 columns.}
 \usage{
 extended_uds
 }
@@ -589,7 +589,8 @@ Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
   \item{lat}{The rough latitude of the state.}
   \item{lon}{The rough longitude of the state.}
   \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-  }
+  \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
+}
 }
 \author{
 Xavier Marquez, Political Science and International Relations

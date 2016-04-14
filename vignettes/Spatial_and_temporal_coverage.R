@@ -8,12 +8,12 @@ opts_chunk$set(echo=TRUE)
 options(knitr.table.format = 'markdown')
 
 
-## ----general_characteristics, results = 'asis'---------------------------
+## ----general_characteristics---------------------------------------------
 library(knitr)
 library(QuickUDS)
 library(dplyr)
 
-print(kable(democracy_long %>% 
+kable(democracy_long %>% 
         group_by(variable) %>%
         summarise(distinct_countries = n_distinct(country_name),
                   distinct_years = n_distinct(year),
@@ -27,7 +27,7 @@ print(kable(democracy_long %>%
                   min_value = min(value),
                   max_value = max(value),
                   sd = sd(value)),
-      digits = 2))
+      digits = 2)
 
 
 ## ----arat_coverage, fig.width=7,fig.height=7-----------------------------
@@ -319,30 +319,30 @@ ggplot(data = data) +
   facet_wrap(~variable, ncol=2)
 
 
-## ----kailitz_classification_problems_1, results='asis'-------------------
-print(kable(kailitz.yearly %>% 
-        count(multiple_regimes = grepl("-",combined_regime))))
+## ----kailitz_classification_problems_1-----------------------------------
+kable(kailitz.yearly %>% 
+        count(multiple_regimes = grepl("-",combined_regime)))
 
-print(kable(kailitz.yearly %>% 
+kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
-        summarise(min = min(year), max = max(year), n = n())))
+        summarise(min = min(year), max = max(year), n = n()))
 
 
-## ----kailitz_classification_problems_2, results='asis'-------------------
-print(kable(kailitz.yearly %>% 
+## ----kailitz_classification_problems_2-----------------------------------
+kable(kailitz.yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
         group_by(combined_regime, add=TRUE) %>%
         summarise(min = min(year), max = max(year), n = n()) %>%
-        filter(grepl("democracy",combined_regime, ignore.case=TRUE))))
+        filter(grepl("democracy",combined_regime, ignore.case=TRUE)))
 
-## ----kailitz_index_count, results = 'asis'-------------------------------
-print(kable(kailitz.yearly %>%
-        count(kailitz_binary,kailitz_tri,combined_regime)))
+## ----kailitz_index_count-------------------------------------------------
+kable(kailitz.yearly %>%
+        count(kailitz_binary,kailitz_tri,combined_regime))
 
 ## ----lied_coverage, fig.width=7,fig.height=7-----------------------------
 
@@ -479,11 +479,11 @@ library(GGally)
 ggcorr(data = democracy %>% select(PEPS1i:PEPS2v), label=TRUE,label_round=3) + scale_fill_gradient2(midpoint = 0.7)
 
 
-## ----peps_problems, results='asis'---------------------------------------
-print(kable(democracy %>%
+## ----peps_problems-------------------------------------------------------
+kable(democracy %>%
         filter(Polity3 != polity2) %>%
         group_by(country_name,Polity3,polity2,polity) %>%
-        summarise(years = min(year), max = max(year), n = n())))
+        summarise(years = min(year), max = max(year), n = n()))
 
 
 ## ----pitf_coverage, fig.width=7,fig.height=7-----------------------------
@@ -554,10 +554,10 @@ ggplot(data = data) +
   labs(y = "Country-years") +
   facet_wrap(~variable, ncol=2)
 
-print(kable(democracy %>% 
+kable(democracy %>% 
         filter(!is.na(polyarchy_reversed)) %>% 
         count(polyarchy_reversed,polyarchy_contestation),
-      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure"))
+      caption = "Relationship between reversed polyarchy measure and polyarchy contestation measure")
 
 
 ## ----prc_coverage, fig.width=7,fig.height=7------------------------------
@@ -709,4 +709,53 @@ ggplot(data = data) +
 
 ggcorr(data = democracy %>% select(v2x_api:v2x_polyarchy), label=TRUE,label_round=3, hjust=1) + scale_fill_gradient2(midpoint = 0.7)
 
+
+## ----wahman_coverage-----------------------------------------------------
+
+data <- democracy_long %>% filter(variable == "wahman_teorell_hadenius")
+
+temporal_coverage(data) 
+
+spatial_coverage(data)
+
+
+## ----wahman_distribution-------------------------------------------------
+
+ggplot(data = data) +
+  geom_histogram(aes(x=value)) +
+  theme_bw() +
+  theme(legend.position = "bottom") +
+  labs(y = "Country-years") +
+  facet_wrap(~variable, ncol=2)
+
+
+## ----country_name_changes------------------------------------------------
+library(stringr)
+
+democracy_long <- democracy_long %>% 
+  mutate(original_country_name = str_to_title(original_country_name),
+         country_name = str_to_title(country_name))
+
+kable(democracy_long %>%
+        group_by(country_name,original_country_name) %>%
+        filter(original_country_name != country_name)  %>%
+        summarise(min = min(year), max = max(year), num_changes = n(), variables = paste(unique(variable), collapse = ", ")),
+      caption = "Country name changes")
+
+## ----code_differences----------------------------------------------------
+count_sequence_breaks <- function(seq, seq_step = 1) {
+  first_diff <- c(seq_step, diff(seq)) - seq_step
+  periods <- cumsum(abs(first_diff))
+  periods
+}
+
+kable(democracy %>%
+        filter(GWn != cown) %>%
+        distinct(country_name,GWn,cown,year) %>%
+        arrange(country_name,GWn,cown,year) %>% 
+        group_by(country_name,GWn,cown) %>%
+        mutate(period = count_sequence_breaks(year)) %>%
+        group_by(period, add = TRUE) %>%
+        summarise(min = min(year), max = max(year), n = n()),
+      caption = "Differences between Gleditsch and Ward codes and COW codes")
 

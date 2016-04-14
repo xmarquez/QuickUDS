@@ -12,4 +12,6 @@
 #'   \item{lat}{The rough latitude of the state.}
 #'   \item{lon}{The rough longitude of the state.}
 #'   \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-#'   }
+#'   \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
+#'}
+

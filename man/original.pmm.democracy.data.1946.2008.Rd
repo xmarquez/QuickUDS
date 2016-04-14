@@ -4,7 +4,7 @@
 \name{original.pmm.democracy.data.1946.2008}
 \alias{original.pmm.democracy.data.1946.2008}
 \title{Replication data for Pemstein, Meserve, and Melton 2010}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 9137 rows and 28 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 9137 rows and 29 columns.}
 \usage{
 original.pmm.democracy.data.1946.2008
 }
@@ -98,7 +98,8 @@ Higher values are more democratic.}
   \item{lat}{The rough latitude of the state.}
   \item{lon}{The rough longitude of the state.}
   \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-  }
+  \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
+}
 }
 \references{
 Arat, Zehra F. 1991.

@@ -5,7 +5,7 @@
 \alias{kailitz}
 \alias{kailitz.yearly}
 \title{The Steffen Kailitz Dataset of Authoritarian Regime Types}
-\format{An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 813 rows and 16 columns.}
+\format{An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 813 rows and 17 columns.}
 \source{
 Kailitz, Steffen. 2013. Classifying political regimes revisited:
   legitimation and durability. Democratization 20 (1): 39-60. Original data
@@ -78,7 +78,8 @@ Contains the authoritarian regime types dataset from Kailitz,
   \item{lat}{The rough latitude of the state.}
   \item{lon}{The rough longitude of the state.}
   \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-  }
+  \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
+}
 }
 \seealso{
 Other democracy: \code{\link{democracy}},

@@ -5,7 +5,7 @@
 \alias{democracy}
 \alias{democracy_long}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{data.frame} with 24157 rows and 79 columns.}
+\format{An object of class \code{data.frame} with 24146 rows and 80 columns.}
 \usage{
 democracy
 
@@ -923,7 +923,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \item{lat}{The rough latitude of the state.}
   \item{lon}{The rough longitude of the state.}
   \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-  }
+  \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
+}
 }
 \author{
 Xavier Marquez, Political Science and International Relations Programme, Victoria University of Wellington, marquez.x@gmail.com

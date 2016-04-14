@@ -101,7 +101,7 @@ replication_2011_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    10.78     0.36     8.69     1.18     7.49     1.73     0.00
+##    11.05     0.35     8.59     1.40     7.18     2.11     0.00
 ```
 
 There is a convenient wrapper for ```mirt(data[ , indexes ] ,model = 1, itemtype = "graded", SE = TRUE)```, in case you just want to re-fit Pemstein, Meserve, and Melton's original model without any special tweaking:
@@ -211,29 +211,42 @@ We can also check that these scores are, in fact, perfectly correlated with Pems
 
 ```r
 library(dplyr)
+comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
+
+library(Hmisc)
+```
+
+```
+## Loading required package: survival
+```
+
+```
+## Loading required package: Formula
+```
+
+```
+## Loading required package: ggplot2
 ```
 
 ```
 ## 
-## Attaching package: 'dplyr'
+## Attaching package: 'Hmisc'
 ```
 
 ```
-## The following objects are masked from 'package:stats':
+## The following objects are masked from 'package:dplyr':
 ## 
-##     filter, lag
+##     combine, src, summarize
 ```
 
 ```
 ## The following objects are masked from 'package:base':
 ## 
-##     intersect, setdiff, setequal, union
+##     format.pval, round.POSIXt, trunc.POSIXt, units
 ```
 
 ```r
-comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
-
-Hmisc::rcorr(comparison %>% select(z1,mean) %>% as.matrix())
+rcorr(comparison %>% select(z1,mean) %>% as.matrix())
 ```
 
 ```
@@ -288,19 +301,19 @@ extended_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 172 EM iterations.
+## Converged within 1e-04 tolerance after 235 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 116553.8
+## Condition number of information matrix = 116767.5
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -161653.3
-## AIC = 323600.5; AICc = 323602.3
-## BIC = 324789; SABIC = 324321.8
+## Log-likelihood = -161631.9
+## AIC = 323557.8; AICc = 323559.6
+## BIC = 324746.1; SABIC = 324279
 ```
 
 ```r
@@ -309,7 +322,7 @@ extended_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    30.39     1.01    22.22     4.65    17.55     7.13     0.00
+##    32.95     0.91    24.91     6.49    18.41     7.11     0.00
 ```
 
 ```r
@@ -317,20 +330,20 @@ extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 ```
 
 ```
-## Source: local data frame [23,974 x 8]
+## Source: local data frame [23,963 x 8]
 ## 
 ##    country_name   GWn  cown  year         z1     se.z1    pct025    pct975
 ##           (chr) (dbl) (dbl) (dbl)      (dbl)     (dbl)     (dbl)     (dbl)
-## 1   Afghanistan   700   700  1747 -0.6158403 0.6786449 -1.945984 0.7143037
-## 2   Afghanistan   700   700  1748 -0.6158403 0.6786449 -1.945984 0.7143037
-## 3   Afghanistan   700   700  1749 -0.6158403 0.6786449 -1.945984 0.7143037
-## 4   Afghanistan   700   700  1750 -0.6158403 0.6786449 -1.945984 0.7143037
-## 5   Afghanistan   700   700  1751 -0.6158403 0.6786449 -1.945984 0.7143037
-## 6   Afghanistan   700   700  1752 -0.6158403 0.6786449 -1.945984 0.7143037
-## 7   Afghanistan   700   700  1753 -0.6158403 0.6786449 -1.945984 0.7143037
-## 8   Afghanistan   700   700  1754 -0.6158403 0.6786449 -1.945984 0.7143037
-## 9   Afghanistan   700   700  1755 -0.6158403 0.6786449 -1.945984 0.7143037
-## 10  Afghanistan   700   700  1756 -0.6158403 0.6786449 -1.945984 0.7143037
+## 1   Afghanistan   700   700  1747 -0.6163994 0.6784777 -1.946216 0.7134168
+## 2   Afghanistan   700   700  1748 -0.6163994 0.6784777 -1.946216 0.7134168
+## 3   Afghanistan   700   700  1749 -0.6163994 0.6784777 -1.946216 0.7134168
+## 4   Afghanistan   700   700  1750 -0.6163994 0.6784777 -1.946216 0.7134168
+## 5   Afghanistan   700   700  1751 -0.6163994 0.6784777 -1.946216 0.7134168
+## 6   Afghanistan   700   700  1752 -0.6163994 0.6784777 -1.946216 0.7134168
+## 7   Afghanistan   700   700  1753 -0.6163994 0.6784777 -1.946216 0.7134168
+## 8   Afghanistan   700   700  1754 -0.6163994 0.6784777 -1.946216 0.7134168
+## 9   Afghanistan   700   700  1755 -0.6163994 0.6784777 -1.946216 0.7134168
+## 10  Afghanistan   700   700  1756 -0.6163994 0.6784777 -1.946216 0.7134168
 ## ..          ...   ...   ...   ...        ...       ...       ...       ...
 ```
 
@@ -381,7 +394,7 @@ mean_ud_period
 ```
 
 ```
-## [1] 0.483806
+## [1] 0.482819
 ```
 
 ```r
@@ -595,7 +608,7 @@ prob_more(extended_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.7321254
+## [1] 0.7322647
 ```
 
 Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:
@@ -614,7 +627,7 @@ prob_more(extended_scores, "United States of America","United States of America"
 ```
 
 ```
-## [1] 0.999878
+## [1] 0.9998778
 ```
 
 If you find this package useful, cite both it and Pemstein, Meserve, and Melton's original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using ```citation```:

@@ -14,7 +14,8 @@ Imports:
     stringr,
     plyr
 Depends:
-    mirt
+    mirt,
+    R (>= 2.10)
 Suggests:
     knitr,
     rmarkdown,

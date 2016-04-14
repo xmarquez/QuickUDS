@@ -2,3 +2,8 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
+^Conversion script\.R$
+^csvs-and-pdfs$
+^csvs-and-pdfs/QuickUDS\.pdf$
+^csvs-and-pdfs/extended_uds\.csv$
+^csvs-and-pdfs/democracy\.csv$

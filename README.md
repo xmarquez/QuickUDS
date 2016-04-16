@@ -32,7 +32,6 @@ library(dplyr)
 #>     intersect, setdiff, setequal, union
 library(QuickUDS)
 #> Loading required package: mirt
-#> Warning: package 'mirt' was built under R version 3.2.4
 #> Loading required package: stats4
 #> Loading required package: lattice
 
@@ -52,14 +51,14 @@ data <- data %>% arrange(country_name,year)
 
 data2 <- prepare_democracy(indexes)
 
-# The model converges after 1936 iterations, about 2.5 mins (156 secs) in my not-special desktop machine
+# The model converges after 1834 iterations, about 2.5 mins (156 secs) in my not-special desktop machine
 extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500))
 extended_scores <- democracy_scores(extended_model)
 extended_uds <- bind_cols(data,extended_scores)
 
 extended_model@time
 #>    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-#>   160.16     1.41   147.97    92.53    55.38    10.63     0.05
+#>   331.31     3.06   298.14   150.96   146.94    29.92     0.08
 extended_model
 #> 
 #> Call:
@@ -67,19 +66,19 @@ extended_model
 #>     SE = SE, verbose = FALSE, technical = ..2)
 #> 
 #> Full-information item factor analysis with 1 factor(s).
-#> Converged within 1e-04 tolerance after 1936 EM iterations.
+#> Converged within 1e-04 tolerance after 1834 EM iterations.
 #> mirt version: 1.16 
 #> M-step optimizer: BFGS 
 #> EM acceleration: Ramsay
 #> Number of rectangular quadrature: 61
 #> 
 #> Information matrix estimated with method: crossprod
-#> Condition number of information matrix = 11961.02
+#> Condition number of information matrix = 11964.42
 #> Second-order test: model is a possible local maximum
 #> 
-#> Log-likelihood = -201095
-#> AIC = 402548; AICc = 402550.7
-#> BIC = 403996.3; SABIC = 403427.4
+#> Log-likelihood = -201072.7
+#> AIC = 402503.4; AICc = 402506.1
+#> BIC = 403951.6; SABIC = 403382.7
 summary(extended_model)
 #>                             F1    h2
 #> arat_pmm                 0.896 0.802
@@ -93,10 +92,10 @@ summary(extended_model)
 #> freedomhouse_electoral   0.986 0.972
 #> gwf                      0.963 0.927
 #> hadenius_pmm             0.950 0.902
-#> kailitz_tri              0.936 0.875
+#> kailitz_tri              0.935 0.875
 #> lied                     0.915 0.838
 #> mainwaring               0.970 0.942
-#> magaloni_regime_tri      0.957 0.916
+#> magaloni_regime_tri      0.957 0.915
 #> munck_pmm                0.940 0.883
 #> pacl                     0.956 0.914
 #> PEPS1v                   0.992 0.984
@@ -111,8 +110,8 @@ summary(extended_model)
 #> vanhanen_democratization 0.934 0.872
 #> wahman_teorell_hadenius  0.991 0.983
 #> 
-#> SS loadings:  25.466 
-#> Proportion Var:  0.91 
+#> SS loadings:  25.465 
+#> Proportion Var:  0.909 
 #> 
 #> Factor correlations: 
 #> 
@@ -147,7 +146,7 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions in the package, see the [package vignette](https://github.com/xmarquez/QuickUDS/tree/master/vignettes).
 
-The extended UD scores are available for `24120` country-years (`224` unique countries and non-sovereign territories):
+The extended UD scores are available for `24109` country-years (`224` unique countries and non-sovereign territories):
 
 ![](README-unnamed-chunk-6-1.png)
 

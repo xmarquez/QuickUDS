@@ -41,8 +41,7 @@ replication_2011_scores <- cbind(data,replication_2011_scores)
 library(dplyr)
 comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
 
-library(Hmisc)
-rcorr(comparison %>% select(z1,mean) %>% as.matrix())
+cor(comparison %>% select(z1,mean), use="pairwise.complete")
 
 ## ------------------------------------------------------------------------
 indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm","doorenspleet","eiu","freedomhouse",

@@ -514,7 +514,7 @@
 #'   \item{adj.z1}{The mean of the latent unfied democracy variable (the factor
 #'   scores computed by the model), adjusted to match the average cutpoints for
 #'   the dichotomous measures of democracy used to generate it (essentially, z1
-#'   - 0.64). See the vignette for this package for details.}
+#'   - 0.64). See the vignette \code{vignette("Replicating_and_extending_the_UD_scores")} for details.}
 #'
 #'   \item{adj.pct975}{The top of the 95 percent confidence interval around z1,
 #'   adjusted to match the average cutpoints for the dichotomous measures of

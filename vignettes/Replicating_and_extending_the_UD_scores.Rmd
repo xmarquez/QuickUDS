@@ -134,8 +134,7 @@ We can also check that these scores are, in fact, perfectly correlated with Pems
 library(dplyr)
 comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
 
-library(Hmisc)
-rcorr(comparison %>% select(z1,mean) %>% as.matrix())
+cor(comparison %>% select(z1,mean), use="pairwise.complete")
 ```
 
 (For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).

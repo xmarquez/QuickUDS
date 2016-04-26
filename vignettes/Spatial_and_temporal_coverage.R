@@ -710,7 +710,7 @@ ggplot(data = data) +
 ggcorr(data = democracy %>% select(v2x_api:v2x_polyarchy), label=TRUE,label_round=3, hjust=1) + scale_fill_gradient2(midpoint = 0.7)
 
 
-## ----wahman_coverage-----------------------------------------------------
+## ----wahman_coverage, fig.width=7,fig.height=7---------------------------
 
 data <- democracy_long %>% filter(variable == "wahman_teorell_hadenius")
 
@@ -750,12 +750,45 @@ count_sequence_breaks <- function(seq, seq_step = 1) {
 }
 
 kable(democracy %>%
-        filter(GWn != cown) %>%
-        distinct(country_name,GWn,cown,year) %>%
-        arrange(country_name,GWn,cown,year) %>% 
-        group_by(country_name,GWn,cown) %>%
+        filter(GWn != cown | GWn != polity_ccode | cown != polity_ccode) %>%
+        distinct(country_name,GWn,cown,polity_ccode,year) %>%
+        arrange(country_name,GWn,cown,polity_ccode,year) %>% 
+        group_by(country_name,GWn,cown,polity_ccode) %>%
         mutate(period = count_sequence_breaks(year)) %>%
         group_by(period, add = TRUE) %>%
         summarise(min = min(year), max = max(year), n = n()),
-      caption = "Differences between Gleditsch and Ward codes and COW codes")
+      caption = "Differences between Gleditsch and Ward codes, COW codes, and Polity codes")
+
+## ----cow_system_differences----------------------------------------------
+
+COW_system <- read.csv("http://www.correlatesofwar.org/data-sets/state-system-membership/system2011/at_download/file")
+
+COW_system <- COW_system %>% rename(cown = ccode)
+
+kable(anti_join(COW_system,democracy))
+
+## ----cow_system_duplicates-----------------------------------------------
+kable(democracy %>% 
+        group_by(country_name,year) %>% 
+        filter(n() > 1) %>% 
+        group_by(country_name) %>% 
+        summarise(countries = paste(unique(country_name),collapse = ", "), min(year), max(year)))
+
+kable(democracy %>% 
+        group_by(GWn,year) %>% 
+        filter(n() > 1) %>% 
+        group_by(GWn) %>% 
+        summarise(countries = paste(unique(country_name),collapse = ", "), min(year), max(year)))
+
+kable(democracy %>% 
+        group_by(polity_ccode,year) %>% 
+        filter(n() > 1) %>% 
+        group_by(polity_ccode) %>% 
+        summarise(countries = paste(unique(country_name),collapse = ", "), min(year), max(year)))
+
+kable(democracy %>% 
+        group_by(cown,year) %>% 
+        filter(n() > 1) %>% 
+        group_by(cown) %>% 
+        summarise(countries = paste(unique(country_name),collapse = ", "), min(year), max(year)))
 

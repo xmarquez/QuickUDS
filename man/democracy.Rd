@@ -5,7 +5,7 @@
 \alias{democracy}
 \alias{democracy_long}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{data.frame} with 24146 rows and 80 columns.}
+\format{An object of class \code{data.frame} with 24085 rows and 81 columns.}
 \usage{
 democracy
 
@@ -200,8 +200,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   all datapoints conform to convention, but some errors may remain.
 
   A full discussion of the temporal and geographic coverage of these
-  variables, is available in a package vignette
-  (\link{Spatial_and_temporal_coverage}).
+  variables, is available in a package vignette; see \code{vignette("Spatial_and_temporal_coverage")} for details.
 }
 
 \section{A note on sources}{
@@ -221,8 +220,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   available from Reich 2002 that seem to have something to do with the
   treatment of country-years that include transition periods. A more extended
   discussion of the differences between the PMM replication data and the
-  "original" data is available in a package vignette
-  (\link{Differences_between_PMM_and_original_data})
+  original data sources is available in a package vignette; see \code{vignette("Differences_between_PMM_and_original_data")} for details.)
 
   Second, I have constructed the \code{przeworski} and \code{pitf*} variables
   following the instructions in the source, but have not found the data
@@ -302,10 +300,9 @@ A dataset containing all (or nearly all) extant democracy indexes.
   description available at
   \url{http://users.clas.ufl.edu/bernhard/content/data/data.htm} This
   indicator has been put in country-year format, extending to 1913, with the
-  help of the panel of independent states by Gleditsch and Ward; independent
-  countries (not microstates) that were not included in the original dataset
-  are assumed to be non-democratic for the period. See the vignette
-  \link{Spatial_and_temporal_coverage} for more information about the
+  help of the Correlates of War panel of independent states; independent
+  countries (not microstates) in this panel that were not included in the original dataset
+  are assumed to be non-democratic for the period. See \code{vignette("Spatial_and_temporal_coverage")} for details for more information about the
   additional country-years generated in this way.}
 
   \item{bollen_pmm}{0-100 index of democracy from Bollen, Kenneth A. 2001.
@@ -345,7 +342,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   from 1 (least democratic) to 7 (most democratic). In this version the index
   stops at 2008. It also includes a value for 1981. For more on the
   differences between this variable and the current FH Freedom in the World
-  index, see \link{Differences_between_PMM_and_original_data}.}
+  index, see \code{vignette("Differences_between_PMM_and_original_data")}.}
 
   \item{freedomhouse_electoral}{An indicator of whether a country is an
   "electoral democracy" in Freedom House's estimation (1 = yes, 0 - no).
@@ -360,7 +357,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   autocracy, 1 = democracy. Extended beyond 1945 using Geddes, Wright, and
   Frantz's case variable, which encodes information about the first year of
   the regime. For more detail on the resulting additional country-years, see
-  the vignette at \link{Spatial_and_temporal_coverage}.}
+  the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
 
   \item{hadenius_pmm}{0-10 index of democracy from Hadenius, Axel. 1992.
   Democracy and Development. Cambridge: Cambridge University Press. Taken
@@ -448,7 +445,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   this version the indicator goes only to 1945, and it is missing some
   country-years. For more on the differences between this variable and the
   original Mainwaring et al data, see
-  \link{Differences_between_PMM_and_original_data}.}
+  \code{vignette("Differences_between_PMM_and_original_data")}.}
 
   \item{magaloni_democ_binary}{Dichotomous democracy indicator from Magaloni,
   Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
@@ -456,10 +453,9 @@ A dataset containing all (or nearly all) extant democracy indexes.
   codebook available at
   \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}.
   0 = autocracy (all types including multiparty autocracy), 1 = democracy.
-  Extended beyond 1950 using the duration_nr variable of the original
+  Extended beyond 1950 using the \code{duration_nr} variable of the original
   dataset, which encodes information about the first year of each regime. For
-  more detail on the resulting additional country-years, see the vignette at
-  \link{Spatial_and_temporal_coverage}.}
+  more detail on the resulting additional country-years, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
 
   \item{magaloni_regime_tri}{Trichotomous democracy indicator fromMagaloni,
   Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
@@ -467,11 +463,11 @@ A dataset containing all (or nearly all) extant democracy indexes.
   codebook available at
   \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}.
   1 = autocracy (all types except multipary autocracy), 2 = multiparty
-  autocracy, 3 = democracy. Extended beyond 1950 using the duration_nr
+  autocracy, 3 = democracy. Extended beyond 1950 using the \code{duration_nr}
   variable of the original dataset, which encodes information about the first
   year of each regime. For more detail on the resulting additional
   country-years, see the vignette at
-  \link{Spatial_and_temporal_coverage}.}
+  \code{vignette("Spatial_and_temporal_coverage")}.}
 
   \item{munck_pmm}{0-1 index of democracy from Munck, Gerardo L. 2009.
   Measuring Democracy: A Bridge Between Scholarship and Politics. Baltimore:
@@ -493,7 +489,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Compromise: A Latent Variable Analysis of Ten Measures of Regime Type." In:
   Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. This is missing
   a couple of countries in the original dataset; for more detail on the
-  missing cases, see \link{Differences_between_PMM_and_original_data}.}
+  missing cases, see \code{vignette("Differences_between_PMM_and_original_data")}.}
 
   \item{PEPS1i}{Participation-Enhanced Polity Score 1, polity score adjusted
   using IDEA Votes/Voting age population. From Bruce E. Moon, Jennifer Harvey
@@ -595,7 +591,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. In
   this version the indicator only goes to 1945, and it differs from
   \code{polity2} in a few cases. For more detail on the differences, see
-  \link{Differences_between_PMM_and_original_data}.}
+  \code{vignette("Differences_between_PMM_and_original_data")}.}
 
   \item{Polity3}{Cleaned up version of polity score from Bruce E. Moon,
   Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett, Joshua J.
@@ -605,7 +601,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   dataset is available here:
   \url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}. This differs
   from rom \code{polity2} in a few cases. For more detail on the differences,
-  see \link{Spatial_and_temporal_coverage}. }
+  see \code{vignette("Spatial_and_temporal_coverage")}. }
 
   \item{polyarchy_reversed}{0-10 index of democracy from Coppedge, Michael
   and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On Measuring
@@ -694,7 +690,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   the indicator only goes to 1945. It also differs from the original data in
   a few cases. For more detail on the differences, see  For more detail on
   the differences, see
-  \link{Differences_between_PMM_and_original_data}.}
+  \code{vignette("Differences_between_PMM_and_original_data")}.}
 
   \item{prc_notrans}{Same as \code{prc} but sets all 2 (transition) regimes to NA.}
 
@@ -747,7 +743,7 @@ A dataset containing all (or nearly all) extant democracy indexes.
   1 = authoritarian, 2 = democracy. This is extended for a few countries from
   the \code{o_startdate} variable in the original dataset. For more detail on
   the resulting additional country-years, see the vignette at
-  \link{Spatial_and_temporal_coverage}.}
+  \code{vignette("Spatial_and_temporal_coverage")}.}
 
   \item{ulfelder}{Dichotomous indicator of democracy from Ulfelder, Jay.
   2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
@@ -914,7 +910,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \item{country_name}{Standardized country name.}
   \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
   \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
-  \item{cown}{The Correlates of War numeric country code. This differs from Gleditsch and Ward's numeric country code in a few cases.}
+  \item{cown}{The Correlates of War numeric country code. This differs from Gleditsch and Ward's numeric country code in a few cases, due to the treatment of a couple of country terminations: West Germany becomes 255 in CoW after reunification, but stays as 260 in G & W; Serbia continues as 345 in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn; Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after unification is 679 in CoW, but it remains 678 on G & W, which considers it a continuation of the same state (absorbing South Yemen). Finally, Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for reasons I cannot determine.  For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
+  \item{polity_ccode}{The numeric country code of the country in the Polity dataset, which is based on, but not identical to, the CoW codes in a few cases. For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
   \item{region}{Region.}
   \item{continent}{Continent.}
   \item{GW_startdate}{The entry date of the state into the international system (usually the date of independence, though there can be more than one), according to Gleditsch and Ward, or 1 January 1816, whichever is later.}

@@ -101,7 +101,7 @@ replication_2011_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    11.05     0.35     8.59     1.40     7.18     2.11     0.00
+##    12.06     0.25    10.04     1.99     8.01     1.75     0.02
 ```
 
 There is a convenient wrapper for ```mirt(data[ , indexes ] ,model = 1, itemtype = "graded", SE = TRUE)```, in case you just want to re-fit Pemstein, Meserve, and Melton's original model without any special tweaking:
@@ -213,54 +213,13 @@ We can also check that these scores are, in fact, perfectly correlated with Pems
 library(dplyr)
 comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
 
-library(Hmisc)
+cor(comparison %>% select(z1,mean), use="pairwise.complete")
 ```
 
 ```
-## Loading required package: survival
-```
-
-```
-## Loading required package: Formula
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```
-## 
-## Attaching package: 'Hmisc'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     combine, src, summarize
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units
-```
-
-```r
-rcorr(comparison %>% select(z1,mean) %>% as.matrix())
-```
-
-```
-##      z1 mean
-## z1    1    1
-## mean  1    1
-## 
-## n= 9137 
-## 
-## 
-## P
-##      z1 mean
-## z1       0  
-## mean  0
+##             z1      mean
+## z1   1.0000000 0.9996936
+## mean 0.9996936 1.0000000
 ```
 
 (For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).
@@ -301,19 +260,19 @@ extended_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 235 EM iterations.
+## Converged within 1e-04 tolerance after 202 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 116767.5
+## Condition number of information matrix = 116529
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -161631.9
-## AIC = 323557.8; AICc = 323559.6
-## BIC = 324746.1; SABIC = 324279
+## Log-likelihood = -161682.4
+## AIC = 323658.7; AICc = 323660.5
+## BIC = 324847.2; SABIC = 324380
 ```
 
 ```r
@@ -322,7 +281,7 @@ extended_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    32.95     0.91    24.91     6.49    18.41     7.11     0.00
+##    31.72     1.02    23.43     5.46    17.95     7.25     0.00
 ```
 
 ```r
@@ -330,21 +289,21 @@ extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 ```
 
 ```
-## Source: local data frame [23,963 x 8]
+## Source: local data frame [23,972 x 8]
 ## 
-##    country_name   GWn  cown  year         z1     se.z1    pct025    pct975
-##           (chr) (dbl) (dbl) (dbl)      (dbl)     (dbl)     (dbl)     (dbl)
-## 1   Afghanistan   700   700  1747 -0.6163994 0.6784777 -1.946216 0.7134168
-## 2   Afghanistan   700   700  1748 -0.6163994 0.6784777 -1.946216 0.7134168
-## 3   Afghanistan   700   700  1749 -0.6163994 0.6784777 -1.946216 0.7134168
-## 4   Afghanistan   700   700  1750 -0.6163994 0.6784777 -1.946216 0.7134168
-## 5   Afghanistan   700   700  1751 -0.6163994 0.6784777 -1.946216 0.7134168
-## 6   Afghanistan   700   700  1752 -0.6163994 0.6784777 -1.946216 0.7134168
-## 7   Afghanistan   700   700  1753 -0.6163994 0.6784777 -1.946216 0.7134168
-## 8   Afghanistan   700   700  1754 -0.6163994 0.6784777 -1.946216 0.7134168
-## 9   Afghanistan   700   700  1755 -0.6163994 0.6784777 -1.946216 0.7134168
-## 10  Afghanistan   700   700  1756 -0.6163994 0.6784777 -1.946216 0.7134168
-## ..          ...   ...   ...   ...        ...       ...       ...       ...
+##    country_name   GWn  cown  year         z1     se.z1    pct025   pct975
+##           (chr) (dbl) (dbl) (dbl)      (dbl)     (dbl)     (dbl)    (dbl)
+## 1   Afghanistan   700   700  1747 -0.6164699 0.6784637 -1.946259 0.713319
+## 2   Afghanistan   700   700  1748 -0.6164699 0.6784637 -1.946259 0.713319
+## 3   Afghanistan   700   700  1749 -0.6164699 0.6784637 -1.946259 0.713319
+## 4   Afghanistan   700   700  1750 -0.6164699 0.6784637 -1.946259 0.713319
+## 5   Afghanistan   700   700  1751 -0.6164699 0.6784637 -1.946259 0.713319
+## 6   Afghanistan   700   700  1752 -0.6164699 0.6784637 -1.946259 0.713319
+## 7   Afghanistan   700   700  1753 -0.6164699 0.6784637 -1.946259 0.713319
+## 8   Afghanistan   700   700  1754 -0.6164699 0.6784637 -1.946259 0.713319
+## 9   Afghanistan   700   700  1755 -0.6164699 0.6784637 -1.946259 0.713319
+## 10  Afghanistan   700   700  1756 -0.6164699 0.6784637 -1.946259 0.713319
+## ..          ...   ...   ...   ...        ...       ...       ...      ...
 ```
 
 ```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option:
@@ -394,7 +353,7 @@ mean_ud_period
 ```
 
 ```
-## [1] 0.482819
+## [1] 0.482904
 ```
 
 ```r
@@ -608,7 +567,7 @@ prob_more(extended_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.7322647
+## [1] 0.7315515
 ```
 
 Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:
@@ -627,7 +586,7 @@ prob_more(extended_scores, "United States of America","United States of America"
 ```
 
 ```
-## [1] 0.9998778
+## [1] 0.9998793
 ```
 
 If you find this package useful, cite both it and Pemstein, Meserve, and Melton's original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using ```citation```:
@@ -643,7 +602,7 @@ citation("QuickUDS")
 ## 
 ##   Xavier Marquez (2016). QuickUDS: Extend the Unified Democracy
 ##   Scores Backwards and Forwards in Time easily. R package version
-##   0.1.2. https://github.com/xmarquez/QuickUDS
+##   0.1.3. https://github.com/xmarquez/QuickUDS
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -651,7 +610,7 @@ citation("QuickUDS")
 ##     title = {QuickUDS: Extend the Unified Democracy Scores Backwards and Forwards in Time easily},
 ##     author = {Xavier Marquez},
 ##     year = {2016},
-##     note = {R package version 0.1.2},
+##     note = {R package version 0.1.3},
 ##     url = {https://github.com/xmarquez/QuickUDS},
 ##   }
 ```

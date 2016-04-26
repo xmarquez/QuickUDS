@@ -4,7 +4,7 @@
 \name{extended_uds}
 \alias{extended_uds}
 \title{Extended UDS}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24109 rows and 52 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 24048 rows and 52 columns.}
 \usage{
 extended_uds
 }
@@ -541,7 +541,7 @@ Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
   \item{adj.z1}{The mean of the latent unfied democracy variable (the factor
   scores computed by the model), adjusted to match the average cutpoints for
   the dichotomous measures of democracy used to generate it (essentially, z1
-  - 0.64). See the vignette for this package for details.}
+  - 0.64). See the vignette \code{vignette("Replicating_and_extending_the_UD_scores")} for details.}
 
   \item{adj.pct975}{The top of the 95 percent confidence interval around z1,
   adjusted to match the average cutpoints for the dichotomous measures of
@@ -580,7 +580,8 @@ Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
   \item{country_name}{Standardized country name.}
   \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
   \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
-  \item{cown}{The Correlates of War numeric country code. This differs from Gleditsch and Ward's numeric country code in a few cases.}
+  \item{cown}{The Correlates of War numeric country code. This differs from Gleditsch and Ward's numeric country code in a few cases, due to the treatment of a couple of country terminations: West Germany becomes 255 in CoW after reunification, but stays as 260 in G & W; Serbia continues as 345 in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn; Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after unification is 679 in CoW, but it remains 678 on G & W, which considers it a continuation of the same state (absorbing South Yemen). Finally, Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for reasons I cannot determine.  For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
+  \item{polity_ccode}{The numeric country code of the country in the Polity dataset, which is based on, but not identical to, the CoW codes in a few cases. For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
   \item{region}{Region.}
   \item{continent}{Continent.}
   \item{GW_startdate}{The entry date of the state into the international system (usually the date of independence, though there can be more than one), according to Gleditsch and Ward, or 1 January 1816, whichever is later.}

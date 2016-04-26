@@ -1,11 +1,11 @@
 Package: QuickUDS
 Type: Package
 Title: Extend the Unified Democracy Scores Backwards and Forwards in Time easily
-Version: 0.1.2
+Version: 0.1.3
 Date: 2016-04-14
 Authors@R: person("Xavier", "Marquez", role=c("aut", "cre"),
   email = "marquez.x@gmail.com")
-Description: This package contains convenience functions to extend the Unified Democracy Scores of Pemstein, Meserve, and Melton. The package also includes an "extended UDS" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy.
+Description: Contains convenience functions to extend the Unified Democracy Scores of Pemstein, Meserve, and Melton. The package also includes an "extended UDS" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy.
 License: GPL-2
 LazyData: TRUE
 Imports:
@@ -20,7 +20,8 @@ Suggests:
     knitr,
     rmarkdown,
     ggplot2,
-    GGally
+    GGally,
+    rworldmap
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 URL: https://github.com/xmarquez/QuickUDS

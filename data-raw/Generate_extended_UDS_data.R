@@ -17,7 +17,7 @@ data <- data %>% arrange(country_name,year)
 
 data2 <- prepare_democracy(indexes)
 
-# The model converges after 1834 iterations, about 2.5 mins (156 secs) in my not-special desktop machine
+# The model converges after 1942 iterations, about 2.5 mins (158 secs) in my not-special desktop machine
 extended_model <- democracy_model(data2,indexes, verbose=TRUE, technical = list(NCYCLES = 2500))
 extended_scores <- democracy_scores(extended_model)
 extended_uds <- bind_cols(data,extended_scores)

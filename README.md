@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/NA/NA.svg?branch=master)](https://travis-ci.org/NA/NA)
+[![Travis-CI Build Status](https://travis-ci.org/xmarquez/QuickUDS.svg?branch=master)](https://travis-ci.org/xmarquez/QuickUDS)
 
 This `R` package contains convenience functions to extend the [Unified Democracy Scores of Pemstein, Meserve, and Melton](http://www.unified-democracy-scores.org/). These are basically wrappers for a couple of functions in the package [mirt](https://cran.r-project.org/web/packages/mirt/mirt.pdf), which contains powerful facilities for factor analysis, and which you will probably want to use directly to do anything beyond replicating and extending the UD scores with the data provided by this package.
 
@@ -61,7 +61,7 @@ extended_uds <- bind_cols(data,extended_scores)
 # Time to converge on my machine
 extended_model@time
 #>    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-#>   128.14     1.25   116.28    67.16    49.05    10.58     0.00
+#>   128.20     1.44   116.03    66.74    49.22    10.63     0.04
 
 # Number of iterations, log likelihood, etc.
 extended_model

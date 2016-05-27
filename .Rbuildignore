@@ -7,3 +7,6 @@
 ^csvs-and-pdfs/QuickUDS\.pdf$
 ^csvs-and-pdfs/extended_uds\.csv$
 ^csvs-and-pdfs/democracy\.csv$
+^data-raw.$
+^data-raw$
+^\.travis\.yml$

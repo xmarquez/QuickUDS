@@ -8,10 +8,10 @@ particular release of the UD scores}
 match_to_uds(data, release = 2014)
 }
 \arguments{
-\item{data}{A dataset containing an extension of the UD scores. It must
-contain a \code{country_name} column, a \code{year} column, \code{z1}
-column, a \code{pct025} column, and a \code{pct975} column; the output of
-\code{\link{democracy_scores}} is appropriate here.}
+\item{data}{A dataset containing an extension of the UD scores, from the
+output of \link{democracy_scores}. It must contain a \code{country_name}
+column, a \code{year} column, \code{z1} column, a \code{pct025} column, and
+a \code{pct975} column.}
 
 \item{release}{The year of a Unified Democracy Scores official release (see
 the available releases in their data page at
@@ -30,16 +30,17 @@ particular release of the UD scores
 }
 \examples{
 # Not run:
-# library(dplyr)
-# data <- prepare_democracy(c("arat_pmm","blm","bmr_democracy","bollen_pmm",
-#                              "doorenspleet","eiu","freedomhouse",
-#                              "gwf","hadenius_pmm","kailitz","lied","mainwaring",
-#                              "munck_pmm","pacl","polity2","polyarchy_pmm","prc",
-#                              "svolik","ulfelder","v2x_polyarchy","vanhanen_full",
-#                              "wahman_teorell_hadenius"))
-# extended_model <- democracy_model(data,indexes, verbose=FALSE)
-# extended_scores <- democracy_scores(extended_model)
-# extended_scores <- bind_cols(data,extended_scores)
-# extended_scores <- match_to_uds(extended_scores)
+library(dplyr)
+indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
+                            "doorenspleet","eiu","freedomhouse",
+                            "gwf","hadenius_pmm","lied","mainwaring",
+                            "munck_pmm","pacl","polity2","polyarchy_pmm","prc",
+                            "svolik","ulfelder","vanhanen_democratization",
+                            "wahman_teorell_hadenius")
+data <- prepare_democracy(indexes)
+extended_model <- democracy_model(data,indexes, verbose=TRUE)
+extended_scores <- democracy_scores(extended_model)
+extended_scores <- bind_cols(data,extended_scores)
+extended_scores <- match_to_uds(extended_scores)
 }
 

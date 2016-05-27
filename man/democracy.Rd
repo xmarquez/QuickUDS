@@ -3,13 +3,10 @@
 \docType{data}
 \name{democracy}
 \alias{democracy}
-\alias{democracy_long}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{data.frame} with 24085 rows and 81 columns.}
+\format{An object of class \code{data.frame} with 24175 rows and 81 columns.}
 \usage{
 democracy
-
-democracy_long
 }
 \description{
 A dataset containing all (or nearly all) extant democracy indexes.
@@ -200,7 +197,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   all datapoints conform to convention, but some errors may remain.
 
   A full discussion of the temporal and geographic coverage of these
-  variables, is available in a package vignette; see \code{vignette("Spatial_and_temporal_coverage")} for details.
+  variables, is available in a package vignette; see
+  \code{vignette("Spatial_and_temporal_coverage")} for details.
 }
 
 \section{A note on sources}{
@@ -220,7 +218,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   available from Reich 2002 that seem to have something to do with the
   treatment of country-years that include transition periods. A more extended
   discussion of the differences between the PMM replication data and the
-  original data sources is available in a package vignette; see \code{vignette("Differences_between_PMM_and_original_data")} for details.)
+  original data sources is available in a package vignette; see
+  \code{vignette("Differences_between_PMM_and_original_data")} for details.)
 
   Second, I have constructed the \code{przeworski} and \code{pitf*} variables
   following the instructions in the source, but have not found the data
@@ -246,8 +245,74 @@ A dataset containing all (or nearly all) extant democracy indexes.
 
   \describe{
 
-  \item{year}{Year. See the section on spatial and temporal
-  organization for details on coding.}
+  \item{country_name}{Standardized country name.}
+
+  \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch
+  and Ward list of independent states. For details, see Gleditsch, Kristian
+  S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+  of the Independent States since 1816." International Interactions 25:
+  393-413. The list can be found at
+  \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+
+  \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch
+  and Ward list of independent states. For details, see Gleditsch, Kristian
+  S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+  of the Independent States since 1816." International Interactions 25:
+  393-413. The list can be found at
+  \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+
+  \item{cown}{The Correlates of War numeric country code. This differs from
+  Gleditsch and Ward's numeric country code in a few cases, due to the
+  treatment of a couple of country terminations: West Germany becomes 255 in
+  CoW after reunification, but stays as 260 in G & W; Serbia continues as 345
+  in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn;
+  Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after
+  unification is 679 in CoW, but it remains 678 on G & W, which considers it
+  a continuation of the same state (absorbing South Yemen). Finally,
+  Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for
+  reasons I cannot determine.  For a full discussion of these differences,
+  see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
+
+  \item{polity_ccode}{The numeric country code of the country in the Polity
+  dataset, which is based on, but not identical to, the CoW codes in a few
+  cases. For a full discussion of these differences, see the vignette at
+  \code{vignette("Spatial_and_temporal_coverage")}.}
+
+  \item{year}{Year. See the section on spatial and temporal organization for
+  details on coding.}
+
+  \item{region}{Region. Based on the UN region classifications. For historic
+  states, the region is the same as the region of the successor states (or
+  states that absorbed the territory, as for example in the case of the
+  German principalities). In one case, Austria-Hungary, the successor states
+  straddle two regions (Western Europe and Eastern Europe); I have opted to
+  assign it the region "Central Europe."}
+
+  \item{continent}{Continent. Based on the UN continent classifications.}
+
+  \item{GW_startdate}{The entry date of the state into the international
+  system (usually the date of independence, though there can be more than
+  one), according to Gleditsch and Ward, or 1 January 1816, whichever is
+  later.}
+
+  \item{GW_enddate}{The exit date of the state from the international system
+  (usually the date the state lost its independence, though there can be more
+  than one), according to Gleditsch and Ward, or \code{NA} for countries that
+  are still in the international system.}
+
+  \item{microstate}{Whether the state is a microstate, according to
+  Gleditsch. His tentative list of microstates is available at
+  \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+
+  \item{lat}{The rough latitude of the state.}
+
+  \item{lon}{The rough longitude of the state.}
+
+  \item{in_system}{Whether the state is "in system" (that is, is independent
+  and sovereign), according to Gleditsch and Ward, for this particular date.}
+
+  \item{in_cow}{Whether the state is in the COW system of states (that is, is
+  independent and sovereign), for this particular date. Experimental.}
 
   \item{arat_pmm}{Democracy score from Arat, Zehra F. 1991. Democracy and
   human rights in developing countries. Boulder: Lynne Rienner Publishers.
@@ -301,9 +366,10 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \url{http://users.clas.ufl.edu/bernhard/content/data/data.htm} This
   indicator has been put in country-year format, extending to 1913, with the
   help of the Correlates of War panel of independent states; independent
-  countries (not microstates) in this panel that were not included in the original dataset
-  are assumed to be non-democratic for the period. See \code{vignette("Spatial_and_temporal_coverage")} for details for more information about the
-  additional country-years generated in this way.}
+  countries (not microstates) in this panel that were not included in the
+  original dataset are assumed to be non-democratic for the period. See
+  \code{vignette("Spatial_and_temporal_coverage")} for details for more
+  information about the additional country-years generated in this way.}
 
   \item{bollen_pmm}{0-100 index of democracy from Bollen, Kenneth A. 2001.
   "Cross-National Indicators of Liberal Democracy, 1950-1990." 2nd ICPSR
@@ -455,7 +521,8 @@ A dataset containing all (or nearly all) extant democracy indexes.
   0 = autocracy (all types including multiparty autocracy), 1 = democracy.
   Extended beyond 1950 using the \code{duration_nr} variable of the original
   dataset, which encodes information about the first year of each regime. For
-  more detail on the resulting additional country-years, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
+  more detail on the resulting additional country-years, see the vignette at
+  \code{vignette("Spatial_and_temporal_coverage")}.}
 
   \item{magaloni_regime_tri}{Trichotomous democracy indicator fromMagaloni,
   Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
@@ -575,14 +642,14 @@ A dataset containing all (or nearly all) extant democracy indexes.
   interruption, interregnum, and transition (-88,-77,-66). Higher values are
   more democratic. From Marshall, Monty G., Ted Robert Gurr, and Keith
   Jaggers. 2012. "Polity IV: Political Regime Characteristics and
-  Transitions, 1800-2012." Updated to 2015. Original data available from
-  \url{http://www.systemicpeace.org/polity/polity4.htm}.}
+  Transitions, 1800-2012." Updated with values to 2015. Original data
+  available from \url{http://www.systemicpeace.org/polity/polity4.htm}.}
 
   \item{polity2}{Annual polity2 index, interpolating values for interruption,
   interregnum, and transition periods. Higher values are more democratic.
   From Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity
   IV: Political Regime Characteristics and Transitions, 1800-2012." Updated
-  to 2015. Original data available from
+  with values to 2015. Original data available from
   \url{http://www.systemicpeace.org/polity/polity4.htm}.}
 
   \item{polity_pmm}{Same as previous, but taken from Pemstein, Daniel,
@@ -767,83 +834,83 @@ A dataset containing all (or nearly all) extant democracy indexes.
   party democracy, 0 otherwise. The category of "one party democracy" is not
   well documented.}
 
-  \item{v2x_api}{Additive polyarchy index from V-dem version 6. Coppedge,
+  \item{v2x_api}{Additive polyarchy index from V-dem version 6.1. Coppedge,
   Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
   Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
   Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
   Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
+  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of Democracy
   (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_delibdem}{Deliberative democracy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_delibdem}{Deliberative democracy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_egaldem}{Egalitarian democracy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_egaldem}{Egalitarian democracy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_libdem}{Egalitarian democracy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_libdem}{Egalitarian democracy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_mpi}{Multiplicative polyarchy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_mpi}{Multiplicative polyarchy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_partipdem}{Participatory democracy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_partipdem}{Participatory democracy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
-  \item{v2x_polyarchy}{Continuous polyarchy index from V-dem version 6. Coppedge,
-  Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-  Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-  Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-  Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-  Mechkova, Farhad Miri. 2016. V-Dem Codebook v6. Varieties of Democracy
-  (V-Dem) Project. Original data available at
+  \item{v2x_polyarchy}{Continuous polyarchy index from V-dem version 6.1.
+  Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
+  and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
+  Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
+  Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
+  Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}. Higher values are more democratic.}
 
   \item{vanhanen_competition}{Index of competition from Vanhanen, Tatu. 2012.
   "FSD1289 Measures of Democracy 1810-2012." Original data available from
   \url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}.
-  From Vanahnen's documentation: "The smaller parties' share of the votes cast in parliamentary or
-  presidential elections, or both, is used to indicate the degree of
-  competition. It is calculated by subtracting the percentage of votes won by
-  the largest party from 100. If the largest party gets, for example, 40
-  percent of the votes, the share of the smaller parties is 60 percent. If
-  data on the distribution of votes are not available, the value of this
-  variable is calculated on the basis of the distribution of seats in
-  parliament. The distribution of seats is used also in cases in which it
-  seems to indicate power relations more realistically than the distribution
-  of votes." Its maximum value is 70. See documentation for Vanhanen's data
-  for details.}
+  From Vanahnen's documentation: "The smaller parties' share of the votes
+  cast in parliamentary or presidential elections, or both, is used to
+  indicate the degree of competition. It is calculated by subtracting the
+  percentage of votes won by the largest party from 100. If the largest party
+  gets, for example, 40 percent of the votes, the share of the smaller
+  parties is 60 percent. If data on the distribution of votes are not
+  available, the value of this variable is calculated on the basis of the
+  distribution of seats in parliament. The distribution of seats is used also
+  in cases in which it seems to indicate power relations more realistically
+  than the distribution of votes." Its maximum value is 70. See the full
+  documentation for Vanhanen's dataset for details.}
 
   \item{vanhanen_participation}{Index of participation from Vanhanen, Tatu.
   2012. "FSD1289 Measures of Democracy 1810-2012." Original data available
@@ -854,19 +921,21 @@ A dataset containing all (or nearly all) extant democracy indexes.
   participation (= Participation). This percentage is calculated from the
   total population, not from the adult or enfranchized population." It is
   zero by construction in cases where no popular elections exist. May be
-  modified by referenda. See documentation for Vanhanen's data for details.}
+  modified by referenda. See the full documentation of Vanhanen's dataset for
+  details.}
 
   \item{vanhanen_democratization}{Index of democratization from Vanhanen,
   Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original data
   available from
   \url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}.
   Higher values are more democratic. Constructed multiplicatively from
-  \code{vanhanen_participation} and \code{vanhanen_competition}}
+  \code{vanhanen_participation} and \code{vanhanen_competition}.}
 
-  \item{vanhanen_pmm}{Same as previous but taken from Pemstein, Daniel,
-  Stephen A. Meserve, and James Melton. 2013. "Replication data for:
-  Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime
-  Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}.}
+  \item{vanhanen_pmm}{Same as \code{vanhanen_democratization} but taken from
+  Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
+  data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
+  of Regime Type." In: Harvard Dataverse.
+  \url{http://hdl.handle.net/1902.1/PMM}.}
 
   \item{wahman_teorell_hadenius}{Dichotomous measure of democracy from the
   Authoritarian Regimes Data Set, version 5.0, by Axel Hadenius, Jan Teorell,
@@ -878,50 +947,6 @@ A dataset containing all (or nearly all) extant democracy indexes.
   \url{https://sites.google.com/site/authoritarianregimedataset/data}.
   1=democracy, 0 = non-democracy. Calculated from their regime1ny variable;
   non-democracy = all authoritarian regimes.}}
-}
-
-\section{Only in the "long" version of the file}{
-
-
-\describe{
-
-  \item{variable}{The variable name in the "democracy" file (e.g., pacl,
-  hadenius_pmm, etc.}
-
-  \item{src}{A string describing the source of the score
-  in more detail (e.g., PACL/Cheibub, Gandhi, and Vreeland).}
-
-  \item{value}{The value of the score for the variable and country-year in
-  question. See above for more details.}
-
-  \item{country_var_period}{Counts
-  periods of uninterrupted measurement for a variable-country group. It
-  changes value whenever the year-series "breaks" for a variable-country
-  (e.g., if a country loses its independence and no democracy measures exist
-  for that time).}
-
-  \item{index_type}{An indicator of whether the index is dichotomous,
-  trichotomous, ordinal, or continuous.}}
-}
-
-\section{Standard descriptive variables (generated by this package)}{
-
-  \describe{
-  \item{country_name}{Standardized country name.}
-  \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
-  \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch and Ward list of independent states. For details, see Gleditsch, Kristian S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List of the Independent States since 1816." International Interactions 25: 393-413. The list can be found at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
-  \item{cown}{The Correlates of War numeric country code. This differs from Gleditsch and Ward's numeric country code in a few cases, due to the treatment of a couple of country terminations: West Germany becomes 255 in CoW after reunification, but stays as 260 in G & W; Serbia continues as 345 in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn; Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after unification is 679 in CoW, but it remains 678 on G & W, which considers it a continuation of the same state (absorbing South Yemen). Finally, Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for reasons I cannot determine.  For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
-  \item{polity_ccode}{The numeric country code of the country in the Polity dataset, which is based on, but not identical to, the CoW codes in a few cases. For a full discussion of these differences, see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
-  \item{region}{Region.}
-  \item{continent}{Continent.}
-  \item{GW_startdate}{The entry date of the state into the international system (usually the date of independence, though there can be more than one), according to Gleditsch and Ward, or 1 January 1816, whichever is later.}
-  \item{GW_enddate}{The exit date of the state from the international system (usually the date the state lost its independence, though there can be more than one), according to Gleditsch and Ward, or the last date at which the dataset was compiled, whichever is later.}
-  \item{microstate}{Whether the state is a microstate, according to Gleditsch. His tentative list of microstates is available at \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
-  \item{lat}{The rough latitude of the state.}
-  \item{lon}{The rough longitude of the state.}
-  \item{in_system}{Whether the state is "in system" (that is, is independent and sovereign), according to Gleditsch and Ward, for this particular date.}
-  \item{in_cow}{Whether the state is in the COW system of states (that is, is independent and sovereign), for this particular date. Experimental.}
-}
 }
 \author{
 Xavier Marquez, Political Science and International Relations Programme, Victoria University of Wellington, marquez.x@gmail.com
@@ -962,7 +987,7 @@ Arat, Zehra F. 1991. Democracy and human rights in developing countries.
   and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
   Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton,
   Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson,
-  Valeriya Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of
+  Valeriya Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of
   Democracy (V-Dem) Project. Original data available at
   \url{https://v-dem.net/en/data/}.
 

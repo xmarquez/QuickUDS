@@ -96,7 +96,7 @@ kable(comparison %>%
 
 ## The Polity IV dataset
 
-There are 202 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
+There are 243 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
 
 ```{r polity_pmm_comparison}
 comparison <- democracy %>% 

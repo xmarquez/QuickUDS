@@ -1,49 +1,154 @@
 #' The Steffen Kailitz Dataset of Authoritarian Regime Types
 #'
-#' Contains the authoritarian regime types dataset from Kailitz,
-#'   Steffen. 2013. Classifying political regimes revisited: legitimation and
-#'   durability. Democratization 20 (1): 39-60. Original data available at
-#'   \url{http://dx.doi.org/10.1080/13510347.2013.738861}.
+#' Contains the authoritarian regime types dataset from Kailitz, Steffen. 2013.
+#' Classifying political regimes revisited: legitimation and durability.
+#' Democratization 20 (1): 39-60. Original data available at
+#' \url{http://dx.doi.org/10.1080/13510347.2013.738861}.
 #'
 #' @section Variables:
 #'
 #'   \describe{
 #'
-#'   \item{year}{The calendar year. Only in the \code{kailitz.yearly} file. Note that more than one regime type may overlap over a single year.}
+#'   \item{year}{The calendar year. Only in the \code{kailitz.yearly} file. Note
+#'   that more than one regime type may overlap over a single year.}
 #'
 #'   \item{kailitz_country}{The country name, as in the original dataset. Use
 #'   \code{country_name} instead.}
 #'
-#'   \item{start}{The start year of the regime. More than one regime type may overlap over a period of time. For example Spain has three regime types - military, personalistic, and party - overlapping for the entire period 1946-1974. Only in the \code{kailitz} file.}
+#'   \item{start}{The start year of the regime. More than one regime type may
+#'   overlap over a period of time. For example Spain has three regime types -
+#'   military, personalistic, and party - overlapping for the entire period
+#'   1946-1974. Only in the \code{kailitz} file.}
 #'
-#'   \item{end}{The end year of the regime. More than one regime type may overlap over a period of time. For example Spain has three regime types - military, personalistic, and party - overlapping for the entire period 1946-1974. Only in the \code{kailitz} file.}
+#'   \item{end}{The end year of the regime. More than one regime type may
+#'   overlap over a period of time. For example Spain has three regime types -
+#'   military, personalistic, and party - overlapping for the entire period
+#'   1946-1974. Only in the \code{kailitz} file.}
 #'
-#'   \item{regime}{The regime type for the period within the start-end years. Can be: Communist Ideocracy, Electoral Autocracy, Liberal Democracy, Military Autocracy, Monarchy, One party Autocracy, Personalist Autocracy, State Failure or Occupation, Transition.}
+#'   \item{regime}{The regime type for the period within the start-end years.
+#'   Can be: Communist Ideocracy, Electoral Autocracy, Liberal Democracy,
+#'   Military Autocracy, Monarchy, One party Autocracy, Personalist Autocracy,
+#'   State Failure or Occupation, Transition.}
 #'
-#'   \item{combined_regime}{Only in the \code{kailitz.yearly} file. The "combined regime" for the country year. This is just identical to \code{regime} if the country only has one regime for the year, but it is the concatenation of all regimes for that year if the country has more than one regime type. For example, Spain has a "combined regime" of "Military Autocracy-One party Autocracy-Personalist Autocracy" for the each of the years 1946-1974.}
+#'   \item{country_name}{Standardized country name.}
 #'
-#'   \item{kailitz_binary}{Only in the \code{kailitz.yearly} file. Dichotomous democracy indicator. 1 if \code{combined_regime} is "Liberal democracy", 0 otherwise.}
+#'   \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch
+#'   and Ward list of independent states. For details, see Gleditsch, Kristian
+#'   S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+#'   of the Independent States since 1816." International Interactions 25:
+#'   393-413. The list can be found at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
 #'
-#'   \item{kailitz_tri}{Only in the \code{kailitz.yearly} file. Trichotomous democracy indicator. 2 if \code{combined_regime} is "Liberal Democracy", 1 if it is "Electoral Autocracy" or "Electoral Autocracy-Liberal Democracy", 0 otherwise.}
+#'   \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch
+#'   and Ward list of independent states. For details, see Gleditsch, Kristian
+#'   S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+#'   of the Independent States since 1816." International Interactions 25:
+#'   393-413. The list can be found at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
 #'
-#'   \item{personal}{Only in the \code{kailitz.yearly} file. Binary indicator of personalism. \code{TRUE} if \code{combined_regime} contains "Personal Autocracy", \code{FALSE} otherwise.}
+#'   \item{cown}{The Correlates of War numeric country code. This differs from
+#'   Gleditsch and Ward's numeric country code in a few cases, due to the
+#'   treatment of a couple of country terminations: West Germany becomes 255 in
+#'   CoW after reunification, but stays as 260 in G & W; Serbia continues as 345
+#'   in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn;
+#'   Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after
+#'   unification is 679 in CoW, but it remains 678 on G & W, which considers it
+#'   a continuation of the same state (absorbing South Yemen). Finally,
+#'   Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for
+#'   reasons I cannot determine.  For a full discussion of these differences,
+#'   see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
 #'
-#'   \item{communist}{Only in the \code{kailitz.yearly} file. Binary indicator of communism. \code{TRUE} if \code{combined_regime} contains "Communist Ideocracy", \code{FALSE} otherwise.}
+#'   \item{polity_ccode}{The numeric country code of the country in the Polity
+#'   dataset, which is based on, but not identical to, the CoW codes in a few
+#'   cases. For a full discussion of these differences, see the vignette at
+#'   \code{vignette("Spatial_and_temporal_coverage")}.}
 #'
-#'   \item{military}{Only in the \code{kailitz.yearly} file. Binary indicator of military autocracy. \code{TRUE} if \code{combined_regime} contains "Military Autocracy", \code{FALSE} otherwise.}
+#'   \item{year}{Year. See the section on spatial and temporal organization for
+#'   details on coding.}
 #'
-#'   \item{party}{Only in the \code{kailitz.yearly} file. Binary indicator of one party autocracy \code{TRUE} if \code{combined_regime} contains "One party Autocracy", \code{FALSE} otherwise.}
+#'   \item{region}{Region. Based on the UN region classifications. For historic
+#'   states, the region is the same as the region of the successor states (or
+#'   states that absorbed the territory, as for example in the case of the
+#'   German principalities). In one case, Austria-Hungary, the successor states
+#'   straddle two regions (Western Europe and Eastern Europe); I have opted to
+#'   assign it the region "Central Europe."}
 #'
-#'   \item{monarchy}{Only in the \code{kailitz.yearly} file. Binary indicator of monarchy. \code{TRUE} if \code{combined_regime} contains "Monarchy", \code{FALSE} otherwise.}
+#'   \item{continent}{Continent. Based on the UN continent classifications.}
 #'
-#'   \item{electoral}{Only in the \code{kailitz.yearly} file. Binary indicator of electoral autocracy. \code{TRUE} if \code{combined_regime} contains "Electoral autocracy", \code{FALSE} otherwise.}
+#'   \item{GW_startdate}{The entry date of the state into the international
+#'   system (usually the date of independence, though there can be more than
+#'   one), according to Gleditsch and Ward, or 1 January 1816, whichever is
+#'   later.}
 #'
-#'   \item{failure}{Only in the \code{kailitz.yearly} file. Binary indicator of state failure or occupation. \code{TRUE} if \code{combined_regime} contains "State Failure or Occupation", \code{FALSE} otherwise.}
+#'   \item{GW_enddate}{The exit date of the state from the international system
+#'   (usually the date the state lost its independence, though there can be more
+#'   than one), according to Gleditsch and Ward, or \code{NA} for countries that
+#'   are still in the international system.}
 #'
-#'   \item{transition}{Only in the \code{kailitz.yearly} file. Binary indicator of transition. \code{TRUE} if \code{combined_regime} contains "Transition", \code{FALSE} otherwise.}
+#'   \item{microstate}{Whether the state is a microstate, according to
+#'   Gleditsch. His tentative list of microstates is available at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+#'
+#'   \item{lat}{The rough latitude of the state.}
+#'
+#'   \item{lon}{The rough longitude of the state.}
+#'
+#'   \item{in_system}{Whether the state is "in system" (that is, is independent
+#'   and sovereign), according to Gleditsch and Ward, for this particular date.}
+#'
+#'   \item{in_cow}{Whether the state is in the COW system of states (that is, is
+#'   independent and sovereign), for this particular date. Experimental.}
+#'
+#'   \item{combined_regime}{Only in the \code{kailitz.yearly} file. The
+#'   "combined regime" for the country year. This is just identical to
+#'   \code{regime} if the country only has one regime for the year, but it is
+#'   the concatenation of all regimes for that year if the country has more than
+#'   one regime type. For example, Spain has a "combined regime" of "Military
+#'   Autocracy-One party Autocracy-Personalist Autocracy" for the each of the
+#'   years 1946-1974.}
+#'
+#'   \item{kailitz_binary}{Only in the \code{kailitz.yearly} file. Dichotomous
+#'   democracy indicator. 1 if \code{combined_regime} is "Liberal democracy", 0
+#'   otherwise.}
+#'
+#'   \item{kailitz_tri}{Only in the \code{kailitz.yearly} file. Trichotomous
+#'   democracy indicator. 2 if \code{combined_regime} is "Liberal Democracy", 1
+#'   if it is "Electoral Autocracy" or "Electoral Autocracy-Liberal Democracy",
+#'   0 otherwise.}
+#'
+#'   \item{personal}{Only in the \code{kailitz.yearly} file. Binary indicator of
+#'   personalism. \code{TRUE} if \code{combined_regime} contains "Personal
+#'   Autocracy", \code{FALSE} otherwise.}
+#'
+#'   \item{communist}{Only in the \code{kailitz.yearly} file. Binary indicator
+#'   of communism. \code{TRUE} if \code{combined_regime} contains "Communist
+#'   Ideocracy", \code{FALSE} otherwise.}
+#'
+#'   \item{military}{Only in the \code{kailitz.yearly} file. Binary indicator of
+#'   military autocracy. \code{TRUE} if \code{combined_regime} contains
+#'   "Military Autocracy", \code{FALSE} otherwise.}
+#'
+#'   \item{party}{Only in the \code{kailitz.yearly} file. Binary indicator of
+#'   one party autocracy \code{TRUE} if \code{combined_regime} contains "One
+#'   party Autocracy", \code{FALSE} otherwise.}
+#'
+#'   \item{monarchy}{Only in the \code{kailitz.yearly} file. Binary indicator of
+#'   monarchy. \code{TRUE} if \code{combined_regime} contains "Monarchy",
+#'   \code{FALSE} otherwise.}
+#'
+#'   \item{electoral}{Only in the \code{kailitz.yearly} file. Binary indicator
+#'   of electoral autocracy. \code{TRUE} if \code{combined_regime} contains
+#'   "Electoral autocracy", \code{FALSE} otherwise.}
+#'
+#'   \item{failure}{Only in the \code{kailitz.yearly} file. Binary indicator of
+#'   state failure or occupation. \code{TRUE} if \code{combined_regime} contains
+#'   "State Failure or Occupation", \code{FALSE} otherwise.}
+#'
+#'   \item{transition}{Only in the \code{kailitz.yearly} file. Binary indicator
+#'   of transition. \code{TRUE} if \code{combined_regime} contains "Transition",
+#'   \code{FALSE} otherwise.}
 #'
 #'   }
-#' @template standard-variables
 #' @source Kailitz, Steffen. 2013. Classifying political regimes revisited:
 #'   legitimation and durability. Democratization 20 (1): 39-60. Original data
 #'   available at \url{http://dx.doi.org/10.1080/13510347.2013.738861}.

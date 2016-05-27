@@ -11,7 +11,7 @@
 
 <meta name="author" content="Xavier Marquez" />
 
-<meta name="date" content="2016-04-26" />
+<meta name="date" content="2016-05-27" />
 
 <title>Differences between PMM’s replication data and original democracy data sources</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title">Differences between PMM’s replication data and original democracy data sources</h1>
 <h4 class="author"><em>Xavier Marquez</em></h4>
-<h4 class="date"><em>2016-04-26</em></h4>
+<h4 class="date"><em>2016-05-27</em></h4>
 
 </div>
 
@@ -1284,6 +1284,20 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">5</td>
 </tr>
 <tr class="even">
+<td align="left">Sao Tome and Principe</td>
+<td align="right">1.0</td>
+<td align="right">2.0</td>
+<td align="left">1982</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sao Tome and Principe</td>
+<td align="right">1.0</td>
+<td align="right">NA</td>
+<td align="left">1981</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
 <td align="left">Saudi Arabia</td>
 <td align="right">1.5</td>
 <td align="right">2.0</td>
@@ -1440,20 +1454,6 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <tr class="even">
 <td align="left">Syria</td>
 <td align="right">1.5</td>
-<td align="right">NA</td>
-<td align="left">1981</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">São Tomé and Principe</td>
-<td align="right">1.0</td>
-<td align="right">2.0</td>
-<td align="left">1982</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">São Tomé and Principe</td>
-<td align="right">1.0</td>
 <td align="right">NA</td>
 <td align="left">1981</td>
 <td align="right">1</td>
@@ -1926,7 +1926,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 </div>
 <div id="the-polity-iv-dataset" class="section level2">
 <h2>The Polity IV dataset</h2>
-<p>There are 202 country-years where PMM’s replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.</p>
+<p>There are 243 country-years where PMM’s replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(country_name,GWn,year,polity2,polity_pmm) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
@@ -2017,6 +2017,14 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1</td>
 </tr>
 <tr class="odd">
+<td align="left">Equatorial Guinea</td>
+<td align="right">-5</td>
+<td align="right">-6</td>
+<td align="right">1996</td>
+<td align="right">2008</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
 <td align="left">Ethiopia</td>
 <td align="right">0</td>
 <td align="right">1</td>
@@ -2024,7 +2032,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1993</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Ethiopia</td>
 <td align="right">1</td>
 <td align="right">-3</td>
@@ -2032,7 +2040,23 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">4</td>
 </tr>
+<tr class="even">
+<td align="left">Israel</td>
+<td align="right">9</td>
+<td align="right">6</td>
+<td align="right">1981</td>
+<td align="right">1998</td>
+<td align="right">18</td>
+</tr>
 <tr class="odd">
+<td align="left">Israel</td>
+<td align="right">10</td>
+<td align="right">6</td>
+<td align="right">1999</td>
+<td align="right">2008</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
 <td align="left">Jamaica</td>
 <td align="right">NA</td>
 <td align="right">10</td>
@@ -2040,7 +2064,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1961</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Korea, People’s Republic of</td>
 <td align="right">-9</td>
 <td align="right">-10</td>
@@ -2048,7 +2072,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">15</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Kosovo</td>
 <td align="right">NA</td>
 <td align="right">8</td>
@@ -2056,7 +2080,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Lebanon</td>
 <td align="right">7</td>
 <td align="right">6</td>
@@ -2064,7 +2088,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Luxembourg</td>
 <td align="right">NA</td>
 <td align="right">10</td>
@@ -2072,7 +2096,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">63</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Moldova</td>
 <td align="right">8</td>
 <td align="right">9</td>
@@ -2080,7 +2104,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Montenegro</td>
 <td align="right">8</td>
 <td align="right">9</td>
@@ -2088,7 +2112,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Montenegro</td>
 <td align="right">NA</td>
 <td align="right">9</td>
@@ -2096,7 +2120,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2007</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Mozambique</td>
 <td align="right">6</td>
 <td align="right">5</td>
@@ -2104,7 +2128,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">15</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Myanmar (Burma)</td>
 <td align="right">-8</td>
 <td align="right">-6</td>
@@ -2112,7 +2136,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Oman</td>
 <td align="right">NA</td>
 <td align="right">-6</td>
@@ -2120,7 +2144,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1950</td>
 <td align="right">5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Senegal</td>
 <td align="right">8</td>
 <td align="right">7</td>
@@ -2128,7 +2152,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Serbia</td>
 <td align="right">6</td>
 <td align="right">8</td>
@@ -2136,7 +2160,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2006</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Serbia</td>
 <td align="right">NA</td>
 <td align="right">8</td>
@@ -2144,7 +2168,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Singapore</td>
 <td align="right">NA</td>
 <td align="right">7</td>
@@ -2152,7 +2176,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1962</td>
 <td align="right">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Surinam</td>
 <td align="right">NA</td>
 <td align="right">-6</td>
@@ -2160,7 +2184,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1986</td>
 <td align="right">5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Surinam</td>
 <td align="right">NA</td>
 <td align="right">-1</td>
@@ -2168,7 +2192,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1989</td>
 <td align="right">5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Surinam</td>
 <td align="right">NA</td>
 <td align="right">2</td>
@@ -2176,7 +2200,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">1990</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Surinam</td>
 <td align="right">NA</td>
 <td align="right">5</td>
@@ -2184,7 +2208,7 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <td align="right">2008</td>
 <td align="right">23</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Yugoslavia</td>
 <td align="right">NA</td>
 <td align="right">6</td>

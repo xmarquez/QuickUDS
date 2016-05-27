@@ -316,11 +316,18 @@ prepare_data <- function(data) {
 #' @examples
 #' prepare_democracy(names(democracy)[grep("pmm",names(democracy))])
 prepare_democracy <- function(indexes) {
-  data <- democracy[ ,c("country_name","GWn","cown","year","region","continent","microstate","lat","lon","in_system",indexes)]
+  # Hack to get around note "no visible binding for global variable"
+
+  country_name <- year <- NULL
+
+  data <- QuickUDS::democracy[ ,c("country_name","GWn","GWc","cown","polity_ccode","year",
+                                  "GW_startdate","GW_enddate","region", "continent",
+                                  "microstate","lat","lon","in_system","in_cow",indexes)]
   data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
   data <- reshape2::dcast(data, ... ~ variable)
   data <- data %>% arrange(country_name,year)
   data <- prepare_data(data)
+  data
 }
 
 
@@ -374,45 +381,83 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
 #' data frame format.
 #'
 #' This function takes a model of the democracy scores and extracts the
-#' cutpoints and their standard errors. It does no sanity checking; it will work
-#' equally well (or badly) for any \code{\link{mirt}} model.
+#' discrimination parameters, score cutpoints, and standard errors for all the
+#' variables involved, putting these into a tidy data frame.
 #'
 #' @param model A \code{\link{mirt}} \code{\link{SingleGroupClass-class}} model
 #'   of the democracy scores.
+#' @param type A string specifying the cutpoint type. Can be (an abbreviation
+#'   of) "score" (for score cutpoints) or "discrimination" (for discrimination
+#'   parameters). Default is "score."
 #'
-#' @return A data frame with cutpoints for each democracy index in terms of the
-#'   latent variable. It will return both discrimination parameters (type
-#'   "\code{a*}") and score cutpoints (type \code{d*}), plus confidence
-#'   intervals if these have been calculated by the model. For the score
-#'   cutpoints (type \code{d*}), the columns \code{estimate}, \code{pct975}, and
-#'   \code{pct025} report the IRT parametrization (a normalized measure in the
-#'   same scale as the latent variable); the \code{par}, \code{CI_2.5}, and
-#'   \code{CI_97.5} columns report the slope intercept parameter and confidence
-#'   intervals of the ```mirt``` model (used to calculate \code{estimate}).
+#' @return A data frame with either score cutpoints for each variable used to
+#'   construct the latent scores in terms of the latent variable, or
+#'   discrimination parameters for each variable used to construct the index.
+#'   For the score cutpoints (\code{type = 'score'}), the columns
+#'   \code{estimate}, \code{pct975}, and \code{pct025} report the IRT
+#'   parametrization of the model estimates, a normalized measure in the same
+#'   scale as the latent variable.
 #' @export
 #'
 #' @import dplyr
 #' @import mirt
 #'
 #' @examples
-#' # Not run:
-#' # library(QuickUDS)
-#' # data <- prepare_data(democracy)
-#' # data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' # data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' # data <- dcast(data, ... ~ variable)
-#' # data <- data %>% arrange(country_name,year)
-#' # replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))],
-#' #                                   model = 1, itemtype = "graded", SE = TRUE)
-#' # cutpoints_2011 <- cutpoints(replication_2011_model)
-cutpoints <- function(model) {
-    coefs <- as.data.frame(coef(model, as.data.frame = TRUE))
-    coefs <- coefs %>% mutate(variable = rownames(coefs),
-                              type = stringr::str_extract(variable,"a1$|d[0-9]+$"),
-                              variable = unlist(stringr::str_extract(variable,"[a-zA-Z_0-9]+")))
-    coefs <- coefs %>% group_by(variable) %>% mutate_each(funs(irtconvert = -(.)/(.[1])), vars = 1:3)
-    coefs <- coefs %>% rename(estimate = vars1, pct025 = vars3, pct975 = vars2)
-    coefs %>% filter(!is.na(type))
+#' # Replicate the official UDS 2011 release and calculate its cutpoints
+#' library(reshape2)
+#' library(dplyr)
+#' library(mirt)
+#' data <- prepare_data(democracy)
+#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
+#' data <- dcast(data, ... ~ variable)
+#' data <- data %>% arrange(country_name,year)
+#' replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))]],
+#'                                   model = 1, itemtype = "graded", SE = TRUE)
+#' cutpoints_2011 <- cutpoints(replication_2011_model)
+cutpoints <- function(model, type = "score") {
+  stopifnot(class(model) == "SingleGroupClass")
+
+  type <- c("score","discrimination")[ pmatch(type, c("score","discrimination")) ][1]
+
+  if(is.na(type)) {
+    stop("Type must be (an abbreviation of) 'score' or 'discrimination'")
+  }
+
+  # A hack to get around the "no visible binding for global variable" note
+
+  par <- CI_2.5 <- CI_97.5 <- variable <- NULL
+
+  estimate <- pct025 <- pct975 <- coef_type <- NULL
+
+  coefs <- as.data.frame(coef(model, as.data.frame = TRUE))
+
+  coefs <- coefs %>%
+    mutate(variable = rownames(coefs),
+           coef_type = stringr::str_extract(variable,"a[0-9]+$|d[0-9]+$"),
+           variable = stringr::str_replace(variable,"\\.a[0-9]+$|\\.d[0-9]+$",""))
+
+  coefs <- coefs %>%
+    group_by(variable) %>%
+    mutate(estimate = -(par)/(par[1]),
+           pct025 = -(CI_2.5)/(CI_2.5[1]),
+           pct975 = -(CI_97.5)/(CI_97.5[1])) %>%
+    filter(!is.na(coef_type))
+
+  if(type == "score") {
+    coefs <- coefs %>%
+      filter(!grepl("^a",coef_type)) %>%
+      select(variable,estimate,pct025,pct975)
+  } else {
+    coefs <- coefs %>%
+      filter(grepl("^a",coef_type)) %>%
+      mutate(estimate = par,
+             pct025 = CI_2.5,
+             pct975 = CI_97.5) %>%
+      select(variable,estimate,pct025,pct975)
+  }
+
+  return(coefs)
 }
 
 #' A convenience function for extracting rater info from a UD model in a tidy
@@ -506,34 +551,45 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' @export
 #'
 #' @import dplyr
+#' @import mirt
 #'
 #' @examples
-#' # Not run:
-#' # Requires reshape2 and dplyr
-#' # data <- prepare_data(democracy)
-#' # data <- reshape2::melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' # data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' # data <- reshape2::dcast(data, ... ~ variable)
-#' # data <- data %>% arrange(country_name,year)
-#' # replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
-#' # replication_2011_scores <- democracy_scores(replication_2011_model)
-#' # Requires dplyr
-#' # replication_2011 <- bind_cols(data %>% dplyr::select(country_name, GWn, year, region, continent,
-#' #                              in_system,num_measures),replication_2011)
+#' # Replicate the official UDS scores (2011 release)
+#' library(reshape2)
+#' library(dplyr)
+#' data <- prepare_data(democracy)
+#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
+#' data <- dcast(data, ... ~ variable)
+#' data <- data %>% arrange(country_name,year)
+#' replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+#' replication_2011_scores <- democracy_scores(replication_2011_model)
+#' replication_2011_scores <- bind_cols(data %>%
+#'                                        select(country_name, GWn, year,in_system,num_measures),
+#'                                                      replication_2011_scores)
 democracy_scores <- function(model, ...) {
   stopifnot(class(model) == "SingleGroupClass")
-  scores <- mirt::fscores(model, full.scores = TRUE, full.scores.SE = TRUE, ...)
-  data <- as.data.frame(scores) %>% dplyr::rename(z1 = F1, se.z1 = SE_F1) %>% mutate(pct975 = z1 + 1.96 * se.z1, pct025 = z1 - 1.96 * se.z1)
+
+  scores <- fscores(model, full.scores = TRUE, full.scores.SE = TRUE, ...)
+
+  # A hack to get around the "no visible binding for global variable" note
+
+  F1 <- SE_F1 <- z1 <- se.z1 <- NULL
+
+  data <- as.data.frame(scores) %>%
+    rename(z1 = F1, se.z1 = SE_F1) %>%
+    mutate(pct975 = z1 + 1.96 * se.z1, pct025 = z1 - 1.96 * se.z1)
+
   data
 }
 
 #' A convenience function to match extensions of the UD scores to the level of a
 #' particular release of the UD scores
 #'
-#' @param data A dataset containing an extension of the UD scores. It must
-#'   contain a \code{country_name} column, a \code{year} column, \code{z1}
-#'   column, a \code{pct025} column, and a \code{pct975} column; the output of
-#'   \code{\link{democracy_scores}} is appropriate here.
+#' @param data A dataset containing an extension of the UD scores, from the
+#'   output of \link{democracy_scores}. It must contain a \code{country_name}
+#'   column, a \code{year} column, \code{z1} column, a \code{pct025} column, and
+#'   a \code{pct975} column.
 #' @param release The year of a Unified Democracy Scores official release (see
 #'   the available releases in their data page at
 #'   \url{http://www.unified-democracy-scores.org/uds.html} and
@@ -543,36 +599,51 @@ democracy_scores <- function(model, ...) {
 #' @return The dataset with three columns appended: \code{adj.z1} (the mean
 #'   democracy score, adjusted to match the UD release), \code{adj.pct025} and
 #'   \code{adj.pct975} (the adjusted confidence bounds).
-#' @export
 #'
-#' @import dplyr
+#' @export
 #'
 #' @examples
 #' # Not run:
-#' # library(dplyr)
-#' # data <- prepare_democracy(c("arat_pmm","blm","bmr_democracy","bollen_pmm",
-#' #                              "doorenspleet","eiu","freedomhouse",
-#' #                              "gwf","hadenius_pmm","kailitz","lied","mainwaring",
-#' #                              "munck_pmm","pacl","polity2","polyarchy_pmm","prc",
-#' #                              "svolik","ulfelder","v2x_polyarchy","vanhanen_full",
-#' #                              "wahman_teorell_hadenius"))
-#' # extended_model <- democracy_model(data,indexes, verbose=FALSE)
-#' # extended_scores <- democracy_scores(extended_model)
-#' # extended_scores <- bind_cols(data,extended_scores)
-#' # extended_scores <- match_to_uds(extended_scores)
+#' library(dplyr)
+#' indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
+#'                             "doorenspleet","eiu","freedomhouse",
+#'                             "gwf","hadenius_pmm","lied","mainwaring",
+#'                             "munck_pmm","pacl","polity2","polyarchy_pmm","prc",
+#'                             "svolik","ulfelder","vanhanen_democratization",
+#'                             "wahman_teorell_hadenius")
+#' data <- prepare_democracy(indexes)
+#' extended_model <- democracy_model(data,indexes, verbose=TRUE)
+#' extended_scores <- democracy_scores(extended_model)
+#' extended_scores <- bind_cols(data,extended_scores)
+#' extended_scores <- match_to_uds(extended_scores)
 match_to_uds <- function(data, release = 2014) {
+  stopifnot("z1" %in% names(data))
+  stopifnot("pct975" %in% names(data))
+  stopifnot("pct025" %in% names(data))
+  stopifnot("country_name" %in% names(data))
+  stopifnot("year" %in% names(data))
+
   if(release == 2014) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in% paste(uds_2014$country_name,uds_2014$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
+                                      paste(QuickUDS::uds_2014$country_name,QuickUDS::uds_2014$year) ], na.rm=TRUE)
   } else if(release == 2011) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in% paste(uds_2011$country_name,uds_2011$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
+                                      paste(QuickUDS::uds_2011$country_name,QuickUDS::uds_2011$year) ], na.rm=TRUE)
   } else if(release == 2010) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in% paste(uds_2010$country_name,uds_2010$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
+                                      paste(QuickUDS::uds_2010$country_name,QuickUDS::uds_2010$year) ], na.rm=TRUE)
   } else {
     message("UDS release unknown. Using the 2014 UDS release for adjustment.")
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in% paste(uds_2014$country_name,uds_2014$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
+                                      paste(QuickUDS::uds_2014$country_name,QuickUDS::uds_2014$year) ], na.rm=TRUE)
   }
-  data <- data %>%
-    mutate(adj.z1 = z1 - mean_ud_period, adj.pct025 = pct025 - mean_ud_period, adj.pct975 = pct975 - mean_ud_period)
+
+  data$adj.z1 <- data$z1 - mean_ud_period
+
+  data$adj.pct025 <- data$pct025 - mean_ud_period
+
+  data$adj.pct975 <- data$pct975 - mean_ud_period
+
   data
 }
 

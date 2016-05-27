@@ -31,15 +31,18 @@ This vignette describes the temporal and spatial coverage of the democracy measu
 library(knitr)
 library(QuickUDS)
 library(dplyr)
+library(reshape2)
 
-kable(democracy_long %>% 
+democracy_long <- democracy %>%
+        melt(id.vars = 1:15, na.rm=TRUE) 
+
+kable(democracy_long %>%
         group_by(variable) %>%
         summarise(distinct_countries = n_distinct(country_name),
                   distinct_years = n_distinct(year),
                   min_year = min(year),
                   max_year = max(year),
                   mean_year = mean(year),
-                  index_type = unique(index_type),
                   num_values = n_distinct(value),
                   mean = mean(value),
                   median = median(value),
@@ -94,7 +97,8 @@ spatial_coverage <- function(data) {
     ggtitle("Spatial coverage")
 }
 
-data <- democracy_long %>% filter(variable == "arat_pmm")
+data <- democracy_long %>% 
+  filter(variable == "arat_pmm")
 
 temporal_coverage(data)
 
@@ -1066,22 +1070,6 @@ ggplot(data = data) +
   labs(y = "Country-years") +
   facet_wrap(~variable, ncol=2)
 
-```
-
-# Country name changes (all datasets)
-
-```{r country_name_changes}
-library(stringr)
-
-democracy_long <- democracy_long %>% 
-  mutate(original_country_name = str_to_title(original_country_name),
-         country_name = str_to_title(country_name))
-
-kable(democracy_long %>%
-        group_by(country_name,original_country_name) %>%
-        filter(original_country_name != country_name)  %>%
-        summarise(min = min(year), max = max(year), num_changes = n(), variables = paste(unique(variable), collapse = ", ")),
-      caption = "Country name changes")
 ```
 
 # Differences between Gleditsch and Ward codes, Polity codes and COW codes

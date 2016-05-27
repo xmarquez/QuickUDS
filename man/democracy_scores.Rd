@@ -24,17 +24,18 @@ instead of a matrix. More fine-grained control can be achieved by using
 \code{\link{fscores}} directly.
 }
 \examples{
-# Not run:
-# Requires reshape2 and dplyr
-# data <- prepare_data(democracy)
-# data <- reshape2::melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-# data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-# data <- reshape2::dcast(data, ... ~ variable)
-# data <- data \%>\% arrange(country_name,year)
-# replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
-# replication_2011_scores <- democracy_scores(replication_2011_model)
-# Requires dplyr
-# replication_2011 <- bind_cols(data \%>\% dplyr::select(country_name, GWn, year, region, continent,
-#                              in_system,num_measures),replication_2011)
+# Replicate the official UDS scores (2011 release)
+library(reshape2)
+library(dplyr)
+data <- prepare_data(democracy)
+data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
+data <- dcast(data, ... ~ variable)
+data <- data \%>\% arrange(country_name,year)
+replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+replication_2011_scores <- democracy_scores(replication_2011_model)
+replication_2011_scores <- bind_cols(data \%>\%
+                                       select(country_name, GWn, year,in_system,num_measures),
+                                                     replication_2011_scores)
 }
 

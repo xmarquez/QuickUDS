@@ -101,7 +101,7 @@ replication_2011_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    12.06     0.25    10.04     1.99     8.01     1.75     0.02
+##    10.71     0.25     8.72     1.07     7.61     1.73     0.00
 ```
 
 There is a convenient wrapper for ```mirt(data[ , indexes ] ,model = 1, itemtype = "graded", SE = TRUE)```, in case you just want to re-fit Pemstein, Meserve, and Melton's original model without any special tweaking:
@@ -125,19 +125,19 @@ replication_2011_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 172 EM iterations.
+## Converged within 1e-04 tolerance after 144 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 143579.1
+## Condition number of information matrix = 152303.6
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -55697.82
-## AIC = 111583.6; AICc = 111585.6
-## BIC = 112252.9; SABIC = 111954.2
+## Log-likelihood = -55697.77
+## AIC = 111583.5; AICc = 111585.5
+## BIC = 112252.8; SABIC = 111954.1
 ```
 
 ```r
@@ -147,11 +147,11 @@ summary(replication_2011_model)
 ```
 ##                     F1    h2
 ## arat_pmm         0.901 0.812
-## blm_pmm          0.992 0.985
+## blm_pmm          0.993 0.985
 ## bollen_pmm       0.951 0.904
 ## freedomhouse_pmm 0.941 0.885
-## hadenius_pmm     0.986 0.973
-## mainwaring_pmm   0.994 0.989
+## hadenius_pmm     0.987 0.974
+## mainwaring_pmm   0.995 0.989
 ## munck_pmm        0.955 0.912
 ## pacl_pmm         0.967 0.936
 ## polity_pmm       0.954 0.911
@@ -159,7 +159,7 @@ summary(replication_2011_model)
 ## prc_pmm          0.969 0.938
 ## vanhanen_pmm     0.928 0.861
 ## 
-## SS loadings:  11.036 
+## SS loadings:  11.038 
 ## Proportion Var:  0.92 
 ## 
 ## Factor correlations: 
@@ -193,12 +193,12 @@ head(replication_2011_scores)
 
 ```
 ##          z1     se.z1     pct975    pct025
-## 1 -1.885883 0.4862536 -0.9328262 -2.838940
-## 2 -1.885883 0.4862536 -0.9328262 -2.838940
-## 3 -1.573920 0.3233539 -0.9401460 -2.207693
-## 4 -1.573920 0.3233539 -0.9401460 -2.207693
-## 5 -1.447839 0.2294712 -0.9980751 -1.897602
-## 6 -1.573920 0.3233539 -0.9401460 -2.207693
+## 1 -1.885971 0.4863005 -0.9328221 -2.839120
+## 2 -1.885971 0.4863005 -0.9328221 -2.839120
+## 3 -1.573987 0.3233880 -0.9401463 -2.207827
+## 4 -1.573987 0.3233880 -0.9401463 -2.207827
+## 5 -1.447844 0.2294384 -0.9981444 -1.897543
+## 6 -1.573987 0.3233880 -0.9401463 -2.207827
 ```
 
 ```r
@@ -218,8 +218,8 @@ cor(comparison %>% select(z1,mean), use="pairwise.complete")
 
 ```
 ##             z1      mean
-## z1   1.0000000 0.9996936
-## mean 0.9996936 1.0000000
+## z1   1.0000000 0.9996926
+## mean 0.9996926 1.0000000
 ```
 
 (For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).
@@ -260,19 +260,19 @@ extended_model
 ##     SE = SE, verbose = FALSE)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 202 EM iterations.
+## Converged within 1e-04 tolerance after 322 EM iterations.
 ## mirt version: 1.16 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: crossprod
-## Condition number of information matrix = 116529
+## Condition number of information matrix = 114816.5
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -161682.4
-## AIC = 323658.7; AICc = 323660.5
-## BIC = 324847.2; SABIC = 324380
+## Log-likelihood = -162233.7
+## AIC = 324761.5; AICc = 324763.3
+## BIC = 325950.5; SABIC = 325483.3
 ```
 
 ```r
@@ -281,7 +281,7 @@ extended_model@time
 
 ```
 ##    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-##    31.72     1.02    23.43     5.46    17.95     7.25     0.00
+##    36.14     0.92    27.78     8.73    19.04     7.43     0.00
 ```
 
 ```r
@@ -289,21 +289,21 @@ extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 ```
 
 ```
-## Source: local data frame [23,972 x 8]
+## Source: local data frame [24,062 x 8]
 ## 
-##    country_name   GWn  cown  year         z1     se.z1    pct025   pct975
-##           (chr) (dbl) (dbl) (dbl)      (dbl)     (dbl)     (dbl)    (dbl)
-## 1   Afghanistan   700   700  1747 -0.6164699 0.6784637 -1.946259 0.713319
-## 2   Afghanistan   700   700  1748 -0.6164699 0.6784637 -1.946259 0.713319
-## 3   Afghanistan   700   700  1749 -0.6164699 0.6784637 -1.946259 0.713319
-## 4   Afghanistan   700   700  1750 -0.6164699 0.6784637 -1.946259 0.713319
-## 5   Afghanistan   700   700  1751 -0.6164699 0.6784637 -1.946259 0.713319
-## 6   Afghanistan   700   700  1752 -0.6164699 0.6784637 -1.946259 0.713319
-## 7   Afghanistan   700   700  1753 -0.6164699 0.6784637 -1.946259 0.713319
-## 8   Afghanistan   700   700  1754 -0.6164699 0.6784637 -1.946259 0.713319
-## 9   Afghanistan   700   700  1755 -0.6164699 0.6784637 -1.946259 0.713319
-## 10  Afghanistan   700   700  1756 -0.6164699 0.6784637 -1.946259 0.713319
-## ..          ...   ...   ...   ...        ...       ...       ...      ...
+##    country_name   GWn  cown  year        z1    se.z1    pct025    pct975
+##           (chr) (dbl) (dbl) (dbl)     (dbl)    (dbl)     (dbl)     (dbl)
+## 1   Afghanistan   700   700  1747 -0.613681 0.679301 -1.945111 0.7177489
+## 2   Afghanistan   700   700  1748 -0.613681 0.679301 -1.945111 0.7177489
+## 3   Afghanistan   700   700  1749 -0.613681 0.679301 -1.945111 0.7177489
+## 4   Afghanistan   700   700  1750 -0.613681 0.679301 -1.945111 0.7177489
+## 5   Afghanistan   700   700  1751 -0.613681 0.679301 -1.945111 0.7177489
+## 6   Afghanistan   700   700  1752 -0.613681 0.679301 -1.945111 0.7177489
+## 7   Afghanistan   700   700  1753 -0.613681 0.679301 -1.945111 0.7177489
+## 8   Afghanistan   700   700  1754 -0.613681 0.679301 -1.945111 0.7177489
+## 9   Afghanistan   700   700  1755 -0.613681 0.679301 -1.945111 0.7177489
+## 10  Afghanistan   700   700  1756 -0.613681 0.679301 -1.945111 0.7177489
+## ..          ...   ...   ...   ...       ...      ...       ...       ...
 ```
 
 ```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option:
@@ -353,7 +353,7 @@ mean_ud_period
 ```
 
 ```
-## [1] 0.482904
+## [1] 0.4860076
 ```
 
 ```r
@@ -395,7 +395,10 @@ These scores have a more natural interpretation when transformed to a 0-1 scale 
 
 
 ```r
-extended_scores <- extended_scores %>% mutate(index = pnorm(adj.z1), index.pct025 = pnorm(adj.pct025), index.pct975 = pnorm(adj.pct975))
+extended_scores <- extended_scores %>% 
+  mutate(index = pnorm(adj.z1), 
+         index.pct025 = pnorm(adj.pct025), 
+         index.pct975 = pnorm(adj.pct975))
 ```
 
 It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model):
@@ -404,23 +407,65 @@ It is also possible to to set the cutpoint for this index at, for example, the a
 ```r
 cutpoints_extended <- cutpoints(extended_model)
 
-cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
-
-cutpoints_extended <- left_join(cutpoints_extended,democracy_long %>% select(variable,index_type)  %>% distinct())
+cutpoints_extended
 ```
 
 ```
-## Joining by: "variable"
+## Source: local data frame [125 x 4]
+## Groups: variable [22]
+## 
+##         variable    estimate      pct025       pct975
+##            (chr)       (dbl)       (dbl)        (dbl)
+## 1       arat_pmm -0.81149913 -0.81276596 -0.810681400
+## 2       arat_pmm -0.46073702 -0.45167173 -0.469060773
+## 3       arat_pmm  0.02546788  0.05572442 -0.002025783
+## 4       arat_pmm  0.36523249  0.42087133  0.314548803
+## 5       arat_pmm  0.81728729  0.90901722  0.734069982
+## 6       arat_pmm  1.71232877  1.87841945  1.561878453
+## 7            blm  0.37115889          NA           NA
+## 8            blm  1.02233875          NA           NA
+## 9  bmr_democracy  0.57957179  0.67195609  0.499351155
+## 10    bollen_pmm -0.95172414 -0.95296202 -0.950460123
+## ..           ...         ...         ...          ...
 ```
 
 ```r
-dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
+dichotomous_cutpoints <- cutpoints_extended %>% 
+  group_by(variable) %>%
+  filter(n() == 1) 
 
-dichotomous_cutpoints <- mean(dichotomous_cutpoints$estimate)
+dichotomous_cutpoints
+```
 
-extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - dichotomous_cutpoints, 
-                                        adj.pct025 = pct025 - dichotomous_cutpoints, 
-                                        adj.pct975 = pct975 - dichotomous_cutpoints,
+```
+## Source: local data frame [7 x 4]
+## Groups: variable [7]
+## 
+##                  variable  estimate    pct025    pct975
+##                     (chr)     (dbl)     (dbl)     (dbl)
+## 1           bmr_democracy 0.5795718 0.6719561 0.4993512
+## 2            doorenspleet 0.9119111 1.0424242 0.7983245
+## 3                     gwf 0.5377693 0.6192997 0.4663576
+## 4                    pacl 0.5836470 0.6792819 0.5003522
+## 5                  svolik 0.5809323 0.6505009 0.5180083
+## 6                ulfelder 0.5499662 0.6438975 0.4686435
+## 7 wahman_teorell_hadenius 0.7612286 0.9323947 0.6208983
+```
+
+```r
+avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
+
+avg_dichotomous
+```
+
+```
+## [1] 0.6435752
+```
+
+```r
+extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - avg_dichotomous, 
+                                        adj.pct025 = pct025 - avg_dichotomous, 
+                                        adj.pct975 = pct975 - avg_dichotomous,
                                         index = pnorm(adj.z1),
                                         index.pct025 = pnorm(adj.pct025),
                                         index.pct975 = pnorm(adj.pct975))
@@ -447,38 +492,34 @@ The ```mirt``` package offers a great number of powerful tools to examine and di
 
 
 ```r
-replication_2011_cutpoints <- cutpoints(replication_2011_model)
+replication_2011_cutpoints <- cutpoints(replication_2011_model, type ="score")
 replication_2011_cutpoints
 ```
 
 ```
-## Source: local data frame [94 x 8]
+## Source: local data frame [82 x 4]
 ## Groups: variable [12]
 ## 
-##       par CI_2.5 CI_97.5 variable  type     estimate       pct975
-##     (dbl)  (dbl)   (dbl)    (chr) (chr)        (dbl)        (dbl)
-## 1   3.536  3.309   3.763 arat_pmm    a1 -1.000000000 -1.000000000
-## 2   5.071  4.838   5.304 arat_pmm    d1 -1.434106335 -1.462073134
-## 3   3.598  3.393   3.804 arat_pmm    d2 -1.017533937 -1.025385313
-## 4   1.511  1.346   1.676 arat_pmm    d3 -0.427319005 -0.406769417
-## 5   0.151 -0.015   0.317 arat_pmm    d4 -0.042703620  0.004533092
-## 6  -1.485 -1.665  -1.305 arat_pmm    d5  0.419966063  0.503173164
-## 7  -5.023 -5.310  -4.735 arat_pmm    d6  1.420531674  1.604714415
-## 8  13.624  7.372  19.876  blm_pmm    a1 -1.000000000           NA
-## 9   0.056 -0.730   0.841  blm_pmm    d1 -0.004110393           NA
-## 10 -6.444 -9.443  -3.445  blm_pmm    d2  0.472988843           NA
-## ..    ...    ...     ...      ...   ...          ...          ...
-## Variables not shown: pct025 (dbl)
+##      variable     estimate       pct025     pct975
+##         (chr)        (dbl)        (dbl)      (dbl)
+## 1    arat_pmm -1.434389140 -1.461933535 -1.4097794
+## 2    arat_pmm -1.017816742 -1.025377644 -1.0111613
+## 3    arat_pmm -0.427601810 -0.406948640 -0.4456551
+## 4    arat_pmm -0.042986425  0.004229607 -0.0842413
+## 5    arat_pmm  0.419966063  0.502719033  0.3467978
+## 6    arat_pmm  1.420248869  1.603927492  1.2580388
+## 7     blm_pmm -0.004120581           NA         NA
+## 8     blm_pmm  0.471698113           NA         NA
+## 9  bollen_pmm -1.526416539 -1.561979753 -1.5000833
+## 10 bollen_pmm -1.077909648 -1.084139483 -1.0734633
+## ..        ...          ...          ...        ...
 ```
 
 ```r
-# We don't want to plot the discrimination parameter here, only the cutpoints
-replication_2011_cutoffs <- replication_2011_cutpoints %>% filter(type != "a1") 
-
 # We plot the "normalized" cutpoints ("estimate," in the same scale as the latent scores), 
 # not the untransformed ones ("par")
 
-ggplot(data = replication_2011_cutoffs, aes(x=variable,y = estimate, ymin = pct025,ymax=pct975))  + 
+ggplot(data = replication_2011_cutpoints, aes(x=variable,y = estimate, ymin = pct025,ymax=pct975))  + 
   theme_bw() + 
   labs(x="",y="Unified democracy level rater cutoffs") + 
   geom_point() + 
@@ -495,13 +536,37 @@ ggplot(data = replication_2011_cutoffs, aes(x=variable,y = estimate, ymin = pct0
 
 ```r
 # We can also plot discrimination parameters, which are in a different scale:
-replication_2011_discrimination <- replication_2011_cutpoints %>% filter(type == "a1")
+replication_2011_discrimination <- cutpoints(replication_2011_model, type ="discrimination")
 
+replication_2011_discrimination
+```
+
+```
+## Source: local data frame [12 x 4]
+## Groups: variable [12]
+## 
+##            variable estimate pct025 pct975
+##               (chr)    (dbl)  (dbl)  (dbl)
+## 1          arat_pmm    3.536  3.310  3.763
+## 2           blm_pmm   13.833  7.440 20.226
+## 3        bollen_pmm    5.224  4.445  6.003
+## 4  freedomhouse_pmm    4.717  4.475  4.959
+## 5      hadenius_pmm   10.455  5.143 15.767
+## 6    mainwaring_pmm   16.265  9.772 22.757
+## 7         munck_pmm    5.473  4.081  6.865
+## 8          pacl_pmm    6.499  5.979  7.019
+## 9        polity_pmm    5.432  5.169  5.695
+## 10    polyarchy_pmm    6.300  5.096  7.505
+## 11          prc_pmm    6.637  6.223  7.051
+## 12     vanhanen_pmm    4.231  4.063  4.399
+```
+
+```r
 ggplot(data = replication_2011_discrimination, 
-       aes(x=reorder(variable,par),y = par, ymin = CI_2.5,ymax=CI_97.5))  + 
+       aes(x=reorder(variable,estimate),y = estimate, ymin = pct025, ymax = pct975))  + 
   theme_bw() + 
   labs(x="",y="Discrimination parameter for each rater
-       \n(higher value means fewer idiosyncratic errors relative to latent score)") + 
+       \n(higher value means fewer idiosyncratic\nerrors relative to latent score)") + 
   geom_point() + 
   geom_errorbar() + 
   coord_flip()
@@ -527,16 +592,16 @@ replication_2011_info
 ## 
 ##       rater theta         info
 ##       (chr) (dbl)        (dbl)
-## 1  arat_pmm  -6.0 1.216699e-06
-## 2  arat_pmm  -5.8 2.467860e-06
-## 3  arat_pmm  -5.6 5.005620e-06
-## 4  arat_pmm  -5.4 1.015302e-05
-## 5  arat_pmm  -5.2 2.059358e-05
-## 6  arat_pmm  -5.0 4.177033e-05
-## 7  arat_pmm  -4.8 8.472323e-05
-## 8  arat_pmm  -4.6 1.718439e-04
-## 9  arat_pmm  -4.4 3.485453e-04
-## 10 arat_pmm  -4.2 7.069227e-04
+## 1  arat_pmm  -6.0 1.216458e-06
+## 2  arat_pmm  -5.8 2.467471e-06
+## 3  arat_pmm  -5.6 5.005032e-06
+## 4  arat_pmm  -5.4 1.015223e-05
+## 5  arat_pmm  -5.2 2.059281e-05
+## 6  arat_pmm  -5.0 4.177044e-05
+## 7  arat_pmm  -4.8 8.472684e-05
+## 8  arat_pmm  -4.6 1.718581e-04
+## 9  arat_pmm  -4.4 3.485881e-04
+## 10 arat_pmm  -4.2 7.070377e-04
 ## ..      ...   ...          ...
 ```
 
@@ -559,7 +624,7 @@ prob_more(replication_2011_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.8780381
+## [1] 0.8780068
 ```
 
 ```r
@@ -567,7 +632,7 @@ prob_more(extended_scores, "United States of America","France", 2000)
 ```
 
 ```
-## [1] 0.7315515
+## [1] 0.7290393
 ```
 
 Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:
@@ -578,7 +643,7 @@ prob_more(replication_2011_scores, "United States of America","United States of 
 ```
 
 ```
-## [1] 0.9179108
+## [1] 0.9179374
 ```
 
 ```r
@@ -586,7 +651,7 @@ prob_more(extended_scores, "United States of America","United States of America"
 ```
 
 ```
-## [1] 0.9998793
+## [1] 0.9998562
 ```
 
 If you find this package useful, cite both it and Pemstein, Meserve, and Melton's original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using ```citation```:

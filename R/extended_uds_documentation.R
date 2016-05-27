@@ -3,8 +3,8 @@
 #' A dataset extending the Unified Democracy Scores of Pemstein, Meserve, and
 #' Melton (2010) to the 19th century (and sometimes before), updating it with
 #' 2013-2015 data, and calculating scores for countries not in the official UD
-#' release. Cite both Pemstein, Meserve, and Melton 2010 as well as Marquez,
-#' Xavier 2015. The Extended Unified Democracy Scores. Version 0.1.
+#' release. Cite both Pemstein, Meserve, and Melton 2010 as well as Marquez
+#' 2016.
 #'
 #' @section Overview:
 #'
@@ -31,7 +31,9 @@
 #'   other things, such as civil rights.
 #'
 #'   The latent variable score is calculated using four broad families of
-#'   democracy measures:
+#'   democracy measures, all of which are available in the
+#'   \code{\link{democracy}} file (variable names in this section refer to
+#'   columns in that file):
 #'
 #' @section Dichotomous indexes of democracy:
 #'
@@ -182,17 +184,21 @@
 #'   states that is commonly used in Political Science and International
 #'   Relations research; in particular, the treatment of Germany, Yemen,
 #'   Vietnam, Ethiopia, Yugoslavia, Serbia, Montenegro, and a few other
-#'   countries and their successor states differs between them. I have included
-#'   both the Gleditsch and Ward country code (\code{GWn}) and the COW code
-#'   (\code{cown}) for each country-year, as well as an indicator of whether the
-#'   country year is considered to be "in the international system" by Gleditsch
-#'   and Ward and whether it is considered to be a microstate (\code{in_system}
-#'   and \code{microstate}; note that microstates are considered to be "in
-#'   system" in this dataset). Since the Gleditsch and Ward "international
-#'   system" begins with the Congress of Vienna in 1816, country-years before
-#'   1816 are by definition not "in system," even though this does not mean that
-#'   these states were not independent then. Care should thus be taken with the
-#'   "in system" indicator for years before 1816.
+#'   countries and their successor states differs between them. See
+#'   \code{vignette("Spatial_and_temporal_coverage")} for details of these
+#'   differences.
+#'
+#'   I have included three different codes for each country-year: the Gleditsch
+#'   and Ward country code (\code{GWn}), the COW code (\code{cown}), and the
+#'   Polity IV code (\code{polity_ccode}), as well as an indicator of whether
+#'   the country year is considered to be "in the international system" by
+#'   Gleditsch and Ward and whether it is considered to be a microstate
+#'   (\code{in_system} and \code{microstate}; note that microstates are
+#'   considered to be "in system" in this dataset). Since the Gleditsch and Ward
+#'   "international system" begins with the Congress of Vienna in 1816,
+#'   country-years before 1816 are by definition not "in system," even though
+#'   this does not mean that these states were not independent then. Care should
+#'   thus be taken with the "in system" indicator for years before 1816.
 #'
 #'   It is worth noting that while most measures of democracy are produced only
 #'   for sovereign countries, a number of measures have also been produced,
@@ -220,7 +226,8 @@
 #'
 #'   First, in a few cases I have relied on the replication data for Pemstein,
 #'   Meserve, and Melton (2010), which contains data I have not been able to
-#'   find elsewhere. These variables are marked \code{_pmm}.
+#'   find elsewhere. These variables are marked \code{_pmm} in the
+#'   \code{\link{democracy}} file.
 #'
 #'   Second, I have constructed the \code{pitf*} variable following the
 #'   instructions in the source, but have not found the data ready-made. This is
@@ -233,304 +240,104 @@
 #'   Third, I have calculated some indexes (e.g., \code{magaloni_tri},
 #'   \code{utip_dichotmous_strict}) myself from the original datasets.
 #'
-#' @section Source Variables:
-#'
-#'   These variables were used to produce the extended UD scores.
+#' @section Variables:
 #'
 #'   \describe{
+#'
+#'   \item{country_name}{Standardized country name.}
+#'
+#'   \item{GWn}{Gleditsch and Ward's numeric country code, from the Gleditsch
+#'   and Ward list of independent states. For details, see Gleditsch, Kristian
+#'   S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+#'   of the Independent States since 1816." International Interactions 25:
+#'   393-413. The list can be found at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+#'
+#'   \item{GWc}{Gleditsch and Ward's alphabetic country code, from the Gleditsch
+#'   and Ward list of independent states. For details, see Gleditsch, Kristian
+#'   S. & Michael D. Ward. 1999. "Interstate System Membership: A Revised List
+#'   of the Independent States since 1816." International Interactions 25:
+#'   393-413. The list can be found at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
+#'
+#'   \item{cown}{The Correlates of War numeric country code. This differs from
+#'   Gleditsch and Ward's numeric country code in a few cases, due to the
+#'   treatment of a couple of country terminations: West Germany becomes 255 in
+#'   CoW after reunification, but stays as 260 in G & W; Serbia continues as 345
+#'   in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn;
+#'   Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after
+#'   unification is 679 in CoW, but it remains 678 on G & W, which considers it
+#'   a continuation of the same state (absorbing South Yemen). Finally,
+#'   Kiribati, Tonga, Tuvalu, and Nauru have different codes in G & W for
+#'   reasons I cannot determine.  For a full discussion of these differences,
+#'   see the vignette at \code{vignette("Spatial_and_temporal_coverage")}.}
+#'
+#'   \item{polity_ccode}{The numeric country code of the country in the Polity
+#'   dataset, which is based on, but not identical to, the CoW codes in a few
+#'   cases. For a full discussion of these differences, see the vignette at
+#'   \code{vignette("Spatial_and_temporal_coverage")}.}
 #'
 #'   \item{year}{Year. See the section on spatial and temporal organization for
 #'   details on coding.}
 #'
-#'   \item{arat_pmm}{Democracy score from Arat, Zehra F. 1991. Democracy and
-#'   human rights in developing countries. Boulder: Lynne Rienner Publishers.
-#'   Taken from Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013.
-#'   "Replication data for: Democratic Compromise: A Latent Variable Analysis of
-#'   Ten Measures of Regime Type." In: Harvard Dataverse.
-#'   \url{http://hdl.handle.net/1902.1/PMM}. Min = 29, max = 109, n = 3873. Cut
-#'   into 7 intervals   (following Pemstein, Meserve, and Melton's guidelines)
-#'   with the following cutoffs: 50, 60, 70, 80, 90, and 100 before using it to
-#'   produce the extended UDS. The resulting score is then ordinal from 1 to 8.}
+#'   \item{region}{Region. Based on the UN region classifications. For historic
+#'   states, the region is the same as the region of the successor states (or
+#'   states that absorbed the territory, as for example in the case of the
+#'   German principalities). In one case, Austria-Hungary, the successor states
+#'   straddle two regions (Western Europe and Eastern Europe); I have opted to
+#'   assign it the region "Central Europe."}
 #'
-#'   \item{blm}{Trichotomous measure of regime type from Bowman, Kirk, Fabrice
-#'   Lehoucq, and James Mahoney. 2005. Measuring Political Democracy: Case
-#'   Expertise, Data Adequacy, and Central America. Comparative Political
-#'   Studies 38 (8): 939-970. \url{http://cps.sagepub.com/content/38/8/939}.
-#'   Data available at \url{http://www.blmdemocracy.gatech.edu/}. 0 =
-#'   authoritarian, 0.5 = semidemocratic, 1 = democratic. Available only for
-#'   five Latin American countries (Costa Rica, El Salvador, Guatemala, Honduras
-#'   and Nicaragua) from 1900 to 2000. }
+#'   \item{continent}{Continent. Based on the UN continent classifications.}
 #'
-#'   \item{bmr_democracy}{Dichotomous measure of regime type from Boix, Carles,
-#'   Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set of
-#'   Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
-#'   1523-1554. Original data availabe at
-#'   \url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}.
-#'    1 = democracy. N = 16986.}
+#'   \item{GW_startdate}{The entry date of the state into the international
+#'   system (usually the date of independence, though there can be more than
+#'   one), according to Gleditsch and Ward, or 1 January 1816, whichever is
+#'   later.}
 #'
-#'   \item{bnr}{Dichotomous indicator of democracy from the Bernhard, Nordstrom
-#'   & Reenock Event History Coding of Democratic Breakdowns. 0 = non-democracy,
-#'   1 - democracy. In Michael Bernhard, Timothy Nordstrom, and Christopher
-#'   Reenock, "Economic Performance, Institutional Intermediation and Democratic
-#'   Breakdown," Journal of Politics 63:3 (2001), pp. 775-803. Data and coding
-#'   description available at
-#'   \url{http://users.clas.ufl.edu/bernhard/content/data/data.htm} This
-#'   indicator has been put in country-year format, extending to 1913, with the
-#'   help of the panel of independent states by Gleditsch and Ward; it
-#'   originally included only the country-year spells for democratic countries
-#'   to 1913.}
+#'   \item{GW_enddate}{The exit date of the state from the international system
+#'   (usually the date the state lost its independence, though there can be more
+#'   than one), according to Gleditsch and Ward, or \code{NA} for countries that
+#'   are still in the international system.}
 #'
-#'   \item{bollen_pmm}{0-100 index of democracy from Bollen, Kenneth A. 2001.
-#'   "Cross-National Indicators of Liberal Democracy, 1950-1990." 2nd ICPSR
-#'   version. Chapel Hill, NC: University of North Carolina, 1998. Ann Arbor,
-#'   MI: Inter-university Consortium for Political and Social Research, 2001.
-#'   Original data available at
-#'   \url{http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml}. Taken
-#'   from Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013.
-#'   "Replication data for: Democratic Compromise: A Latent Variable Analysis of
-#'   Ten Measures of Regime Type." In: Harvard Dataverse.
-#'   \url{http://hdl.handle.net/1902.1/PMM}. Cut into 10 intervals (following
-#'   Pemstein, Meserve, and Melton's guidelines) before using it to produce the
-#'   extended UDS with the following cutoffs: 10,20,30,40,50,60,70,80, and 90.
-#'   The resulting score is then ordinal from 1 to 10.}
+#'   \item{microstate}{Whether the state is a microstate, according to
+#'   Gleditsch. His tentative list of microstates is available at
+#'   \url{http://privatewww.essex.ac.uk/~ksg/statelist.html}.}
 #'
-#'   \item{doorenspleet}{Dichotomous index of democracy from Doorenspleet,
-#'   Renske. 2000. Reassessing the Three Waves of Democratization. World
-#'   Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
-#'   \url{http://dx.doi.org/10.1017/S0043887100016580}. 1 = authoritarian, 2 =
-#'   democracy. Omits periods of interruption.}
+#'   \item{lat}{The rough latitude of the state.}
 #'
-#'   \item{eiu}{0-1 index of democracy from the updated version of the Economist
-#'   Intelligence Unit. 2012. Democracy Index 2012: Democracy at a Standstill. 0
-#'   = least democratic, 1 = most democratic. Taken from
-#'   \url{http://www.govindicators.org}. It is rounded (loses the decimal) and
-#'   transformed so that the result is ordinal from 1 to 11 before using it to
-#'   produce the extended UDS.}
+#'   \item{lon}{The rough longitude of the state.}
 #'
-#'   \item{freedomhouse}{Average civil liberties + political rights score
-#'   (reversed so higher values are more democratic) from Freedom House. 2015.
-#'   "Freedom in the World." Original data available at
-#'   \url{http://www.freedomhouse.org}. Goes from 1 (least democratic) to 7
-#'   (most democratic). In this version, the index does not include a value for
-#'   1981. This is based on the latest Freedom House data going all the way to
-#'   2015.}
+#'   \item{in_system}{Whether the state is "in system" (that is, is independent
+#'   and sovereign), according to Gleditsch and Ward, for this particular date.}
 #'
-#'   \item{freedomhouse_electoral}{An indicator of whether a country is an
-#'   "electoral democracy" in Freedom House's estimation (1 = yes, 0 - no).
-#'   Original data available at \url{http://www.freedomhouse.org}. Available
-#'   only from 1989. This is based on the latest Freedom House data going all
-#'   the way to 2015.}
+#'   \item{in_cow}{Whether the state is in the COW system of states (that is, is
+#'   independent and sovereign), for this particular date. Experimental.}
 #'
-#'   \item{gwf}{Dichotmous democracy/autocracy indicator from Geddes, Barbara,
-#'   Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown and Regime
-#'   Transitions: A New Data Set. Perspectives on Politics 12 (1): 313-331.
-#'   Original data available at \url{http://dictators.la.psu.edu/}. 0 =
-#'   autocracy, 1 = democracy. Calculated from Geddes, Wright, and Frantz's case
-#'   variable for years before 1945.}
-#'
-#'   \item{hadenius_pmm}{0-10 index of democracy from Hadenius, Axel. 1992.
-#'   Democracy and Development. Cambridge: Cambridge University Press. Taken
-#'   from Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013.
-#'   "Replication data for: Democratic Compromise: A Latent Variable Analysis of
-#'   Ten Measures of Regime Type." In: Harvard Dataverse.
-#'   \url{http://hdl.handle.net/1902.1/PMM}. Higher values are more democratic.
-#'   Following PMM's guidelines, before using it to produce the extended UDS it
-#'   is cut it into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8, and
-#'   9. The resulting score is then ordinal from 1 to 8.}
-#'
-#'   \item{kailitz_tri}{Trichotomous democracy indicator from Kailitz, Steffen.
-#'   2013. Classifying political regimes revisited: legitimation and durability.
-#'   Democratization 20 (1): 39-60. Original data available at
-#'   \url{http://dx.doi.org/10.1080/13510347.2013.738861}. 1 = autocracy (all
-#'   types except electoral autocracy), 2 = electoral autocracy, 3 = liberal
-#'   democracy.}
-#'
-#'   \item{lied}{0-6 Lexical Index of Electoral Democracy from Skaaning,
-#'   Svend-Erik, John Gerring, and Henrikas Bartusevicius. 2015. A Lexical Index
-#'   of Electoral Democracy. Comparative Political Studies 48 (12): 1491-1525.
-#'   Original data available from
-#'   \url{http://thedata.harvard.edu/dvn/dv/skaaning}. This is from V3 of the
-#'   dataset, updated to 2015.
-#'
-#'   0 = nonelectoral,
-#'
-#'   1 = one- or no- party elections,
-#'
-#'   2 = limited competition multiparty elections for legislature only,
-#'
-#'   3 = Limited competition multiparty elections for both executive and
-#'   legislature,
-#'
-#'   4 = Competitive elections for executive and legislative, limited suffrage,
-#'
-#'   5 = Male democracy,
-#'
-#'   6 = Electoral democracy.}
-#'
-#'   \item{mainwaring}{Trichotomous democracy indicator from Mainwaring, Scott,
-#'   Daniel Brinks, and Anibal Perez Linan. 2008. "Political Regimes in Latin
-#'   America, 1900-2007." Original data available from
-#'   \url{http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf}. -1 =
-#'   non-democracy, 0 = hybrid, 1 = democracy.}
-#'
-#'   \item{magaloni_regime_tri}{Trichotomous democracy indicator constructed
-#'   from the dataset of  Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013.
-#'   University. Original data and codebook available at
-#'   \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}.
-#'    1 = autocracy (all types except multipary autocracy), 2 = multiparty
-#'   autocracy, 3 = democracy.}
-#'
-#'   \item{munck_pmm}{0-1 index of democracy from Munck, Gerardo L. 2009.
-#'   Measuring Democracy: A Bridge Between Scholarship and Politics. Baltimore:
-#'   Johns Hopkins University Press. Taken from Pemstein, Daniel, Stephen A.
-#'   Meserve, and James Melton. 2013. "Replication data for: Democratic
-#'   Compromise: A Latent Variable Analysis of Ten Measures of Regime Type." In:
-#'   Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}. Only available
-#'   for 342 country-years. Higher values are more democratic. Following PMM's
-#'   guidelines, it is cut it into 4 intervals with the following cutoffs:
-#'   0.5,0.5,0.75, and 0.99 before being used to produce the extended UDS. The
-#'   resulting score is then ordinal from 1 to 4.}
-#'
-#'   \item{pacl}{Dichotomous measure of democracy from Cheibub, Jose Antonio,
-#'   Jennifer Gandhi, and James Raymond Vreeland. 2010. "Democracy and
-#'   Dictatorship Revisited." Public Choice. 143(1):67-101. Original data
-#'   available at
-#'   \url{https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited}.
-#'    1= democracy.}
-#'
-#'   \item{PEPS1v}{Participation-Enhanced Polity Score 1, polity score adjusted
-#'   using Vanhanen votes/two-thirds of Vanhanen population. From Bruce E. Moon,
-#'   Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett, Joshua J.
-#'   Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong (2006)
-#'   "Voting Counts: Participation in the Measurement of Democracy" Studies in
-#'   Comparative International Development 42, 2 (Summer, 2006). The complete
-#'   dataset is available here:
-#'   \url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}. Before using
-#'   it to produce the extended UDS, it is rounded so that the resulting score
-#'   is ordinal with 21 categories.}
-#'
-#'   \item{pitf}{A five category indicator of democracy described in Goldstone
-#'   et al 2010. Can be:
-#'
-#'   0-Full autocracy (exrec < 7, parcomp !=0 and parcomp < 3)
-#'
-#'   1-Partial autocracy (exrec < 7, parcomp = 0 or parcomp > 2)
-#'
-#'   2-Partial democracy with factionalism (exrec > 6, parcomp = 3)
-#'
-#'   3-Partial democracy (exrec > 6, parcomp = 0 or parcomp = 4 or parcomp = 5
-#'   but exrec != 8)
-#'
-#'   4-Full democracy (exrec = 8, parcomp = 5). See Goldstone et al. 2010 for
-#'   full details.}
-#'
-#'   \item{polity2}{Annual polity2 index, interpolating values for interruption,
-#'   interregnum, and transition periods. Higher values are more democratic.
-#'   From Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity
-#'   IV: Political Regime Characteristics and Transitions, 1800-2012." Updated
-#'   to 2015. Original data available from
-#'   \url{http://www.systemicpeace.org/polity/polity4.htm}.}
-#'
-#'   \item{poliarchy_pmm}{0-10 index of democracy from Coppedge, Michael and
-#'   Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On Measuring Democracy:
-#'   Its Consequences and Concomitants, ed. Alex Inkeles. New Brunswuck, NJ:
-#'   Transaction pp. 47-68. Higher values are more democratic. Taken from
-#'   Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
-#'   data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
-#'   of Regime Type." In: Harvard Dataverse.
-#'   \url{http://hdl.handle.net/1902.1/PMM}. }
-#'
-#'   \item{prc_notrans}{From the 1-4 index of democracy from Gasiorowski, Mark
-#'   J. 1996. "An Overview of the Political Regime Change Dataset." Comparative
-#'   Political Studies 29(4):469-483. Available in updated form in Reich, G.
-#'   2002. Categorizing Political Regimes: New Data for Old Problems.
-#'   Democratization 9 (4): 1-24.
-#'   \url{http://www.tandfonline.com/doi/pdf/10.1080/714000289}. 1=
-#'   Authoritarian, 3 = semidemocratic, 4 = democratic. Category 2 (Transition)
-#'   is excluded (set to NA) since it does not have an obvious meaning in this
-#'   scale (could be between semidemocracy and democracy, or between
-#'   authoritarian and semidemocracy, or between authoritarian and democracy).}
-#'
-#'   \item{svolik}{Dichotmous indicator of democracy from Svolik, Milan. 2012.
-#'   The Politics of Authoritarian Rule. Cambridge and New York: Cambridge
-#'   University Press. Original data available from
-#'   \url{http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/}.
-#'    1 = authoritarian, 2 = democracy.}
-#'
-#'   \item{ulfelder}{Dichotomous indicator of democracy from Ulfelder, Jay.
-#'   2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
-#'   \url{http://hdl.handle.net/1902.1/18836}. 0 = authoritarian, 1 =
-#'   democracy.}
-#'
-#'   \item{utip_dichotomous_strict}{Strict version of a calculated dichotomous
-#'   index of democracy from data in the UTIP dataset of political regimes (Hsu
-#'   2008). 1 if the regime is a social democracy or a conservative democracy, 0
-#'   otherwise. This excludes "one party democracies" from the democracy
-#'   category.}
-#'
-#'   \item{v2x_poliarchy}{Continuous poliarchy index from V-dem. Coppedge,
-#'   Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan
-#'   Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
-#'   Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-#'   Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-#'   Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy
-#'   (V-Dem) Project. Original data available at
-#'   \url{https://v-dem.net/en/data/}. Higher values are more democratic. Before
-#'   using it to produce the extended UDS, it is cut into 20 categories, so the
-#'   resulting score is ordinal from 1 to 20.}
-#'
-#'   \item{vanhanen_democratization}{Index of democratization from Vanhanen,
-#'   Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original data
-#'   available from
-#'   \url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}.
-#'   Higher values are more democratic. Following PMM's guidelines, it is cut
-#'   into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35
-#'   before using it to generate the extended UDS. The resulting score is then
-#'   ordinal from 1 to 8.}
-#'
-#'   \item{wahman_teorell_hadenius}{Dichotomous measure of democracy from the
-#'   Authoritarian Regimes Data Set, version 5.0, by Axel Hadenius, Jan Teorell,
-#'   & Michael Wahman, described in Hadenius, Axel and Jan Teorell. 2007.
-#'   "Pathways from Authoritarianism", Journal of Democracy 18(1): 143-156 and
-#'   Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
-#'   types revisited: updated data in comparative perspective. Contemporary
-#'   Politics 19 (1): 19-34. The dataset and codebook can be downloaded from
-#'   \url{https://sites.google.com/site/authoritarianregimedataset/data}.
-#'   1=democracy, 0 = non-democracy. Calculated from their regime1ny variable;
-#'   non-democracy = all authoritarian regimes.}}
-#' @section Extended Unified Democracy Scores: \describe{ \item{z1}{The mean of
-#'   the latent unfied democracy variable (the factor scores computed by the
-#'   model).}
+#'   \item{z1}{The mean of the latent unfied democracy variable (the factor
+#'   scores computed by the model).}
 #'
 #'   \item{se.z1}{The standard error of the latent variable. This is typically
 #'   higher for years in the distant past or with few measurements.}
 #'
-#'   \item{pct975}{The top of the 95 percent confidence interval around z1. Calculated
-#'   as z1 + 1.96*se.z1.}
+#'   \item{pct975}{The top of the 95 percent confidence interval around z1.
+#'   Calculated as z1 + 1.96*se.z1.}
 #'
-#'   \item{pct025}{The bottom of the 95 percent confidence interval. Calculated as z1 -
-#'   1.96*se.z1.}
+#'   \item{pct025}{The bottom of the 95 percent confidence interval. Calculated
+#'   as z1 - 1.96*se.z1.}
 #'
 #'   \item{adj.z1}{The mean of the latent unfied democracy variable (the factor
 #'   scores computed by the model), adjusted to match the average cutpoints for
 #'   the dichotomous measures of democracy used to generate it (essentially, z1
-#'   - 0.64). See the vignette \code{vignette("Replicating_and_extending_the_UD_scores")} for details.}
+#'   - 0.64). See the vignette
+#'   \code{vignette("Replicating_and_extending_the_UD_scores")} for details.}
 #'
 #'   \item{adj.pct975}{The top of the 95 percent confidence interval around z1,
 #'   adjusted to match the average cutpoints for the dichotomous measures of
 #'   democracy used to generate it (essentially, pct975 - 0.64).}
 #'
-#'   \item{adj.pct025}{The bottom of the 95 percent confidence interval, adjusted to
-#'   match the average cutpoints for the dichotomous measures of democracy used
-#'   to generate it (essentially, pct025 - 0.64).}
-#'
-#'   \item{group1}{Counts periods of uninterrupted measurement for a country
-#'   group. It changes value whenever the year-series "breaks" for a country.}
-#'
-#'   \item{group2}{Counts periods of uninterrupted measurement for a country
-#'   group. It changes value whenever \code{in_system} indicator changes.}
-#'
-#'   \item{group3}{Combined \code{group1} and \code{group2}.}
+#'   \item{adj.pct025}{The bottom of the 95 percent confidence interval,
+#'   adjusted to match the average cutpoints for the dichotomous measures of
+#'   democracy used to generate it (essentially, pct025 - 0.64).}
 #'
 #'   \item{index}{A transformation of adj.z1 to a 0-1 scale, using the normal
 #'   cumulative distribution function. See Marquez 2016 for more details. This
@@ -544,8 +351,9 @@
 #'   the normal cumulative distribution function.}
 #'
 #'   \item{index.pct975}{A transformation of adj.z1.pct975 to a 0-1 scale, using
-#'   the normal cumulative distribution function.}}
-#' @template standard-variables
+#'   the normal cumulative distribution function.}
+#'   }
+#'
 #' @references
 #'
 #' Arat, Zehra F. 1991. Democracy and human rights in developing countries.
@@ -579,7 +387,7 @@
 #' and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
 #' Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
 #' Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-#' Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy
+#' Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of Democracy
 #' (V-Dem) Project. Original data available at \url{https://v-dem.net/en/data/}.
 #'
 #' Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On

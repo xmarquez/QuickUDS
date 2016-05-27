@@ -5,38 +5,42 @@
 \title{A convenience function for extracting cutpoints from a UD model in a tidy
 data frame format.}
 \usage{
-cutpoints(model)
+cutpoints(model, type = "score")
 }
 \arguments{
 \item{model}{A \code{\link{mirt}} \code{\link{SingleGroupClass-class}} model
 of the democracy scores.}
+
+\item{type}{A string specifying the cutpoint type. Can be (an abbreviation
+of) "score" (for score cutpoints) or "discrimination" (for discrimination
+parameters). Default is "score."}
 }
 \value{
-A data frame with cutpoints for each democracy index in terms of the
-  latent variable. It will return both discrimination parameters (type
-  "\code{a*}") and score cutpoints (type \code{d*}), plus confidence
-  intervals if these have been calculated by the model. For the score
-  cutpoints (type \code{d*}), the columns \code{estimate}, \code{pct975}, and
-  \code{pct025} report the IRT parametrization (a normalized measure in the
-  same scale as the latent variable); the \code{par}, \code{CI_2.5}, and
-  \code{CI_97.5} columns report the slope intercept parameter and confidence
-  intervals of the ```mirt``` model (used to calculate \code{estimate}).
+A data frame with either score cutpoints for each variable used to
+  construct the latent scores in terms of the latent variable, or
+  discrimination parameters for each variable used to construct the index.
+  For the score cutpoints (\code{type = 'score'}), the columns
+  \code{estimate}, \code{pct975}, and \code{pct025} report the IRT
+  parametrization of the model estimates, a normalized measure in the same
+  scale as the latent variable.
 }
 \description{
 This function takes a model of the democracy scores and extracts the
-cutpoints and their standard errors. It does no sanity checking; it will work
-equally well (or badly) for any \code{\link{mirt}} model.
+discrimination parameters, score cutpoints, and standard errors for all the
+variables involved, putting these into a tidy data frame.
 }
 \examples{
-# Not run:
-# library(QuickUDS)
-# data <- prepare_data(democracy)
-# data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-# data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-# data <- dcast(data, ... ~ variable)
-# data <- data \%>\% arrange(country_name,year)
-# replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))],
-#                                   model = 1, itemtype = "graded", SE = TRUE)
-# cutpoints_2011 <- cutpoints(replication_2011_model)
+# Replicate the official UDS 2011 release and calculate its cutpoints
+library(reshape2)
+library(dplyr)
+library(mirt)
+data <- prepare_data(democracy)
+data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
+data <- dcast(data, ... ~ variable)
+data <- data \%>\% arrange(country_name,year)
+replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))]],
+                                  model = 1, itemtype = "graded", SE = TRUE)
+cutpoints_2011 <- cutpoints(replication_2011_model)
 }
 

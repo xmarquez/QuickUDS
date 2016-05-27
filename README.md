@@ -1,4 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis-CI Build Status](https://travis-ci.org/NA/NA.svg?branch=master)](https://travis-ci.org/NA/NA)
+
 This `R` package contains convenience functions to extend the [Unified Democracy Scores of Pemstein, Meserve, and Melton](http://www.unified-democracy-scores.org/). These are basically wrappers for a couple of functions in the package [mirt](https://cran.r-project.org/web/packages/mirt/mirt.pdf), which contains powerful facilities for factor analysis, and which you will probably want to use directly to do anything beyond replicating and extending the UD scores with the data provided by this package.
 
 This package also includes an "[extended UDS](https://github.com/xmarquez/QuickUDS/blob/master/csvs-and-pdfs/extended_uds.csv?raw=true)" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy. Both datasets are fully documented. The extended scores (and their generation) are described in more detail in Marquez, Xavier, "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: <http://ssrn.com/abstract=2753830>. A more informal description of the extended UD scores is also found in [this blogpost](http://abandonedfootnotes.blogspot.co.nz/2016/03/artisanal-democracy-data-quick-and-easy.html).
@@ -59,7 +61,7 @@ extended_uds <- bind_cols(data,extended_scores)
 # Time to converge on my machine
 extended_model@time
 #>    TOTAL     DATA ESTIMATE    Estep    Mstep       SE     POST 
-#>   159.20     1.28   144.81    91.50    53.22    10.47     0.92
+#>   128.14     1.25   116.28    67.16    49.05    10.58     0.00
 
 # Number of iterations, log likelihood, etc.
 extended_model
@@ -69,19 +71,19 @@ extended_model
 #>     SE = SE, verbose = FALSE, technical = ..2)
 #> 
 #> Full-information item factor analysis with 1 factor(s).
-#> Converged within 1e-04 tolerance after 1942 EM iterations.
+#> Converged within 1e-04 tolerance after 1402 EM iterations.
 #> mirt version: 1.16 
 #> M-step optimizer: BFGS 
 #> EM acceleration: Ramsay
 #> Number of rectangular quadrature: 61
 #> 
 #> Information matrix estimated with method: crossprod
-#> Condition number of information matrix = 11924.94
+#> Condition number of information matrix = 12075.16
 #> Second-order test: model is a possible local maximum
 #> 
-#> Log-likelihood = -201249.1
-#> AIC = 402856.2; AICc = 402858.9
-#> BIC = 404303.9; SABIC = 403735
+#> Log-likelihood = -202077.9
+#> AIC = 404513.8; AICc = 404516.5
+#> BIC = 405962.2; SABIC = 405393.4
 
 # Correlations of latent factor with source variables, variance accounted for, etc.
 summary(extended_model)
@@ -90,33 +92,33 @@ summary(extended_model)
 #> blm                      0.979 0.958
 #> bmr_democracy            0.980 0.961
 #> bnr                      0.965 0.931
-#> bollen_pmm               0.921 0.848
-#> doorenspleet             0.966 0.933
-#> eiu                      0.888 0.789
-#> freedomhouse             0.928 0.861
-#> freedomhouse_electoral   0.986 0.972
-#> gwf                      0.963 0.926
+#> bollen_pmm               0.920 0.847
+#> doorenspleet             0.965 0.932
+#> eiu                      0.888 0.788
+#> freedomhouse             0.928 0.860
+#> freedomhouse_electoral   0.985 0.971
+#> gwf                      0.962 0.926
 #> hadenius_pmm             0.949 0.901
-#> kailitz_tri              0.936 0.876
-#> lied                     0.915 0.838
+#> kailitz_tri              0.936 0.875
+#> lied                     0.915 0.836
 #> mainwaring               0.970 0.941
-#> magaloni_regime_tri      0.957 0.915
+#> magaloni_regime_tri      0.956 0.915
 #> munck_pmm                0.940 0.883
 #> pacl                     0.956 0.914
 #> PEPS1v                   0.992 0.984
-#> pitf                     0.975 0.951
-#> polity2                  0.989 0.977
-#> polyarchy_contestation   0.943 0.889
-#> prc_notrans              0.952 0.907
+#> pitf                     0.975 0.950
+#> polity2                  0.988 0.977
+#> polyarchy_contestation   0.944 0.890
+#> prc_notrans              0.952 0.906
 #> svolik                   0.958 0.918
 #> ulfelder                 0.969 0.939
 #> utip_dichotomous_strict  0.951 0.904
 #> v2x_polyarchy            0.934 0.873
-#> vanhanen_democratization 0.934 0.873
+#> vanhanen_democratization 0.934 0.872
 #> wahman_teorell_hadenius  0.991 0.982
 #> 
-#> SS loadings:  25.447 
-#> Proportion Var:  0.909 
+#> SS loadings:  25.436 
+#> Proportion Var:  0.908 
 #> 
 #> Factor correlations: 
 #> 
@@ -131,23 +133,53 @@ To generate a 0-1 index from these scores where 0.5 represents the average laten
 ``` r
 cutpoints_extended <- cutpoints(extended_model)
 
-cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
+cutpoints_extended
+#> Source: local data frame [151 x 4]
+#> Groups: variable [28]
+#> 
+#>         variable   estimate     pct025      pct975
+#>            (chr)      (dbl)      (dbl)       (dbl)
+#> 1       arat_pmm -1.0061529 -1.0198020 -0.99387698
+#> 2       arat_pmm -0.6097275 -0.6070545 -0.61230170
+#> 3       arat_pmm -0.0448286 -0.0105198 -0.07570276
+#> 4       arat_pmm  0.3507178  0.4167698  0.29112163
+#> 5       arat_pmm  0.8376795  0.9446163  0.74172001
+#> 6       arat_pmm  1.7913859  1.9823639  1.62037295
+#> 7            blm  0.4750460  0.7125630  0.31557377
+#> 8            blm  1.0671980  1.5919707  0.71475410
+#> 9  bmr_democracy  0.6275534  0.7037643  0.55940205
+#> 10           bnr  0.8168451  0.9255175  0.71983084
+#> ..           ...        ...        ...         ...
 
-cutpoints_extended <- left_join(cutpoints_extended,
-                                democracy_long %>% select(variable,index_type) %>% distinct())
-#> Joining by: "variable"
+dichotomous_cutpoints <- cutpoints_extended %>% 
+  group_by(variable) %>%
+  filter(n() == 1) 
 
-dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
-
-dichotomous_cutpoints <- mean(dichotomous_cutpoints$estimate)
-
-# The value of the cutpoint:
 dichotomous_cutpoints
-#> [1] 0.6430002
+#> Source: local data frame [10 x 4]
+#> Groups: variable [10]
+#> 
+#>                   variable  estimate    pct025    pct975
+#>                      (chr)     (dbl)     (dbl)     (dbl)
+#> 1            bmr_democracy 0.6275534 0.7037643 0.5594020
+#> 2                      bnr 0.8168451 0.9255175 0.7198308
+#> 3             doorenspleet 0.9459417 1.0863039 0.8238081
+#> 4   freedomhouse_electoral 0.6012813 0.7346227 0.4913225
+#> 5                      gwf 0.5478679 0.6220417 0.4820088
+#> 6                     pacl 0.5943022 0.6875241 0.5126818
+#> 7                   svolik 0.5911972 0.6607374 0.5283367
+#> 8                 ulfelder 0.5662614 0.6656417 0.4802742
+#> 9  utip_dichotomous_strict 0.3771308 0.4449266 0.3185793
+#> 10 wahman_teorell_hadenius 0.8054721 0.9984096 0.6492057
 
-extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints, 
-                                        adj.pct025 = pct025 - dichotomous_cutpoints, 
-                                        adj.pct975 = pct975 - dichotomous_cutpoints,
+avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
+
+avg_dichotomous
+#> [1] 0.6473853
+
+extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - avg_dichotomous, 
+                                        adj.pct025 = pct025 - avg_dichotomous, 
+                                        adj.pct975 = pct975 - avg_dichotomous,
                                         index = pnorm(adj.z1),
                                         index.pct025 = pnorm(adj.pct025),
                                         index.pct975 = pnorm(adj.pct975))
@@ -155,7 +187,7 @@ extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - dichotomous_cutpoints,
 
 For a more extended introduction to the available functions in the package, see the [package vignettes](https://github.com/xmarquez/QuickUDS/tree/master/vignettes).
 
-The extended UD scores are available for `24048` country-years (`225` unique countries and non-sovereign territories):
+The extended UD scores are available for `24136` country-years (`225` unique countries and non-sovereign territories):
 
 ![](README-unnamed-chunk-6-1.png)
 

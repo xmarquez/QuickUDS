@@ -56,8 +56,8 @@ extended_model
 extended_model@time
 extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
 
-## ------------------------------------------------------------------------
-extended_model <- democracy_model(data,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+## ---- eval=FALSE---------------------------------------------------------
+#  extended_model <- democracy_model(data,indexes, verbose=FALSE, technical = list(NCYCLES = 2500))
 
 ## ---- fig.height=8, fig.width=7------------------------------------------
 countries <- c("United States of America","United Kingdom","Argentina","Chile","Venezuela","Spain")
@@ -116,22 +116,29 @@ ggplot(data = data, aes(x=year,y=adj.z1,ymin = adj.pct025,ymax = adj.pct975, col
 extended_scores <- match_to_uds(extended_scores, release = 2014)
 
 ## ------------------------------------------------------------------------
-extended_scores <- extended_scores %>% mutate(index = pnorm(adj.z1), index.pct025 = pnorm(adj.pct025), index.pct975 = pnorm(adj.pct975))
+extended_scores <- extended_scores %>% 
+  mutate(index = pnorm(adj.z1), 
+         index.pct025 = pnorm(adj.pct025), 
+         index.pct975 = pnorm(adj.pct975))
 
 ## ---- fig.height=8, fig.width=7------------------------------------------
 cutpoints_extended <- cutpoints(extended_model)
 
-cutpoints_extended <- cutpoints_extended %>% filter(type != "a1")
+cutpoints_extended
 
-cutpoints_extended <- left_join(cutpoints_extended,democracy_long %>% select(variable,index_type)  %>% distinct())
+dichotomous_cutpoints <- cutpoints_extended %>% 
+  group_by(variable) %>%
+  filter(n() == 1) 
 
-dichotomous_cutpoints <- cutpoints_extended %>% filter(index_type == "Dichotomous")
+dichotomous_cutpoints
 
-dichotomous_cutpoints <- mean(dichotomous_cutpoints$estimate)
+avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
 
-extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - dichotomous_cutpoints, 
-                                        adj.pct025 = pct025 - dichotomous_cutpoints, 
-                                        adj.pct975 = pct975 - dichotomous_cutpoints,
+avg_dichotomous
+
+extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - avg_dichotomous, 
+                                        adj.pct025 = pct025 - avg_dichotomous, 
+                                        adj.pct975 = pct975 - avg_dichotomous,
                                         index = pnorm(adj.z1),
                                         index.pct025 = pnorm(adj.pct025),
                                         index.pct975 = pnorm(adj.pct975))
@@ -148,16 +155,13 @@ ggplot(data = extended_scores %>% filter(country_name %in% countries),
   facet_wrap(~country_name,ncol=2)  
 
 ## ---- fig.height=8, fig.width=7------------------------------------------
-replication_2011_cutpoints <- cutpoints(replication_2011_model)
+replication_2011_cutpoints <- cutpoints(replication_2011_model, type ="score")
 replication_2011_cutpoints
-
-# We don't want to plot the discrimination parameter here, only the cutpoints
-replication_2011_cutoffs <- replication_2011_cutpoints %>% filter(type != "a1") 
 
 # We plot the "normalized" cutpoints ("estimate," in the same scale as the latent scores), 
 # not the untransformed ones ("par")
 
-ggplot(data = replication_2011_cutoffs, aes(x=variable,y = estimate, ymin = pct025,ymax=pct975))  + 
+ggplot(data = replication_2011_cutpoints, aes(x=variable,y = estimate, ymin = pct025,ymax=pct975))  + 
   theme_bw() + 
   labs(x="",y="Unified democracy level rater cutoffs") + 
   geom_point() + 
@@ -166,13 +170,15 @@ ggplot(data = replication_2011_cutoffs, aes(x=variable,y = estimate, ymin = pct0
   coord_flip()
 
 # We can also plot discrimination parameters, which are in a different scale:
-replication_2011_discrimination <- replication_2011_cutpoints %>% filter(type == "a1")
+replication_2011_discrimination <- cutpoints(replication_2011_model, type ="discrimination")
+
+replication_2011_discrimination
 
 ggplot(data = replication_2011_discrimination, 
-       aes(x=reorder(variable,par),y = par, ymin = CI_2.5,ymax=CI_97.5))  + 
+       aes(x=reorder(variable,estimate),y = estimate, ymin = pct025, ymax = pct975))  + 
   theme_bw() + 
   labs(x="",y="Discrimination parameter for each rater
-       \n(higher value means fewer idiosyncratic errors relative to latent score)") + 
+       \n(higher value means fewer idiosyncratic\nerrors relative to latent score)") + 
   geom_point() + 
   geom_errorbar() + 
   coord_flip()

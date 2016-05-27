@@ -88,9 +88,9 @@ kable(comparison %>%
 |Congo, Democratic Republic of (Zaire) |                        1.5|                       2.0|1977, 1978, 1982                                                                         |  3|
 |Congo, Democratic Republic of (Zaire) |                        1.5|                        NA|1981                                                                                     |  1|
 |Costa Rica                            |                        7.0|                        NA|1981                                                                                     |  1|
-|Cote D’Ivoire                         |                        2.5|                       3.0|1980                                                                                     |  1|
-|Cote D’Ivoire                         |                        3.0|                       2.5|1999                                                                                     |  1|
-|Cote D’Ivoire                         |                        3.0|                        NA|1981                                                                                     |  1|
+|Cote D'Ivoire                         |                        2.5|                       3.0|1980                                                                                     |  1|
+|Cote D'Ivoire                         |                        3.0|                       2.5|1999                                                                                     |  1|
+|Cote D'Ivoire                         |                        3.0|                        NA|1981                                                                                     |  1|
 |Cuba                                  |                        2.0|                        NA|1981                                                                                     |  1|
 |Cyprus                                |                        6.5|                        NA|1981                                                                                     |  1|
 |Czechoslovakia                        |                        1.5|                        NA|1981                                                                                     |  1|
@@ -205,6 +205,8 @@ kable(comparison %>%
 |Saint Vincent and the Grenadines      |                        6.0|                        NA|1981                                                                                     |  1|
 |Samoa/Western Samoa                   |                        4.5|                        NA|1981                                                                                     |  1|
 |San Marino                            |                         NA|                       6.0|1972, 1973, 1974, 1975, 1976                                                             |  5|
+|Sao Tome and Principe                 |                        1.0|                       2.0|1982                                                                                     |  1|
+|Sao Tome and Principe                 |                        1.0|                        NA|1981                                                                                     |  1|
 |Saudi Arabia                          |                        1.5|                       2.0|1982                                                                                     |  1|
 |Saudi Arabia                          |                        1.5|                        NA|1981                                                                                     |  1|
 |Senegal                               |                        4.0|                        NA|1981                                                                                     |  1|
@@ -228,8 +230,6 @@ kable(comparison %>%
 |Switzerland                           |                        7.0|                        NA|1981                                                                                     |  1|
 |Syria                                 |                        1.5|                       2.0|1982                                                                                     |  1|
 |Syria                                 |                        1.5|                        NA|1981                                                                                     |  1|
-|São Tomé and Principe                 |                        1.0|                       2.0|1982                                                                                     |  1|
-|São Tomé and Principe                 |                        1.0|                        NA|1981                                                                                     |  1|
 |Taiwan                                |                        2.5|                       3.0|1980                                                                                     |  1|
 |Taiwan                                |                        3.0|                       5.0|1991                                                                                     |  1|
 |Taiwan                                |                        3.0|                        NA|1981                                                                                     |  1|
@@ -339,7 +339,7 @@ kable(comparison %>%
 
 ## The Polity IV dataset
 
-There are 202 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
+There are 243 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
 
 
 ```r
@@ -370,8 +370,11 @@ kable(comparison %>%
 |Cape Verde                  |                   NA|                    10|     2001|     2008|  8|
 |Czech Republic              |                    8|                     9|     2006|     2008|  3|
 |Czechoslovakia              |                   -1|                     2|     1947|     1947|  1|
+|Equatorial Guinea           |                   -5|                    -6|     1996|     2008| 13|
 |Ethiopia                    |                    0|                     1|     1993|     1993|  1|
 |Ethiopia                    |                    1|                    -3|     2005|     2008|  4|
+|Israel                      |                    9|                     6|     1981|     1998| 18|
+|Israel                      |                   10|                     6|     1999|     2008| 10|
 |Jamaica                     |                   NA|                    10|     1959|     1961|  2|
 |Korea, People's Republic of |                   -9|                   -10|     1994|     2008| 15|
 |Kosovo                      |                   NA|                     8|     2008|     2008|  1|
@@ -502,7 +505,7 @@ kable(comparison %>%
 |Congo                          |                3|                 1|1997                                     |  1|
 |Congo                          |                4|                 1|1963                                     |  1|
 |Costa Rica                     |                2|                 4|1949                                     |  1|
-|Cote D’Ivoire                  |                1|                 3|1995                                     |  1|
+|Cote D'Ivoire                  |                1|                 3|1995                                     |  1|
 |Croatia                        |               NA|                 3|1990                                     |  1|
 |Czechoslovakia                 |                1|                 2|1989                                     |  1|
 |Czechoslovakia                 |                2|                 4|1990                                     |  1|

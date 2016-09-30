@@ -25,8 +25,8 @@ A data frame with the transformed scores, if any.
 \description{
 This function is designed to take the democracy data included in this package
 and put it in a form suitable for use with the \code{\link{mirt}} package to
-replicate the UDS model. It takes a data frame and tries to determine which
-columns contain democracy scores (from the column names).
+replicate the UDS model. It takes a data frame and tries to determine, from the colum names, which
+variables contain democracy scores.
 }
 \details{
 If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
@@ -35,7 +35,7 @@ If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
 \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
 \code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
 \code{wahman_teorell_hadenius}, the function performs the following
-transformations:
+transformations by default:
 
 \code{arat}: Following Pemstein, Meserve, and Melton's replication code
 (Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
@@ -106,6 +106,8 @@ them into ordinal variables from 1 to the number of categories.
 
 For details of these scores, see the documentation for
 \code{\link{democracy}}.
+
+It is also possible to change these defaults.
 }
 \section{Note}{
  Warning! The function does not perform any sanity checks. It
@@ -113,8 +115,8 @@ For details of these scores, see the documentation for
   check the results make sense.
 }
 \examples{
-# Not run:
-# data  <- prepare_data(QuickUDS::democracy)
+summary(democracy)
+summary(prepare_data(democracy))
 }
 \references{
 Arat, Zehra F. 1991. Democracy and human rights in developing countries.

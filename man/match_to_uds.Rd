@@ -29,7 +29,6 @@ A convenience function to match extensions of the UD scores to the level of a
 particular release of the UD scores
 }
 \examples{
-# Not run:
 library(dplyr)
 indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
                             "doorenspleet","eiu","freedomhouse",

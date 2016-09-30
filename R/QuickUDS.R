@@ -4,8 +4,8 @@
 #'
 #' This function is designed to take the democracy data included in this package
 #' and put it in a form suitable for use with the \code{\link{mirt}} package to
-#' replicate the UDS model. It takes a data frame and tries to determine which
-#' columns contain democracy scores (from the column names).
+#' replicate the UDS model. It takes a data frame and tries to determine, from the colum names, which
+#' variables contain democracy scores.
 #'
 #' If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
 #' \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
@@ -13,7 +13,7 @@
 #' \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
 #' \code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
 #' \code{wahman_teorell_hadenius}, the function performs the following
-#' transformations:
+#' transformations by default:
 #'
 #' \code{arat}: Following Pemstein, Meserve, and Melton's replication code
 #' (Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
@@ -85,6 +85,8 @@
 #' For details of these scores, see the documentation for
 #' \code{\link{democracy}}.
 #'
+#' It is also possible to change these defaults.
+#'
 #' @section Note: Warning! The function does not perform any sanity checks. It
 #'   will try to transform anything that has the right name. You should always
 #'   check the results make sense.
@@ -104,8 +106,8 @@
 #' @export
 #'
 #' @examples
-#' # Not run:
-#' # data  <- prepare_data(QuickUDS::democracy)
+#' summary(democracy)
+#' summary(prepare_data(democracy))
 #' @references
 #'
 #' Arat, Zehra F. 1991. Democracy and human rights in developing countries.
@@ -246,59 +248,40 @@
 #' types revisited: updated data in comparative perspective. Contemporary
 #' Politics 19 (1): 19-34.
 prepare_data <- function(data) {
-    arat <- function(x) {
-        x <- cut(x, breaks = c(0, 50, 60, 70, 80, 90, 100, max(x, na.rm = TRUE)), labels = 1:7, include.lowest = TRUE, right = FALSE)
-        as.numeric(unclass(factor(x)))
-    }
-    hadenius <- function(x) {
-        x <- cut(x, breaks = c(0, 1, 2, 3, 4, 7, 8, 9, max(x, na.rm = TRUE)), labels = 1:8, include.lowest = TRUE, right = FALSE)
-        x <- as.numeric(unclass(factor(x)))
-    }
-    bollen <- function(x) {
-        x <- cut(x, breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, max(x, na.rm = TRUE)), labels = 1:10, include.lowest = TRUE, right = FALSE)
-        x <- as.numeric(unclass(factor(x)))
-    }
-    vanhanen <- function(x) {
-        x <- cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, max(x, na.rm = TRUE)), labels = 1:8, include.lowest = TRUE, right = FALSE)
-        x <- as.numeric(unclass(factor(x)))
-    }
-    munck <- function(x) {
-        x <- cut(x, breaks = c(0, 0.5, 0.75, 0.99, max(x, na.rm = TRUE)), labels = 1:4, include.lowest = TRUE, right = FALSE)
-        x <- as.numeric(unclass(factor(x)))
-    }
-    polity <- function(x) {
-        x <- ifelse(x < -10, NA, x)
-        other(x)
-    }
-    v2x <- function(x) {
-        x <- cut(x, breaks = 20, include.lowest = TRUE, right = FALSE, ordered_result = TRUE)
-        other(x)
-    }
-    eiu <- function(x) {
-        x <- round(x, 1)
-        x <- as.numeric(unclass(factor(x)))
-    }
-    peps <- function(x) {
-      x <- round(x)
-      x <- as.numeric(unclass(factor(x)))
-    }
-    other <- function(x) {
-        as.numeric(unclass(factor(x)))
+  other_vars <- c("blm", "bmr", "doorenspleet", "freedomhouse", "gwf", "lied", "mainwaring",
+                     "magaloni", "pacl", "pitf", "polyarchy", "prc", "przeworski", "svolik",
+                     "ulfelder", "utip", "kailitz", "e_v2x", "wahman_teorell_hadenius")
+
+  defaults <- list(arat = function(x) { cut(x, breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
+                                          labels = 1:7, include.lowest = TRUE, right = FALSE) },
+                 hadenius = function(x) { cut(x, breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10),
+                                              labels = 1:8, include.lowest = TRUE, right = FALSE) },
+                 bollen = function(x) { cut(x, breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+                                            labels = 1:10, include.lowest = TRUE, right = FALSE) },
+                 vanhanen_democratization = function(x) { cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
+                                                                            labels = 1:8, include.lowest = TRUE, right = FALSE)},
+                 munck = function(x) { cut(x, breaks = c(0, 0.5, 0.75, 0.99, 1),
+                                           labels = 1:4, include.lowest = TRUE, right = FALSE)},
+                 polity = function(x) { ifelse(x < -10, NA, x) },
+                 v2x = function(x) { cut(x, breaks = 20, include.lowest = TRUE, right = FALSE, ordered_result = TRUE) },
+                 eiu = function(x) { round(x, 1) },
+                 peps = function(x) { round(x) },
+                 other = function(x) { as.numeric(unclass(factor(x))) })
+
+  other_pattern <- paste(other_vars,collapse="|")
+
+  for(var in names(defaults)) {
+    if(var != "other") {
+      data[, grep(var, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[[var]], .cols = grep(var, names(data), ignore.case=TRUE)))(data)
+      data[, grep(var, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[["other"]], .cols = grep(var, names(data), ignore.case=TRUE)))(data)
+    } else {
+      data[, grep(other_pattern, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[["other"]], .cols = grep(other_pattern, names(data), ignore.case=TRUE)))(data)
     }
 
-    data[, grep("arat", names(data), ignore.case=TRUE)] <- (plyr::colwise(arat, .cols = grep("arat", names(data), ignore.case=TRUE)))(data)
-    data[, grep("bollen", names(data), ignore.case=TRUE)] <- (plyr::colwise(bollen, .cols = grep("bollen", names(data), ignore.case=TRUE)))(data)
-    data[, grep("eiu", names(data), ignore.case=TRUE)] <- (plyr::colwise(eiu, .cols = grep("eiu", names(data), ignore.case=TRUE)))(data)
-    data[, grep("^hadenius", names(data), ignore.case=TRUE)] <- (plyr::colwise(hadenius, .cols = grep("^hadenius", names(data), ignore.case=TRUE)))(data)
-    data[, grep("munck", names(data), ignore.case=TRUE)] <- (plyr::colwise(munck, .cols = grep("munck", names(data), ignore.case=TRUE)))(data)
-    data[, grep("polity", names(data), ignore.case=TRUE)] <- (plyr::colwise(polity, .cols = grep("polity", names(data), ignore.case=TRUE)))(data)
-    data[, grep("vanhanen_democratization|vanhanen_pmm", names(data), ignore.case=TRUE)] <- (plyr::colwise(vanhanen, .cols = grep("vanhanen_democratization|vanhanen_pmm", names(data), ignore.case=TRUE)))(data)
-    data[, grep("^v2x", names(data), ignore.case=TRUE)] <- (plyr::colwise(v2x, .cols = grep("^v2x", names(data), ignore.case=TRUE)))(data)
-    data[, grep("^PEPS", names(data), ignore.case=TRUE)] <- (plyr::colwise(peps, .cols = grep("^PEPS", names(data), ignore.case=TRUE)))(data)
-    data[, grep("blm|bmr|doorenspleet|freedomhouse|gwf|lied|mainwaring|magaloni|pacl|pitf|polyarchy|prc|przeworski|svolik|ulfelder|utip|kailitz|e_v2x_polyarchy_5C|wahman_teorell_hadenius", names(data), ignore.case=TRUE)] <- (plyr::colwise(other, .cols = grep("blm|bmr|doorenspleet|freedomhouse|gwf|lied|mainwaring|magaloni|pacl|pitf|polyarchy|prc|przeworski|svolik|ulfelder|utip|kailitz|e_v2x_polyarchy_5C|wahman_teorell_hadenius",
-        names(data), ignore.case=TRUE)))(data)
 
-    data
+  }
+
+  data
 
 }
 
@@ -352,7 +335,10 @@ prepare_democracy <- function(indexes) {
 #'
 #' @return The probability that the first country-year in the comparison is more
 #'   democratic than the second.
+#'
 #' @export
+#'
+#' @importFrom stats pnorm
 #'
 #' @examples
 #' # Probability that the USA in 2000 was more democratic than Brazil in 2000,
@@ -428,7 +414,7 @@ cutpoints <- function(model, type = "score") {
 
   par <- CI_2.5 <- CI_97.5 <- variable <- NULL
 
-  estimate <- pct025 <- pct975 <- coef_type <- NULL
+  estimate <- pct025 <- pct975 <- coef_type <- coef <- NULL
 
   coefs <- as.data.frame(coef(model, as.data.frame = TRUE))
 
@@ -603,7 +589,6 @@ democracy_scores <- function(model, ...) {
 #' @export
 #'
 #' @examples
-#' # Not run:
 #' library(dplyr)
 #' indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
 #'                             "doorenspleet","eiu","freedomhouse",

@@ -1082,4 +1082,5 @@
 #' @author Xavier Marquez, Political Science and International Relations Programme, Victoria University of Wellington, marquez.x@gmail.com
 "democracy"
 
-
+#' @rdname democracy
+"democracy_long"

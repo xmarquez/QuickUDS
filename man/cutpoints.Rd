@@ -2,8 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{cutpoints}
 \alias{cutpoints}
-\title{A convenience function for extracting cutpoints from a UD model in a tidy
-data frame format.}
+\title{Extract cutpoints from a UD model in a tidy format.}
 \usage{
 cutpoints(model, type = "score")
 }
@@ -30,6 +29,7 @@ discrimination parameters, score cutpoints, and standard errors for all the
 variables involved, putting these into a tidy data frame.
 }
 \examples{
+\donttest{
 # Replicate the official UDS 2011 release and calculate its cutpoints
 library(reshape2)
 library(dplyr)
@@ -38,9 +38,9 @@ data <- prepare_data(democracy)
 data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
 data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
 data <- dcast(data, ... ~ variable)
-data <- data \%>\% arrange(country_name,year)
-replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))]],
-                                  model = 1, itemtype = "graded", SE = TRUE)
+data <- data \%>\% arrange(country_name, year) \%>\% select(ends_with("pmm"))
+replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
 cutpoints_2011 <- cutpoints(replication_2011_model)
+cutpoints_2011}
 }
 

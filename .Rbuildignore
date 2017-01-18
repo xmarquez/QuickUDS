@@ -10,3 +10,9 @@
 ^data-raw.$
 ^data-raw$
 ^\.travis\.yml$
+^\_pkgdown\.yaml$
+^vignettes/extras$
+^vignettes/extras.$
+^docs$
+^docs.$
+^docs.+$

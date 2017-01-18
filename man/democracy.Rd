@@ -3,10 +3,13 @@
 \docType{data}
 \name{democracy}
 \alias{democracy}
+\alias{democracy_long}
 \title{All Democracy Scores Dataset}
 \format{An object of class \code{data.frame} with 24175 rows and 81 columns.}
 \usage{
 democracy
+
+democracy_long
 }
 \description{
 A dataset containing all (or nearly all) extant democracy indexes.
@@ -1107,7 +1110,7 @@ Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 \seealso{
 Other democracy: \code{\link{extended_uds}},
   \code{\link{kailitz}},
-  \code{\link{original.pmm.democracy.data.1946.2008}},
+  \code{\link{original_pmm_democracy_data_1946_2008}},
   \code{\link{uds_2014}}
 }
 \keyword{datasets}

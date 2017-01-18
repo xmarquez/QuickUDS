@@ -470,10 +470,10 @@ ggplot(data = data) +
 Note that 316 of the country-years in the Kailitz dataset are classified with more than one regime type. 
 
 ```{r kailitz_classification_problems_1}
-kable(kailitz.yearly %>% 
+kable(kailitz_yearly %>% 
         count(multiple_regimes = grepl("-",combined_regime)))
 
-kable(kailitz.yearly %>% 
+kable(kailitz_yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
@@ -485,7 +485,7 @@ kable(kailitz.yearly %>%
 The following are especially troublesome, since the multiple categories do not make sense:
 
 ```{r kailitz_classification_problems_2}
-kable(kailitz.yearly %>% 
+kable(kailitz_yearly %>% 
         filter(grepl("-",combined_regime)) %>%
         group_by(country_name) %>%
         arrange(country_name,year) %>%
@@ -497,7 +497,7 @@ kable(kailitz.yearly %>%
 I have constructed the index to classify a country as "democratic" only if it is not also classified as a non-democratic regime as well. Here are the index counts for each regime type:
 
 ```{r kailitz_index_count}
-kable(kailitz.yearly %>%
+kable(kailitz_yearly %>%
         count(kailitz_binary,kailitz_tri,combined_regime))
 ```
 

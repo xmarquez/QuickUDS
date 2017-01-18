@@ -1,0 +1,54 @@
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: Vignettes
+    href: articles/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/xmarquez/QuickUDS
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - Generating_the_extended_UDS
+  - Replicating_and_extending_the_UD_scores
+  - Differences_between_PMM_and_original_data
+  - Spatial_and_temporal_coverage
+reference:
+- title: Generated datasets in this package
+  desc: The extended Unified Democracy Scores generated with this package.
+  contents:
+  - extended_uds
+- title: Democracy scores
+  desc: Datasets with the democracy scores used by this package to generate the UDS.
+  contents:
+  - democracy
+  - kailitz
+  - kailitz_yearly
+- title: Original UDS data
+  desc: The 2010, 2011, and 2014 releases of the UDS, plus the original replication data
+  contents:
+  - uds_2010
+  - uds_2011
+  - uds_2014
+  - original_pmm_democracy_data_1946_2008
+- title: Data preparation
+  desc: Data preparation functions
+  contents:
+  - prepare_data
+  - prepare_democracy
+- title: Modeling
+  desc: Create Unified Democracy models
+  contents:
+  - democracy_model
+- title: Extract data from model
+  desc: Extract useful data from a model created by this package
+  contents:
+  - democracy_scores
+  - cutpoints
+  - raterinfo
+  - prob_more
+  - match_to_uds

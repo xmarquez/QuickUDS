@@ -2,8 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{raterinfo}
 \alias{raterinfo}
-\title{A convenience function for extracting rater info from a UD model in a tidy
-data frame format.}
+\title{Extract rater info from a UD model in a tidy format.}
 \usage{
 raterinfo(model)
 }
@@ -16,20 +15,18 @@ A data frame with rater information for each democracy index over the
   range of the latent variable \code{theta}.
 }
 \description{
-A convenience function for extracting rater info from a UD model in a tidy
-data frame format.
+Extract rater info from a UD model in a tidy format.
 }
 \examples{
-# Not run:
-# library(QuickUDS)
-# data <- prepare_data(democracy)
-# data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-# data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-# data <- dcast(data, ... ~ variable)
-# data <- data \%>\% arrange(country_name,year)
-# replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))],
-#                                model = 1, itemtype = "graded", SE = TRUE)
-# raterinfo_2011 <- raterinfo(replication_2011_model)
-# head(raterinfo)
+\donttest{
+library(QuickUDS)
+data <- prepare_data(democracy)
+data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
+data <- dcast(data, ... ~ variable)
+data <- data \%>\% arrange(country_name,year) \%>\% select(ends_with("pmm"))
+replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
+raterinfo_2011 <- raterinfo(replication_2011_model)
+head(raterinfo)}
 }
 

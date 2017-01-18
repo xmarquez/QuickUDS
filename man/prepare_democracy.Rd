@@ -2,7 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{prepare_democracy}
 \alias{prepare_democracy}
-\title{Prepares the selected indexes in the \code{\link{democracy}} dataset}
+\title{Prepares selected indexes in the democracy dataset for use in a UD model}
 \usage{
 prepare_democracy(indexes)
 }
@@ -15,7 +15,7 @@ dataset - otherwise the function throws an error.}
 A dataset ready for use with \code{\link{democracy_model}}
 }
 \description{
-Prepares the selected indexes in the \code{\link{democracy}} dataset
+Prepares selected indexes in the democracy dataset for use in a UD model
 }
 \examples{
 prepare_democracy(names(democracy)[grep("pmm",names(democracy))])

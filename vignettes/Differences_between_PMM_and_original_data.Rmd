@@ -20,9 +20,7 @@ opts_chunk$set(echo=TRUE)
 options(knitr.table.format = 'markdown')
 ```
 
-# Differences between PMM's replication data and the original data sources
-
-This package incorporates the replication dataset for Pemstein, Meserve, and Melton (2010) in its replication data (Pemstein, Meserve, and Melton 2013). These measures are labeled `_pmm` in the `democracy` dataset. However, some of these measures (Freedom House, Mainwaring et al, DD/PACL, Polity IV, Polyarchy, PRC, Vanhanen) differ from the original sources in a small number of cases, for a number of reasons having to do with data revisions after 2008 and transcription errors. This vignette documents these differences.
+This package incorporates the replication dataset for Pemstein, Meserve, and Melton (2010) in its replication data (Pemstein, Meserve, and Melton 2013). This replication data contains the measures of democracy used in the construction of the official Unified Democracy Scores. These measures of democracy are labeled `_pmm` in the `democracy` dataset in this package. However, some of these measures (Freedom House, Mainwaring et al, DD/PACL, Polity IV, Polyarchy, PRC, Vanhanen) differ from the original sources (the official data from Freedom House, etc.) in a small number of cases, for a number of reasons having to do with data revisions after 2008 and transcription errors. This vignette documents these differences.
 
 ## Freedom House
 
@@ -34,7 +32,7 @@ comparison <- democracy %>%
   filter(year >= 1946, year <= 2008)
 ```
 
-There are in total `r nrow(comparison %>% filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | (freedomhouse_pmm != freedomhouse)))` differences between PMM's data and the current Freedom House data (Freedom House 2016). These differences seem to be due to data revisions since 2010 in the Freedom House dataset. 
+There are in total `r nrow(comparison %>% filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | (freedomhouse_pmm != freedomhouse)))` differences between PMM's replication data and the current Freedom House data (Freedom House 2016). These differences seem to be due to data revisions since 2010 in the Freedom House dataset. 
 
 The main problem is the treatment of 1981, which is conventionally taken to be "missing data" in the Freedom House series but which appears to be interpolated in PMM's replication dataset. But there is also one data point for 1972 (South Africa) for which the original data gives two values (a value for the "competitive" white regime and a value for the less free overall regime) and which is assigned an `NA` value in this package.
 

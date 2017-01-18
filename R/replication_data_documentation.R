@@ -33,7 +33,7 @@
 #'
 #' \item{cown}{The Correlates of War numeric country code. This differs from
 #' Gleditsch and Ward's numeric country code in a few cases, due to the
-#' treatment of a couple of country terminations: West Germany becomes 255 in
+#' treatment of a couple of country terminations: Germany becomes 255 in
 #' CoW after reunification, but stays as 260 in G & W; Serbia continues as 345
 #' in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn;
 #' Vietnam before 1948 is 816 in CoW, but 815 in G & W; and Yemen after
@@ -216,4 +216,4 @@
 #' data available from
 #' \url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}
 #' @family democracy
-"original.pmm.democracy.data.1946.2008"
+"original_pmm_democracy_data_1946_2008"

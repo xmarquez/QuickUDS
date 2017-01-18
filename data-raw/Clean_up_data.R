@@ -1,6 +1,6 @@
 library(PoliticalDatasets)
 
-original.pmm.democracy.data.1946.2008 <- PoliticalDatasets::original.pmm.democracy.data.1946.2008
+original_pmm_democracy_data_1946_2008 <- PoliticalDatasets::original.pmm.democracy.data.1946.2008
 democracy <- PoliticalDatasets::democracy
 democracy_long <- PoliticalDatasets::democracy_long
 uds_2014 <- PoliticalDatasets::uds
@@ -39,7 +39,7 @@ rm(dat)
 
 detach(package:PoliticalDatasets)
 
-devtools::use_data(original.pmm.democracy.data.1946.2008, overwrite = TRUE)
+devtools::use_data(original_pmm_democracy_data_1946_2008, overwrite = TRUE)
 devtools::use_data(democracy, overwrite = TRUE)
 devtools::use_data(democracy_long, overwrite = TRUE)
 devtools::use_data(uds_2014, overwrite = TRUE)

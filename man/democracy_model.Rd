@@ -2,7 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{democracy_model}
 \alias{democracy_model}
-\title{A convenience function for producing a UD model from democracy data.}
+\title{Produce a UD model from democracy data}
 \usage{
 democracy_model(data, columns, model = 1, itemtype = "graded", SE = TRUE,
   ...)
@@ -39,12 +39,13 @@ itemtype = "graded", SE = TRUE, ...)}. More fine-grained control can be
 achieved by using \code{\link{mirt}} directly.
 }
 \examples{
-# Not run:
-# data <- prepare_data(democracy)
-# data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-# data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-# data <- dcast(data, ... ~ variable)
-# data <- data \%>\% arrange(country_name,year)
-# replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+\donttest{
+data <- prepare_data(democracy)
+data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
+data <- dcast(data, ... ~ variable)
+data <- data \%>\% arrange(country_name,year)
+replication_2011_model <- democracy_model(data,
+                               columns = names(data)[grep("pmm",names(data))])}
 }
 

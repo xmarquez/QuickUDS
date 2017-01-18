@@ -122,7 +122,7 @@ Pemstein, Daniel, Stephen Meserve, and James Melton. 2010.
 \seealso{
 Other democracy: \code{\link{democracy}},
   \code{\link{extended_uds}}, \code{\link{kailitz}},
-  \code{\link{original.pmm.democracy.data.1946.2008}}
+  \code{\link{original_pmm_democracy_data_1946_2008}}
 }
 \keyword{datasets}
 

@@ -1,10 +1,10 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+[![Travis-CI Build Status](https://travis-ci.org/xmarquez/QuickUDS.svg?branch=master)](https://travis-ci.org/xmarquez/QuickUDS)
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -14,151 +14,32 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/xmarquez/QuickUDS.svg?branch=master)](https://travis-ci.org/xmarquez/QuickUDS)
+# QuickUDS
 
-This ```R``` package contains convenience functions to extend the [Unified Democracy Scores of Pemstein, Meserve, and Melton](http://www.unified-democracy-scores.org/). These are basically wrappers for a couple of functions in the package [mirt](https://cran.r-project.org/web/packages/mirt/mirt.pdf), which contains powerful facilities for factor analysis, and which you will probably want to use directly to do anything beyond replicating and extending the UD scores with the data provided by this package. 
+This ```R``` package contains convenience functions to extend the [Unified Democracy Scores of Pemstein, Meserve, and Melton](http://www.unified-democracy-scores.org/). These are basically wrappers for a couple of functions in the package [mirt](https://cran.r-project.org/web/packages/mirt/), which contains powerful facilities for factor analysis, and which you will probably want to use directly to do anything beyond replicating and extending the UD scores with the data provided by this package. 
 
-This package also includes an "[extended UDS](https://github.com/xmarquez/QuickUDS/blob/master/csvs-and-pdfs/extended_uds.csv?raw=true)" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy. Both datasets are fully documented. The extended scores (and their generation) are described in more detail in Marquez, Xavier, "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830. A more informal description of the extended UD scores is also found in [this blogpost](http://abandonedfootnotes.blogspot.co.nz/2016/03/artisanal-democracy-data-quick-and-easy.html).
+This package also includes an "[extended UDS](reference/extended_uds.html)" dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy. Both datasets are fully documented. The extended scores (and their generation) are described in more detail in Marquez, Xavier, "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830. A more informal description of the extended UD scores is also found in [this blogpost](http://abandonedfootnotes.blogspot.co.nz/2016/03/artisanal-democracy-data-quick-and-easy.html).
 
-To install, use:
+## Installation
 
-```{r, echo=TRUE, eval=FALSE}
-devtools::install_github(repo = "xmarquez/QuickUDS")
+You can install QuickUDS from github with:
 
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("xmarquez/QuickUDS/")
 ```
 
-To view the documentation for the datasets, use:
+The main datasets in the package are ```extended_uds``` and ```democracy```. Access their documentation in ```R``` by typing `?extended_uds` or `?democracy`.
 
-```{r, echo=TRUE, eval=FALSE}
-?democracy
-?extended_uds
-```
+Documentation for all functions and datasets in this package is always available [at this website](reference/index.html). Click the [reference](reference/index.html) link for more information.
 
-For non-R users, there are csv versions of these datasets [here](https://github.com/xmarquez/QuickUDS/tree/master/csvs-and-pdfs). This folder also contains a pdf version of the documentation.
+For non-R users, there are csv versions of all datasets available [here](https://github.com/xmarquez/QuickUDS/tree/master/csvs-and-pdfs).
 
-The ```extended_uds``` dataset can be generated with the following code:
+## Usage
 
-```{r, echo=TRUE}
-library(dplyr)
-library(QuickUDS)
+See the [package vignettes](articles/index.html) for detailed examples of how to generate the Extended Unified Democracy Scores dataset or similar measures. The vignette [Generating the Extended Unified Democracy Scores](articles/Generating_the_extended_UDS.html) also plots the calculated scores for every country. 
 
-indexes <- c("arat_pmm","blm","bmr_democracy","bnr","bollen_pmm","doorenspleet","eiu","freedomhouse",
-             "freedomhouse_electoral","gwf","hadenius_pmm","kailitz_tri","lied","mainwaring",
-             "magaloni_regime_tri","munck_pmm","pacl","PEPS1v","pitf", "polity2",
-             "polyarchy_contestation","prc_notrans","svolik","ulfelder","utip_dichotomous_strict",
-             "v2x_polyarchy","vanhanen_democratization","wahman_teorell_hadenius")
-
-# Generate Extended UDS
-data <- QuickUDS::democracy[ ,c("country_name","GWn","cown","year","region",
-                                "continent","microstate","lat","lon","in_system",indexes)]
-data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
-data <- data %>% group_by(country_name,year) %>% mutate(measures_per_cy = n()) %>% ungroup()
-data <- reshape2::dcast(data, ... ~ variable)
-data <- data %>% arrange(country_name,year)
-
-data2 <- prepare_democracy(indexes)
-
-
-extended_model <- democracy_model(data2,indexes, verbose=FALSE, technical = list(NCYCLES = 2500))
-extended_scores <- democracy_scores(extended_model)
-extended_uds <- bind_cols(data,extended_scores)
-
-# Time to converge on my machine
-extended_model@time
-
-# Number of iterations, log likelihood, etc.
-extended_model
-
-# Correlations of latent factor with source variables, variance accounted for, etc.
-summary(extended_model)
-
-
-```
-
-(For the latest code used, always see https://github.com/xmarquez/QuickUDS/blob/master/data-raw/Generate%20extended%20UDS%20data.R)
-
-To generate a 0-1 index from these scores where 0.5 represents the average latent variable cutpoint for dichotomous democracy measures, the following code can be used:
-
-```{r, echo = TRUE}
-cutpoints_extended <- cutpoints(extended_model)
-
-cutpoints_extended
-
-dichotomous_cutpoints <- cutpoints_extended %>% 
-  group_by(variable) %>%
-  filter(n() == 1) 
-
-dichotomous_cutpoints
-
-avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
-
-avg_dichotomous
-
-extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - avg_dichotomous, 
-                                        adj.pct025 = pct025 - avg_dichotomous, 
-                                        adj.pct975 = pct975 - avg_dichotomous,
-                                        index = pnorm(adj.z1),
-                                        index.pct025 = pnorm(adj.pct025),
-                                        index.pct975 = pnorm(adj.pct975))
-```
-
-For a more extended introduction to the available functions in the package, see the [package vignettes](https://github.com/xmarquez/QuickUDS/tree/master/vignettes). 
-
-The extended UD scores are available for ```r nrow(extended_uds)``` country-years (```r length(unique(extended_uds$country_name))``` unique countries and non-sovereign territories):
-
-```{r, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
-library(ggplot2)
-
-count_sequence_breaks <- function(seq, seq_step = 1) {
-  first_diff <- c(seq_step, diff(seq)) - seq_step
-  periods <- cumsum(abs(first_diff))
-  periods
-}
-
-extended_uds <- extended_uds %>% 
-  group_by(country_name) %>% 
-  mutate(group = count_sequence_breaks(year), 
-         group2 = count_sequence_breaks(in_system,seq_step = 0), 
-         group3 = paste(group,group2))
-
-data <- extended_uds
-
-countries <- unique(data$country_name)
-
-periods_of_independence <- data %>% 
-  group_by(country_name,group3,in_system) %>% 
-  summarise(start = min(year), end = max(year)) %>% 
-  filter(in_system)
-
-ggplot() + 
-  geom_path(data =data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
-  geom_ribbon(data = data %>% filter(country_name %in% countries[1:112]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
-  theme_bw() + 
-  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
-  theme(legend.position="bottom") + 
-  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
-  geom_hline(yintercept = 0.5, color="red") +
-  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[1:112]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
-
-```
-
-```{r, echo = FALSE, warning=FALSE, message=FALSE, fig.height=30}
-
-ggplot() + 
-  geom_path(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group)) + 
-  geom_ribbon(data =data %>% filter(country_name %in% countries[113:224]), aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975, group= group), alpha=0.2) + 
-  theme_bw() + 
-  labs(x = "Year", y = "Extended unified democracy score,\ntransformed to 0-1 probability scale, per year",color="")  + 
-  theme(legend.position="bottom") + 
-  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
-  geom_hline(yintercept = 0.5, color="red") +
-  geom_rect(data = periods_of_independence %>% filter(country_name %in% countries[113:224]), aes(xmin = start, xmax = end, ymin = 0, ymax = 1), alpha = 0.2, fill = "blue")
-
-```
-
-(Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the [Gleditsch and Ward list of state system membership since 1816](http://privatewww.essex.ac.uk/~ksg/statelist.html), i.e., independent, or is a [microstate in Gleditsch's tentative list](http://privatewww.essex.ac.uk/~ksg/statelist.html)).
+## Citation
 
 If you find this package useful in your work, please cite:
 
@@ -167,5 +48,3 @@ Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic Compromise
 As well as:
 
 Marquez, Xavier, "A Quick Method for Extending the Unified Democracy Scores" (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830
-
-

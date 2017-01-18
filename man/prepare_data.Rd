@@ -2,8 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{prepare_data}
 \alias{prepare_data}
-\title{A convenience function to prepare democracy data before replicating the UDS
-model}
+\title{Prepare democracy data before replicating the UDS model}
 \usage{
 prepare_data(data)
 }
@@ -25,8 +24,8 @@ A data frame with the transformed scores, if any.
 \description{
 This function is designed to take the democracy data included in this package
 and put it in a form suitable for use with the \code{\link{mirt}} package to
-replicate the UDS model. It takes a data frame and tries to determine, from the colum names, which
-variables contain democracy scores.
+replicate the UDS model. It takes a data frame and tries to determine, from
+the colum names, which variables contain democracy scores.
 }
 \details{
 If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},

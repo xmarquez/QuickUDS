@@ -52,7 +52,7 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 
 * If the selected index contains the string ```polity```, the function assumes this is the Polity IV score, and it set any values below -10 to NA and then transform them into an ordinal measure from 1 to 21.
 
-* If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut them into 20 categories. The resulting score is ordinal from 1 to 20.
+* If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.
 
 * If the selected index contains the string ```vanhanen_democratization``` or ```vanhanen_pmm```, the function assumes this is Vanhanen's (2012)'s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton's advice). The resulting score is ordinal from 1 to 8.
 
@@ -78,7 +78,7 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 * ```utip``` (assumes it's from Hsu 2008)
 * ```wahman_teorell_hadenius``` (assumes it's a democracy/non-democracy indicator from Wahman, Teorell, and Hadenius 2013). 
 
-In each of these cases the function ```prepare_data``` transforms the values of these scores by running ```as.numeric(unclass(factor(x)))```, which transforms each index into ordinal variables from 1 to the number of categories.
+In each of these cases the function ```prepare_data``` transforms the values of the scores by running ```as.numeric(unclass(factor(x)))```, which transforms each index into ordinal variables from 1 to the number of categories.
 
 If you are using democracy indexes not included in the ```democracy``` dataset, or want to use your own custom measures of democracy, or transform them in a very particular way, you simply need to ensure that there are no "blank" country-years in your data (i.e., country-years without any democracy measurements) and that the indexes you are using are ordinal measures from 1 to N with every category present in the data. ```mirt``` is pretty flexible and forgiving: it will accept ordinal variables in any range and will attempt to transform your indexes so that every category is within a distance of 1 of its neighboring categories. But it's useful to have a good sense of what the algorithm is doing to your data before you begin!
 
@@ -88,7 +88,8 @@ You then fit the model as follows:
 
 ```{r}
 replication_2011_model <- mirt(data[ ,  indexes], model = 1, 
-                               itemtype = "graded", SE = TRUE, verbose = FALSE)
+                               itemtype = "graded", SE = TRUE, 
+                               verbose = FALSE)
 ```
 
 This just tells ```mirt``` to fit a one-factor, full information graded response model like that in Pemstein, Meserve, and Melton 2010, and to calculate the standard errors for the coefficients. (See ```?mirt``` for details of the many options you can use to tweak your model). 
@@ -115,7 +116,9 @@ summary(replication_2011_model)
 And we can then extract the latent democracy scores, either via the ```mirt``` package's ```fscore``` function, or via this package's convenient wrapper ```democracy_scores``` (which returns a tidy dataset with the latent scores and automatically calculates 95\% confidence intervals):
 
 ```{r}
-replication_2011_scores <-  fscores(replication_2011_model, full.scores = TRUE, full.scores.SE = TRUE)
+replication_2011_scores <-  fscores(replication_2011_model, 
+                                    full.scores = TRUE, 
+                                    full.scores.SE = TRUE)
 # Not a data frame:
 str(replication_2011_scores)
 
@@ -132,9 +135,11 @@ We can also check that these scores are, in fact, perfectly correlated with Pems
 
 ```{r}
 library(dplyr)
-comparison <- left_join(replication_2011_scores, uds_2011, by=c("country_name","year","GWn"))
+comparison <- left_join(replication_2011_scores, 
+                        uds_2011, 
+                        by = c("country_name", "year", "GWn"))
 
-cor(comparison %>% select(z1,mean), use="pairwise.complete")
+cor(comparison %>% select(z1, mean), use="pairwise.complete")
 ```
 
 (For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).
@@ -156,23 +161,30 @@ Now suppose you want to create a new Unified Democracy score derived from Pemste
 This package makes the process extremely simple:
 
 ```{r}
-indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm","doorenspleet","eiu","freedomhouse",
-             "gwf","hadenius_pmm","kailitz_tri","lied","mainwaring","munck_pmm","pacl",
-             "polity2","polyarchy_pmm","prc","svolik","ulfelder",
-             "v2x_polyarchy","vanhanen_democratization","wahman_teorell_hadenius")
+indexes <- c("arat_pmm","blm","bmr_democracy",
+             "bollen_pmm","doorenspleet","eiu","freedomhouse",
+             "gwf","hadenius_pmm","kailitz_tri","lied",
+             "mainwaring","munck_pmm","pacl",
+             "polity2","polyarchy_pmm","prc",
+             "svolik","ulfelder","v2x_polyarchy",
+             "vanhanen_democratization","wahman_teorell_hadenius")
 data <- prepare_democracy(indexes)
-extended_model <- democracy_model(data,indexes, verbose=FALSE)
+extended_model <- democracy_model(data, indexes, verbose=FALSE)
 extended_scores <- democracy_scores(extended_model)
 extended_scores <- bind_cols(data,extended_scores)
 extended_model
 extended_model@time
-extended_scores %>% select(country_name,GWn,cown,year,z1,se.z1,pct025,pct975)
+extended_scores %>% 
+  select(country_name, GWn, cown,
+         year, z1, se.z1, pct025, pct975) %>%
+  head()
 ```
 
 ```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option:
 
 ```{r, eval=FALSE}
-extended_model <- democracy_model(data,indexes, verbose=FALSE, technical = list(NCYCLES = 2500)) 
+extended_model <- democracy_model(data,indexes, verbose = FALSE, 
+                                  technical = list(NCYCLES = 2500)) 
 ```
 
 Use ```?mirt``` for more details.
@@ -180,31 +192,42 @@ Use ```?mirt``` for more details.
 One important point to note about latent variable democracy scores is that they are normalized with mean zero and standard deviation one, so a score of 1 just means that the country-year is 1 standard deviation more democratic than the average country-year in the sample. But this means that adding extra country-years to our model will typically result in scores that have a higher mean (though usually smaller standard errors) than the original UD model, given that the world has become substantially more democratic over the last two centuries:
 
 ```{r, fig.height=8, fig.width=7}
-countries <- c("United States of America","United Kingdom","Argentina","Chile","Venezuela","Spain")
+countries <- c("United States of America", 
+               "United Kingdom","Argentina",
+               "Chile","Venezuela","Spain")
 
-data <- bind_rows(extended_scores %>% mutate(version = "Extension"),
-                  uds_2014 %>% rename(z1 = mean) %>% mutate(version = "PMM2014 release"))
+data <- bind_rows(extended_scores %>% 
+                    mutate(version = "Extension"),
+                  uds_2014 %>% 
+                    rename(z1 = mean) %>% 
+                    mutate(version = "PMM2014 release"))
 
-data <- data %>% arrange(version,country_name,year) %>% filter(country_name %in% countries)
+data <- data %>% 
+  arrange(version,country_name,year) %>% 
+  filter(country_name %in% countries)
 
 library(ggplot2)
 
-ggplot(data = data, aes(x=year,y=z1,ymin = pct025,ymax = pct975, color = version, fill= version)) + 
+ggplot(data = data, 
+       aes(x = year, y = z1, ymin = pct025, ymax = pct975, 
+           color = version, fill= version)) + 
   geom_path() + 
   geom_ribbon(alpha=0.2) + 
   theme_bw() + 
   labs(x = "Year", y = "Latent unified democracy scores,\nper year")  + 
   theme(legend.position="bottom") + 
-  guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=2)  
+  guides(color = guide_legend(ncol = 1),fill = guide_legend(nrow = 1)) + 
+  facet_wrap(~country_name, ncol = 2)  
 
 ```
 
 If necessary, one can therefore "match" the extended scores to the official UD release by substracting the mean of the extended scores for the period of the UD release one wants to match from the extended scores:
 
 ```{r, fig.height=8, fig.width=7}
-mean_ud_period <- mean(extended_scores$z1[ paste(extended_scores$country_name,extended_scores$year) 
-                                           %in% paste(uds_2014$country_name,uds_2014$year) ])
+mean_ud_period <- mean(extended_scores$z1[ paste(extended_scores$country_name,
+                                                 extended_scores$year) 
+                                           %in% paste(uds_2014$country_name,
+                                                      uds_2014$year) ])
 
 # This is how much higher the extended scores are than the scores in UDS 2014 release,
 # on average
@@ -218,14 +241,21 @@ extended_scores <- extended_scores %>%
 data <- bind_rows(extended_scores %>% 
                     mutate(version = "Extension, adjusted mean"),
                   uds_2014 %>% 
-                    rename(adj.z1 = mean, adj.pct975 = pct975, adj.pct025 = pct025) %>% 
+                    rename(adj.z1 = mean, 
+                           adj.pct975 = pct975, 
+                           adj.pct025 = pct025) %>% 
                     mutate(version = "PMM2014 release"))
 
-data <- data %>% arrange(version,country_name,year) %>% filter(country_name %in% countries)
+data <- data %>% 
+  arrange(version,country_name,year) %>% 
+  filter(country_name %in% countries)
 
 library(ggplot2)
 
-ggplot(data = data, aes(x=year,y=adj.z1,ymin = adj.pct025,ymax = adj.pct975, color = version, fill= version)) + 
+ggplot(data = data, 
+       aes(x = year, y = adj.z1, 
+           ymin = adj.pct025, ymax = adj.pct975, 
+           color = version, fill= version)) + 
   geom_path() + 
   geom_ribbon(alpha=0.2) + 
   theme_bw() + 
@@ -276,7 +306,8 @@ extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - avg_dichotomous,
                                         index.pct975 = pnorm(adj.pct975))
 
 ggplot(data = extended_scores %>% filter(country_name %in% countries), 
-       aes(x=year,y=index,ymin = index.pct025,ymax = index.pct975)) + 
+       aes(x= year, y = index, 
+           ymin = index.pct025, ymax = index.pct975)) + 
   geom_path() + 
   geom_ribbon(alpha=0.2) + 
   theme_bw() + 
@@ -346,8 +377,14 @@ prob_more(extended_scores, "United States of America","France", 2000)
 Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:
 
 ```{r}
-prob_more(replication_2011_scores, "United States of America","United States of America", c(2000,1953))
-prob_more(extended_scores, "United States of America","United States of America", c(2000,1953))
+prob_more(replication_2011_scores, 
+          "United States of America",
+          "United States of America", 
+          c(2000,1953))
+prob_more(extended_scores, 
+          "United States of America",
+          "United States of America", 
+          c(2000,1953))
 
 ```
 

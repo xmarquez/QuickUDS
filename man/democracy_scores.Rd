@@ -2,7 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{democracy_scores}
 \alias{democracy_scores}
-\title{A convenience function for producing UD scores from a UD model.}
+\title{Extract UD scores from a UD model}
 \usage{
 democracy_scores(model, ...)
 }
@@ -24,6 +24,7 @@ instead of a matrix. More fine-grained control can be achieved by using
 \code{\link{fscores}} directly.
 }
 \examples{
+\donttest{
 # Replicate the official UDS scores (2011 release)
 library(reshape2)
 library(dplyr)
@@ -32,10 +33,16 @@ data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = 
 data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
 data <- dcast(data, ... ~ variable)
 data <- data \%>\% arrange(country_name,year)
-replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+replication_2011_model <- democracy_model(data,
+                           columns = names(data)[grep("pmm",names(data))])
 replication_2011_scores <- democracy_scores(replication_2011_model)
 replication_2011_scores <- bind_cols(data \%>\%
-                                       select(country_name, GWn, year,in_system,num_measures),
-                                                     replication_2011_scores)
+                                       select(country_name,
+                                       GWn,
+                                       year,
+                                       in_system,
+                                       num_measures),
+                                       replication_2011_scores)
+head(replication_2011_scores)}
 }
 

@@ -536,7 +536,7 @@ Politics 19 (1): 19-34.
 \seealso{
 Other democracy: \code{\link{democracy}},
   \code{\link{kailitz}},
-  \code{\link{original.pmm.democracy.data.1946.2008}},
+  \code{\link{original_pmm_democracy_data_1946_2008}},
   \code{\link{uds_2014}}
 }
 \keyword{datasets}

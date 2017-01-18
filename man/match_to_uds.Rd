@@ -2,8 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{match_to_uds}
 \alias{match_to_uds}
-\title{A convenience function to match extensions of the UD scores to the level of a
-particular release of the UD scores}
+\title{Match generated scores to the level of an official UD release}
 \usage{
 match_to_uds(data, release = 2014)
 }
@@ -25,10 +24,10 @@ The dataset with three columns appended: \code{adj.z1} (the mean
   \code{adj.pct975} (the adjusted confidence bounds).
 }
 \description{
-A convenience function to match extensions of the UD scores to the level of a
-particular release of the UD scores
+Match generated scores to the level of an official UD release
 }
 \examples{
+\donttest{
 library(dplyr)
 indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
                             "doorenspleet","eiu","freedomhouse",
@@ -40,6 +39,7 @@ data <- prepare_democracy(indexes)
 extended_model <- democracy_model(data,indexes, verbose=TRUE)
 extended_scores <- democracy_scores(extended_model)
 extended_scores <- bind_cols(data,extended_scores)
-extended_scores <- match_to_uds(extended_scores)
+# Matches the calculated scores to the level of the 2014 release of the UD scores
+extended_scores <- match_to_uds(extended_scores)}
 }
 

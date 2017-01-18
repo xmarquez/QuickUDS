@@ -1,11 +1,10 @@
 
-#' A convenience function to prepare democracy data before replicating the UDS
-#' model
+#' Prepare democracy data before replicating the UDS model
 #'
 #' This function is designed to take the democracy data included in this package
 #' and put it in a form suitable for use with the \code{\link{mirt}} package to
-#' replicate the UDS model. It takes a data frame and tries to determine, from the colum names, which
-#' variables contain democracy scores.
+#' replicate the UDS model. It takes a data frame and tries to determine, from
+#' the colum names, which variables contain democracy scores.
 #'
 #' If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
 #' \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
@@ -252,21 +251,31 @@ prepare_data <- function(data) {
                      "magaloni", "pacl", "pitf", "polyarchy", "prc", "przeworski", "svolik",
                      "ulfelder", "utip", "kailitz", "e_v2x", "wahman_teorell_hadenius")
 
-  defaults <- list(arat = function(x) { cut(x, breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
-                                          labels = 1:7, include.lowest = TRUE, right = FALSE) },
-                 hadenius = function(x) { cut(x, breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10),
-                                              labels = 1:8, include.lowest = TRUE, right = FALSE) },
-                 bollen = function(x) { cut(x, breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
-                                            labels = 1:10, include.lowest = TRUE, right = FALSE) },
-                 vanhanen_democratization = function(x) { cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
-                                                                            labels = 1:8, include.lowest = TRUE, right = FALSE)},
-                 munck = function(x) { cut(x, breaks = c(0, 0.5, 0.75, 0.99, 1),
-                                           labels = 1:4, include.lowest = TRUE, right = FALSE)},
+  defaults <- list(
+    arat = function(x) {
+      cut(x, breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
+          labels = 1:7, include.lowest = TRUE, right = FALSE) },
+    hadenius = function(x) {
+      cut(x, breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10),
+          labels = 1:8, include.lowest = TRUE, right = FALSE) },
+    bollen = function(x) {
+      cut(x, breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+          labels = 1:10, include.lowest = TRUE, right = FALSE) },
+    vanhanen_pmm = function(x) {
+      cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
+          labels = 1:8, include.lowest = TRUE, right = FALSE)},
+    vanhanen_democratization = function(x) {
+      cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
+          labels = 1:8, include.lowest = TRUE, right = FALSE)},
+    munck = function(x) {
+      cut(x, breaks = c(0, 0.5, 0.75, 0.99, 1),
+          labels = 1:4, include.lowest = TRUE, right = FALSE)},
                  polity = function(x) { ifelse(x < -10, NA, x) },
-                 v2x = function(x) { cut(x, breaks = 20, include.lowest = TRUE, right = FALSE, ordered_result = TRUE) },
-                 eiu = function(x) { round(x, 1) },
-                 peps = function(x) { round(x) },
-                 other = function(x) { as.numeric(unclass(factor(x))) })
+    v2x = function(x) {
+      cut(x, breaks = 20, include.lowest = TRUE, right = FALSE, ordered_result = TRUE) },
+    eiu = function(x) { round(x, 1) },
+    peps = function(x) { round(x) },
+    other = function(x) { as.numeric(unclass(factor(x))) })
 
   other_pattern <- paste(other_vars,collapse="|")
 
@@ -285,7 +294,7 @@ prepare_data <- function(data) {
 
 }
 
-#' Prepares the selected indexes in the \code{\link{democracy}} dataset
+#' Prepares selected indexes in the democracy dataset for use in a UD model
 #'
 #' @param indexes a set of measures of democracy in the \code{\link{democracy}}
 #'   dataset. They must be names of the columns of the \code{\link{democracy}}
@@ -314,8 +323,7 @@ prepare_democracy <- function(indexes) {
 }
 
 
-#' Calculates the probability that \code{country1} at \code{year[1]} is more
-#' democratic than \code{country2} at \code{year[2]}
+#' Probability that a country-year is more democratic than another
 #'
 #' @param data A UD dataset with a country_name, year, latent variable mean and
 #'   latent variable standard deviation columns at least. Little sanity checking
@@ -363,8 +371,7 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
   prob
 }
 
-#' A convenience function for extracting cutpoints from a UD model in a tidy
-#' data frame format.
+#' Extract cutpoints from a UD model in a tidy format.
 #'
 #' This function takes a model of the democracy scores and extracts the
 #' discrimination parameters, score cutpoints, and standard errors for all the
@@ -389,6 +396,7 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
 #' @import mirt
 #'
 #' @examples
+#' \donttest{
 #' # Replicate the official UDS 2011 release and calculate its cutpoints
 #' library(reshape2)
 #' library(dplyr)
@@ -397,10 +405,10 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
 #' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
 #' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
 #' data <- dcast(data, ... ~ variable)
-#' data <- data %>% arrange(country_name,year)
-#' replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))]],
-#'                                   model = 1, itemtype = "graded", SE = TRUE)
+#' data <- data %>% arrange(country_name, year) %>% select(ends_with("pmm"))
+#' replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
 #' cutpoints_2011 <- cutpoints(replication_2011_model)
+#' cutpoints_2011}
 cutpoints <- function(model, type = "score") {
   stopifnot(class(model) == "SingleGroupClass")
 
@@ -446,8 +454,7 @@ cutpoints <- function(model, type = "score") {
   return(coefs)
 }
 
-#' A convenience function for extracting rater info from a UD model in a tidy
-#' data frame format.
+#' Extract rater info from a UD model in a tidy format.
 #'
 #' @param model A \code{\link{mirt}} \code{\link{SingleGroupClass-class}} model
 #'   of the democracy scores.
@@ -459,29 +466,32 @@ cutpoints <- function(model, type = "score") {
 #' @import dplyr
 #'
 #' @examples
-#' # Not run:
-#' # library(QuickUDS)
-#' # data <- prepare_data(democracy)
-#' # data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' # data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' # data <- dcast(data, ... ~ variable)
-#' # data <- data %>% arrange(country_name,year)
-#' # replication_2011_model <- mirt(data[ , names(data)[grep("pmm",names(data))],
-#' #                                model = 1, itemtype = "graded", SE = TRUE)
-#' # raterinfo_2011 <- raterinfo(replication_2011_model)
-#' # head(raterinfo)
+#' \donttest{
+#' library(QuickUDS)
+#' data <- prepare_data(democracy)
+#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
+#' data <- dcast(data, ... ~ variable)
+#' data <- data %>% arrange(country_name,year) %>% select(ends_with("pmm"))
+#' replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
+#' raterinfo_2011 <- raterinfo(replication_2011_model)
+#' head(raterinfo)}
 raterinfo <- function(model) {
     raters <- dimnames(model@Data$data)[[2]]
     Theta <- model@Model$Theta
     rater.info <- data.frame()
 
     for (i in raters) {
-        rater.info <- bind_rows(rater.info, data.frame(rater = i, theta = as.numeric(Theta), info = iteminfo(extract.item(model, i), Theta = Theta)))
+        rater.info <- bind_rows(rater.info,
+                                data.frame(rater = i,
+                                           theta = as.numeric(Theta),
+                                           info = iteminfo(extract.item(model, i),
+                                                           Theta = Theta)))
     }
     rater.info
 }
 
-#' A convenience function for producing a UD model from democracy data.
+#' Produce a UD model from democracy data
 #'
 #' This function is a simple wrapper for \code{mirt(data[, columns], model = 1,
 #' itemtype = "graded", SE = TRUE, ...)}. More fine-grained control can be
@@ -508,19 +518,20 @@ raterinfo <- function(model) {
 #' @export
 #'
 #' @examples
-#' # Not run:
-#' # data <- prepare_data(democracy)
-#' # data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' # data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' # data <- dcast(data, ... ~ variable)
-#' # data <- data %>% arrange(country_name,year)
-#' # replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+#' \donttest{
+#' data <- prepare_data(democracy)
+#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
+#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
+#' data <- dcast(data, ... ~ variable)
+#' data <- data %>% arrange(country_name,year)
+#' replication_2011_model <- democracy_model(data,
+#'                                columns = names(data)[grep("pmm",names(data))])}
 democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = TRUE, ...) {
   model <- mirt::mirt(data[, columns], model = model, itemtype = itemtype, SE = SE, ...)
   model
 }
 
-#' A convenience function for producing UD scores from a UD model.
+#' Extract UD scores from a UD model
 #'
 #' This function is a simple wrapper for \code{fscores(model, full.scores =
 #' TRUE, full.scores.SE = TRUE, ...)} that returns scores in a tidy data frame
@@ -540,6 +551,7 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' @import mirt
 #'
 #' @examples
+#' \donttest{
 #' # Replicate the official UDS scores (2011 release)
 #' library(reshape2)
 #' library(dplyr)
@@ -548,11 +560,17 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
 #' data <- dcast(data, ... ~ variable)
 #' data <- data %>% arrange(country_name,year)
-#' replication_2011_model <- democracy_model(data, columns = names(data)[grep("pmm",names(data))])
+#' replication_2011_model <- democracy_model(data,
+#'                            columns = names(data)[grep("pmm",names(data))])
 #' replication_2011_scores <- democracy_scores(replication_2011_model)
 #' replication_2011_scores <- bind_cols(data %>%
-#'                                        select(country_name, GWn, year,in_system,num_measures),
-#'                                                      replication_2011_scores)
+#'                                        select(country_name,
+#'                                        GWn,
+#'                                        year,
+#'                                        in_system,
+#'                                        num_measures),
+#'                                        replication_2011_scores)
+#' head(replication_2011_scores)}
 democracy_scores <- function(model, ...) {
   stopifnot(class(model) == "SingleGroupClass")
 
@@ -569,8 +587,7 @@ democracy_scores <- function(model, ...) {
   data
 }
 
-#' A convenience function to match extensions of the UD scores to the level of a
-#' particular release of the UD scores
+#' Match generated scores to the level of an official UD release
 #'
 #' @param data A dataset containing an extension of the UD scores, from the
 #'   output of \link{democracy_scores}. It must contain a \code{country_name}
@@ -589,6 +606,7 @@ democracy_scores <- function(model, ...) {
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' library(dplyr)
 #' indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
 #'                             "doorenspleet","eiu","freedomhouse",
@@ -600,7 +618,8 @@ democracy_scores <- function(model, ...) {
 #' extended_model <- democracy_model(data,indexes, verbose=TRUE)
 #' extended_scores <- democracy_scores(extended_model)
 #' extended_scores <- bind_cols(data,extended_scores)
-#' extended_scores <- match_to_uds(extended_scores)
+#' # Matches the calculated scores to the level of the 2014 release of the UD scores
+#' extended_scores <- match_to_uds(extended_scores)}
 match_to_uds <- function(data, release = 2014) {
   stopifnot("z1" %in% names(data))
   stopifnot("pct975" %in% names(data))
@@ -609,18 +628,26 @@ match_to_uds <- function(data, release = 2014) {
   stopifnot("year" %in% names(data))
 
   if(release == 2014) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
-                                      paste(QuickUDS::uds_2014$country_name,QuickUDS::uds_2014$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
+                                      paste(QuickUDS::uds_2014$country_name,
+                                            QuickUDS::uds_2014$year) ],
+                           na.rm=TRUE)
   } else if(release == 2011) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
-                                      paste(QuickUDS::uds_2011$country_name,QuickUDS::uds_2011$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
+                                      paste(QuickUDS::uds_2011$country_name,
+                                            QuickUDS::uds_2011$year) ],
+                           na.rm=TRUE)
   } else if(release == 2010) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
-                                      paste(QuickUDS::uds_2010$country_name,QuickUDS::uds_2010$year) ], na.rm=TRUE)
+    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
+                                      paste(QuickUDS::uds_2010$country_name,
+                                            QuickUDS::uds_2010$year) ],
+                           na.rm=TRUE)
   } else {
     message("UDS release unknown. Using the 2014 UDS release for adjustment.")
     mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
-                                      paste(QuickUDS::uds_2014$country_name,QuickUDS::uds_2014$year) ], na.rm=TRUE)
+                                      paste(QuickUDS::uds_2014$country_name,
+                                            QuickUDS::uds_2014$year) ],
+                           na.rm=TRUE)
   }
 
   data$adj.z1 <- data$z1 - mean_ud_period

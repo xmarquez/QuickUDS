@@ -38,7 +38,7 @@ devtools::use_data(extended_uds_2factor, overwrite=TRUE)
 #
 # ggplot(data= extended_uds_2factor, aes(x=cont,y=part)) + geom_point(alpha=0.2,position="jitter")
 #
-# data1 <- left_join(PoliticalDatasets::kailitz.yearly %>% select(country_name,year,GWn,kailitz_binary:transition),extended_uds_2factor)
+# data1 <- left_join(PoliticalDatasets::kailitz_yearly %>% select(country_name,year,GWn,kailitz_binary:transition),extended_uds_2factor)
 #
 # library(ggalt)
 # ggplot(data = data1,aes(x=cont,y=part,color=communist)) + geom_point(alpha=0.2,position="jitter") + geom_density2d()

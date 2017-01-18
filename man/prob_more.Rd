@@ -2,8 +2,7 @@
 % Please edit documentation in R/QuickUDS.R
 \name{prob_more}
 \alias{prob_more}
-\title{Calculates the probability that \code{country1} at \code{year[1]} is more
-democratic than \code{country2} at \code{year[2]}}
+\title{Probability that a country-year is more democratic than another}
 \usage{
 prob_more(data, country1, country2, years, mean_col = "z1",
   sd_col = "se.z1", country_col = "country_name", year_col = "year")
@@ -37,8 +36,7 @@ The probability that the first country-year in the comparison is more
   democratic than the second.
 }
 \description{
-Calculates the probability that \code{country1} at \code{year[1]} is more
-democratic than \code{country2} at \code{year[2]}
+Probability that a country-year is more democratic than another
 }
 \examples{
 # Probability that the USA in 2000 was more democratic than Brazil in 2000,

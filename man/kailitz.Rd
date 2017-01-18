@@ -3,7 +3,7 @@
 \docType{data}
 \name{kailitz}
 \alias{kailitz}
-\alias{kailitz.yearly}
+\alias{kailitz_yearly}
 \title{The Steffen Kailitz Dataset of Authoritarian Regime Types}
 \format{An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 813 rows and 18 columns.}
 \source{
@@ -14,7 +14,7 @@ Kailitz, Steffen. 2013. Classifying political regimes revisited:
 \usage{
 kailitz
 
-kailitz.yearly
+kailitz_yearly
 }
 \description{
 Contains the authoritarian regime types dataset from Kailitz, Steffen. 2013.
@@ -27,7 +27,7 @@ Democratization 20 (1): 39-60. Original data available at
 
   \describe{
 
-  \item{year}{The calendar year. Only in the \code{kailitz.yearly} file. Note
+  \item{year}{The calendar year. Only in the \code{kailitz_yearly} file. Note
   that more than one regime type may overlap over a single year.}
 
   \item{kailitz_country}{The country name, as in the original dataset. Use
@@ -117,7 +117,7 @@ Democratization 20 (1): 39-60. Original data available at
   \item{in_cow}{Whether the state is in the COW system of states (that is, is
   independent and sovereign), for this particular date. Experimental.}
 
-  \item{combined_regime}{Only in the \code{kailitz.yearly} file. The
+  \item{combined_regime}{Only in the \code{kailitz_yearly} file. The
   "combined regime" for the country year. This is just identical to
   \code{regime} if the country only has one regime for the year, but it is
   the concatenation of all regimes for that year if the country has more than
@@ -125,44 +125,44 @@ Democratization 20 (1): 39-60. Original data available at
   Autocracy-One party Autocracy-Personalist Autocracy" for the each of the
   years 1946-1974.}
 
-  \item{kailitz_binary}{Only in the \code{kailitz.yearly} file. Dichotomous
+  \item{kailitz_binary}{Only in the \code{kailitz_yearly} file. Dichotomous
   democracy indicator. 1 if \code{combined_regime} is "Liberal democracy", 0
   otherwise.}
 
-  \item{kailitz_tri}{Only in the \code{kailitz.yearly} file. Trichotomous
+  \item{kailitz_tri}{Only in the \code{kailitz_yearly} file. Trichotomous
   democracy indicator. 2 if \code{combined_regime} is "Liberal Democracy", 1
   if it is "Electoral Autocracy" or "Electoral Autocracy-Liberal Democracy",
   0 otherwise.}
 
-  \item{personal}{Only in the \code{kailitz.yearly} file. Binary indicator of
+  \item{personal}{Only in the \code{kailitz_yearly} file. Binary indicator of
   personalism. \code{TRUE} if \code{combined_regime} contains "Personal
   Autocracy", \code{FALSE} otherwise.}
 
-  \item{communist}{Only in the \code{kailitz.yearly} file. Binary indicator
+  \item{communist}{Only in the \code{kailitz_yearly} file. Binary indicator
   of communism. \code{TRUE} if \code{combined_regime} contains "Communist
   Ideocracy", \code{FALSE} otherwise.}
 
-  \item{military}{Only in the \code{kailitz.yearly} file. Binary indicator of
+  \item{military}{Only in the \code{kailitz_yearly} file. Binary indicator of
   military autocracy. \code{TRUE} if \code{combined_regime} contains
   "Military Autocracy", \code{FALSE} otherwise.}
 
-  \item{party}{Only in the \code{kailitz.yearly} file. Binary indicator of
+  \item{party}{Only in the \code{kailitz_yearly} file. Binary indicator of
   one party autocracy \code{TRUE} if \code{combined_regime} contains "One
   party Autocracy", \code{FALSE} otherwise.}
 
-  \item{monarchy}{Only in the \code{kailitz.yearly} file. Binary indicator of
+  \item{monarchy}{Only in the \code{kailitz_yearly} file. Binary indicator of
   monarchy. \code{TRUE} if \code{combined_regime} contains "Monarchy",
   \code{FALSE} otherwise.}
 
-  \item{electoral}{Only in the \code{kailitz.yearly} file. Binary indicator
+  \item{electoral}{Only in the \code{kailitz_yearly} file. Binary indicator
   of electoral autocracy. \code{TRUE} if \code{combined_regime} contains
   "Electoral autocracy", \code{FALSE} otherwise.}
 
-  \item{failure}{Only in the \code{kailitz.yearly} file. Binary indicator of
+  \item{failure}{Only in the \code{kailitz_yearly} file. Binary indicator of
   state failure or occupation. \code{TRUE} if \code{combined_regime} contains
   "State Failure or Occupation", \code{FALSE} otherwise.}
 
-  \item{transition}{Only in the \code{kailitz.yearly} file. Binary indicator
+  \item{transition}{Only in the \code{kailitz_yearly} file. Binary indicator
   of transition. \code{TRUE} if \code{combined_regime} contains "Transition",
   \code{FALSE} otherwise.}
 
@@ -171,7 +171,7 @@ Democratization 20 (1): 39-60. Original data available at
 \seealso{
 Other democracy: \code{\link{democracy}},
   \code{\link{extended_uds}},
-  \code{\link{original.pmm.democracy.data.1946.2008}},
+  \code{\link{original_pmm_democracy_data_1946_2008}},
   \code{\link{uds_2014}}
 }
 \keyword{datasets}

@@ -4,48 +4,40 @@
 \alias{democracy_model}
 \title{Produce a UD model from democracy data}
 \usage{
-democracy_model(data, columns, model = 1, itemtype = "graded", SE = TRUE,
-  ...)
+democracy_model(..., identifiers = c("extended_country_name", "year", "GWn",
+  "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean", "in_GW_system"),
+  verbose = TRUE, technical = list(NCYCLES = 2500))
 }
 \arguments{
-\item{data}{The prepared democracy data. Run \code{\link{prepare_data}} first
-on your democracy data. Note that \code{\link{mirt}} will throw an error if
-some country-years are not measured by any dataset; it is thus necessary to ensure
-that your data has at least one measurement of democracy for every
-country-year (though NAs are fine in many of the variables). See the
-examples for details.}
+\item{...}{\link{democracy} variables to use for the model. Can be bare column names
+or strings, or a \link[dplyr:select]{dplyr::select} expression.}
 
-\item{columns}{The columns to use to estimate the model.}
+\item{identifiers}{Identifier columns. Can be any combination of columns in
+the \link{democracy} dataset. Defaults to \code{c("extended_country_name",
+  "year", "GWn", "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean")}.}
 
-\item{model}{The model type for \code{\link{mirt}}. The default, 1,
-calculates a one-factor model (a single latent variable).}
+\item{verbose}{Passed to \link[mirt:mirt]{mirt::mirt}; whether to print a running commentary.
+Default is \code{TRUE}.}
 
-\item{itemtype}{The type of item to estimate. See \code{\link{mirt}} for
-details. The default fits a "graded" model like the one Pemstein, Meserve,
-and Melton use in their 2010 paper.}
-
-\item{SE}{Boolean. Whether to calculate the standard errors of the model
-parameters. The default is \code{TRUE}.}
-
-\item{...}{Other parameters passed on to \code{\link{mirt}}}
+\item{technical}{Passed to \link[mirt:mirt]{mirt::mirt}. Defaults to \code{list(NCYCLES =
+2500)} to ensure that extende models converge.}
 }
 \value{
 a \code{\link{SingleGroupClass-class}} model of latent democracy
-  scores suitable for use by \code{\link{democracy_scores}}.
+scores suitable for use by \code{\link{democracy_scores}}.
 }
 \description{
-This function is a simple wrapper for \code{mirt(data[, columns], model = 1,
-itemtype = "graded", SE = TRUE, ...)}. More fine-grained control can be
-achieved by using \code{\link{mirt}} directly.
+This function is a simple wrapper for \link[mirt:mirt]{mirt::mirt} that automates the process
+of selecting the relevant columns in the \link{democracy} dataset, preparing the
+data for use with \link[mirt:mirt]{mirt::mirt}, and packaging the result in a form useful for
+\link{democracy_scores}. More fine-grained control can be achieved by using
+\code{\link{mirt}} directly; see the Vignette on replicating and extending
+the UD scores.
 }
 \examples{
 \donttest{
-data <- prepare_data(democracy)
-data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-data <- dcast(data, ... ~ variable)
-data <- data \%>\% arrange(country_name,year)
-replication_2011_model <- democracy_model(data,
-                               columns = names(data)[grep("pmm",names(data))])}
+replication_2011_model <- democracy_model(dplyr::matches("pmm"), verbose = FALSE)
+replication_2011_model
+summary(replication_2011_model)
 }
-
+}

@@ -14,7 +14,7 @@ vignette: >
 
 This package contains data and convenience functions that can be used to replicate and extend the [Unified Democracy Scores](http://www.unified-democracy-scores.org/) of Pemstein, Meserve, and Melton (2010). It depends on the package ```mirt``` (Chalmers 2012), which can quickly compute full-information factor analyses.
 
-The basic procedure for replicating or extending the UD scores is as follows. First, load the library and prepare the democracy data using the convenience functions ```prepare_data``` or ```prepare_democracy```; fit a simple ```mirt``` model; and finally, extract the scores. 
+The basic procedure for replicating or extending the UD scores is as follows. First, load the library and prepare the democracy data using the convenience functions ```prepare_data``` or ```prepare_democracy```; fit a simple ```mirt``` model; and finally, extract the scores. These procedures can be easily condensed into a single call to `democracy_scores`, but this vignette shows how to use a longer procedure.
 
 ```{r, include=FALSE}
 library(knitr)
@@ -23,15 +23,25 @@ opts_chunk$set(echo=TRUE)
 
 ## Preparing your democracy indexes
 
-Though you can use your own custom democracy indexes to generate latent (unified) democracy scores, the package provides a dataset, ```democracy```, which contains a large number of democracy measures (from more than 25 different datasets, of varying reliability and coverage) that you can use to generate custom unified democracy scores. (Use ```?democracy``` to view which measures are included in the dataset as well as links to their sources; they are also listed in the references below). For example, suppose we wanted to replicate exactly the [2011 release of the UD scores](http://www.unified-democracy-scores.org/archive.html). PMM's replication data for that release is included in the ```democracy``` dataset: we just need to select the variable names ending in ```_pmm``` and use the function ```prepare_democracy```
+Though you can use your own custom democracy indexes to generate latent (unified) democracy scores, the package provides a dataset, ```democracy```, which contains a large number of democracy measures (from more than 30 different datasets, of varying reliability and coverage) that you can use to generate custom unified democracy scores. (Use ```?democracy``` to view which measures are included in the dataset as well as links to their sources; they are also listed in the references below). For example, suppose we wanted to replicate exactly the [2011 release of the UD scores](http://www.unified-democracy-scores.org/archive.html). PMM's replication data for that release is included in the ```democracy``` dataset: we just need to select the variable names ending in ```_pmm``` and use the function ```prepare_democracy```
 
 ```{r}
 library(QuickUDS)
 library(mirt)
+library(dplyr)
+library(tidyr)
 
+names(democracy)
 indexes <- names(democracy)[grep("pmm",names(democracy))]
 indexes # The measures of democracy used to generate the 2011 release of the UDS
 data <- prepare_democracy(indexes)
+```
+
+You can use a `dplyr::select` helper to simplify this procedure:
+
+```{r}
+
+data <- prepare_democracy(matches("pmm"))
 ```
 
 The function ```prepare_democracy``` selects the appropriate colums from the ```democracy``` dataset, gets rid of "empty rows" (country-years that have no measurements of democracy for the chosen indexes; such patterns will make ```mirt``` fail), and runs ```prepare_data``` on the remaining indexes. 
@@ -42,7 +52,7 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 
 * If a selected index contains the string ```bollen```, the function assumes the index is Bollen's (2001)'s 0-100 democracy score, and cuts it into 10 intervals with the following cutoffs: 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10 (following Pemstein, Meserve, and Melton's advice).
 
-* If a selected index contains the string ```eiu```, the function assumes the index is the Economist Intelligence Unit's 0-1 index of democracy, and it will round its value to the first decimal place and cut the result into 10 categories. The resulting score is ordinal from 1 to 11.
+* If a selected index contains the string ```wgi```, the function assumes the index is the World Governance Indicator's "Voice and Accountability" index, and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.
 
 * If a selected index contains the string ```hadenius```, the function assumes the index is Hadenius (1992)'s 0-10 democracy score, and it will cut it into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8, and 9. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton's advice). 
 
@@ -51,6 +61,8 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 * If the selected index contains the string ```peps```, the function assumes the index is one of the variants of the Participation-Enhanced Polity Score (Moon et al 2006), and it will round its value (eliminating the decimal) and then transform it into an ordinal measure from 1 to 21.
 
 * If the selected index contains the string ```polity```, the function assumes this is the Polity IV score, and it set any values below -10 to NA and then transform them into an ordinal measure from 1 to 21.
+
+* If the selected index contains the string ```polyarchy_inclusion_dimension``` or ```polyarchy_contestation_dimension```, the function assumes this is one of the two dimensions of polyarchy estimated by Coppedge, Alvarez, and Maldonado (2008), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.
 
 * If the selected index contains the string ```v2x```, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.
 
@@ -62,21 +74,22 @@ The function ```prepare_democracy``` selects the appropriate colums from the ```
 * ```bmr``` (assumes it's from Boix, Miller, and Rosato 2012)
 * ```doorenspleet``` (assumes it's from Doorenspleet 2000)
 * ```e_v2x``` (assumes it's one of the "ordinal" indexes from the V-dem project, Coppedge at al 2015)
-* ```freedomhouse``` (assumes it's from Freedom House - must be reversed so that "more freedom" is higher)
+* ```fh``` or ```freedomhouse``` (assumes it's from Freedom House - must be reversed so that "more freedom" is higher)
 * ```gwf``` (assumes it's from Geddes, Wright, and Frantz 2014 - the dichotomous democracy indicator only)
 * ```kailitz``` (assumes it's from from Kailitz 2013 - democracy/electoral autocracy/non-democracy indicator only)
-* ```lied``` (assumes it's from Skaaning, Gerring, and Bartusevičius 2015)
+* ```lied``` or ```lexical_index``` (assumes it's from Skaaning, Gerring, and Bartusevičius 2015)
 * ```mainwaring``` (assumes it's from Mainwaring and Perez Linan 2008)
 * ```magaloni``` (assumes it's from Magaloni, Min and Chu 2013)
 * ```pacl``` (assumes it's from Cheibub, Gandhi, and Vreeland 2010)
 * ```pitf``` (assumes it's the measure of democracy used in Goldstone et. al 2010 or Taylor and Ulfelder 2015)
-* ```poliarchy``` (assumes it's from Coppedge and Reinicke 1991)
+* ```polyarchy``` (assumes it's from Coppedge and Reinicke 1991)
 * ```prc``` (assumes it's from Gasiorowski 1996 or Reich 2002)
 * ```przeworski``` (assumes it's the "regime" variable from Przeworski 2010)
+* ```reign``` (assumes it's the democracy/dictatorship indicator from Bell 2016)
 * ```svolik``` (assumes it's the democracy/dictatorship indicator from Svolik 2012)
 * ```ulfelder``` (assumes it's from Ulfelder 2012)
 * ```utip``` (assumes it's from Hsu 2008)
-* ```wahman_teorell_hadenius``` (assumes it's a democracy/non-democracy indicator from Wahman, Teorell, and Hadenius 2013). 
+* ```wahman_teorell_hadenius``` or ```wth``` (assumes it's a democracy/non-democracy indicator from Wahman, Teorell, and Hadenius 2013). 
 
 In each of these cases the function ```prepare_data``` transforms the values of the scores by running ```as.numeric(unclass(factor(x)))```, which transforms each index into ordinal variables from 1 to the number of categories.
 
@@ -94,16 +107,16 @@ replication_2011_model <- mirt(data[ ,  indexes], model = 1,
 
 This just tells ```mirt``` to fit a one-factor, full information graded response model like that in Pemstein, Meserve, and Melton 2010, and to calculate the standard errors for the coefficients. (See ```?mirt``` for details of the many options you can use to tweak your model). 
 
-Fitting this model is reasonably fast, even in a three year old, not particularly fast computer:
+Fitting this model is reasonably fast:
 
 ```{r}
 replication_2011_model@time
 ```
 
-There is a convenient wrapper for ```mirt(data[ , indexes ] ,model = 1, itemtype = "graded", SE = TRUE)```, in case you just want to re-fit Pemstein, Meserve, and Melton's original model without any special tweaking:
+There is a convenient wrapper for the entire procedure:
 
 ```{r}
-replication_2011_model <- democracy_model(data, indexes, verbose = FALSE)
+replication_2011_model <- democracy_model(matches("pmm"), verbose = FALSE)
 ```
 
 We can easily check that this model converges and that accounts for most of the variance in the democracy indexes:
@@ -113,33 +126,34 @@ replication_2011_model
 summary(replication_2011_model)
 ```
 
-And we can then extract the latent democracy scores, either via the ```mirt``` package's ```fscore``` function, or via this package's convenient wrapper ```democracy_scores``` (which returns a tidy dataset with the latent scores and automatically calculates 95\% confidence intervals):
+And we can then extract the latent democracy scores, either via the ```mirt``` package's ```fscore``` function, or via this package's convenient wrapper ```democracy_scores``` (which returns a tidy dataset with the latent scores, binds them to the appropriate country-years and automatically calculates 95\% confidence intervals):
 
 ```{r}
 replication_2011_scores <-  fscores(replication_2011_model, 
                                     full.scores = TRUE, 
                                     full.scores.SE = TRUE)
-# Not a data frame:
+# Not a data frame, no country-years:
 str(replication_2011_scores)
 
-replication_2011_scores <- democracy_scores(replication_2011_model)
+replication_2011_scores <- democracy_scores(model = replication_2011_model)
 
 # A data frame with confidence intervals:
-head(replication_2011_scores)
+replication_2011_scores
 
-# We then bind these scores to the transformed data to associate them with the right country-years
-replication_2011_scores <- cbind(data,replication_2011_scores)
+
+```
+
+The entire procedure can be performed in one call:
+
+```{r}
+replication_2011_scores <- democracy_scores(matches("pmm"), verbose = FALSE)
 ```
 
 We can also check that these scores are, in fact, perfectly correlated with Pemstein, Meserve, and Melton's 2011 UDS release:
 
 ```{r}
-library(dplyr)
-comparison <- left_join(replication_2011_scores, 
-                        uds_2011, 
-                        by = c("country_name", "year", "GWn"))
+cor(replication_2011_scores %>% select(matches("uds"), z1), use = "pairwise")
 
-cor(comparison %>% select(z1, mean), use="pairwise.complete")
 ```
 
 (For more details on the relationship between the original UD scores and the replicated scores produced using this method, see my working paper [Marquez 2016](http://ssrn.com/abstract=2753830)).
@@ -152,8 +166,8 @@ Now suppose you want to create a new Unified Democracy score derived from Pemste
 * The full extent of the Political Regime Change dataset (Gasiorowski 1996 and Reich 2002), Vanhanen's index of democratization (Vanhanen 2012), Bowman, Lehoucq, and Mahoney's data on Central America (Bowman, Lehoucq, and Mahoney 2005) and Mainwaring, Brinks and Perez-Linan's data on Latin America (Mainwaring, Brinks, and Perez-Linan 2008), all of which go back to the beginning of the 20th century or before but are not used to the fullest extent in the official UD releases.
 * One of the new V-Dem indexes of democracy, ordinal or continuous (Coppedge et al 2015)
 * Renske Doorenspleet's dichotomous indicator of democracy including suffrage info (Doorenspleet 2000)
-* The Economist Intelligence Unit's index of democracy
-* The most current release of Freedom House's data, to 2015
+* The World Governance Indicator's latest Voice and Accountability index
+* The most current release of Freedom House's data, to 2016, and the most current Polity data, also to 2016
 * The indicators of democracy in various autocratic regime datasets (Geddes, Wright, and Frantz 2014; Svolik 2012; Kalitz 2013; Wahman, Teorell and Hadenius 2013)
 * The 7-level Lexical Index of Democracy and Autocracy (Skaaning, Gerring, and Bartusevičius. 2015)
 * Jay Ulfelder's dichotomous indicator of democracy (Ulfelder 2012)
@@ -161,31 +175,22 @@ Now suppose you want to create a new Unified Democracy score derived from Pemste
 This package makes the process extremely simple:
 
 ```{r}
-indexes <- c("arat_pmm","blm","bmr_democracy",
-             "bollen_pmm","doorenspleet","eiu","freedomhouse",
-             "gwf","hadenius_pmm","kailitz_tri","lied",
-             "mainwaring","munck_pmm","pacl",
-             "polity2","polyarchy_pmm","prc",
-             "svolik","ulfelder","v2x_polyarchy",
-             "vanhanen_democratization","wahman_teorell_hadenius")
-data <- prepare_democracy(indexes)
-extended_model <- democracy_model(data, indexes, verbose=FALSE)
-extended_scores <- democracy_scores(extended_model)
-extended_scores <- bind_cols(data,extended_scores)
-extended_model
-extended_model@time
-extended_scores %>% 
-  select(country_name, GWn, cown,
-         year, z1, se.z1, pct025, pct975) %>%
-  head()
+indexes <- c("pmm_arat","blm","bmr_democracy",
+             "pmm_bollen","doorenspleet","wgi_democracy","fh_total_reversed",
+             "gwf_democracy","pmm_hadenius","kailitz_tri","lexical_index",
+             "mainwaring","pmm_munck","pacl",
+             "polity2","polyarchy_original_contestation","prc",
+             "svolik_democracy","ulfelder_democracy",
+             "v2x_polyarchy", "vanhanen_democratization","wth_democ1") 
+
+extended_model <- democracy_model(indexes, verbose = FALSE)
+
+summary(extended_model)
+
+extended_scores <- democracy_scores(model = extended_model)
 ```
 
-```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option:
-
-```{r, eval=FALSE}
-extended_model <- democracy_model(data,indexes, verbose = FALSE, 
-                                  technical = list(NCYCLES = 2500)) 
-```
+```mirt``` will stop by default after 500 EM cycles, but some models will take longer to converge. If your model has not converged after 500 iterations of the algorithm, you can try increasing the number of cycles with the ```technical``` option.
 
 Use ```?mirt``` for more details.
 
@@ -196,92 +201,87 @@ countries <- c("United States of America",
                "United Kingdom","Argentina",
                "Chile","Venezuela","Spain")
 
-data <- bind_rows(extended_scores %>% 
-                    mutate(version = "Extension"),
-                  uds_2014 %>% 
-                    rename(z1 = mean) %>% 
-                    mutate(version = "PMM2014 release"))
-
-data <- data %>% 
-  arrange(version,country_name,year) %>% 
-  filter(country_name %in% countries)
+data <- extended_scores %>% 
+  filter(extended_country_name %in% countries) %>%
+  tidyr::gather(measure, zscore, uds_2010_mean:uds_2014_mean, z1) %>%
+  filter(!is.na(zscore), year >=1946, year < 2008) %>%
+  mutate(measure = plyr::mapvalues(measure, 
+                                   c("uds_2010_mean",
+                                     "uds_2011_mean",
+                                     "uds_2014_mean",
+                                     "z1_matched"),
+                                   c("2010 release of UDS",
+                                     "2011 release of UDS",
+                                     "2014 release of UDS",
+                                     "Replicated score")))
 
 library(ggplot2)
 
 ggplot(data = data, 
-       aes(x = year, y = z1, ymin = pct025, ymax = pct975, 
-           color = version, fill= version)) + 
+       aes(x = year, y = zscore, color = measure)) + 
   geom_path() + 
-  geom_ribbon(alpha=0.2) + 
   theme_bw() + 
   labs(x = "Year", y = "Latent unified democracy scores,\nper year")  + 
   theme(legend.position="bottom") + 
   guides(color = guide_legend(ncol = 1),fill = guide_legend(nrow = 1)) + 
-  facet_wrap(~country_name, ncol = 2)  
+  facet_wrap(~extended_country_name, ncol = 2)  
 
 ```
 
-If necessary, one can therefore "match" the extended scores to the official UD release by substracting the mean of the extended scores for the period of the UD release one wants to match from the extended scores:
+If necessary, one can therefore "match" the extended scores to the official UD release by substracting the mean of the extended scores for the period of the UD release one wants to match from the extended scores (that is, making the mean of the extended scores equal to zero for the period of adjustment):
 
 ```{r, fig.height=8, fig.width=7}
-mean_ud_period <- mean(extended_scores$z1[ paste(extended_scores$country_name,
-                                                 extended_scores$year) 
-                                           %in% paste(uds_2014$country_name,
-                                                      uds_2014$year) ])
 
-# This is how much higher the extended scores are than the scores in UDS 2014 release,
-# on average
-mean_ud_period
 
-extended_scores <- extended_scores %>% 
-  mutate(adj.z1 = z1 - mean_ud_period, 
-         adj.pct025 = pct025 - mean_ud_period, 
-         adj.pct975 = pct975 - mean_ud_period)
-
-data <- bind_rows(extended_scores %>% 
-                    mutate(version = "Extension, adjusted mean"),
-                  uds_2014 %>% 
-                    rename(adj.z1 = mean, 
-                           adj.pct975 = pct975, 
-                           adj.pct025 = pct025) %>% 
-                    mutate(version = "PMM2014 release"))
+data <- extended_scores %>% 
+  filter(!is.na(uds_2014_mean)) %>%
+  mutate(z1_matched = z1 - mean(z1, na.rm = TRUE), 
+         z1_pct975_matched = z1_pct975 - mean(z1, na.rm = TRUE), 
+         z1_pct025_matched = z1_pct025 - mean(z1, na.rm = TRUE))
 
 data <- data %>% 
-  arrange(version,country_name,year) %>% 
-  filter(country_name %in% countries)
+  filter(extended_country_name %in% countries) %>%
+  tidyr::gather(measure, zscore, uds_2010_mean:uds_2014_mean, z1_matched) %>%
+  filter(!is.na(zscore), year >=1946, year < 2008) %>%
+  mutate(measure = plyr::mapvalues(measure, 
+                                   c("uds_2010_mean",
+                                     "uds_2011_mean",
+                                     "uds_2014_mean",
+                                     "z1_matched"),
+                                   c("2010 release of UDS",
+                                     "2011 release of UDS",
+                                     "2014 release of UDS",
+                                     "Matched replicated score")))
 
 library(ggplot2)
 
 ggplot(data = data, 
-       aes(x = year, y = adj.z1, 
-           ymin = adj.pct025, ymax = adj.pct975, 
-           color = version, fill= version)) + 
+       aes(x = year, y = zscore, color = measure)) + 
   geom_path() + 
-  geom_ribbon(alpha=0.2) + 
   theme_bw() + 
   labs(x = "Year", y = "Latent unified democracy scores,\nper year")  + 
   theme(legend.position="bottom") + 
   guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=2)  
+  facet_wrap(~extended_country_name,ncol=2)  
 
 ```
 
-In the graph above, we can see that the 2014 release of the UDS seems to overestimate the degree of democracy in the USA in the early decades of 1950 relative to the "extended" scores. The package offers a convenience function to perform this adjustment:
+In the graph above, we can see that the 2014 release of the UDS seems to overestimate the degree of democracy in the USA in the early decades of 1950 relative to the "extended" scores. 
 
-```{r}
-extended_scores <- match_to_uds(extended_scores, release = 2014)
-```
-
-These scores have a more natural interpretation when transformed to a 0-1 scale using the cumulative distribution function as the "probability that a country-year is democratic" (so the 0 is now a natural minimum, and 1 a natural maximum). We can put them in this form as follows
+These scores have a more natural interpretation when transformed to a 0-1 index using the cumulative distribution function as the "probability that a country-year is democratic" (so the 0 is now a natural minimum, and 1 a natural maximum). These indexes are automatically produced by the function `democracy_scores`; they are in the column `z1_as_prob` of the output, and are produced by applying the `pnorm` function to `z1`, as follows:
 
 ```{r}
 extended_scores <- extended_scores %>% 
-  mutate(index = pnorm(adj.z1), 
-         index.pct025 = pnorm(adj.pct025), 
-         index.pct975 = pnorm(adj.pct975))
+  mutate(index = pnorm(z1), 
+         index_pct025 = pnorm(z1_pct025), 
+         index_pct975 = pnorm(z1_pct975))
+
+# These are equal to z1_as_prob, which is automatically calculated:
+
+extended_scores %>% filter(index != z1_as_prob)
 ```
 
-It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model):
+It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model). These scores are also automatically calculated (they are in the column `z1_adj`) but they can also be manuallyadded as follows: 
 
 ```{r, fig.height=8, fig.width=7}
 cutpoints_extended <- cutpoints(extended_model)
@@ -298,16 +298,16 @@ avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
 
 avg_dichotomous
 
-extended_scores <- extended_scores %>% mutate(adj.z1 = z1 - avg_dichotomous, 
-                                        adj.pct025 = pct025 - avg_dichotomous, 
-                                        adj.pct975 = pct975 - avg_dichotomous,
-                                        index = pnorm(adj.z1),
-                                        index.pct025 = pnorm(adj.pct025),
-                                        index.pct975 = pnorm(adj.pct975))
+extended_scores <- extended_scores %>% mutate(adj_z1 = z1 - avg_dichotomous, 
+                                        adj_pct025 = z1_pct025 - avg_dichotomous, 
+                                        adj_pct975 =z1_pct975 - avg_dichotomous,
+                                        index = pnorm(adj_z1),
+                                        index_pct025 = pnorm(adj_pct025),
+                                        index_pct975 = pnorm(adj_pct975))
 
-ggplot(data = extended_scores %>% filter(country_name %in% countries), 
+ggplot(data = extended_scores %>% filter(extended_country_name %in% countries), 
        aes(x= year, y = index, 
-           ymin = index.pct025, ymax = index.pct975)) + 
+           ymin = index_pct025, ymax = index_pct975)) + 
   geom_path() + 
   geom_ribbon(alpha=0.2) + 
   theme_bw() + 
@@ -315,23 +315,25 @@ ggplot(data = extended_scores %>% filter(country_name %in% countries),
   theme(legend.position="bottom") + 
   guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
   geom_hline(yintercept=0.5,color="red") +
-  facet_wrap(~country_name,ncol=2)  
+  facet_wrap(~extended_country_name,ncol=2)  
 ```
 
-A pre-computed version of the extended UDS scores, with data from all the indexes mentioned above, plus the participation-enhanced Polity Scores of Moon et al (2006), a trichotomous democracy indicator calculated from Magaloni, Min, and Chu's "Autocracies of the World" datset (Magaloni, Min and Chu 2013), a dichotomous democracy indicator calculated from Hsu (2008), and an indicator of democracy used by the Political Instability Task Force (Goldstein et. al 2010; Taylor and Ulfelder 2015), is included with the package; it can be loaded by simply typing ```extended_uds```. Use ```?extended_uds``` to examine the documentation for all its variables; see my working paper ([Marquez 2016](http://ssrn.com/abstract=2753830)) for more detail on the data and its uses.
+A pre-computed version of the extended UDS scores, with data from all the indexes mentioned above, plus the participation-enhanced Polity Scores of Moon et al (2006), a trichotomous democracy indicator calculated from Magaloni, Min, and Chu's "Autocracies of the World" datset (Magaloni, Min and Chu 2013), a dichotomous democracy indicator calculated from Hsu (2008), the REIGN dataset of Bell (2016), and an indicator of democracy used by the Political Instability Task Force (Goldstein et. al 2010; Taylor and Ulfelder 2015), is included with the package; it can be loaded by simply typing ```extended_uds```. Use ```?extended_uds``` to examine the documentation for all its variables; see my working paper ([Marquez 2016](http://ssrn.com/abstract=2753830)) for more detail on the data and its uses.
 
 ## Extracting useful information from the model
 
 The ```mirt``` package offers a great number of powerful tools to examine and diagnose the fitted model, including functions to extract model cutpoints and item information curves. But this package also contains two convenience functions that wrap ```mirt``` tools to quickly extract democracy rater discrimination parameters, rater cutoffs, and rater information curves from a model produced by ```democracy_model``` in a tidy data frame format suitable for graphing:
 
-```{r, fig.height=8, fig.width=7}
+```{r, fig.height=8, fig.width=7, warning= FALSE}
 replication_2011_cutpoints <- cutpoints(replication_2011_model, type ="score")
 replication_2011_cutpoints
 
 # We plot the "normalized" cutpoints ("estimate," in the same scale as the latent scores), 
 # not the untransformed ones ("par")
 
-ggplot(data = replication_2011_cutpoints, aes(x=variable,y = estimate, ymin = pct025,ymax=pct975))  + 
+ggplot(data = replication_2011_cutpoints, 
+       aes(x = variable, y = estimate, 
+           ymin = pct025, ymax = pct975))  + 
   theme_bw() + 
   labs(x="",y="Unified democracy level rater cutoffs") + 
   geom_point() + 
@@ -340,12 +342,15 @@ ggplot(data = replication_2011_cutpoints, aes(x=variable,y = estimate, ymin = pc
   coord_flip()
 
 # We can also plot discrimination parameters, which are in a different scale:
-replication_2011_discrimination <- cutpoints(replication_2011_model, type ="discrimination")
+replication_2011_discrimination <- cutpoints(replication_2011_model, 
+                                             type ="discrimination")
 
 replication_2011_discrimination
 
 ggplot(data = replication_2011_discrimination, 
-       aes(x=reorder(variable,estimate),y = estimate, ymin = pct025, ymax = pct975))  + 
+       aes(x=reorder(variable,estimate),
+           y = estimate, ymin = pct025, 
+           ymax = pct975))  + 
   theme_bw() + 
   labs(x="",y="Discrimination parameter for each rater
        \n(higher value means fewer idiosyncratic\nerrors relative to latent score)") + 
@@ -395,7 +400,10 @@ citation("QuickUDS")
 ```
 
 # References
+
 Arat, Zehra F. 1991. Democracy and human rights in developing countries. Boulder: Lynne Rienner Publishers.
+
+Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset (REIGN). 2016. http://oefresearch.org/datasets/reign.
 
 Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set of Political Regimes, 1800–2007. Comparative Political Studies 46 (12): 1523-1554. DOI:10.1177/0010414012463905. Original data available at https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0
 
@@ -408,6 +416,9 @@ Chalmers, R. Philip.  2012.  "Mirt: A Multidimensional Item Response Theory Pack
 Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010. "Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101. DOI:10.1007/s11127-009-9491-2 Original data available at https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited.
 
 Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy (V-Dem) Project. Original data available at https://v-dem.net/en/data/.
+
+Coppedge, Michael, Angel Alvarez and Claudia Maldonado. 2008. “Two Persistent Dimensions of Democracy: Contestation and Inclusiveness”. The journal of politics 70(03)
+(2008), pp. 632-647. DOI: 10.1017/S0022381608080663.
 
 Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New Brunswuck, NJ: Transaction pp. 47-68.
 

@@ -4,19 +4,51 @@
 \alias{prepare_data}
 \title{Prepare democracy data before replicating the UDS model}
 \usage{
-prepare_data(data)
+prepare_data(data, .funs)
 }
 \arguments{
 \item{data}{A dataset of democracy scores. For the function to do anything,
 the column names must contain at least one of the following strings:
 \code{arat}, \code{blm}, \code{bmr}, \code{bollen}, \code{doorenspleet},
-\code{eiu}, \code{e_v2x}, \code{gwf}, \code{hadenius}, \code{kailitz},
-\code{lied}, \code{munck}, \code{pacl}, \code{peps}, \code{poliarchy},
-\code{polity}, \code{prc}, \code{przeworski}, \code{svolik},
-\code{ulfelder}, \code{utip}, \code{v2x}, \code{vanhanen_democratization},
-\code{vanhanen_pmm}, or \code{wahman_teorell_hadenius}. For
-details of these variables, see the documentation for
+\code{wgi}, \code{gwf}, \code{hadenius}, \code{kailitz}, \code{lied},
+\code{munck}, \code{pacl}, \code{peps}, \code{polyarchy}, \code{polity},
+\code{prc}, \code{PIPE}, \code{svolik}, \code{ulfelder}, \code{utip},
+\code{v2x}, \code{vanhanen_democratization}, \code{vanhanen_pmm}, or
+\code{wth}. For details of these variables, see the documentation for
 \code{\link{democracy}}.}
+
+\item{.funs}{A names list of functions to modify the columns. It defaults to
+the following:
+
+\code{funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
+  labels = 1:7, include.lowest = TRUE, right = FALSE),
+
+  hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
+  include.lowest = TRUE, right = FALSE),
+
+  bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+  labels = 1:10, include.lowest = TRUE, right = FALSE),
+
+
+  vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
+  1:8, include.lowest = TRUE, right = FALSE),
+
+  munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
+  include.lowest = TRUE, right = FALSE),
+
+
+  polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
+  FALSE, ordered_result = TRUE),
+
+  polity = ifelse(. < -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
+  TRUE, right = FALSE, ordered_result = TRUE),
+
+  wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+  ordered_result = TRUE),
+
+  peps = round(.),
+
+  other = as.numeric(unclass(factor(.))))}}
 }
 \value{
 A data frame with the transformed scores, if any.
@@ -28,13 +60,12 @@ replicate the UDS model. It takes a data frame and tries to determine, from
 the colum names, which variables contain democracy scores.
 }
 \details{
-If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
-\code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
-\code{hadenius}, \code{kailitz}, \code{lied}, \code{munck}, \code{pacl},
-\code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
-\code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
-\code{wahman_teorell_hadenius}, the function performs the following
-transformations by default:
+If the column names contain the strings \code{arat}, \code{blm},
+\code{bollen},\code{wgi}, \code{hadenius}, \code{munck}, \code{pacl},
+\code{peps}, \code{polyarchy_inclusion_dimension},
+\code{polyarchy_contestation_dimension}, \code{polity}, \code{prc},
+\code{v2x}, \code{vanhanen_pmm}, or \code{vanhanen_democratization}, the
+function performs the following transformations by default:
 
 \code{arat}: Following Pemstein, Meserve, and Melton's replication code
 (Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
@@ -46,10 +77,9 @@ democracy score into 7 intervals with the following cutoffs: 50, 60, 70, 80,
 0-100 democracy score into 10 intervals with the following cutoffs:
 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10.
 
-\code{eiu}: If the Economist Intelligence Unit's index of democracy is
-included in the file, the function rounds the 0-1 value to the first decimal
-place and cuts the result into 10 categories. The resulting score is ordinal
-from 1 to 11.
+\code{wgi}: If the World Governance Indicator's index of voice and
+acocuntability is included in the file, the function cuts it into 20
+categories. The resulting score is ordinal from 1 to 20.
 
 \code{hadenius}: Following Pemstein, Meserve, and Melton's replication code
 (Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s
@@ -71,6 +101,12 @@ from 1 to 21.
 and puts NA for any values below -10, and then transforms it into an ordinal
 measure from 1 to 21.
 
+\code{polyarchy_inclusion_dimension},
+\code{polyarchy_contestation_dimension}: If any of the polyarchy inclusion or
+contestation dimensions from Coppedge, Alvarez and Maldonado (2008)  are
+included, it cuts them into into 20 categories. The resulting score is
+ordinal from 1 to 20.
+
 \code{v2x}: If any of the v2x_ continuous indexes of democracy from the V-Dem
 dataset (Coppedge et al 2015) are included in the file, the function cuts
 them into 20 categories. The resulting score is ordinal from 1 to 20.
@@ -82,26 +118,28 @@ intervals with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting
 score is ordinal from 1 to 8.
 
 The function also recognizes the following column names (or partial column
-names - it also recognizes, e.g., blm_pmm) as measures of democracy:
+names - it also recognizes, e.g., pmm_blm) as measures of democracy:
 \code{blm} (from Bowman, Lehoucq, and Mahoney 2005), \code{bmr} (from Boix,
 Miller, and Rosato 2012), \code{doorenspleet} (from Doorenspleet 2000),
 \code{e_v2x} (the "ordinal" indexes from the V-dem project, Coppedge at al
-2015), \code{freedomhouse} (from Freedom House - freedom scale must be
-reversed so that "more freedom" is higher), \code{gwf} (from Geddes, Wright,
-and Frantz 2014 - the dichotomous democracy indicator only), \code{kailitz}
-(from Kailitz 2013 - democracy/non-democracy indicator), \code{lied} (from
-Skaaning, Gerring, and Bartusevicius 2015), \code{mainwaring} (from
-Mainwaring and Perez Linan 2008), \code{magaloni} (from Magaloni, Min, Chu
-2013 - democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi,
-and Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and
-Ulfelder 2015), \code{poliarchy} (from Coppedge and Reinicke 1991),
-\code{prc} (from Gasiorowski 1996 or Reich 2002), \code{przeworski} (from
-Przeworski 2010), \code{svolik} (from Svolik 2012, democracy/dictatorship
-indicator only), \code{ulfelder} (from Ulfelder 2012), \code{utip} (from Hsu
-2008), and \code{wahman_teorell_hadenius} (from Wahman, Teorell, and Hadenius
-2013). In each of these cases the function transforms the values of these
-scores by running \code{as.numeric(unclass(factor(x)))}, which transforms
-them into ordinal variables from 1 to the number of categories.
+2015), \code{freedomhouse} or \code{fh} (from Freedom House - freedom scale
+must be reversed so that "more freedom" is higher), \code{gwf} (from Geddes,
+Wright, and Frantz 2014 - the dichotomous democracy indicator only),
+\code{kailitz} (from Kailitz 2013 - democracy/non-democracy indicator),
+\code{lied} or \code{lexical_index} (from Skaaning, Gerring, and
+Bartusevicius 2015), \code{mainwaring} (from Mainwaring and Perez Linan
+2008), \code{magaloni} (from Magaloni, Min, Chu 2013 -
+democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi, and
+Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and Ulfelder
+2015), \code{polyarchy} (from Coppedge and Reinicke 1991), \code{prc} (from
+Gasiorowski 1996 or Reich 2002), \code{PIPE} (from Przeworski 2010),
+\code{reign} (from Bell 2016), \code{svolik} (from Svolik 2012,
+democracy/dictatorship indicator only), \code{ulfelder} (from Ulfelder 2012),
+\code{utip} (from Hsu 2008), and \code{wth} or \code{wahman_teorell_hadenius}
+(from Wahman, Teorell, and Hadenius 2013). In each of these cases the
+function transforms the values of these scores by running
+\code{as.numeric(unclass(factor(x)))}, which transforms them into ordinal
+variables from 1 to the number of categories.
 
 For details of these scores, see the documentation for
 \code{\link{democracy}}.
@@ -110,9 +148,10 @@ It is also possible to change these defaults.
 }
 \section{Note}{
  Warning! The function does not perform any sanity checks. It
-  will try to transform anything that has the right name. You should always
-  check the results make sense.
+will try to transform anything that has the right name. You should always
+check the results make sense.
 }
+
 \examples{
 summary(democracy)
 summary(prepare_data(democracy))
@@ -120,6 +159,9 @@ summary(prepare_data(democracy))
 \references{
 Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 Boulder: Lynne Rienner Publishers.
+
+Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset
+(REIGN).\url{http://oefresearch.org/datasets/reign}
 
 Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
 of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
@@ -154,12 +196,16 @@ Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On
 Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
 Brunswuck, NJ: Transaction pp. 47-68.
 
+Coppedge, A. Alvarez and C. Maldonado. 2008. "Two Persistent Dimensions of
+Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03,
+pp. 632-647. DOI: 10.1017/S0022381608080663.
+
 Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
 World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
 \url{http://dx.doi.org/10.1017/S0043887100016580}.
 
-Economist Intelligence Unit. 2012. Democracy Index 2012: Democracy at a
-Standstill.
+Kaufmann, D. and A. Kraay. 2016. Worldwide Governance Indicators. 2016.
+\url{http://www.govindicators.org}.
 
 Freedom House. 2015. "Freedom in the World." Original data available at
 \url{http://www.freedomhouse.org}.
@@ -256,4 +302,3 @@ Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
 types revisited: updated data in comparative perspective. Contemporary
 Politics 19 (1): 19-34.
 }
-

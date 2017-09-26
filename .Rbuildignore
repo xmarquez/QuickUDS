@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^README.utf8.md$
 ^README-.*\.png$
 ^Conversion script\.R$
 ^csvs-and-pdfs$
@@ -9,6 +10,7 @@
 ^csvs-and-pdfs/democracy\.csv$
 ^data-raw.$
 ^data-raw$
+^man-roxygen$
 ^\.travis\.yml$
 ^\_pkgdown\.yaml$
 ^vignettes/extras$

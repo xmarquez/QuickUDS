@@ -1,0 +1,49 @@
+---
+title: "Adding democracy data"
+author: "Xavier Marquez"
+date: "22 September 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      cache = TRUE,
+                      cache.rebuild = FALSE)
+
+library(tidyverse)
+library(democracyData)
+library(vdem)
+```
+
+## Adding democracy data from democracyData and VDem packages
+
+```{r}
+
+democracy <- generate_democracy_scores_dataset(output_format = "wide", verbose = FALSE)
+
+uds_2010 <- uds_2010
+uds_2011 <- uds_2011
+uds_2014 <- uds_2014
+
+vdem <- extract_vdem_filter(section == 1, !grepl("component", label), include_uncertainty = FALSE) %>%
+  select(-GW_startdate:-lon, -vdem_country_name:-vdem_country_text_id, -historical_date:-vdem_cown)
+
+democracy_full <- full_join(democracy, vdem) %>%
+  distinct() %>%
+  filter(!is.na(extended_country_name))
+
+democracy_full %>% 
+  group_by(extended_country_name, year) %>% 
+  filter(n() > 1) %>%
+  group_by(extended_country_name, cown, GWn) %>%
+  summarise(min(year), max(year), n())
+
+democracy <- democracy_full
+
+devtools::use_data(democracy, overwrite = TRUE)
+devtools::use_data(uds_2014, overwrite = TRUE)
+devtools::use_data(uds_2011, overwrite = TRUE)
+devtools::use_data(uds_2010, overwrite = TRUE)
+```
+
+

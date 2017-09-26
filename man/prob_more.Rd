@@ -5,7 +5,8 @@
 \title{Probability that a country-year is more democratic than another}
 \usage{
 prob_more(data, country1, country2, years, mean_col = "z1",
-  sd_col = "se.z1", country_col = "country_name", year_col = "year")
+  sd_col = "se_z1", country_col = "extended_country_name",
+  year_col = "year")
 }
 \arguments{
 \item{data}{A UD dataset with a country_name, year, latent variable mean and
@@ -23,17 +24,17 @@ is performed - careful!}
 variable (defaults to \code{z1})}
 
 \item{sd_col}{The name of the column that contains the standard error of the
-latent variable (defaults to \code{se.z1})}
+latent variable (defaults to \code{se_z1})}
 
 \item{country_col}{The name of the column that contains the country name
-(defaults to \code{country_name})}
+(defaults to \code{extended_country_name})}
 
 \item{year_col}{The name of the column that contains the years (defaults to
 \code{year})}
 }
 \value{
 The probability that the first country-year in the comparison is more
-  democratic than the second.
+democratic than the second.
 }
 \description{
 Probability that a country-year is more democratic than another
@@ -52,4 +53,3 @@ prob_more(uds_2010, "Brazil","United States of America",
 prob_more(uds_2010, "United States of America","United States of America",
            years = c(2000,1950), mean_col="mean", sd_col="sd")
 }
-

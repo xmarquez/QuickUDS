@@ -4,12 +4,17 @@
 \alias{prepare_democracy}
 \title{Prepares selected indexes in the democracy dataset for use in a UD model}
 \usage{
-prepare_democracy(indexes)
+prepare_democracy(..., identifiers = c("extended_country_name", "year", "GWn",
+  "cown", "in_GW_system"))
 }
 \arguments{
-\item{indexes}{a set of measures of democracy in the \code{\link{democracy}}
-dataset. They must be names of the columns of the \code{\link{democracy}}
-dataset - otherwise the function throws an error.}
+\item{...}{a set of measures of democracy in the \code{\link{democracy}}
+dataset (either bare column names, or strings). Can be a \link[dplyr:select]{dplyr::select}
+expression (but \link{dplyr} must be loaded for this to work).}
+
+\item{identifiers}{A set of identifiers to return with the data. Defaults to
+\code{c("extended_country_name", "year", "GWn", "cown", "in_GW_system")}.
+Must exist in the \link{democracy} dataset.}
 }
 \value{
 A dataset ready for use with \code{\link{democracy_model}}
@@ -18,6 +23,5 @@ A dataset ready for use with \code{\link{democracy_model}}
 Prepares selected indexes in the democracy dataset for use in a UD model
 }
 \examples{
-prepare_democracy(names(democracy)[grep("pmm",names(democracy))])
+prepare_democracy(dplyr::matches("pmm"))
 }
-

@@ -28,22 +28,23 @@ This package incorporates the replication dataset for Pemstein, Meserve, and Mel
 library(QuickUDS)
 library(dplyr)
 comparison <- democracy %>% 
-  select(country_name,GWn,year,freedomhouse,freedomhouse_pmm) %>% 
-  filter(year >= 1946, year <= 2008)
+  prepare_data() %>% 
+  filter(year <= 2008, year >=1946)
+
+
 ```
 
-There are in total `r nrow(comparison %>% filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | (freedomhouse_pmm != freedomhouse)))` differences between PMM's replication data and the current Freedom House data (Freedom House 2016). These differences seem to be due to data revisions since 2010 in the Freedom House dataset. 
-
-The main problem is the treatment of 1981, which is conventionally taken to be "missing data" in the Freedom House series but which appears to be interpolated in PMM's replication dataset. But there is also one data point for 1972 (South Africa) for which the original data gives two values (a value for the "competitive" white regime and a value for the less free overall regime) and which is assigned an `NA` value in this package.
+There are in total `r nrow(comparison %>% filter((!is.na(pmm_fh) & is.na(fh_total_reversed)) | (is.na(pmm_fh) & !is.na(fh_total_reversed)) | (pmm_fh != fh_total_reversed)))` differences between PMM's replication data and the current Freedom House data (Freedom House 2017). These differences seem to be due to data revisions since 2010 in the Freedom House dataset, plus the inclusion of non-state territories in this dataset, and the treatment of 1981, which is conventionally taken to be "missing data" in the Freedom House series but which appears to be interpolated in PMM's replication dataset. 
 
 ```{r fh_pmm_comparison_1981_1972}
 
 kable(comparison %>% 
-        filter((!is.na(freedomhouse_pmm) & is.na(freedomhouse)) | 
-                 (is.na(freedomhouse_pmm) & !is.na(freedomhouse)) | 
-                 (freedomhouse_pmm != freedomhouse)) %>%
-        group_by(country_name,freedomhouse_pmm,freedomhouse) %>%
-        summarise(years = paste(year,collapse=", "), n = n()),
+        filter((!is.na(pmm_fh) & is.na(fh_total_reversed)) | 
+                 (is.na(pmm_fh) & !is.na(fh_total_reversed)) | 
+                 (pmm_fh != fh_total_reversed)) %>%
+        group_by(extended_country_name, pmm_fh, fh_total_reversed) %>%
+        summarise(years = paste(year,collapse=", "), n = n()) %>%
+        arrange(years),
       caption = "Differences between PMM's FH values and current FH data",
       col.names = c("Country name","Freedom House value in PMM",
                     "Latest Freedom House data","years affected","n"))
@@ -52,18 +53,18 @@ kable(comparison %>%
 
 ## The Mainwaring et al. dataset
 
-PMM's replication data is actually missing a fair number of the data points in the original data by Mainwaring et al (Mainwaring, Brinks, and Perez Linan 2008), but the original data is not missing any of their data points, and there are no differences between the data points wherever both the original and the replication data have values. 
+PMM's replication data is missing `r nrow(comparison %>% 
+        filter((!is.na(pmm_mainwaring) & is.na(mainwaring)) | 
+                 (is.na(pmm_mainwaring) & !is.na(mainwaring)) | 
+                 (pmm_mainwaring != mainwaring)))` the data points in the original data by Mainwaring et al (Mainwaring, Brinks, and Perez Linan 2008), but the original data is not missing any of their data points, and there are no differences between the data points wherever both the original and the replication data have values. 
 
 ```{r mainwaring_pmm_comparison_1}
-comparison <- democracy %>% 
-  select(country_name,GWn,year,mainwaring,mainwaring_pmm) %>% 
-  filter(year <= 2008, year >=1946)
 
 kable(comparison %>% 
-        filter((!is.na(mainwaring_pmm) & is.na(mainwaring)) | 
-                 (is.na(mainwaring_pmm) & !is.na(mainwaring)) | 
-                 (mainwaring_pmm != mainwaring)) %>%
-        group_by(country_name,mainwaring_pmm,mainwaring) %>%
+        filter((!is.na(pmm_mainwaring) & is.na(mainwaring)) | 
+                 (is.na(pmm_mainwaring) & !is.na(mainwaring)) | 
+                 (pmm_mainwaring != mainwaring)) %>%
+        group_by(extended_country_name, pmm_mainwaring, mainwaring) %>%
         summarise(min = min(year), max= max(year), n = n()),
       caption = "Differences between PMM's Mainwaring et al values and original Mainwaring et al data",
       col.names = c("Country name","Mainwaring et al value in PMM",
@@ -73,18 +74,18 @@ kable(comparison %>%
 
 ## The DD/PACL/ACLP dataset
 
-A few country-years in the original PACL/DD dataset (Cheibub, Gandhi, and Vreeland 2010) are missing from PMM's replication dataset.
+`r nrow(comparison %>% 
+        filter((!is.na(pmm_pacl) & is.na(pacl)) | 
+                 (is.na(pmm_pacl) & !is.na(pacl)) | 
+                 (pmm_pacl != pacl)))` country-years in the original PACL/DD dataset (Cheibub, Gandhi, and Vreeland 2010) are missing from PMM's replication dataset.
 
 ```{r pacl_pmm_comparison}
-comparison <- democracy %>% 
-  select(country_name,GWn,year,pacl,pacl_pmm) %>% 
-  filter(year <= 2008, year >=1946)
 
 kable(comparison %>% 
-        filter((!is.na(pacl_pmm) & is.na(pacl)) | 
-                 (is.na(pacl_pmm) & !is.na(pacl)) | 
-                 (pacl_pmm != pacl)) %>%
-        group_by(country_name,pacl_pmm,pacl) %>%
+        filter((!is.na(pmm_pacl) & is.na(pacl)) | 
+                 (is.na(pmm_pacl) & !is.na(pacl)) | 
+                 (pmm_pacl != pacl)) %>%
+        group_by(extended_country_name, pmm_pacl, pacl) %>%
         summarise(min = min(year), max= max(year), n = n()),
       caption = "Differences between PMM's PACL values and original PACL data",
       col.names = c("Country name","PACL value in PMM",
@@ -94,39 +95,42 @@ kable(comparison %>%
 
 ## The Polity IV dataset
 
-There are 243 country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
+There are `r nrow(comparison %>% 
+        filter((!is.na(pmm_polity) & is.na(polity2)) | 
+                 (is.na(pmm_polity) & !is.na(polity2)) | 
+                 (pmm_polity != polity2)))` country-years where PMM's replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.
 
 ```{r polity_pmm_comparison}
-comparison <- democracy %>% 
-  select(country_name,GWn,year,polity2,polity_pmm) %>% 
-  filter(year <= 2008, year >=1946)
 
 kable(comparison %>% 
-        filter((!is.na(polity_pmm) & is.na(polity2)) | 
-                 (is.na(polity_pmm) & !is.na(polity2)) | 
-                 (polity_pmm != polity2)) %>%
-        group_by(country_name,polity_pmm,polity2) %>%
+        filter((!is.na(pmm_polity) & is.na(polity2)) | 
+                 (is.na(pmm_polity) & !is.na(polity2)) | 
+                 (pmm_polity != polity2)) %>%
+        mutate_at(vars(matches("polity")), funs(. - 11)) %>%
+        group_by(extended_country_name, pmm_polity, polity2) %>%
         summarise(min = min(year), max= max(year), n = n()),
       caption = "Differences between PMM's Polity2 values and latest Polity IV data",
       col.names = c("Country name","Polity2 value in PMM",
                     "Latest Polity IV data","min year", "max year","n"))
+
 ```
 
 ## The Polyarchy dataset
 
-22 country-years differ between PMM's replication data and the original Polyarchy dataset (Coppedge and Reinicke 1991), and four are missing. These seem to be due to simple transcription errors.
+`r nrow(comparison %>% 
+        filter((!is.na(pmm_polyarchy) & is.na(polyarchy_original_polyarchy)) | 
+                 (is.na(pmm_polyarchy) & !is.na(polyarchy_original_polyarchy)) | 
+                 (pmm_polyarchy != polyarchy_original_polyarchy)))` country-years differ between PMM's replication data and the original Polyarchy dataset (Coppedge and Reinicke 1991). These seem to be due to simple transcription errors.
 
-```{r polyarchy_pmm_comparison}
-
-comparison <- democracy %>% 
-  select(country_name,GWn,year,polyarchy_reversed,polyarchy_pmm) %>% 
-  filter(year <= 2008, year >=1946)
+```{r pmm_polyarchy_comparison}
 
 kable(comparison %>% 
-        filter((!is.na(polyarchy_pmm) & is.na(polyarchy_reversed)) | 
-                 (is.na(polyarchy_pmm) & !is.na(polyarchy_reversed)) | 
-                 (polyarchy_pmm != polyarchy_reversed)) %>%
-        group_by(country_name,polyarchy_pmm,polyarchy_reversed) %>%
+        filter((!is.na(pmm_polyarchy) & is.na(polyarchy_original_polyarchy)) | 
+                 (is.na(pmm_polyarchy) & !is.na(polyarchy_original_polyarchy)) | 
+                 (pmm_polyarchy != polyarchy_original_polyarchy)) %>%
+        group_by(extended_country_name, 
+                 pmm_polyarchy,
+                 polyarchy_original_polyarchy) %>%
         summarise(min = min(year), max= max(year), n = n()),
       caption = "Differences between PMM's Polyarchy values and original Polyarchy data",
       col.names = c("Country name","Polyarchy value in PMM",
@@ -135,41 +139,44 @@ kable(comparison %>%
 
 ## The Political Regime Change (PRC) dataset
 
-The PRC dataset (Gasiorowski 1996, revised in Reich 2002) has more than one value per country-year for some country-years due to transitions between regimes; and these transitions are not consistently treated in PMM's replication dataset (sometimes the value for the beginning of the year is used, sometimes the value for the end of the year, and sometimes the value for the middle of the year). In this package, I use the last value in a given year for the regime in the PRC dataset, which results in the following differences:
+The PRC dataset (Gasiorowski 1996, revised in Reich 2002) has more than one value per country-year for some country-years due to transitions between regimes; and these transitions are not consistently treated in PMM's replication dataset (sometimes the value for the beginning of the year is used, sometimes the value for the end of the year, and sometimes the value for the middle of the year). This results in `r nrow(comparison %>% 
+        mutate(prc = ifelse(prc == 1, prc, prc + 1)) %>%
+        filter((!is.na(pmm_prc) & is.na(prc)) | 
+                 (is.na(pmm_prc) & !is.na(prc)) | 
+                 (pmm_prc != prc)))` differences between the datasets. In this package, I use the last value in a given year for the regime in the PRC dataset, and code "transitions" (prc = 2) as missing values (`NA`), which results in the following changes:
 
 ```{r prc_pmm_comparison_1}
-comparison <- democracy %>% 
-  select(country_name,GWn,year,prc,prc_pmm) %>% 
-  filter(year <= 2008, year >=1946)
-
 kable(comparison %>% 
-        filter((!is.na(prc_pmm) & is.na(prc)) | 
-                 (is.na(prc_pmm) & !is.na(prc)) | 
-                 (prc_pmm != prc)) %>%
-        group_by(country_name,prc_pmm,prc) %>%
+        mutate(prc = ifelse(prc == 1, prc, prc + 1)) %>%
+        filter((!is.na(pmm_prc) & is.na(prc)) | 
+                 (is.na(pmm_prc) & !is.na(prc)) | 
+                 (pmm_prc != prc)) %>%
+        group_by(extended_country_name, pmm_prc, prc) %>%
         summarise(years = paste(year,collapse=", "), n = n()),
       caption = "Differences between PMM's PRC values and original PRC data",
       col.names = c("Country name","PRC value in PMM",
                     "Original PRC data","years affected","n"))
 ```
 
-`r nrow(comparison %>% filter((!is.na(prc_pmm) & is.na(prc)) | (is.na(prc_pmm) & !is.na(prc)) | (prc_pmm != prc)))` data points differ between the two data sources.
 
 ## Vanhanen dataset
 
-There are some missing values in PMM's data compared to the original Vanhanen dataset (Vanhanen 2012):
+There are `r nrow(comparison %>% 
+        filter((!is.na(pmm_vanhanen) & is.na(vanhanen_democratization)) | 
+                 (is.na(pmm_vanhanen) & !is.na(vanhanen_democratization)) | 
+                 (pmm_vanhanen != vanhanen_democratization)))` missing values in PMM's data compared to the original Vanhanen dataset (Vanhanen 2012):
 
 ```{r vanhanen_pmm_comparison}
 
-comparison <- democracy %>% 
-  select(country_name,GWn,year,vanhanen_democratization,vanhanen_pmm) %>% 
+comparison2 <- democracy %>% 
+  select(extended_country_name, GWn, year, vanhanen_democratization, pmm_vanhanen) %>% 
   filter(year <= 2008, year >=1946)
 
-kable(comparison %>% 
-        filter((!is.na(vanhanen_pmm) & is.na(vanhanen_democratization)) | 
-                 (is.na(vanhanen_pmm) & !is.na(vanhanen_democratization)) | 
-                 (vanhanen_pmm != vanhanen_democratization)) %>%
-        group_by(country_name,vanhanen_pmm,vanhanen_democratization) %>%
+kable(comparison2 %>% 
+        filter((!is.na(pmm_vanhanen) & is.na(vanhanen_democratization)) | 
+                 (is.na(pmm_vanhanen) & !is.na(vanhanen_democratization)) | 
+                 (pmm_vanhanen != vanhanen_democratization)) %>%
+        group_by(extended_country_name,pmm_vanhanen,vanhanen_democratization) %>%
         summarise(years = paste(year,collapse=", "), n = n()),
       caption = "Differences between PMM's Vanhanen values and original Vanhanen data",
       col.names = c("Country name","Vanhanen value in PMM",

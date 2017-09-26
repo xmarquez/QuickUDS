@@ -15,47 +15,32 @@ The ```extended_uds``` dataset can be generated with the following code:
 library(dplyr)
 library(QuickUDS)
 
-indexes <- c("arat_pmm", "blm", "bmr_democracy",
-             "bnr", "bollen_pmm", "doorenspleet",
-             "eiu","freedomhouse", "freedomhouse_electoral",
-             "gwf", "hadenius_pmm", "kailitz_tri",
-             "lied", "mainwaring", "magaloni_regime_tri",
-             "munck_pmm", "pacl", "PEPS1v",
-             "pitf", "polity2", "polyarchy_contestation",
-             "prc_notrans", "svolik", "ulfelder", 
-             "utip_dichotomous_strict", "v2x_polyarchy", 
-             "vanhanen_democratization", "wahman_teorell_hadenius")
+measures <- c("pmm_arat", "blm", "bmr_democracy",
+              "bnr_extended", "pmm_bollen", "doorenspleet",
+              "wgi_democracy","fh_total_reversed", 
+              "fh_electoral", "gwf_democracy_extended", 
+              "pmm_hadenius", "kailitz_tri",
+              "lexical_index", "mainwaring", 
+              "magaloni_democracy_extended",
+              "pmm_munck", "pacl", "PEPS1v",
+              "pitf", "polity2", "reign_democracy", 
+              "polyarchy_original_contestation",
+              "prc", "svolik_democracy", 
+              "ulfelder_democracy_extended",
+              "utip_dichotomous_strict", "v2x_polyarchy",
+              "vanhanen_democratization", "wth_democ1")
 
 # Generate Extended UDS
-data <- QuickUDS::democracy[ , c("country_name", 
-                                 "GWn", "cown",
-                                 "year", "region",
-                                "continent", "microstate",
-                                "lat", "lon",
-                                "in_system", indexes)]
 
-data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
-data <- data %>% 
-  group_by(country_name,year) %>% 
-  mutate(measures_per_cy = n()) %>% 
-  ungroup()
-data <- reshape2::dcast(data, ... ~ variable)
-data <- data %>% arrange(country_name,year)
-
-data2 <- prepare_democracy(indexes)
-
-
-extended_model <- democracy_model(data2,
-                                  indexes, 
-                                  verbose=FALSE, 
+extended_model <- democracy_model(measures, 
+                                  verbose = FALSE, 
                                   technical = list(NCYCLES = 2500))
 
-extended_scores <- democracy_scores(extended_model)
-extended_uds <- bind_cols(data,extended_scores)
+extended_scores <- democracy_scores(model = extended_model)
 
 ```
 
-The model takes about 3-5 minutes to converge on my machine, and accounts for more than 90 per cent of the variance in the various democracy indexes used:
+The model takes about 1-2 minutes to converge on my machine, and accounts for more than 90 per cent of the variance in the various democracy indexes used:
 
 ```{r time, echo = TRUE}
 extended_model@time
@@ -68,53 +53,78 @@ summary(extended_model)
 
 ```
 
-## Normalizing the scores
+```{r save_data, include= FALSE, echo = FALSE, eval = FALSE}
 
-The UD scores are more useful when normalized to a 0-1 index, where the midpoint is set to the  average latent variable cutpoint for the dichotomous democracy measures used. This score can then be interepreted as a kind of probability measure: country-years with scores close to 1 are almost certainly democratic, while country-years with scores close to 0 are almost certainly not, while 0.5 represents the cut-off between democracy and non-democracy. We can easily normalize the scores with the following code. 
+extended_uds <- extended_scores %>%
+  select(-matches("uds_"))
 
-First, we calculate the cutpoints for the various measures:
-
-```{r cutpoints, echo = TRUE}
-cutpoints_extended <- cutpoints(extended_model)
-
-cutpoints_extended
+devtools::use_data(extended_uds, overwrite = TRUE)
 ```
 
-Then we extract the cutpoints for the dichotomous undexes of democracy, and average them:
+## Cutpoints and Discrimination
 
-```{r dichotnomousCutpoints, echo = TRUE}
+The cutpoints and discrimination parameters of these scores can be obtained as follows:
 
-dichotomous_cutpoints <- cutpoints_extended %>% 
-  group_by(variable) %>%
-  filter(n() == 1) 
+```{r , fig.width = 7, fig.height=7}
+library(ggplot2)
 
-dichotomous_cutpoints
+dichotomous <- cutpoints(extended_model) %>% 
+  group_by(variable) %>% 
+  filter(n()==1) %>% 
+  ungroup() %>% 
+  summarise(avg_estimate = mean(estimate),
+            avg_se = sqrt(sum(se^2)/n() ^ 2 )) %>%
+  mutate(avg_pct975 = avg_estimate + 1.96*avg_se,
+         avg_pct025 = avg_estimate - 1.96*avg_se)
 
-avg_dichotomous <- mean(dichotomous_cutpoints$estimate)
+xmax <- cutpoints(extended_model) %>% 
+  pull(variable) %>% 
+  unique() %>% 
+  length()
 
-avg_dichotomous
+xmax <- xmax + 1
+
+cutpoints(extended_model) %>%
+  ggplot(aes(x=variable, 
+             y = estimate, 
+             ymin = pct025,
+             ymax=pct975))  + 
+  theme_bw() + 
+  geom_rect(ymin = dichotomous$avg_pct025, ymax = dichotomous$avg_pct975,
+            xmin = 0, xmax = xmax, alpha = 0.2, fill = "grey") + 
+  geom_hline(yintercept = dichotomous$avg_estimate, 
+             color="black", linetype = 2) + 
+  labs(x = "",
+       y = "Unified democracy level rater cutoffs",
+       title = "Rater cutoffs",
+       subtitle = "Grey band represents the average cutoff for dichotomous measures of democracy") + 
+  geom_point() + 
+  geom_errorbar() + 
+  geom_hline(yintercept = 0, 
+             color="red")+
+  coord_flip()
+
+cutpoints(extended_model, type ="discrimination") %>%
+  ggplot(aes(x=reorder(variable, estimate),
+           y = estimate, ymin = pct025, ymax = pct975))  + 
+  theme_bw() + 
+  labs(x="",y="Discrimination parameter for each rater
+       \n(higher value means fewer idiosyncratic\nerrors relative to latent score)",
+       title = "Discrimination parameters",
+       subtitle = "Measures with higher discrimination are less likely \nto make idiosyncratic judgments relative to the rest") + 
+  geom_point() + 
+  geom_errorbar() + 
+  coord_flip()
+
 ```
 
-Finally, we adjust the calculated latent score by substracting the average dichotomous cutpoint and using the cumulative normal distribution function to normalize it to the -1 range (with mean 0.5, which is now the average dichotomous cutpoint):
+## Score types and scores by country
 
-```{r adjustZscore, echo = TRUE}
+The `democracy_scores` function produces three types of scores: the original latent variable (`z1`), an "adjusted" score where 0 equals the cutpoint of the dichotomous democracy indexes (`z1_adj`) and a probability score (`z1_*_as_prob`) that is normalizes the other two to a 0-1 index, and can be interepreted as a kind of probability measure: country-years with scores close to 1 are almost certainly democratic, while country-years with scores close to 0 are almost certainly not, while 0.5 represents the cut-off between democracy and non-democracy. 
 
-extended_uds <- extended_uds %>% mutate(adj.z1 = z1 - avg_dichotomous, 
-                                        adj.pct025 = pct025 - avg_dichotomous, 
-                                        adj.pct975 = pct975 - avg_dichotomous,
-                                        index = pnorm(adj.z1),
-                                        index.pct025 = pnorm(adj.pct025),
-                                        index.pct975 = pnorm(adj.pct975))
-```
-
-For a more complete introduction to the available functions in the package, and to other ways of calculating see the [package vignettes](/articles). 
-
-## Scores by country
-
-The extended UD scores are available for ```r nrow(extended_uds)``` country-years (```r length(unique(extended_uds$country_name))``` unique countries and non-sovereign territories):
+These extended UD scores are available for ```r nrow(extended_scores)``` country-years (```r length(unique(extended_scores$extended_country_name))``` unique countries and non-sovereign territories):
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE, fig.width = 7, fig.height=30}
-library(ggplot2)
 
 count_sequence_breaks <- function(seq, seq_step = 1) {
   first_diff <- c(seq_step, diff(seq)) - seq_step
@@ -122,43 +132,46 @@ count_sequence_breaks <- function(seq, seq_step = 1) {
   periods
 }
 
-extended_uds <- extended_uds %>% 
-  group_by(country_name) %>% 
+extended_scores <- extended_scores %>% 
+  group_by(extended_country_name) %>% 
   mutate(group = count_sequence_breaks(year), 
-         group2 = count_sequence_breaks(in_system,seq_step = 0), 
+         group2 = count_sequence_breaks(in_GW_system, seq_step = 0), 
          group3 = paste(group,group2))
 
-data <- extended_uds
+data <- extended_scores
 
-countries <- unique(data$country_name)
+countries <- unique(data$extended_country_name)
 
 periods_of_independence <- data %>% 
-  group_by(country_name,group3,in_system) %>% 
+  group_by(extended_country_name, group3, in_GW_system) %>% 
   summarise(start = min(year), end = max(year)) %>% 
-  filter(in_system)
+  filter(in_GW_system)
 
 ggplot() + 
   geom_path(data = data %>% 
-              filter(country_name %in% countries[1:112]), 
-            aes(x = year,y = index, group = group)) + 
+              filter(extended_country_name %in% countries[1:round(length(countries)/2)]), 
+            aes(x = year, y = z1_adj_as_prob, group = group)) + 
   geom_ribbon(data = data %>% 
-                filter(country_name %in% countries[1:112]), 
-              aes(x = year, ymin = index.pct025, 
-                  ymax = index.pct975, group = group), 
+                filter(extended_country_name %in% countries[1:round(length(countries)/2)]), 
+              aes(x = year, ymin = z1_pct025_adj_as_prob, 
+                  ymax = z1_pct975_adj_as_prob, group = group), 
               alpha=0.2) + 
   theme_bw() + 
   labs(x = "Year", 
        y = "Extended unified democracy score,
        transformed to 0-1 probability scale, per year",
-       color = "")  + 
+       color = "",
+       title = "Extended Unified Democracy Scores",
+       subtitle = "Probability scale (0-1). Scores for the period before 1800 omitted.")  + 
   theme(legend.position = "bottom") + 
   guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
+  facet_wrap(~extended_country_name,ncol=4) +
   geom_hline(yintercept = 0.5, color="red") +
   geom_rect(data = periods_of_independence %>% 
-              filter(country_name %in% countries[1:112]), 
+              filter(extended_country_name %in% countries[1:round(length(countries)/2)]), 
             aes(xmin = start, xmax = end, ymin = 0, ymax = 1), 
-            alpha = 0.2, fill = "blue")
+            alpha = 0.2, fill = "blue") +
+  coord_cartesian(xlim = c(1800:2016))
 
 ```
 
@@ -166,26 +179,32 @@ ggplot() +
 
 ggplot() + 
   geom_path(data = data %>% 
-              filter(country_name %in% countries[113:224]), 
-            aes(x = year,y = index, group = group)) + 
+              filter(extended_country_name %in% countries[(round(length(countries)/2) + 1):length(countries)]), 
+            aes(x = year, y = z1_adj_as_prob, group = group)) + 
   geom_ribbon(data = data %>% 
-                filter(country_name %in% countries[113:224]), 
-              aes(x = year, ymin = index.pct025, 
-                  ymax = index.pct975, group= group), 
+                filter(extended_country_name %in% countries[(round(length(countries)/2) + 1):length(countries)]), 
+              aes(x = year, ymin = z1_pct025_adj_as_prob, 
+                  ymax = z1_pct975_adj_as_prob, group = group), 
               alpha=0.2) + 
   theme_bw() + 
   labs(x = "Year", 
        y = "Extended unified democracy score,
        transformed to 0-1 probability scale, per year",
-       color = "")  + 
+       color = "",
+       title = "Extended Unified Democracy Scores, 1800-2016",
+       subtitle = "Probability scale (0-1); values over 0.5 are likely to be classified as democracies by 
+       dichotomous measures.")  + 
   theme(legend.position = "bottom") + 
   guides(color = guide_legend(ncol=1),fill = guide_legend(nrow=1)) + 
-  facet_wrap(~country_name,ncol=4) +
+  facet_wrap(~extended_country_name,ncol=4) +
   geom_hline(yintercept = 0.5, color="red") +
   geom_rect(data = periods_of_independence %>% 
-              filter(country_name %in% countries[113:224]), 
+              filter(extended_country_name %in% countries[(round(length(countries)/2) + 1):length(countries)]), 
             aes(xmin = start, xmax = end, ymin = 0, ymax = 1), 
-            alpha = 0.2, fill = "blue")
+            alpha = 0.2, fill = "blue") +
+  coord_cartesian(xlim = c(1800:2016))
+
+
 
 ```
 

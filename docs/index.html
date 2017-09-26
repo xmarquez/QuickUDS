@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extend the Unified Democracy Scores Backwards and Forwards in Time easily • QuickUDS</title>
+<title>Extend the Unified Democracy Scores easily • QuickUDS</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -62,12 +62,12 @@
 
 <div id="quickuds" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#quickuds" class="anchor"> </a>QuickUDS</h1></div>
+<a href="#quickuds" class="anchor"></a>QuickUDS</h1></div>
 <p>This <code>R</code> package contains convenience functions to extend the <a href="http://www.unified-democracy-scores.org/">Unified Democracy Scores of Pemstein, Meserve, and Melton</a>. These are basically wrappers for a couple of functions in the package <a href="https://cran.r-project.org/web/packages/mirt/">mirt</a>, which contains powerful facilities for factor analysis, and which you will probably want to use directly to do anything beyond replicating and extending the UD scores with the data provided by this package.</p>
-<p>This package also includes an “<a href="reference/extended_uds.html">extended UDS</a>” dataset with latent democracy scores going back to the 19th century and a replication dataset with 61 different democracy measurements from 29 different projects to measure democracy. Both datasets are fully documented. The extended scores (and their generation) are described in more detail in Marquez, Xavier, “A Quick Method for Extending the Unified Democracy Scores” (March 23, 2016). Available at SSRN: <a href="http://ssrn.com/abstract=2753830" class="uri">http://ssrn.com/abstract=2753830</a>. A more informal description of the extended UD scores is also found in <a href="http://abandonedfootnotes.blogspot.co.nz/2016/03/artisanal-democracy-data-quick-and-easy.html">this blogpost</a>.</p>
+<p>This package also includes an “<a href="reference/extended_uds.html">extended UDS</a>” dataset with latent democracy scores going back to the 19th century (and before, in some cases) and a replication dataset with 74 different democracy measurements from 30 different projects to measure democracy. Both datasets are fully documented. The extended scores (and their generation) are described in more detail in Marquez, Xavier, “A Quick Method for Extending the Unified Democracy Scores” (March 23, 2016). Available at SSRN: <a href="http://ssrn.com/abstract=2753830" class="uri">http://ssrn.com/abstract=2753830</a>. A more informal description of the extended UD scores is also found in <a href="http://abandonedfootnotes.blogspot.co.nz/2016/03/artisanal-democracy-data-quick-and-easy.html">this blogpost</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"> </a>Installation</h2>
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install QuickUDS from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools::<span class="kw">install_github</span>(<span class="st">"xmarquez/QuickUDS/"</span>)</code></pre></div>
@@ -77,12 +77,12 @@ devtools::<span class="kw">install_github</span>(<span class="st">"xmarquez/Quic
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"> </a>Usage</h2>
+<a href="#usage" class="anchor"></a>Usage</h2>
 <p>See the <a href="articles/index.html">package vignettes</a> for detailed examples of how to generate the Extended Unified Democracy Scores dataset or similar measures. The vignette <a href="articles/Generating_the_extended_UDS.html">Generating the Extended Unified Democracy Scores</a> also plots the calculated scores for every country.</p>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#citation" class="anchor"> </a>Citation</h2>
+<a href="#citation" class="anchor"></a>Citation</h2>
 <p>If you find this package useful in your work, please cite:</p>
 <p>Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic Compromise: A Latent Variable Analysis of Ten Measures of Regime Type. Political Analysis 18 (4): 426-449.</p>
 <p>As well as:</p>
@@ -93,7 +93,8 @@ devtools::<span class="kw">install_github</span>(<span class="st">"xmarquez/Quic
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Links</h2>
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/xmarquez/QuickUDS">https://​github.com/​xmarquez/​QuickUDS</a>
 </li>
@@ -101,17 +102,19 @@ devtools::<span class="kw">install_github</span>(<span class="st">"xmarquez/Quic
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></p>
+<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></p>
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing QuickUDS</a></li>
+</ul>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Xavier Marquez <br><small class="roles"> Author, maintainer </small> </li>
 </ul>
-<html><body>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/xmarquez/QuickUDS"><img src="https://travis-ci.org/xmarquez/QuickUDS.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 </ul>
-</body></html>
 </div>
 
 </div>

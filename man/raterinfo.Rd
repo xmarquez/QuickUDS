@@ -12,21 +12,13 @@ of the democracy scores.}
 }
 \value{
 A data frame with rater information for each democracy index over the
-  range of the latent variable \code{theta}.
+range of the latent variable \code{theta}.
 }
 \description{
 Extract rater info from a UD model in a tidy format.
 }
 \examples{
 \donttest{
-library(QuickUDS)
-data <- prepare_data(democracy)
-data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-data <- data \%>\% group_by(country_name,year) \%>\% mutate(num_measures = n())
-data <- dcast(data, ... ~ variable)
-data <- data \%>\% arrange(country_name,year) \%>\% select(ends_with("pmm"))
-replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
-raterinfo_2011 <- raterinfo(replication_2011_model)
-head(raterinfo)}
+replication_2011_model <- democracy_model(dplyr::matches("pmm"), verbose = FALSE)
+raterinfo(replication_2011_model)}
 }
-

@@ -16,7 +16,6 @@ articles:
   - Generating_the_extended_UDS
   - Replicating_and_extending_the_UD_scores
   - Differences_between_PMM_and_original_data
-  - Spatial_and_temporal_coverage
 reference:
 - title: Generated datasets in this package
   desc: The extended Unified Democracy Scores generated with this package.
@@ -26,15 +25,12 @@ reference:
   desc: Datasets with the democracy scores used by this package to generate the UDS.
   contents:
   - democracy
-  - kailitz
-  - kailitz_yearly
 - title: Original UDS data
-  desc: The 2010, 2011, and 2014 releases of the UDS, plus the original replication data
+  desc: The 2010, 2011, and 2014 releases of the UDS
   contents:
   - uds_2010
   - uds_2011
   - uds_2014
-  - original_pmm_democracy_data_1946_2008
 - title: Data preparation
   desc: Data preparation functions
   contents:
@@ -51,4 +47,3 @@ reference:
   - cutpoints
   - raterinfo
   - prob_more
-  - match_to_uds

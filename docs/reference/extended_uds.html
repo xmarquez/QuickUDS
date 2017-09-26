@@ -23,14 +23,17 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -80,450 +83,118 @@
     
     <p>A dataset extending the Unified Democracy Scores of Pemstein, Meserve, and
 Melton (2010) to the 19th century (and sometimes before), updating it with
-2013-2015 data, and calculating scores for countries not in the official UD
+2013-2016 data, and calculating scores for countries not in the official UD
 release. Cite both Pemstein, Meserve, and Melton 2010 as well as Marquez
 2016.</p>
     
 
-    <pre><span class='no'>extended_uds</span></pre>
+    <pre class="usage"><span class='no'>extended_uds</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 24136 rows and 26 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 26258 rows and 18 columns.</p>
     
     <h2 class="hasAnchor" id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 
-    <p></p>
+    
     <p>This dataset contains an extension of the Unified Democracy Scores of
-  Pemstein, Meserve, and Melton (2010). PMM 2010 use a latent variable
-  approach to combine diverse measurements of democracy for a broad panel of
-  countries from 1946 to 2012; this dataset extends the scores by using more
-  democracy measures with broader temporal and spatial coverage, generating
-  democracy scores for 24111 country-years (224 distinct countries and
-  territories), including 18329 country-years for independent, sovereign
-  countries from 1816 to 2015.</p>
-    <p>The measurement of democracy is complicated and controversial. The extended
-  UDS makes few judgments about what measures of democracy should be used to
-  generate latent democracy scores, as long as they have been used in
-  scholarly work. It uses dichotomous, trichotomous, ordinal, and continuous
-  indices; indices that focus primarily on the &quot;competition&quot; and indices that
-  focus on the &quot;participation&quot; dimension of democracy; &quot;thick&quot; indices that
-  attempt to measure a wide variety of characteristics plausibly attributed
-  to democracy; and &quot;minimalist&quot; indexes that restrict themselves to the bare
-  minimum of competition. Nevertheless, most of these indexes agree that
-  democracy has something to do with competition and participation, even if
-  they weight these dimensions somewhat differently, and even if they include
-  other things, such as civil rights.</p>
-    <p>The latent variable score is calculated using four broad families of
-  democracy measures, all of which are available in the
-  <code><a href='democracy.html'>democracy</a></code> file (variable names in this section refer to
-  columns in that file):</p>
+Pemstein, Meserve, and Melton (2010). PMM 2010 use a latent variable
+approach to combine diverse measurements of democracy for a broad panel of
+countries from 1946 to 2012; this dataset extends the scores by using more
+democracy measures with broader temporal and spatial coverage, generating
+democracy scores for 26,258 country-years (248 distinct countries and
+territories), including 18,345 country-years for independent, sovereign
+countries from 1816 to 2016.</p>
+<p>The measurement of democracy is complicated and controversial. The extended
+UDS makes few judgments about what measures of democracy should be used to
+generate latent democracy scores, as long as they have been used in
+scholarly work. It uses dichotomous, trichotomous, ordinal, and continuous
+indices; indices that focus primarily on the "competition" and indices that
+focus on the "participation" dimension of democracy; "thick" indices that
+attempt to measure a wide variety of characteristics plausibly attributed
+to democracy; and "minimalist" indexes that restrict themselves to the bare
+minimum of competition. Nevertheless, most of these indexes agree that
+democracy has something to do with competition and participation, even if
+they weight these dimensions somewhat differently, and even if they include
+other things, such as civil rights.</p>
+<p>The latent variable score is calculated using the following variables in
+the <a href='democracy.html'>democracy</a> dataset: "pmm_arat", "blm", "bmr_democracy",
+"bnr_extended", "pmm_bollen", "doorenspleet",
+"wgi_democracy","fh_total_reversed", "fh_electoral",
+"gwf_democracy_extended", "pmm_hadenius", "kailitz_tri", "lexical_index",
+"mainwaring", "magaloni_democracy_extended", "pmm_munck", "pacl", "PEPS1v",
+"pitf", "polity2", "reign_democracy", "polyarchy_original_contestation",
+"prc", "svolik_democracy", "ulfelder_democracy_extended",
+"utip_dichotomous_strict", "v2x_polyarchy", "vanhanen_democratization",
+"wth_democ1". Please refer to the documentation of <a href='democracy.html'>democracy</a> for more
+details on these measures of democracy, and to Marquez 2016 for more
+details on the construction of the extended latent variable model used to
+generate the scores.</p>
     
-    <h2 class="hasAnchor" id="dichotomous-indexes-of-democracy"><a class="anchor" href="#dichotomous-indexes-of-democracy"></a>Dichotomous indexes of democracy</h2>
+    <h2 class="hasAnchor" id="standard-descriptive-variables-generated-by-this-package-"><a class="anchor" href="#standard-descriptive-variables-generated-by-this-package-"></a>Standard descriptive variables (generated by this package)</h2>
 
-    <p></p>
-    <p>These are indexes designed to distinguish between democracy and
-  non-democracy. Most of them follow a fairly minimalist conception of
-  democracy, focused on political competition while giving little weight to
-  the extent of the suffrage or thicker civil or economic rights. These
-  include the Boix, Miller, and Rosato (2012) indicator of democracy
-  (<code>bmr_democracy</code>); the Bernhard, Nordstrom and Reenock index of
-  democracy (<code>bnr</code>), originally developed for event history analysis
-  (Bernhard, Nordstrom, and Reenock 2001); Renske Doorenspleet&#39;s indicator of
-  democracy (<code>doorenspleet</code>), based on the Polity III data and a measure
-  of the extent of suffrage (Doorenspleet 2000); Freedom House&#39;s list of
-  electoral democracies (<code>freedomhouse_electoral</code>); the Cheibub, Gandhi,
-  and Vreeland (2013) extension of the PACL (Przeworski, Alvarez, Cheibub and
-  Limongi) democracy/dictatorship dataset (<code>pacl</code>); Jay Ulfelder&#39;s
-  indicator of democracy (<code>ulfelder</code>), based on a recoding of the Polity
-  IV data (Ulfelder 2012); and a number of dichotomous
-  democracy/non-democracy indicators (<code>gwf</code>, <code>svolik</code>,
-  <code>utip_dichotomous_strict</code>, and <code>wahman_teorell_hadenius</code>) from
-  datasets concerned with the identification of authoritarian regime types
-  (Geddes, Wright, and Frantz 2014; Svolik 2012, Wahman, Teorell, and
-  Hadenius 2013). These are all highly but not perfectly correlated with one
-  another, with correlation coefficients ranging from 0.41
-  (<code>freedomhouse_electoral</code> and <code>bnr</code>) to 0.92 (<code>gwf</code> and
-  <code>pacl</code>)</p>
-    <p>Of these, only Doorenspleet&#39;s and Bernhard, Nordstrom, and Reenock&#39;s
-  measures give special weight to the extent of suffrage in determining
-  whether a country is democratic; not surprisingly, they display the lowest
-  correlation with the other dichotomous indicators of democracy. All of
-  these indexes have world-wide spatial scope, though they differ greatly in
-  temporal coverage. <code>doorenspleet</code> and <code>bmr_democracy</code> have the
-  widest temporal scope, going all the way back to the 19th century. Some of
-  the countries in <code>gwf</code> are also coded far into the past.</p>
     
-    <h2 class="hasAnchor" id="trichotomous-indexes-of-democracy"><a class="anchor" href="#trichotomous-indexes-of-democracy"></a>Trichotomous indexes of democracy</h2>
-
-    <p></p>
-    <p>Trichotomous indexes of democracy distinguish explicitly a &quot;hybrid&quot; or
-  &quot;semi-democratic&quot; category. These include the measure of democracy in
-  Central America developed by Bowman, Lehoucq, and Mahoney (<code>blm</code>, see
-  Bowman, Lehoucq, and Mahoney 2005), the trichotomous measure of democracy
-  in Latin America by Mainwaring, Brinks, and Perez Linan
-  (<code>mainwaring</code>), the &quot;Political Regime Change&quot; dataset
-  (<code>prc_notrans</code>, omitting the code for &quot;transition&quot; in the original
-  dataset) described in Gasiorowski 1996 and extended in Reich 2002; and a
-  couple of measures taken from datasets of autocratic regimes that
-  explicitly distinguish between full democracies, electoral or multiparty
-  autocracies, and other autocracies (<code>magaloni_regime_tri</code>,
-  <code>kailitz_tri</code>). Both <code>blm</code> and <code>mainwaring</code> are regional
-  indexes developed by scholars with Latin-American expertise; the rest have
-  world-wide scope. These correlate with each other at levels ranging from
-  0.70 to 0.92.</p>
+    <p></p><dl class='dl-horizontal'>
+    <dt>extended_country_name</dt><dd><p>The name of the country in the Gleditsch-Ward
+ system of states, or the official name of the entity (for non-sovereign
+ entities and states not in the Gleditsch and Ward system of states) or else
+ a common name for disputed cases that do not have an official name (e.g.,
+ Western Sahara, Hyderabad). The Gleditsch and Ward scheme sometimes
+ indicates the common name of the country and (in parentheses) the name of an
+ earlier incarnation of the state: thus, they have Germany (Prussia), Russia
+ (Soviet Union), Madagascar (Malagasy), etc. For details, see Gleditsch,
+ Kristian S. &amp; Michael D. Ward. 1999. "Interstate System Membership: A
+ Revised List of the Independent States since 1816." International
+ Interactions 25: 393-413. The list can be found at
+ <a href='http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a>.</p></dd>
+    <dt>GWn</dt><dd><p>Gleditsch and Ward's numeric country code, from the Gleditsch and
+ Ward list of independent states.</p></dd>
+    <dt>cown</dt><dd><p>The Correlates of War numeric country code, 2016 version. This
+ differs from Gleditsch and Ward's numeric country code in a few cases. See
+ <a href='http://www.correlatesofwar.org/data-sets/state-system-membership'>http://www.correlatesofwar.org/data-sets/state-system-membership</a> for
+ the full list.</p></dd>
+    <dt>in_GW_system</dt><dd><p>Whether the state is "in system" (that is, is
+ independent and sovereign), according to Gleditsch and Ward, for this
+ particular date. Matches at the end of the year; so, for example South
+ Vietnam 1975 is <code>FALSE</code> because, according to Gleditsch and Ward, the
+ country ended on April 1975 (being absorbed by North Vietnam). It is also
+ <code>TRUE</code> for dates beyond 2012 for countries that did not end by then,
+ depsite the fact that the Gleditsch and Ward list has not been updated
+ since.</p></dd>
+    <dt>year</dt><dd><p>The calendar year. Democracy measurements conventionally reflect
+ the situation in the country as of the last day of the year.</p></dd> </dl>
     
-    <h2 class="hasAnchor" id="ordinal-indexes-of-democracy"><a class="anchor" href="#ordinal-indexes-of-democracy"></a>Ordinal indexes of democracy</h2>
+    <h2 class="hasAnchor" id="latent-variable-scores"><a class="anchor" href="#latent-variable-scores"></a>Latent variable scores</h2>
 
-    <p></p>
-    <p>These indexes distinguish more than three &quot;degrees&quot; of democracy, but they
-  are not explicitly continuous. They include Freedom House&#39;s 14 category
-  freedom index (<code>freedomhouse</code>); the 7 category Lexical Index of
-  Democracy (<code>lied</code>, from Skaaning, Gerring, Bartusevicius 2015); a 5
-  category indicator of democracy used by the Political Instability Task
-  Force based on the <code>parcomp</code> and <code>exrec</code> variables of the Polity
-  dataset (<code>pitf</code>, described in Goldstone et al 2010); the Polity IV
-  <code>polity2</code> variable; Coppedge and Reinicke&#39;s Poliarchy index
-  (<code>polyarchy_contestation</code>, from Coppedge and Reinicke 1991). Of these,
-  the Poliarchy measure is a specialist measure that only covers 357
-  country-years, but the rest have worldwide scope, <code>polity</code> and
-  <code>lied</code> go all the way back to the beginning of the 19th century.</p>
-    <p>Most of these indexes are meant to capture &quot;thicker&quot; conceptions of
-  democracy. The Freedom House measure puts some emphasis on civil and
-  political rights; Polity and PITF focus on differences in &quot;authority
-  patterns&quot; (though they tend to downplay the scope of participation);
-  Poliarchy tries to operationalize both the participation and contestation
-  dimensions of Dahl&#39;s &quot;Poliarchy&quot; concept; and LIED tries to incorporate the
-  degree of suffrage using measures originally collected for the PIPE dataset
-  (Prezeworski et al 2010). They correlate with one another at levels ranging
-  from 0.71 (<code>lied2</code> and <code>pitf</code>) to 0.94 (<code>polity2</code> and
-  <code>pitf</code>).</p>
     
-    <h2 class="hasAnchor" id="continuous-indexes-of-democracy"><a class="anchor" href="#continuous-indexes-of-democracy"></a>Continuous indexes of democracy</h2>
-
-    <p></p>
-    <p>These indexes conceptualize democracy as a continuous quantity, and usually
-  in &quot;thicker&quot; ways. They include Arat&#39;s measure of democracy
-  (<code>arat_pmm</code>, from Arat 1991); Bollen&#39;s index of democracy
-  (<code>bollen_pmm</code>, from Bollen 2001); the Economist Intelligence Unit&#39;s
-  Index of Democracy (<code>eiu</code>); Axel Hadenius&#39; index of democracy, from
-  Hadenius 1992 (<code>hadenius_pmm</code>); Munck&#39;s measure of democracy
-  (<code>munck_pmm</code>); one variant of the Participation-Enhanced Polity Scores
-  (<code>PEPS1v</code>, from Moon et al 2006); a continuous index of poliarchy from
-  V-dem (<code>v2x_polyarchy</code>); and Vanahnen&#39;s index of democratization
-  (<code>vanhanen_democratization</code>). Vanhanen and PEPS give special weight to
-  participation in the measurement of democracy; the EIU index combines a
-  very wide variety of indicators of democracy. Only Vanahanen, the V-dem
-  measure, and PEPS have long temporal coverage; the EIU has broad spatial
-  coverage but is only available for a short time series. Arat and Bollen go
-  back only until the 1950s, though they do have reasonable spatial coverage.</p>
-    <p>Correlations vary from a low of -0.05 (Munck and the EIU, 126 country-year
-  overlap, nonsignificant) to 0.91 for Bollen and Arat. The lowest
-  correlations are typically with the EIU measure of democracy. These indexes
-  are transformed into ordinal measures with at most 20 categories before
-  using them to calculate the extended UDS, following the advice of PMM&#39;s
-  original paper and the indications in their replication code. In
-  particular, the following cutoffs are used before calculating the index:</p>
-    <p>Arat (1991)&#39;s 0-109 democracy score is cut into 7 intervals with the
-  following cutoffs: 50, 60, 70, 80, 90, and 100. The resulting score is
-  ordinal from 1 to 8.</p>
-    <p>Bollen&#39;s (2001)&#39;s 0-100 democracy score is cut into 10 intervals with the
-  following cutoffs: 10,20,30,40,50,60,70,80, and 90. The resulting score is
-  ordinal from 1 to 10.</p>
-    <p>The Economist Intelligence Unit&#39;s index of democracy 0-1 value is cut into
-  10 categories by first rounding to the first decimal place. The resulting
-  score is ordinal from 1 to 11.</p>
-    <p>Hadenius (1992)&#39;s 0-10 democracy score is cut into 8 intervals with the
-  following cutoffs: 1, 2,3,4, 7, 8, and 9. The resulting score is ordinal
-  from 1 to 8.</p>
-    <p>Munck&#39;s (2009)&#39;s 0-1 democracy score is cut into 4 intervals with the
-  following cutoffs: 0.5,0.5,0.75, and 0.99. The resulting score is ordinal
-  from 1 to 4.</p>
-    <p>PEPS is rounded to an integer, which transforms it into an ordinal measure
-  from -10 to 10 (same categories as the Polity2 score).</p>
-    <p>The V-Dem polyarchy index (<code>v2x_polyarchy</code>) is cut into 20 intervals.
-  The resulting score is ordinal from 1 to 20.</p>
-    <p>Vanhanen&#39;s (2012)&#39;s 0-100 index of democratization is cut into 8 intervals
-  with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting score
-  is ordinal from 1 to 8.</p>
-    
-    <h2 class="hasAnchor" id="spatial-and-temporal-organization"><a class="anchor" href="#spatial-and-temporal-organization"></a>Spatial and temporal organization</h2>
-
-    <p></p>
-    <p>The state system is complicated, and not always amenable to presentation in
-  tabular form. Countries change name, split, get absorbed into larger units,
-  and are not always obviously independent. This dataset basically follows
-  the Gleditsch and Ward list of independent states (Gleditsch and Ward 1999,
-  updated by Gleditsch to 2013), supplemented by Gleditsch&#39;s tentative list
-  of microstates (available at
-  <a href = 'http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a>), and a very small
-  number of judgment calls of my own. The Gleditsch and Ward list is very
-  similar, but not identical, to the Correlates of War list of independent
-  states that is commonly used in Political Science and International
-  Relations research; in particular, the treatment of Germany, Yemen,
-  Vietnam, Ethiopia, Yugoslavia, Serbia, Montenegro, and a few other
-  countries and their successor states differs between them. See
-  <code>vignette(&quot;Spatial_and_temporal_coverage&quot;)</code> for details of these
-  differences.</p>
-    <p>I have included three different codes for each country-year: the Gleditsch
-  and Ward country code (<code>GWn</code>), the COW code (<code>cown</code>), and the
-  Polity IV code (<code>polity_ccode</code>), as well as an indicator of whether
-  the country year is considered to be &quot;in the international system&quot; by
-  Gleditsch and Ward and whether it is considered to be a microstate
-  (<code>in_system</code> and <code>microstate</code>; note that microstates are
-  considered to be &quot;in system&quot; in this dataset). Since the Gleditsch and Ward
-  &quot;international system&quot; begins with the Congress of Vienna in 1816,
-  country-years before 1816 are by definition not &quot;in system,&quot; even though
-  this does not mean that these states were not independent then. Care should
-  thus be taken with the &quot;in system&quot; indicator for years before 1816.</p>
-    <p>It is worth noting that while most measures of democracy are produced only
-  for sovereign countries, a number of measures have also been produced,
-  either explicitly (the V-dem project) or not (sometimes researchers do not
-  agree on whether a country-year represents a &quot;sovereign&quot; state), for
-  non-sovereign territories. In fact in this dataset about 5091 country-years
-  in or after 1816 are not &quot;in system&quot; (most of them from the V-dem indexes
-  of democracy); these are easily excluded by filtering the dataset using the
-  boolean <code>in_system</code> indicator (or a logical expression that filters
-  data points that are not in system after 1816 but includes those before
-  1816).</p>
-    <p>All countries are measured as of 31 December of the given year, as is the
-  conventional rule. Some datasets do not use this rule (e.g., Freedom House,
-  Geddes, Wright, and Frantz 2014), and others sometimes contain more than
-  one data point per year (e.g., the Political Regime Change dataset); I have
-  tried my best to transform their coding so that all datapoints conform to
-  convention, but some errors may remain.</p>
-    
-    <h2 class="hasAnchor" id="a-note-on-sources"><a class="anchor" href="#a-note-on-sources"></a>A note on sources</h2>
-
-    <p></p>
-    <p>Wherever possible, I have used the original sources for these measures of
-  democracy and put them in the right panel format myself. There are three
-  exceptions.</p>
-    <p>First, in a few cases I have relied on the replication data for Pemstein,
-  Meserve, and Melton (2010), which contains data I have not been able to
-  find elsewhere. These variables are marked <code>_pmm</code> in the
-  <code><a href='democracy.html'>democracy</a></code> file.</p>
-    <p>Second, I have constructed the <code>pitf*</code> variable following the
-  instructions in the source, but have not found the data ready-made. This is
-  probably unproblematic in the case of <code>pitf</code> -- the instructions are
-  very clear, but it is also worth noting that the Polity data is
-  occasionally revised, so that the <code>pitf</code> variable described and used
-  in Goldstone et al 2010 is probably different from the <code>pitf</code> variable
-  here for a small number of country-years.</p>
-    <p>Third, I have calculated some indexes (e.g., <code>magaloni_tri</code>,
-  <code>utip_dichotmous_strict</code>) myself from the original datasets.</p>
-    
-    <h2 class="hasAnchor" id="variables"><a class="anchor" href="#variables"></a>Variables</h2>
-
-    <p></p>
-    <p><dl class='dl-horizontal'></p>
-    <p><dt>country_name</dt><dd>Standardized country name.</dd></p>
-    <p><dt>GWn</dt><dd>Gleditsch and Ward&#39;s numeric country code, from the Gleditsch
-  and Ward list of independent states. For details, see Gleditsch, Kristian
-  S. &amp; Michael D. Ward. 1999. &quot;Interstate System Membership: A Revised List
-  of the Independent States since 1816.&quot; International Interactions 25:
-  393-413. The list can be found at
-  <a href = 'http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a>.</dd></p>
-    <p><dt>GWc</dt><dd>Gleditsch and Ward&#39;s alphabetic country code, from the Gleditsch
-  and Ward list of independent states. For details, see Gleditsch, Kristian
-  S. &amp; Michael D. Ward. 1999. &quot;Interstate System Membership: A Revised List
-  of the Independent States since 1816.&quot; International Interactions 25:
-  393-413. The list can be found at
-  <a href = 'http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a>.</dd></p>
-    <p><dt>cown</dt><dd>The Correlates of War numeric country code. This differs from
-  Gleditsch and Ward&#39;s numeric country code in a few cases, due to the
-  treatment of a couple of country terminations: West Germany becomes 255 in
-  CoW after reunification, but stays as 260 in G &amp; W; Serbia continues as 345
-  in CoW after the break up of Yugoslavia, whereas it becomes 340 in GWn;
-  Vietnam before 1948 is 816 in CoW, but 815 in G &amp; W; and Yemen after
-  unification is 679 in CoW, but it remains 678 on G &amp; W, which considers it
-  a continuation of the same state (absorbing South Yemen). Finally,
-  Kiribati, Tonga, Tuvalu, and Nauru have different codes in G &amp; W for
-  reasons I cannot determine.  For a full discussion of these differences,
-  see the vignette at <code>vignette(&quot;Spatial_and_temporal_coverage&quot;)</code>.</dd></p>
-    <p><dt>polity_ccode</dt><dd>The numeric country code of the country in the Polity
-  dataset, which is based on, but not identical to, the CoW codes in a few
-  cases. For a full discussion of these differences, see the vignette at
-  <code>vignette(&quot;Spatial_and_temporal_coverage&quot;)</code>.</dd></p>
-    <p><dt>year</dt><dd>Year. See the section on spatial and temporal organization for
-  details on coding.</dd></p>
-    <p><dt>region</dt><dd>Region. Based on the UN region classifications. For historic
-  states, the region is the same as the region of the successor states (or
-  states that absorbed the territory, as for example in the case of the
-  German principalities). In one case, Austria-Hungary, the successor states
-  straddle two regions (Western Europe and Eastern Europe); I have opted to
-  assign it the region &quot;Central Europe.&quot;</dd></p>
-    <p><dt>continent</dt><dd>Continent. Based on the UN continent classifications.</dd></p>
-    <p><dt>GW_startdate</dt><dd>The entry date of the state into the international
-  system (usually the date of independence, though there can be more than
-  one), according to Gleditsch and Ward, or 1 January 1816, whichever is
-  later.</dd></p>
-    <p><dt>GW_enddate</dt><dd>The exit date of the state from the international system
-  (usually the date the state lost its independence, though there can be more
-  than one), according to Gleditsch and Ward, or <code>NA</code> for countries that
-  are still in the international system.</dd></p>
-    <p><dt>microstate</dt><dd>Whether the state is a microstate, according to
-  Gleditsch. His tentative list of microstates is available at
-  <a href = 'http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a>.</dd></p>
-    <p><dt>lat</dt><dd>The rough latitude of the state.</dd></p>
-    <p><dt>lon</dt><dd>The rough longitude of the state.</dd></p>
-    <p><dt>in_system</dt><dd>Whether the state is &quot;in system&quot; (that is, is independent
-  and sovereign), according to Gleditsch and Ward, for this particular date.</dd></p>
-    <p><dt>in_cow</dt><dd>Whether the state is in the COW system of states (that is, is
-  independent and sovereign), for this particular date. Experimental.</dd></p>
-    <p><dt>z1</dt><dd>The mean of the latent unfied democracy variable (the factor
-  scores computed by the model).</dd></p>
-    <p><dt>se.z1</dt><dd>The standard error of the latent variable. This is typically
-  higher for years in the distant past or with few measurements.</dd></p>
-    <p><dt>pct975</dt><dd>The top of the 95 percent confidence interval around z1.
-  Calculated as z1 + 1.96*se.z1.</dd></p>
-    <p><dt>pct025</dt><dd>The bottom of the 95 percent confidence interval. Calculated
-  as z1 - 1.96*se.z1.</dd></p>
-    <p><dt>adj.z1</dt><dd>The mean of the latent unfied democracy variable (the factor
-  scores computed by the model), adjusted to match the average cutpoints for
-  the dichotomous measures of democracy used to generate it (essentially, z1
-  - 0.64). See the vignette
-  <code>vignette(&quot;Replicating_and_extending_the_UD_scores&quot;)</code> for details.</dd></p>
-    <p><dt>adj.pct975</dt><dd>The top of the 95 percent confidence interval around z1,
-  adjusted to match the average cutpoints for the dichotomous measures of
-  democracy used to generate it (essentially, pct975 - 0.64).</dd></p>
-    <p><dt>adj.pct025</dt><dd>The bottom of the 95 percent confidence interval,
-  adjusted to match the average cutpoints for the dichotomous measures of
-  democracy used to generate it (essentially, pct025 - 0.64).</dd></p>
-    <p><dt>index</dt><dd>A transformation of adj.z1 to a 0-1 scale, using the normal
-  cumulative distribution function. See Marquez 2016 for more details. This
-  form of the index has a natural interpretation as the probability that a
-  country-year is a democracy. It could also be used in ordinal from, with
-  values from 0 to 0.2 understood to be &quot;closed autocracies,&quot; 0.2-0.4
-  &quot;autocratic&quot;, 0.4-0.6 &quot;hybrid&quot;, 0.6-0.8 &quot;minimally democratic&quot;, and 0.8-1
-  &quot;fully democratic&quot;.</dd></p>
-    <p><dt>index.pct025</dt><dd>A transformation of adj.z1.pct025 to a 0-1 scale, using
-  the normal cumulative distribution function.</dd></p>
-    <p><dt>index.pct975</dt><dd>A transformation of adj.z1.pct975 to a 0-1 scale, using
-  the normal cumulative distribution function.</dd>
-  </dl></p>
+    <dl class='dl-horizontal'>
+    <dt>z1</dt><dd><p>Raw latent variable score for the model, with mean
+  (approximately) 0 and sd (approximately) 1.</p></dd>
+    <dt>se_z1</dt><dd><p>Standard errors of raw score.</p></dd>
+    <dt>z1_pct975, z1_pct025</dt><dd><p>95 percent onfidence intervals.</p></dd>
+    <dt>z1_adj</dt><dd><p>Latent variable score for the model, adjusted to match the
+  cutpoint for the dichotomous indexes included in the model.</p></dd>
+    <dt>z1_adj_pct975, z1_adj_pct025</dt><dd><p>95 percent confidence intervals of the
+  adjusted score.</p></dd>
+    <dt>z1_as_prob, z1_adj_as_prob</dt><dd><p>Latent variable scores for the model,
+  unadjusted and adjusted, converted to 0-1 probability index (0 = lowest
+  probability of dmeocracy, 1 = highest probability).</p></dd>
+    <dt>z1_pct975_as_prob, z1_pct025_as_prob, z1_adj_pct975_as_prob,
+  z1_adj_pct025_as_prob</dt><dd><p>95 percent onfidence intervals of the probability
+  score.</p></dd></dl>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Arat, Zehra F. 1991. Democracy and human rights in developing countries.
-Boulder: Lynne Rienner Publishers.</p>
-    <p>Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
-of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
-1523-1554. Original data available at
-<a href = 'https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0'>https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0</a></p>
-    <p>Bollen, Kenneth A. 2001. &quot;Cross-National Indicators of Liberal Democracy,
-1950-1990.&quot; 2nd ICPSR version. Chapel Hill, NC: University of North Carolina,
-1998. Ann Arbor, MI: Inter-university Consortium for Political and Social
-Research, 2001. Original data available at
-<a href = 'http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml'>http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml</a>.</p>
-    <p>Bowman, Kirk, Fabrice Lehoucq, and James Mahoney. 2005. Measuring Political
-Democracy: Case Expertise, Data Adequacy, and Central America. Comparative
-Political Studies 38 (8): 939-970.
-<a href = 'http://cps.sagepub.com/content/38/8/939'>http://cps.sagepub.com/content/38/8/939</a>. Data available at
-<a href = 'http://www.blmdemocracy.gatech.edu/'>http://www.blmdemocracy.gatech.edu/</a>.</p>
-    <p>Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010.
-&quot;Democracy and Dictatorship Revisited.&quot; Public Choice. 143(1):67-101.
-Original data available at
-<a href = 'https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited'>https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited</a>.</p>
-    <p>Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
-and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
-Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-Mechkova, Farhad Miri. 2016. V-Dem Codebook v6.1. Varieties of Democracy
-(V-Dem) Project. Original data available at <a href = 'https://v-dem.net/en/data/'>https://v-dem.net/en/data/</a>.</p>
-    <p>Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On
-Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
-Brunswuck, NJ: Transaction pp. 47-68.</p>
-    <p>Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
-World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
-<a href = 'http://dx.doi.org/10.1017/S0043887100016580'>http://dx.doi.org/10.1017/S0043887100016580</a>.</p>
-    <p>Economist Intelligence Unit. 2012. Democracy Index 2012: Democracy at a
-Standstill.</p>
-    <p>Freedom House. 2015. &quot;Freedom in the World.&quot; Original data available at
-<a href = 'http://www.freedomhouse.org'>http://www.freedomhouse.org</a>.</p>
-    <p>Gasiorowski, Mark J. 1996. &quot;An Overview of the Political Regime Change
-Dataset.&quot; Comparative Political Studies 29(4):469-483.</p>
-    <p>Geddes, Barbara, Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown
-and Regime Transitions: A New Data Set. Perspectives on Politics 12 (1):
-313-331. Original data available at <a href = 'http://dictators.la.psu.edu/'>http://dictators.la.psu.edu/</a>.</p>
-    <p>Gleditsch, Kristian S. &amp; Michael D. Ward. 1999. &quot;Interstate System
-Membership: A Revised List of the Independent States since 1816.&quot;
-International Interactions 25: 393-413. The list can be found at
-<a href = 'http://privatewww.essex.ac.uk/~ksg/statelist.html'>http://privatewww.essex.ac.uk/~ksg/statelist.html</a></p>
-    <p>Goldstone, Jack, Robert Bates, David Epstein, Ted Gurr, Michael Lustik, Monty
-Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for
-Forecasting Political Instability. American Journal of Political Science 54
-(1): 190-208. DOI:10.1111/j.1540-5907.2009.00426.x</p>
-    <p>Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge
-University Press.</p>
-    <p>Hadenius, Axel &amp; Jan Teorell. 2007. &quot;Pathways from Authoritarianism&quot;, Journal
-of Democracy 18(1): 143-156.</p>
-    <p>Hsu, Sara &quot;The Effect of Political Regimes on Inequality, 1963-2002,&quot; UTIP
-Working Paper No. 53 (2008),
-<a href = 'http://utip.gov.utexas.edu/papers/utip_53.pdf'>http://utip.gov.utexas.edu/papers/utip_53.pdf</a>. Data available for
-download at <a href = 'http://utip.gov.utexas.edu/data/'>http://utip.gov.utexas.edu/data/</a>.</p>
-    <p>Kailitz, Steffen. 2013. Classifying political regimes revisited: legitimation
-and durability. Democratization 20 (1): 39-60. Original data available at
-<a href = 'http://dx.doi.org/10.1080/13510347.2013.738861'>http://dx.doi.org/10.1080/13510347.2013.738861</a>.</p>
-    <p>Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. &quot;Political
-Regimes in Latin America, 1900-2007.&quot; Original data available from
-<a href = 'http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf'>http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf</a>.</p>
-    <p>Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the
-World, 1950-2012 (Version 1.0). Dataset, Stanford University. Original data
-and codebook available at
-<a href = 'http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/'>http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/</a></p>
-    <p>Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. &quot;Polity IV:
-Political Regime Characteristics and Transitions, 1800-2012.&quot; Updated to
-2015. Original data available from
-<a href = 'http://www.systemicpeace.org/polity/polity4.htm'>http://www.systemicpeace.org/polity/polity4.htm</a>.</p>
     <p>Marquez, Xavier. 2016. A Quick Method for Extending the Unified Democracy
-Scores (March 23, 2016). Available at SSRN: http://ssrn.com/abstract=2753830</p>
-    <p>Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett,
-Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong
-(2006) &quot;Voting Counts: Participation in the Measurement of Democracy&quot; Studies
-in Comparative International Development 42, 2 (Summer, 2006). The complete
-dataset is available here:
-<a href = 'http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm'>http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm</a>.</p>
-    <p>Munck, Gerardo L. 2009. Measuring Democracy: A Bridge Between Scholarship and
-Politics. Baltimore: Johns Hopkins University Press.</p>
-    <p>Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic
+Scores (March 23, 2016). Available at SSRN:
+<a href='http://ssrn.com/abstract=2753830'>http://ssrn.com/abstract=2753830</a></p>
+<p>Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic
 Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.
-Political Analysis 18 (4): 426-449.</p>
-    <p>Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. &quot;Replication
-data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
-of Regime Type.&quot; In: Harvard Dataverse.
-<a href = 'http://hdl.handle.net/1902.1/PMM'>http://hdl.handle.net/1902.1/PMM</a></p>
-    <p>Przeworski, Adam et al. 2013. Political Institutions and Political Events
-(PIPE) Data Set. Department of Politics, New York University.
-<a href = 'https://sites.google.com/a/nyu.edu/adam-przeworski/home/data'>https://sites.google.com/a/nyu.edu/adam-przeworski/home/data</a></p>
-    <p>Reich, G. 2002. Categorizing Political Regimes: New Data for Old Problems.
-Democratization 9 (4): 1-24.
-<a href = 'http://www.tandfonline.com/doi/pdf/10.1080/714000289'>http://www.tandfonline.com/doi/pdf/10.1080/714000289</a>.</p>
-    <p>Skaaning, Svend-Erik, John Gerring, and Henrikas Bartusevicius. 2015. A
-Lexical Index of Electoral Democracy. Comparative Political Studies 48 (12):
-1491-1525. Original data available from
-<a href = 'http://thedata.harvard.edu/dvn/dv/skaaning'>http://thedata.harvard.edu/dvn/dv/skaaning</a>.</p>
-    <p>Svolik, Milan. 2012. The Politics of Authoritarian Rule. Cambridge and New
-York: Cambridge University Press. Original data available from
-<a href = 'http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/'>http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/</a>.</p>
-    <p>Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
-Democracy Status (May 20, 2015). Available at SSRN:
-<a href = 'http://ssrn.com/abstract=2726962'>http://ssrn.com/abstract=2726962</a> or
-<a href = 'http://dx.doi.org/10.2139/ssrn.2726962'>http://dx.doi.org/10.2139/ssrn.2726962</a></p>
-    <p>Ulfelder, Jay. 2012. &quot;Democracy/Autocracy Data Set.&quot; In: Harvard Dataverse.
-<a href = 'http://hdl.handle.net/1902.1/18836'>http://hdl.handle.net/1902.1/18836</a>.</p>
-    <p>Vanhanen, Tatu. 2012. &quot;FSD1289 Measures of Democracy 1810-2012.&quot; Original
-data available from
-<a href = 'http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html'>http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html</a></p>
-    <p>Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
-types revisited: updated data in comparative perspective. Contemporary
-Politics 19 (1): 19-34.</p>
+Political Analysis 18 (4): 426-449. DOI:10.1093/pan/mpq020</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p>Other democracy: <code><a href='democracy.html'>democracy</a></code>,
-  <code><a href='kailitz.html'>kailitz</a></code>,
-  <code><a href='original_pmm_democracy_data_1946_2008.html'>original_pmm_democracy_data_1946_2008</a></code>,
   <code><a href='uds_2014.html'>uds_2014</a></code></p>
     
 
@@ -536,19 +207,9 @@ Politics 19 (1): 19-34.</p>
 
       <li><a href="#overview">Overview</a></li>
 
-      <li><a href="#dichotomous-indexes-of-democracy">Dichotomous indexes of democracy</a></li>
+      <li><a href="#standard-descriptive-variables-generated-by-this-package-">Standard descriptive variables (generated by this package)</a></li>
 
-      <li><a href="#trichotomous-indexes-of-democracy">Trichotomous indexes of democracy</a></li>
-
-      <li><a href="#ordinal-indexes-of-democracy">Ordinal indexes of democracy</a></li>
-
-      <li><a href="#continuous-indexes-of-democracy">Continuous indexes of democracy</a></li>
-
-      <li><a href="#spatial-and-temporal-organization">Spatial and temporal organization</a></li>
-
-      <li><a href="#a-note-on-sources">A note on sources</a></li>
-
-      <li><a href="#variables">Variables</a></li>
+      <li><a href="#latent-variable-scores">Latent variable scores</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -558,7 +219,7 @@ Politics 19 (1): 19-34.</p>
     <h2>Author</h2>
     
 Xavier Marquez, Political Science and International Relations
-  Programme, Victoria University of Wellington, marquez.x@gmail.com
+Programme, Victoria University of Wellington, marquez.x@gmail.com
 
   </div>
 </div>

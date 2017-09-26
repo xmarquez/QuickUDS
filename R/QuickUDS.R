@@ -6,13 +6,12 @@
 #' replicate the UDS model. It takes a data frame and tries to determine, from
 #' the colum names, which variables contain democracy scores.
 #'
-#' If the column names contain the strings \code{arat}, \code{blm}, \code{bmr},
-#' \code{bollen}, \code{doorenspleet}, \code{eiu}, \code{e_v2x}, \code{gwf},
-#' \code{hadenius}, \code{kailitz}, \code{lied}, \code{munck}, \code{pacl},
-#' \code{peps}, \code{poliarchy}, \code{polity}, \code{prc}, \code{svolik},
-#' \code{ulfelder}, \code{v2x}, \code{vanhanen_pmm}, \code{vanhanen_democratization}, or
-#' \code{wahman_teorell_hadenius}, the function performs the following
-#' transformations by default:
+#' If the column names contain the strings \code{arat}, \code{blm},
+#' \code{bollen},\code{wgi}, \code{hadenius}, \code{munck}, \code{pacl},
+#' \code{peps}, \code{polyarchy_inclusion_dimension},
+#' \code{polyarchy_contestation_dimension}, \code{polity}, \code{prc},
+#' \code{v2x}, \code{vanhanen_pmm}, or \code{vanhanen_democratization}, the
+#' function performs the following transformations by default:
 #'
 #' \code{arat}: Following Pemstein, Meserve, and Melton's replication code
 #' (Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
@@ -24,10 +23,9 @@
 #' 0-100 democracy score into 10 intervals with the following cutoffs:
 #' 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10.
 #'
-#' \code{eiu}: If the Economist Intelligence Unit's index of democracy is
-#' included in the file, the function rounds the 0-1 value to the first decimal
-#' place and cuts the result into 10 categories. The resulting score is ordinal
-#' from 1 to 11.
+#' \code{wgi}: If the World Governance Indicator's index of voice and
+#' acocuntability is included in the file, the function cuts it into 20
+#' categories. The resulting score is ordinal from 1 to 20.
 #'
 #' \code{hadenius}: Following Pemstein, Meserve, and Melton's replication code
 #' (Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s
@@ -49,6 +47,12 @@
 #' and puts NA for any values below -10, and then transforms it into an ordinal
 #' measure from 1 to 21.
 #'
+#' \code{polyarchy_inclusion_dimension},
+#' \code{polyarchy_contestation_dimension}: If any of the polyarchy inclusion or
+#' contestation dimensions from Coppedge, Alvarez and Maldonado (2008)  are
+#' included, it cuts them into into 20 categories. The resulting score is
+#' ordinal from 1 to 20.
+#'
 #' \code{v2x}: If any of the v2x_ continuous indexes of democracy from the V-Dem
 #' dataset (Coppedge et al 2015) are included in the file, the function cuts
 #' them into 20 categories. The resulting score is ordinal from 1 to 20.
@@ -60,26 +64,28 @@
 #' score is ordinal from 1 to 8.
 #'
 #' The function also recognizes the following column names (or partial column
-#' names - it also recognizes, e.g., blm_pmm) as measures of democracy:
+#' names - it also recognizes, e.g., pmm_blm) as measures of democracy:
 #' \code{blm} (from Bowman, Lehoucq, and Mahoney 2005), \code{bmr} (from Boix,
 #' Miller, and Rosato 2012), \code{doorenspleet} (from Doorenspleet 2000),
 #' \code{e_v2x} (the "ordinal" indexes from the V-dem project, Coppedge at al
-#' 2015), \code{freedomhouse} (from Freedom House - freedom scale must be
-#' reversed so that "more freedom" is higher), \code{gwf} (from Geddes, Wright,
-#' and Frantz 2014 - the dichotomous democracy indicator only), \code{kailitz}
-#' (from Kailitz 2013 - democracy/non-democracy indicator), \code{lied} (from
-#' Skaaning, Gerring, and Bartusevicius 2015), \code{mainwaring} (from
-#' Mainwaring and Perez Linan 2008), \code{magaloni} (from Magaloni, Min, Chu
-#' 2013 - democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi,
-#' and Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and
-#' Ulfelder 2015), \code{poliarchy} (from Coppedge and Reinicke 1991),
-#' \code{prc} (from Gasiorowski 1996 or Reich 2002), \code{przeworski} (from
-#' Przeworski 2010), \code{svolik} (from Svolik 2012, democracy/dictatorship
-#' indicator only), \code{ulfelder} (from Ulfelder 2012), \code{utip} (from Hsu
-#' 2008), and \code{wahman_teorell_hadenius} (from Wahman, Teorell, and Hadenius
-#' 2013). In each of these cases the function transforms the values of these
-#' scores by running \code{as.numeric(unclass(factor(x)))}, which transforms
-#' them into ordinal variables from 1 to the number of categories.
+#' 2015), \code{freedomhouse} or \code{fh} (from Freedom House - freedom scale
+#' must be reversed so that "more freedom" is higher), \code{gwf} (from Geddes,
+#' Wright, and Frantz 2014 - the dichotomous democracy indicator only),
+#' \code{kailitz} (from Kailitz 2013 - democracy/non-democracy indicator),
+#' \code{lied} or \code{lexical_index} (from Skaaning, Gerring, and
+#' Bartusevicius 2015), \code{mainwaring} (from Mainwaring and Perez Linan
+#' 2008), \code{magaloni} (from Magaloni, Min, Chu 2013 -
+#' democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi, and
+#' Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and Ulfelder
+#' 2015), \code{polyarchy} (from Coppedge and Reinicke 1991), \code{prc} (from
+#' Gasiorowski 1996 or Reich 2002), \code{PIPE} (from Przeworski 2010),
+#' \code{reign} (from Bell 2016), \code{svolik} (from Svolik 2012,
+#' democracy/dictatorship indicator only), \code{ulfelder} (from Ulfelder 2012),
+#' \code{utip} (from Hsu 2008), and \code{wth} or \code{wahman_teorell_hadenius}
+#' (from Wahman, Teorell, and Hadenius 2013). In each of these cases the
+#' function transforms the values of these scores by running
+#' \code{as.numeric(unclass(factor(x)))}, which transforms them into ordinal
+#' variables from 1 to the number of categories.
 #'
 #' For details of these scores, see the documentation for
 #' \code{\link{democracy}}.
@@ -93,15 +99,47 @@
 #' @param data A dataset of democracy scores. For the function to do anything,
 #'   the column names must contain at least one of the following strings:
 #'   \code{arat}, \code{blm}, \code{bmr}, \code{bollen}, \code{doorenspleet},
-#'   \code{eiu}, \code{e_v2x}, \code{gwf}, \code{hadenius}, \code{kailitz},
-#'   \code{lied}, \code{munck}, \code{pacl}, \code{peps}, \code{poliarchy},
-#'   \code{polity}, \code{prc}, \code{przeworski}, \code{svolik},
-#'   \code{ulfelder}, \code{utip}, \code{v2x}, \code{vanhanen_democratization},
-#'   \code{vanhanen_pmm}, or \code{wahman_teorell_hadenius}. For
-#'   details of these variables, see the documentation for
+#'   \code{wgi}, \code{gwf}, \code{hadenius}, \code{kailitz}, \code{lied},
+#'   \code{munck}, \code{pacl}, \code{peps}, \code{polyarchy}, \code{polity},
+#'   \code{prc}, \code{PIPE}, \code{svolik}, \code{ulfelder}, \code{utip},
+#'   \code{v2x}, \code{vanhanen_democratization}, \code{vanhanen_pmm}, or
+#'   \code{wth}. For details of these variables, see the documentation for
 #'   \code{\link{democracy}}.
+#' @param .funs A names list of functions to modify the columns. It defaults to
+#'   the following:
+#'
+#'   \code{funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
+#'   labels = 1:7, include.lowest = TRUE, right = FALSE),
+#'
+#'   hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
+#'   include.lowest = TRUE, right = FALSE),
+#'
+#'   bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+#'   labels = 1:10, include.lowest = TRUE, right = FALSE),
+#'
+#'
+#'   vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
+#'   1:8, include.lowest = TRUE, right = FALSE),
+#'
+#'   munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
+#'   include.lowest = TRUE, right = FALSE),
+#'
+#'
+#'   polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
+#'   FALSE, ordered_result = TRUE),
+#'
+#'   polity = ifelse(. < -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
+#'   TRUE, right = FALSE, ordered_result = TRUE),
+#'
+#'   wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+#'   ordered_result = TRUE),
+#'
+#'   peps = round(.),
+#'
+#'   other = as.numeric(unclass(factor(.))))}
 #'
 #' @return A data frame with the transformed scores, if any.
+#' @import dplyr
 #' @export
 #'
 #' @examples
@@ -111,6 +149,9 @@
 #'
 #' Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 #' Boulder: Lynne Rienner Publishers.
+#'
+#' Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset
+#' (REIGN).\url{http://oefresearch.org/datasets/reign}
 #'
 #' Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
 #' of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
@@ -145,12 +186,16 @@
 #' Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
 #' Brunswuck, NJ: Transaction pp. 47-68.
 #'
+#' Coppedge, A. Alvarez and C. Maldonado. 2008. "Two Persistent Dimensions of
+#' Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03,
+#' pp. 632-647. DOI: 10.1017/S0022381608080663.
+#'
 #' Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
 #' World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
 #' \url{http://dx.doi.org/10.1017/S0043887100016580}.
 #'
-#' Economist Intelligence Unit. 2012. Democracy Index 2012: Democracy at a
-#' Standstill.
+#' Kaufmann, D. and A. Kraay. 2016. Worldwide Governance Indicators. 2016.
+#' \url{http://www.govindicators.org}.
 #'
 #' Freedom House. 2015. "Freedom in the World." Original data available at
 #' \url{http://www.freedomhouse.org}.
@@ -246,49 +291,66 @@
 #' Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
 #' types revisited: updated data in comparative perspective. Contemporary
 #' Politics 19 (1): 19-34.
-prepare_data <- function(data) {
-  other_vars <- c("blm", "bmr", "doorenspleet", "freedomhouse", "gwf", "lied", "mainwaring",
-                     "magaloni", "pacl", "pitf", "polyarchy", "prc", "przeworski", "svolik",
-                     "ulfelder", "utip", "kailitz", "e_v2x", "wahman_teorell_hadenius")
+prepare_data <- function(data,
+                         .funs) {
 
-  defaults <- list(
-    arat = function(x) {
-      cut(x, breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
-          labels = 1:7, include.lowest = TRUE, right = FALSE) },
-    hadenius = function(x) {
-      cut(x, breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10),
-          labels = 1:8, include.lowest = TRUE, right = FALSE) },
-    bollen = function(x) {
-      cut(x, breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
-          labels = 1:10, include.lowest = TRUE, right = FALSE) },
-    vanhanen_pmm = function(x) {
-      cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
-          labels = 1:8, include.lowest = TRUE, right = FALSE)},
-    vanhanen_democratization = function(x) {
-      cut(x, breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
-          labels = 1:8, include.lowest = TRUE, right = FALSE)},
-    munck = function(x) {
-      cut(x, breaks = c(0, 0.5, 0.75, 0.99, 1),
-          labels = 1:4, include.lowest = TRUE, right = FALSE)},
-                 polity = function(x) { ifelse(x < -10, NA, x) },
-    v2x = function(x) {
-      cut(x, breaks = 20, include.lowest = TRUE, right = FALSE, ordered_result = TRUE) },
-    eiu = function(x) { round(x, 1) },
-    peps = function(x) { round(x) },
-    other = function(x) { as.numeric(unclass(factor(x))) })
+  other_vars <- c("blm", "bmr", "doorenspleet", "fh|freedomhouse", "gwf",
+                  "lied|lexical_index", "mainwaring",
+                  "magaloni", "pacl", "pitf", "polyarchy",
+                  "prc", "PIPE|przeworski", "svolik",
+                  "ulfelder", "utip", "kailitz", "e_v2x",
+                  "wth|wahman_teorell", "reign")
 
-  other_pattern <- paste(other_vars,collapse="|")
+  . <- NULL
 
-  for(var in names(defaults)) {
-    if(var != "other") {
-      data[, grep(var, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[[var]], .cols = grep(var, names(data), ignore.case=TRUE)))(data)
-      data[, grep(var, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[["other"]], .cols = grep(var, names(data), ignore.case=TRUE)))(data)
-    } else {
-      data[, grep(other_pattern, names(data), ignore.case=TRUE)] <- (plyr::colwise(defaults[["other"]], .cols = grep(other_pattern, names(data), ignore.case=TRUE)))(data)
-    }
-
-
+  if(missing(.funs)) {
+    .funs <- funs(
+      arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
+            labels = 1:7, include.lowest = TRUE, right = FALSE),
+      hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10),
+            labels = 1:8, include.lowest = TRUE, right = FALSE),
+      bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+            labels = 1:10, include.lowest = TRUE, right = FALSE),
+      vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50),
+            labels = 1:8, include.lowest = TRUE, right = FALSE),
+      munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1),
+            labels = 1:4, include.lowest = TRUE, right = FALSE),
+      polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE,
+                right = FALSE, ordered_result = TRUE),
+      polity = ifelse(. < -10, NA, .),
+      v2x = cut(., breaks = 20, include.lowest = TRUE,
+                right = FALSE, ordered_result = TRUE),
+      wgi = cut(., breaks = 20, include.lowest = TRUE,
+                right = FALSE, ordered_result = TRUE),
+      peps = round(.),
+      other = as.numeric(unclass(factor(.))))
   }
+
+  other_pattern <- paste(c(other_vars,
+                           "arat",
+                           "hadenius",
+                           "bollen",
+                           "vanhanen",
+                           "munck",
+                           "polity",
+                           "v2x",
+                           "wgi",
+                           "peps"),collapse="|")
+
+  data <- data %>%
+    mutate_at(vars(matches("arat")), .funs[['arat']]) %>%
+    mutate_at(vars(matches("hadenius")), .funs[['hadenius']]) %>%
+    mutate_at(vars(matches("bollen")), .funs[['bollen']]) %>%
+    mutate_at(vars(matches("pmm_vanhanen|vanhanen_democratization")),
+              .funs[['vanhanen']]) %>%
+    mutate_at(vars(matches("munck")), .funs[['munck']]) %>%
+    mutate_at(vars(matches("polyarchy_(inclusion|contestation)_dimension")),
+              .funs[['polyarchy_dimensions']]) %>%
+    mutate_at(vars(matches("polity")), .funs[['polity']]) %>%
+    mutate_at(vars(starts_with("v2x")), .funs[['v2x']]) %>%
+    mutate_at(vars(matches("wgi")), .funs[['wgi']]) %>%
+    mutate_at(vars(matches("peps")), .funs[['peps']]) %>%
+    mutate_at(vars(matches(other_pattern)), .funs[['other']])
 
   data
 
@@ -296,9 +358,12 @@ prepare_data <- function(data) {
 
 #' Prepares selected indexes in the democracy dataset for use in a UD model
 #'
-#' @param indexes a set of measures of democracy in the \code{\link{democracy}}
-#'   dataset. They must be names of the columns of the \code{\link{democracy}}
-#'   dataset - otherwise the function throws an error.
+#' @param ... a set of measures of democracy in the \code{\link{democracy}}
+#'   dataset (either bare column names, or strings). Can be a [dplyr::select]
+#'   expression (but [dplyr] must be loaded for this to work).
+#' @param identifiers A set of identifiers to return with the data. Defaults to
+#'   \code{c("extended_country_name", "year", "GWn", "cown", "in_GW_system")}.
+#'   Must exist in the [democracy] dataset.
 #'
 #' @return A dataset ready for use with \code{\link{democracy_model}}
 #' @export
@@ -306,22 +371,65 @@ prepare_data <- function(data) {
 #' @import dplyr
 #'
 #' @examples
-#' prepare_democracy(names(democracy)[grep("pmm",names(democracy))])
-prepare_democracy <- function(indexes) {
-  # Hack to get around note "no visible binding for global variable"
+#' prepare_democracy(dplyr::matches("pmm"))
+prepare_democracy <- function(...,
+                              identifiers = c("extended_country_name", "year",
+                                              "GWn", "cown", "in_GW_system")) {
 
-  country_name <- year <- NULL
+  cols <- check_vars(..., identifiers = identifiers)
 
-  data <- QuickUDS::democracy[ ,c("country_name","GWn","GWc","cown","polity_ccode","year",
-                                  "GW_startdate","GW_enddate","region", "continent",
-                                  "microstate","lat","lon","in_system","in_cow",indexes)]
-  data <- reshape2::melt(data, measure.vars = indexes, na.rm = TRUE)
-  data <- reshape2::dcast(data, ... ~ variable)
-  data <- data %>% arrange(country_name,year)
-  data <- prepare_data(data)
-  data
+  . <- NULL
+
+  df <- QuickUDS::democracy %>%
+    select(cols$identifiers, cols$measures) %>%
+    mutate("id" = 1:nrow(QuickUDS::democracy)) %>%
+    prepare_data() %>%
+    tidyr::gather("variable", "value", !!!cols$measures) %>%
+    filter_at("value", any_vars(!is.na(.))) %>%
+    tidyr::spread("variable", "value") %>%
+    arrange_at("id") %>%
+    select(-matches("^id$"))
+
+
+  class(df) <- c("democracydata", class(df))
+
+  df
 }
 
+check_vars <- function(..., identifiers) {
+  vars <- quos(...)
+
+  non_selectable <- c("extended_country_name", "year",
+                      "GWn", "cown", "in_GW_system",
+                      "uds_2010_mean","uds_2010_median",
+                      "uds_2011_mean", "uds_2011_median",
+                      "uds_2014_mean", "uds_2014_median")
+
+
+  if(any(names(QuickUDS::democracy %>%
+               select(!!!vars)) %in%
+         non_selectable)) {
+    non_selectable <- names(QuickUDS::democracy %>%
+                              select(!!!vars))[ names(QuickUDS::democracy %>%
+                                                        select(!!!vars)) %in%
+                                                  non_selectable]
+    warning(sprintf("Cannot select variables %s as model variables, only as identifiers.
+                    Automatically adding them as identifiers and excluding them from model variables.",
+                    paste(non_selectable, collapse = ", ")))
+
+    identifiers <- unique(c(identifiers, non_selectable))
+    measures <-  names(QuickUDS::democracy %>%
+                         select(!!!vars))
+    measures <- measures[ !measures %in% identifiers ]
+  } else {
+    measures <- names(QuickUDS::democracy %>%
+                        select(!!!vars))
+  }
+
+  list(identifiers = identifiers,
+       measures = measures)
+
+}
 
 #' Probability that a country-year is more democratic than another
 #'
@@ -335,9 +443,9 @@ prepare_democracy <- function(indexes) {
 #' @param mean_col The name of the column that contains the mean of the latent
 #'   variable (defaults to \code{z1})
 #' @param sd_col The name of the column that contains the standard error of the
-#'   latent variable (defaults to \code{se.z1})
+#'   latent variable (defaults to \code{se_z1})
 #' @param country_col The name of the column that contains the country name
-#'   (defaults to \code{country_name})
+#'   (defaults to \code{extended_country_name})
 #' @param year_col The name of the column that contains the years (defaults to
 #'   \code{year})
 #'
@@ -361,12 +469,24 @@ prepare_democracy <- function(indexes) {
 #' # according to 2010 release of UDS
 #' prob_more(uds_2010, "United States of America","United States of America",
 #'            years = c(2000,1950), mean_col="mean", sd_col="sd")
-prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col = "se.z1", country_col = "country_name", year_col = "year") {
+prob_more <- function(data, country1, country2, years, mean_col = "z1",
+                      sd_col = "se_z1",
+                      country_col = "extended_country_name",
+                      year_col = "year") {
+
   if(length(years) == 1) {
-    years <- c(years,years)
+    years <- c(years, years)
   }
-  mu <- data[[mean_col]][ data[[country_col]] == country1 & data[[year_col]] == years[1]] - data[[mean_col]][data[[country_col]] == country2  & data[[year_col]] == years[2] ]
-  sigma <- sqrt((data[[sd_col]][data[[country_col]] == country1   & data[[year_col]] == years[1]])^2 + (data[[sd_col]][data[[country_col]] == country2   & data[[year_col]] == years[2] ])^2)
+  mu <- data[[mean_col]][ data[[country_col]] == country1 &
+                            data[[year_col]] == years[1]] -
+    data[[mean_col]][data[[country_col]] == country2  &
+                       data[[year_col]] == years[2] ]
+
+  sigma <- sqrt((data[[sd_col]][data[[country_col]] == country1
+                                & data[[year_col]] == years[1]])^2 +
+                  (data[[sd_col]][data[[country_col]] == country2 &
+                                    data[[year_col]] == years[2] ])^2)
+
   prob <- 1-pnorm(-mu/sigma)
   prob
 }
@@ -383,8 +503,8 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
 #'   of) "score" (for score cutpoints) or "discrimination" (for discrimination
 #'   parameters). Default is "score."
 #'
-#' @return A data frame with either score cutpoints for each variable used to
-#'   construct the latent scores in terms of the latent variable, or
+#' @return A [tibble] with either score cutpoints for each variable used to
+#'   construct the latent scores in terms of the latent variable (the default), or
 #'   discrimination parameters for each variable used to construct the index.
 #'   For the score cutpoints (\code{type = 'score'}), the columns
 #'   \code{estimate}, \code{pct975}, and \code{pct025} report the IRT
@@ -398,29 +518,16 @@ prob_more <- function(data, country1, country2, years, mean_col = "z1", sd_col =
 #' @examples
 #' \donttest{
 #' # Replicate the official UDS 2011 release and calculate its cutpoints
-#' library(reshape2)
-#' library(dplyr)
-#' library(mirt)
-#' data <- prepare_data(democracy)
-#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' data <- dcast(data, ... ~ variable)
-#' data <- data %>% arrange(country_name, year) %>% select(ends_with("pmm"))
-#' replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
-#' cutpoints_2011 <- cutpoints(replication_2011_model)
-#' cutpoints_2011}
+#' replication_2011_model <- democracy_model(dplyr::matches("pmm"), verbose = FALSE)
+#' cutpoints(replication_2011_model)}
 cutpoints <- function(model, type = "score") {
   stopifnot(class(model) == "SingleGroupClass")
 
-  type <- c("score","discrimination")[ pmatch(type, c("score","discrimination")) ][1]
-
-  if(is.na(type)) {
-    stop("Type must be (an abbreviation of) 'score' or 'discrimination'")
-  }
+  type <- match.arg(type, c("score", "discrimination"))
 
   # A hack to get around the "no visible binding for global variable" note
 
-  par <- CI_2.5 <- CI_97.5 <- variable <- NULL
+  par <- CI_2.5 <- CI_97.5 <- variable <- se <- NULL
 
   estimate <- pct025 <- pct975 <- coef_type <- coef <- NULL
 
@@ -435,23 +542,44 @@ cutpoints <- function(model, type = "score") {
     group_by(variable) %>%
     mutate(estimate = -(par)/(par[1]),
            pct025 = -(CI_2.5)/(CI_2.5[1]),
-           pct975 = -(CI_97.5)/(CI_97.5[1])) %>%
+           pct975 = -(CI_97.5)/(CI_97.5[1]),
+           se = abs(pct975 - estimate)/1.96) %>%
     filter(!is.na(coef_type))
+
+  num_obs <- model@Data$data %>%
+    as_tibble() %>%
+    summarise_all(~sum(!is.na(.))) %>%
+    tidyr::gather("variable", "num_obs")
+
+  coefs <- coefs %>%
+    left_join(num_obs,
+              by = "variable")
 
   if(type == "score") {
     coefs <- coefs %>%
       filter(!grepl("^a",coef_type)) %>%
-      select(variable,estimate,pct025,pct975)
+      select(variable,
+             estimate,
+             pct025,
+             pct975,
+             se,
+             num_obs)
   } else {
     coefs <- coefs %>%
       filter(grepl("^a",coef_type)) %>%
       mutate(estimate = par,
              pct025 = CI_2.5,
              pct975 = CI_97.5) %>%
-      select(variable,estimate,pct025,pct975)
+      select(variable,
+             estimate,
+             pct025,
+             pct975,
+             num_obs)
   }
 
-  return(coefs)
+  coefs %>% ungroup()
+
+
 }
 
 #' Extract rater info from a UD model in a tidy format.
@@ -467,68 +595,85 @@ cutpoints <- function(model, type = "score") {
 #'
 #' @examples
 #' \donttest{
-#' library(QuickUDS)
-#' data <- prepare_data(democracy)
-#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' data <- dcast(data, ... ~ variable)
-#' data <- data %>% arrange(country_name,year) %>% select(ends_with("pmm"))
-#' replication_2011_model <- mirt(data, model = 1, itemtype = "graded", SE = TRUE)
-#' raterinfo_2011 <- raterinfo(replication_2011_model)
-#' head(raterinfo)}
+#' replication_2011_model <- democracy_model(dplyr::matches("pmm"), verbose = FALSE)
+#' raterinfo(replication_2011_model)}
 raterinfo <- function(model) {
     raters <- dimnames(model@Data$data)[[2]]
     Theta <- model@Model$Theta
     rater.info <- data.frame()
 
     for (i in raters) {
-        rater.info <- bind_rows(rater.info,
+        rater.info <- suppressWarnings(bind_rows(rater.info,
                                 data.frame(rater = i,
                                            theta = as.numeric(Theta),
                                            info = iteminfo(extract.item(model, i),
-                                                           Theta = Theta)))
+                                                           Theta = Theta))))
     }
-    rater.info
+    rater.info %>%
+      as_tibble()
 }
 
 #' Produce a UD model from democracy data
 #'
-#' This function is a simple wrapper for \code{mirt(data[, columns], model = 1,
-#' itemtype = "graded", SE = TRUE, ...)}. More fine-grained control can be
-#' achieved by using \code{\link{mirt}} directly.
+#' This function is a simple wrapper for [mirt::mirt] that automates the process
+#' of selecting the relevant columns in the [democracy] dataset, preparing the
+#' data for use with [mirt::mirt], and packaging the result in a form useful for
+#' [democracy_scores]. More fine-grained control can be achieved by using
+#' \code{\link{mirt}} directly; see the Vignette on replicating and extending
+#' the UD scores.
 #'
-#' @param data The prepared democracy data. Run \code{\link{prepare_data}} first
-#'   on your democracy data. Note that \code{\link{mirt}} will throw an error if
-#'   some country-years are not measured by any dataset; it is thus necessary to ensure
-#'   that your data has at least one measurement of democracy for every
-#'   country-year (though NAs are fine in many of the variables). See the
-#'   examples for details.
-#' @param columns The columns to use to estimate the model.
-#' @param model The model type for \code{\link{mirt}}. The default, 1,
-#'   calculates a one-factor model (a single latent variable).
-#' @param itemtype The type of item to estimate. See \code{\link{mirt}} for
-#'   details. The default fits a "graded" model like the one Pemstein, Meserve,
-#'   and Melton use in their 2010 paper.
-#' @param SE Boolean. Whether to calculate the standard errors of the model
-#'   parameters. The default is \code{TRUE}.
-#' @param ... Other parameters passed on to \code{\link{mirt}}
+#' @param ... [democracy] variables to use for the model. Can be bare column names
+#'   or strings, or a [dplyr::select] expression.
+#' @param identifiers Identifier columns. Can be any combination of columns in
+#'   the [democracy] dataset. Defaults to \code{c("extended_country_name",
+#'   "year", "GWn", "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean")}.
+#' @param verbose Passed to [mirt::mirt]; whether to print a running commentary.
+#'   Default is `TRUE`.
+#' @param technical Passed to [mirt::mirt]. Defaults to \code{list(NCYCLES =
+#'   2500)} to ensure that extende models converge.
 #'
 #' @return a \code{\link{SingleGroupClass-class}} model of latent democracy
 #'   scores suitable for use by \code{\link{democracy_scores}}.
+#' @import dplyr
+#' @import mirt
 #' @export
 #'
 #' @examples
 #' \donttest{
-#' data <- prepare_data(democracy)
-#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' data <- dcast(data, ... ~ variable)
-#' data <- data %>% arrange(country_name,year)
-#' replication_2011_model <- democracy_model(data,
-#'                                columns = names(data)[grep("pmm",names(data))])}
-democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = TRUE, ...) {
-  model <- mirt::mirt(data[, columns], model = model, itemtype = itemtype, SE = SE, ...)
+#' replication_2011_model <- democracy_model(dplyr::matches("pmm"), verbose = FALSE)
+#' replication_2011_model
+#' summary(replication_2011_model)
+#' }
+democracy_model <- function(..., identifiers = c("extended_country_name",
+                                            "year",
+                                            "GWn",
+                                            "cown",
+                                            "uds_2010_mean",
+                                            "uds_2011_mean",
+                                            "uds_2014_mean",
+                                            "in_GW_system"),
+                            verbose = TRUE,
+                            technical = list(NCYCLES = 2500)) {
+
+  cols <- check_vars(...,
+                     identifiers = identifiers)
+
+  data <- prepare_democracy(cols$measures,
+                            identifiers = cols$identifiers)
+
+
+  model <- mirt::mirt(data %>% select(cols$measures),
+                      model = 1,
+                      itemtype = "graded",
+                      SE = TRUE,
+                      verbose = verbose,
+                      technical = technical)
+
+  model@Data$identifiers <- data %>%
+    select(cols$identifiers)
+
   model
+
 }
 
 #' Extract UD scores from a UD model
@@ -538,124 +683,91 @@ democracy_model <- function(data, columns, model = 1, itemtype = "graded", SE = 
 #' instead of a matrix. More fine-grained control can be achieved by using
 #' \code{\link{fscores}} directly.
 #'
+#' @param ... [democracy] variables to use for the model. Can be bare column
+#'   names or strings, or a [dplyr::select] expression.
 #' @param model a \code{\link{SingleGroupClass-class}} model produced by
-#'   \code{\link{democracy_model}}.
-#' @param ... Other parameters passed on to \code{\link{fscores}}.
+#'   \code{\link{democracy_model}}. If missing, calculates a model using the
+#'   selected columns.
+#' @param adjust_to_dichotomous Whether to calculate an adjusted score where the
+#'   midpoint represents the average cutpoint for dichotomous scores. See the
+#'   vignette for more details. Default is `TRUE`.
+#' @param as_prob Whether to output scores as 0-1 probability scales. See the
+#'   vignette for more details. Default is `TRUE`.
 #'
-#' @return A data frame with latent variable democracy scores (posterior means)
-#'   for all country-years in the data, with standard errors and 95% confidence
-#'   intervals.
+#' @return A data frame with latent variable democracy scores (the equivalent of
+#'   the UDS posterior means) for all country-years in the data, with standard
+#'   errors and 95% confidence intervals. The following quantities are output by
+#'   default:
+#'
+#' @template standard-variables
+#' @section UDS measures for comparison purposes: \describe{
+#'
+#'   \item{uds_2010_mean, uds_2011_mean, uds_2014_mean}{The UDS means for the
+#'   2010, 2011, and 2014 releases, for comparison purposes}.
+#'
+#'   }
+#'
+#' @template latent-variables
 #' @export
 #'
 #' @import dplyr
 #' @import mirt
+#' @importFrom rlang .data
+#' @importFrom stats pnorm
 #'
 #' @examples
 #' \donttest{
 #' # Replicate the official UDS scores (2011 release)
-#' library(reshape2)
-#' library(dplyr)
-#' data <- prepare_data(democracy)
-#' data <- melt(data, measure.vars = names(data)[grep("pmm",names(data))], na.rm = TRUE)
-#' data <- data %>% group_by(country_name,year) %>% mutate(num_measures = n())
-#' data <- dcast(data, ... ~ variable)
-#' data <- data %>% arrange(country_name,year)
-#' replication_2011_model <- democracy_model(data,
-#'                            columns = names(data)[grep("pmm",names(data))])
-#' replication_2011_scores <- democracy_scores(replication_2011_model)
-#' replication_2011_scores <- bind_cols(data %>%
-#'                                        select(country_name,
-#'                                        GWn,
-#'                                        year,
-#'                                        in_system,
-#'                                        num_measures),
-#'                                        replication_2011_scores)
-#' head(replication_2011_scores)}
-democracy_scores <- function(model, ...) {
-  stopifnot(class(model) == "SingleGroupClass")
+#' democracy_scores(dplyr::matches("pmm"), verbose = FALSE)}
+democracy_scores <- function(..., model,
+                             adjust_to_dichotomous = TRUE,
+                             as_prob = TRUE) {
 
-  scores <- fscores(model, full.scores = TRUE, full.scores.SE = TRUE, ...)
+  identifiers <- c("extended_country_name",
+                  "year",
+                  "GWn",
+                  "cown",
+                  "uds_2010_mean",
+                  "uds_2011_mean",
+                  "uds_2014_mean")
 
-  # A hack to get around the "no visible binding for global variable" note
+  . <- NULL
 
-  F1 <- SE_F1 <- z1 <- se.z1 <- NULL
-
-  data <- as.data.frame(scores) %>%
-    rename(z1 = F1, se.z1 = SE_F1) %>%
-    mutate(pct975 = z1 + 1.96 * se.z1, pct025 = z1 - 1.96 * se.z1)
-
-  data
-}
-
-#' Match generated scores to the level of an official UD release
-#'
-#' @param data A dataset containing an extension of the UD scores, from the
-#'   output of \link{democracy_scores}. It must contain a \code{country_name}
-#'   column, a \code{year} column, \code{z1} column, a \code{pct025} column, and
-#'   a \code{pct975} column.
-#' @param release The year of a Unified Democracy Scores official release (see
-#'   the available releases in their data page at
-#'   \url{http://www.unified-democracy-scores.org/uds.html} and
-#'   \url{http://www.unified-democracy-scores.org/archive.html}). Default is
-#'   2014.
-#'
-#' @return The dataset with three columns appended: \code{adj.z1} (the mean
-#'   democracy score, adjusted to match the UD release), \code{adj.pct025} and
-#'   \code{adj.pct975} (the adjusted confidence bounds).
-#'
-#' @export
-#'
-#' @examples
-#' \donttest{
-#' library(dplyr)
-#' indexes <- c("arat_pmm","blm","bmr_democracy","bollen_pmm",
-#'                             "doorenspleet","eiu","freedomhouse",
-#'                             "gwf","hadenius_pmm","lied","mainwaring",
-#'                             "munck_pmm","pacl","polity2","polyarchy_pmm","prc",
-#'                             "svolik","ulfelder","vanhanen_democratization",
-#'                             "wahman_teorell_hadenius")
-#' data <- prepare_democracy(indexes)
-#' extended_model <- democracy_model(data,indexes, verbose=TRUE)
-#' extended_scores <- democracy_scores(extended_model)
-#' extended_scores <- bind_cols(data,extended_scores)
-#' # Matches the calculated scores to the level of the 2014 release of the UD scores
-#' extended_scores <- match_to_uds(extended_scores)}
-match_to_uds <- function(data, release = 2014) {
-  stopifnot("z1" %in% names(data))
-  stopifnot("pct975" %in% names(data))
-  stopifnot("pct025" %in% names(data))
-  stopifnot("country_name" %in% names(data))
-  stopifnot("year" %in% names(data))
-
-  if(release == 2014) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
-                                      paste(QuickUDS::uds_2014$country_name,
-                                            QuickUDS::uds_2014$year) ],
-                           na.rm=TRUE)
-  } else if(release == 2011) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
-                                      paste(QuickUDS::uds_2011$country_name,
-                                            QuickUDS::uds_2011$year) ],
-                           na.rm=TRUE)
-  } else if(release == 2010) {
-    mean_ud_period <- mean(data$z1[ paste(data$country_name, data$year) %in%
-                                      paste(QuickUDS::uds_2010$country_name,
-                                            QuickUDS::uds_2010$year) ],
-                           na.rm=TRUE)
-  } else {
-    message("UDS release unknown. Using the 2014 UDS release for adjustment.")
-    mean_ud_period <- mean(data$z1[ paste(data$country_name,data$year) %in%
-                                      paste(QuickUDS::uds_2014$country_name,
-                                            QuickUDS::uds_2014$year) ],
-                           na.rm=TRUE)
+  if(missing(model)) {
+    model <- democracy_model(..., identifiers = identifiers)
   }
 
-  data$adj.z1 <- data$z1 - mean_ud_period
+  stopifnot("SingleGroupClass" %in% class(model))
 
-  data$adj.pct025 <- data$pct025 - mean_ud_period
+  scores <- mirt::fscores(model, full.scores = TRUE, full.scores.SE = TRUE) %>%
+    as_tibble() %>%
+    rename_at(c("F1", "SE_F1"), quos(c("z1", "se_z1"))) %>%
+    mutate_at("z1",
+              funs(z1_pct975 = . + 1.96 * .data$se_z1,
+                   z1_pct025 = . - 1.96 * .data$se_z1))
 
-  data$adj.pct975 <- data$pct975 - mean_ud_period
+  scores <- model@Data$identifiers %>%
+    bind_cols(scores)
 
-  data
+  if(adjust_to_dichotomous) {
+    avg_dichotomous <- cutpoints(model) %>%
+      group_by_at("variable") %>%
+      filter(n() == 1) %>%
+      pull("estimate") %>%
+      mean()
+
+    scores <- scores %>%
+      mutate_at(vars(starts_with("z1")),
+                funs(adj = . - avg_dichotomous))
+  }
+
+  if(as_prob) {
+    scores <- scores %>%
+      mutate_at(vars(starts_with("z1")),
+                funs(as_prob = pnorm(.)))
+  }
+
+  scores %>% ungroup()
 }
+
 

@@ -57,7 +57,7 @@
       <h1>Generating the Extended Unified Democracy Scores</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2017-09-26</h4>
+            <h4 class="date">2018-01-19</h4>
           </div>
 
     
@@ -65,6 +65,7 @@
 <div class="contents">
 <p>The <code>extended_uds</code> dataset can be generated with the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -100,9 +101,9 @@ extended_model &lt;-<span class="st"> </span><span class="kw"><a href="../refere
 
 extended_scores &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_scores.html">democracy_scores</a></span>(<span class="dt">model =</span> extended_model)</code></pre></div>
 <p>The model takes about 1-2 minutes to converge on my machine, and accounts for more than 90 per cent of the variance in the various democracy indexes used:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_model@time</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_model<span class="op">@</span>time</code></pre></div>
 <pre><code>## TOTAL:   Data  Estep  Mstep     SE   Post 
-##  77.64   1.21  26.24  40.72   9.37   0.00</code></pre>
+##  98.36   1.28  40.02  47.64   9.36   0.00</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Number of iterations, log likelihood, etc.</span>
 extended_model</code></pre></div>
 <pre><code>## 
@@ -111,54 +112,54 @@ extended_model</code></pre></div>
 ##     itemtype = "graded", SE = TRUE, verbose = verbose, technical = technical)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 1120 EM iterations.
+## Converged within 1e-04 tolerance after 1720 EM iterations.
 ## mirt version: 1.25 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay 
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: Oakes
-## Condition number of information matrix = 9626.387
+## Condition number of information matrix = 9638.871
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -210624.7
+## Log-likelihood = -211366.9
 ## Estimated parameters: 189 
-## AIC = 421627.4; AICc = 421630.1
-## BIC = 423172.6; SABIC = 422572</code></pre>
+## AIC = 423111.9; AICc = 423114.6
+## BIC = 424657.2; SABIC = 424056.6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Correlations of latent factor with source variables, variance accounted for, etc.</span>
 <span class="kw">summary</span>(extended_model)</code></pre></div>
 <pre><code>##                                    F1    h2
-## pmm_arat                        0.896 0.803
-## blm                             0.981 0.961
+## pmm_arat                        0.897 0.804
+## blm                             0.981 0.962
 ## bmr_democracy                   0.981 0.963
-## bnr_extended                    0.964 0.929
+## bnr_extended                    0.964 0.928
 ## pmm_bollen                      0.922 0.850
 ## doorenspleet                    0.966 0.934
-## wgi_democracy                   0.947 0.897
-## fh_total_reversed               0.935 0.874
-## fh_electoral                    0.986 0.971
+## wgi_democracy                   0.954 0.910
+## fh_total_reversed               0.936 0.876
+## fh_electoral                    0.986 0.972
 ## gwf_democracy_extended          0.956 0.913
-## pmm_hadenius                    0.954 0.910
+## pmm_hadenius                    0.954 0.911
 ## kailitz_tri                     0.938 0.880
 ## lexical_index                   0.918 0.843
-## mainwaring                      0.972 0.946
-## magaloni_democracy_extended     0.970 0.941
-## pmm_munck                       0.938 0.881
+## mainwaring                      0.973 0.946
+## magaloni_democracy_extended     0.970 0.942
+## pmm_munck                       0.939 0.881
 ## pacl                            0.958 0.917
-## PEPS1v                          0.992 0.984
+## PEPS1v                          0.992 0.983
 ## pitf                            0.974 0.949
-## polity2                         0.988 0.976
-## reign_democracy                 0.957 0.917
-## polyarchy_original_contestation 0.944 0.891
+## polity2                         0.988 0.975
+## reign_democracy                 0.957 0.916
+## polyarchy_original_contestation 0.944 0.892
 ## prc                             0.955 0.912
 ## svolik_democracy                0.960 0.922
 ## ulfelder_democracy_extended     0.968 0.937
 ## utip_dichotomous_strict         0.954 0.910
-## v2x_polyarchy                   0.942 0.887
-## vanhanen_democratization        0.933 0.870
+## v2x_polyarchy                   0.942 0.888
+## vanhanen_democratization        0.933 0.871
 ## wth_democ1                      0.992 0.985
 ## 
-## SS loadings:  26.552 
+## SS loadings:  26.571 
 ## Proportion Var:  0.916 
 ## 
 ## Factor correlations: 
@@ -171,52 +172,52 @@ extended_model</code></pre></div>
 <p>The cutpoints and discrimination parameters of these scores can be obtained as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
-dichotomous &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">group_by</a></span>(variable) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/n">n</a></span>()==<span class="dv">1</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">ungroup</a></span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/summarise">summarise</a></span>(<span class="dt">avg_estimate =</span> <span class="kw">mean</span>(estimate),
-            <span class="dt">avg_se =</span> <span class="kw">sqrt</span>(<span class="kw">sum</span>(se^<span class="dv">2</span>)/<span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/n">n</a></span>() ^<span class="st"> </span><span class="dv">2</span> )) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">avg_pct975 =</span> avg_estimate +<span class="st"> </span><span class="fl">1.96</span>*avg_se,
-         <span class="dt">avg_pct025 =</span> avg_estimate -<span class="st"> </span><span class="fl">1.96</span>*avg_se)
+dichotomous &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(variable) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>()<span class="op">==</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">avg_estimate =</span> <span class="kw">mean</span>(estimate),
+            <span class="dt">avg_se =</span> <span class="kw">sqrt</span>(<span class="kw">sum</span>(se<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n.html">n</a></span>() <span class="op">^</span><span class="st"> </span><span class="dv">2</span> )) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">avg_pct975 =</span> avg_estimate <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span><span class="op">*</span>avg_se,
+         <span class="dt">avg_pct025 =</span> avg_estimate <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span><span class="op">*</span>avg_se)
 
-xmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/pull">pull</a></span>(variable) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">unique</span>() %&gt;%<span class="st"> </span>
+xmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">length</span>()
 
-xmax &lt;-<span class="st"> </span>xmax +<span class="st"> </span><span class="dv">1</span>
+xmax &lt;-<span class="st"> </span>xmax <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 
-<span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) %&gt;%
+<span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>variable, 
              <span class="dt">y =</span> estimate, 
              <span class="dt">ymin =</span> pct025,
-             <span class="dt">ymax=</span>pct975))  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_rect</span>(<span class="dt">ymin =</span> dichotomous$avg_pct025, <span class="dt">ymax =</span> dichotomous$avg_pct975,
-            <span class="dt">xmin =</span> <span class="dv">0</span>, <span class="dt">xmax =</span> xmax, <span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">"grey"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> dichotomous$avg_estimate, 
-             <span class="dt">color=</span><span class="st">"black"</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) +<span class="st"> </span>
+             <span class="dt">ymax=</span>pct975))  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_rect</span>(<span class="dt">ymin =</span> dichotomous<span class="op">$</span>avg_pct025, <span class="dt">ymax =</span> dichotomous<span class="op">$</span>avg_pct975,
+            <span class="dt">xmin =</span> <span class="dv">0</span>, <span class="dt">xmax =</span> xmax, <span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">"grey"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> dichotomous<span class="op">$</span>avg_estimate, 
+             <span class="dt">color=</span><span class="st">"black"</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">""</span>,
        <span class="dt">y =</span> <span class="st">"Unified democracy level rater cutoffs"</span>,
        <span class="dt">title =</span> <span class="st">"Rater cutoffs"</span>,
-       <span class="dt">subtitle =</span> <span class="st">"Grey band represents the average cutoff for dichotomous measures of democracy"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>() +<span class="st"> </span>
+       <span class="dt">subtitle =</span> <span class="st">"Grey band represents the average cutoff for dichotomous measures of democracy"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, 
-             <span class="dt">color=</span><span class="st">"red"</span>)+
+             <span class="dt">color=</span><span class="st">"red"</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model, <span class="dt">type =</span><span class="st">"discrimination"</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model, <span class="dt">type =</span><span class="st">"discrimination"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(variable, estimate),
-           <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> pct025, <span class="dt">ymax =</span> pct975))  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
+           <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> pct025, <span class="dt">ymax =</span> pct975))  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">""</span>,<span class="dt">y=</span><span class="st">"Discrimination parameter for each rater</span>
 <span class="st">       </span><span class="ch">\n</span><span class="st">(higher value means fewer idiosyncratic</span><span class="ch">\n</span><span class="st">errors relative to latent score)"</span>,
        <span class="dt">title =</span> <span class="st">"Discrimination parameters"</span>,
-       <span class="dt">subtitle =</span> <span class="st">"Measures with higher discrimination are less likely </span><span class="ch">\n</span><span class="st">to make idiosyncratic judgments relative to the rest"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>() +<span class="st"> </span>
+       <span class="dt">subtitle =</span> <span class="st">"Measures with higher discrimination are less likely </span><span class="ch">\n</span><span class="st">to make idiosyncratic judgments relative to the rest"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-1-2.png" width="672"></p>
 </div>
@@ -224,7 +225,7 @@ xmax &lt;-<span class="st"> </span>xmax +<span class="st"> </span><span class="d
 <h2 class="hasAnchor">
 <a href="#score-types-and-scores-by-country" class="anchor"></a>Score types and scores by country</h2>
 <p>The <code>democracy_scores</code> function produces three types of scores: the original latent variable (<code>z1</code>), an “adjusted” score where 0 equals the cutpoint of the dichotomous democracy indexes (<code>z1_adj</code>) and a probability score (<code>z1_*_as_prob</code>) that is normalizes the other two to a 0-1 index, and can be interepreted as a kind of probability measure: country-years with scores close to 1 are almost certainly democratic, while country-years with scores close to 0 are almost certainly not, while 0.5 represents the cut-off between democracy and non-democracy.</p>
-<p>These extended UD scores are available for <code>26258</code> country-years (<code>248</code> unique countries and non-sovereign territories):</p>
+<p>These extended UD scores are available for <code>26273</code> country-years (<code>248</code> unique countries and non-sovereign territories):</p>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 <p>(Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">Gleditsch and Ward list of state system membership since 1816</a>, i.e., independent, or is a <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">microstate in Gleditsch’s tentative list</a>).</p>

@@ -1,7 +1,7 @@
 Package: QuickUDS
 Type: Package
 Title: Extend the Unified Democracy Scores easily
-Version: 0.2.1
+Version: 0.2.2
 Date: 2017-09-26
 Authors@R: person("Xavier", "Marquez", role=c("aut", "cre"),
   email = "marquez.x@gmail.com")

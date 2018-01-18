@@ -57,7 +57,7 @@
       <h1>Replicating and Extending the UD scores of Pemstein, Meserve, and Melton</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2017-09-26</h4>
+            <h4 class="date">2018-01-19</h4>
           </div>
 
     
@@ -75,6 +75,7 @@
 <pre><code>## Loading required package: lattice</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mirt)
 <span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -83,9 +84,9 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
-
-<span class="kw">names</span>(democracy)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)</code></pre></div>
+<pre><code>## Warning: package 'tidyr' was built under R version 3.4.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(democracy)</code></pre></div>
 <pre><code>##  [1] "extended_country_name"            "GWn"                             
 ##  [3] "cown"                             "in_GW_system"                    
 ##  [5] "year"                             "blm"                             
@@ -132,7 +133,7 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
 ##  [5] "pmm_hadenius"   "pmm_mainwaring" "pmm_munck"      "pmm_pacl"      
 ##  [9] "pmm_polity"     "pmm_polyarchy"  "pmm_prc"        "pmm_vanhanen"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/prepare_democracy.html">prepare_democracy</a></span>(indexes)</code></pre></div>
-<p>You can use a <code><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">dplyr::select</a></code> helper to simplify this procedure:</p>
+<p>You can use a <code><a href="http://dplyr.tidyverse.org/reference/select.html">dplyr::select</a></code> helper to simplify this procedure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/prepare_democracy.html">prepare_democracy</a></span>(<span class="kw">matches</span>(<span class="st">"pmm"</span>))</code></pre></div>
 <p>The function <code>prepare_democracy</code> selects the appropriate colums from the <code>democracy</code> dataset, gets rid of “empty rows” (country-years that have no measurements of democracy for the chosen indexes; such patterns will make <code>mirt</code> fail), and runs <code>prepare_data</code> on the remaining indexes.</p>
 <p><code>prepare_data</code> transforms selected democracy indexes into ordinal variables suitable for use with <code>mirt</code>, mostly following the advice in Pemstein, Meserve, and Melton’s original article (2010). In particular, <code>prepare_data</code> will try to do the following on any dataset (whether the included <code>democracy</code> dataset or your own dataset of democracy scores):</p>
@@ -203,9 +204,9 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
                                <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>This just tells <code>mirt</code> to fit a one-factor, full information graded response model like that in Pemstein, Meserve, and Melton 2010, and to calculate the standard errors for the coefficients. (See <code>?mirt</code> for details of the many options you can use to tweak your model).</p>
 <p>Fitting this model is reasonably fast:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_model@time</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_model<span class="op">@</span>time</code></pre></div>
 <pre><code>## TOTAL:   Data  Estep  Mstep     SE   Post 
-##   8.65   0.19   0.65   6.99   0.78   0.00</code></pre>
+##   8.78   0.18   0.67   7.08   0.79   0.00</code></pre>
 <p>There is a convenient wrapper for the entire procedure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_model.html">democracy_model</a></span>(<span class="kw">matches</span>(<span class="st">"pmm"</span>), <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>We can easily check that this model converges and that accounts for most of the variance in the democracy indexes:</p>
@@ -288,7 +289,7 @@ replication_2011_scores</code></pre></div>
 <p>The entire procedure can be performed in one call:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_scores &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_scores.html">democracy_scores</a></span>(<span class="kw">matches</span>(<span class="st">"pmm"</span>), <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>We can also check that these scores are, in fact, perfectly correlated with Pemstein, Meserve, and Melton’s 2011 UDS release:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(replication_2011_scores %&gt;%<span class="st"> </span><span class="kw">select</span>(<span class="kw">matches</span>(<span class="st">"uds"</span>), z1), <span class="dt">use =</span> <span class="st">"pairwise"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(replication_2011_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">matches</span>(<span class="st">"uds"</span>), z1), <span class="dt">use =</span> <span class="st">"pairwise"</span>)</code></pre></div>
 <pre><code>##               uds_2010_mean uds_2011_mean uds_2014_mean        z1
 ## uds_2010_mean     1.0000000     0.9917366     0.9917310 0.9914264
 ## uds_2011_mean     0.9917366     1.0000000     0.9989172 0.9996935
@@ -328,27 +329,27 @@ extended_model &lt;-<span class="st"> </span><span class="kw"><a href="../refere
 ## blm                             0.985 0.970
 ## bmr_democracy                   0.986 0.973
 ## pmm_bollen                      0.958 0.918
-## doorenspleet                    0.964 0.930
-## wgi_democracy                   0.963 0.928
-## fh_total_reversed               0.953 0.908
+## doorenspleet                    0.965 0.930
+## wgi_democracy                   0.970 0.942
+## fh_total_reversed               0.954 0.911
 ## gwf_democracy                   0.966 0.932
-## pmm_hadenius                    0.979 0.959
+## pmm_hadenius                    0.980 0.960
 ## kailitz_tri                     0.956 0.914
-## lexical_index                   0.964 0.929
-## mainwaring                      0.983 0.966
-## pmm_munck                       0.934 0.872
+## lexical_index                   0.964 0.928
+## mainwaring                      0.983 0.967
+## pmm_munck                       0.933 0.871
 ## pacl                            0.966 0.934
-## polity2                         0.932 0.869
-## polyarchy_original_contestation 0.959 0.920
+## polity2                         0.933 0.870
+## polyarchy_original_contestation 0.960 0.922
 ## prc                             0.978 0.956
 ## svolik_democracy                0.970 0.940
 ## ulfelder_democracy              0.975 0.950
-## v2x_polyarchy                   0.971 0.943
-## vanhanen_democratization        0.936 0.877
-## wth_democ1                      0.989 0.978
+## v2x_polyarchy                   0.972 0.944
+## vanhanen_democratization        0.936 0.876
+## wth_democ1                      0.989 0.979
 ## 
-## SS loadings:  20.469 
-## Proportion Var:  0.93 
+## SS loadings:  20.488 
+## Proportion Var:  0.931 
 ## 
 ## Factor correlations: 
 ## 
@@ -362,11 +363,11 @@ extended_model &lt;-<span class="st"> </span><span class="kw"><a href="../refere
                <span class="st">"United Kingdom"</span>,<span class="st">"Argentina"</span>,
                <span class="st">"Chile"</span>,<span class="st">"Venezuela"</span>,<span class="st">"Spain"</span>)
 
-data &lt;-<span class="st"> </span>extended_scores %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(extended_country_name %in%<span class="st"> </span>countries) %&gt;%
-<span class="st">  </span>tidyr::<span class="kw">gather</span>(measure, zscore, uds_2010_mean:uds_2014_mean, z1) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(zscore), year &gt;=<span class="dv">1946</span>, year &lt;<span class="st"> </span><span class="dv">2008</span>) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">measure =</span> plyr::<span class="kw">mapvalues</span>(measure, 
+data &lt;-<span class="st"> </span>extended_scores <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(extended_country_name <span class="op">%in%</span><span class="st"> </span>countries) <span class="op">%&gt;%</span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/gather">gather</a></span>(measure, zscore, uds_2010_mean<span class="op">:</span>uds_2014_mean, z1) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(zscore), year <span class="op">&gt;=</span><span class="dv">1946</span>, year <span class="op">&lt;</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">measure =</span> plyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/plyr/topics/mapvalues">mapvalues</a></span>(measure, 
                                    <span class="kw">c</span>(<span class="st">"uds_2010_mean"</span>,
                                      <span class="st">"uds_2011_mean"</span>,
                                      <span class="st">"uds_2014_mean"</span>,
@@ -379,26 +380,26 @@ data &lt;-<span class="st"> </span>extended_scores %&gt;%<span class="st"> </spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
 <span class="kw">ggplot</span>(<span class="dt">data =</span> data, 
-       <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> zscore, <span class="dt">color =</span> measure)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_path</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year"</span>)  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol =</span> <span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow =</span> <span class="dv">1</span>)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~extended_country_name, <span class="dt">ncol =</span> <span class="dv">2</span>)  </code></pre></div>
+       <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> zscore, <span class="dt">color =</span> measure)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year"</span>)  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol =</span> <span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow =</span> <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>extended_country_name, <span class="dt">ncol =</span> <span class="dv">2</span>)  </code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
 <p>If necessary, one can therefore “match” the extended scores to the official UD release by substracting the mean of the extended scores for the period of the UD release one wants to match from the extended scores (that is, making the mean of the extended scores equal to zero for the period of adjustment):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span>extended_scores %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(uds_2014_mean)) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">z1_matched =</span> z1 -<span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
-         <span class="dt">z1_pct975_matched =</span> z1_pct975 -<span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
-         <span class="dt">z1_pct025_matched =</span> z1_pct025 -<span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span>extended_scores <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(uds_2014_mean)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">z1_matched =</span> z1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+         <span class="dt">z1_pct975_matched =</span> z1_pct975 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+         <span class="dt">z1_pct025_matched =</span> z1_pct025 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
 
-data &lt;-<span class="st"> </span>data %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(extended_country_name %in%<span class="st"> </span>countries) %&gt;%
-<span class="st">  </span>tidyr::<span class="kw">gather</span>(measure, zscore, uds_2010_mean:uds_2014_mean, z1_matched) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(zscore), year &gt;=<span class="dv">1946</span>, year &lt;<span class="st"> </span><span class="dv">2008</span>) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">measure =</span> plyr::<span class="kw">mapvalues</span>(measure, 
+data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(extended_country_name <span class="op">%in%</span><span class="st"> </span>countries) <span class="op">%&gt;%</span>
+<span class="st">  </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/gather">gather</a></span>(measure, zscore, uds_2010_mean<span class="op">:</span>uds_2014_mean, z1_matched) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(zscore), year <span class="op">&gt;=</span><span class="dv">1946</span>, year <span class="op">&lt;</span><span class="st"> </span><span class="dv">2008</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">measure =</span> plyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/plyr/topics/mapvalues">mapvalues</a></span>(measure, 
                                    <span class="kw">c</span>(<span class="st">"uds_2010_mean"</span>,
                                      <span class="st">"uds_2011_mean"</span>,
                                      <span class="st">"uds_2014_mean"</span>,
@@ -411,24 +412,24 @@ data &lt;-<span class="st"> </span>data %&gt;%<span class="st"> </span>
 <span class="kw">library</span>(ggplot2)
 
 <span class="kw">ggplot</span>(<span class="dt">data =</span> data, 
-       <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> zscore, <span class="dt">color =</span> measure)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_path</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year"</span>)  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol=</span><span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow=</span><span class="dv">1</span>)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~extended_country_name,<span class="dt">ncol=</span><span class="dv">2</span>)  </code></pre></div>
+       <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> zscore, <span class="dt">color =</span> measure)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year"</span>)  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol=</span><span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow=</span><span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>extended_country_name,<span class="dt">ncol=</span><span class="dv">2</span>)  </code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
 <p>In the graph above, we can see that the 2014 release of the UDS seems to overestimate the degree of democracy in the USA in the early decades of 1950 relative to the “extended” scores.</p>
 <p>These scores have a more natural interpretation when transformed to a 0-1 index using the cumulative distribution function as the “probability that a country-year is democratic” (so the 0 is now a natural minimum, and 1 a natural maximum). These indexes are automatically produced by the function <code>democracy_scores</code>; they are in the column <code>z1_as_prob</code> of the output, and are produced by applying the <code>pnorm</code> function to <code>z1</code>, as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span>extended_scores %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span>extended_scores <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">index =</span> <span class="kw">pnorm</span>(z1), 
          <span class="dt">index_pct025 =</span> <span class="kw">pnorm</span>(z1_pct025), 
          <span class="dt">index_pct975 =</span> <span class="kw">pnorm</span>(z1_pct975))
 
 <span class="co"># These are equal to z1_as_prob, which is automatically calculated:</span>
 
-extended_scores %&gt;%<span class="st"> </span><span class="kw">filter</span>(index !=<span class="st"> </span>z1_as_prob)</code></pre></div>
+extended_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(index <span class="op">!=</span><span class="st"> </span>z1_as_prob)</code></pre></div>
 <pre><code>## # A tibble: 0 x 24
 ## # ... with 24 variables: extended_country_name &lt;chr&gt;, year &lt;dbl&gt;,
 ## #   GWn &lt;dbl&gt;, cown &lt;int&gt;, uds_2010_mean &lt;dbl&gt;, uds_2011_mean &lt;dbl&gt;,
@@ -443,57 +444,57 @@ extended_scores %&gt;%<span class="st"> </span><span class="kw">filter</span>(in
 
 cutpoints_extended</code></pre></div>
 <pre><code>## # A tibble: 131 x 6
-##         variable    estimate      pct025       pct975           se num_obs
-##            &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;
-##  1      pmm_arat -0.80723567 -0.80733175 -0.807148087 4.468415e-05    3873
-##  2      pmm_arat -0.45816575 -0.44963891 -0.465937831 3.965348e-03    3873
-##  3      pmm_arat  0.01956491  0.04774237 -0.006118384 1.310372e-02    3873
-##  4      pmm_arat  0.35159962  0.40167601  0.305955788 2.328767e-02    3873
-##  5      pmm_arat  0.79706665  0.88392571  0.717896013 4.039318e-02    3873
-##  6      pmm_arat  1.68926666  1.85293789  1.540082976 7.611413e-02    3873
-##  7           blm  0.33482793  0.51535168  0.214103455 6.159412e-02     505
-##  8           blm  0.98943475  1.47359154  0.665657010 1.651927e-01     505
-##  9 bmr_democracy  0.55579853  0.63064980  0.489542142 3.380428e-02   16987
-## 10    pmm_bollen -0.94261243 -0.94356834 -0.941858517 3.846498e-04     510
+##         variable    estimate      pct025      pct975           se num_obs
+##            &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;
+##  1      pmm_arat -0.81146023 -0.81172567 -0.81121826 0.0001234534    3873
+##  2      pmm_arat -0.46311899 -0.45483056 -0.47067458 0.0038548906    3873
+##  3      pmm_arat  0.01382959  0.04157779 -0.01146518 0.0129054953    3873
+##  4      pmm_arat  0.34535473  0.39484415  0.30024105 0.0230171829    3873
+##  5      pmm_arat  0.79005600  0.87617041  0.71155563 0.0400512086    3873
+##  6      pmm_arat  1.68036646  1.84304596  1.53207071 0.0756610948    3873
+##  7           blm  0.32706741  0.50474390  0.20853514 0.0604756490     505
+##  8           blm  0.98028038  1.46336209  0.65800492 0.1644262549     505
+##  9 bmr_democracy  0.54958162  0.62331191  0.48427102 0.0333217385   16987
+## 10    pmm_bollen -0.94641611 -0.94771251 -0.94539360 0.0005216919     510
 ## # ... with 121 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dichotomous_cutpoints &lt;-<span class="st"> </span>cutpoints_extended %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(variable) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">n</span>() ==<span class="st"> </span><span class="dv">1</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dichotomous_cutpoints &lt;-<span class="st"> </span>cutpoints_extended <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">n</span>() <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) 
 
 dichotomous_cutpoints</code></pre></div>
 <pre><code>## # A tibble: 7 x 6
 ## # Groups:   variable [7]
 ##             variable  estimate    pct025    pct975         se num_obs
 ##                &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;   &lt;int&gt;
-## 1      bmr_democracy 0.5557985 0.6306498 0.4895421 0.03380428   16987
-## 2       doorenspleet 0.8800381 0.9864210 0.7852954 0.04833808   13009
-## 3      gwf_democracy 0.5937798 0.6744796 0.5222004 0.03652010    7954
-## 4               pacl 0.5666457 0.6418725 0.4995961 0.03420898    9115
-## 5   svolik_democracy 0.5636332 0.6415910 0.4944819 0.03528126    8555
-## 6 ulfelder_democracy 0.5294266 0.6073766 0.4609674 0.03492814    7684
-## 7         wth_democ1 0.7514143 0.9235143 0.6105236 0.07188299    7429</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg_dichotomous &lt;-<span class="st"> </span><span class="kw">mean</span>(dichotomous_cutpoints$estimate)
+## 1      bmr_democracy 0.5495816 0.6233119 0.4842710 0.03332174   16987
+## 2       doorenspleet 0.8728086 0.9783085 0.7788562 0.04793490   13009
+## 3      gwf_democracy 0.5868977 0.6665564 0.5162304 0.03605472    7954
+## 4               pacl 0.5603541 0.6345866 0.4941752 0.03376471    9115
+## 5   svolik_democracy 0.5574193 0.6343991 0.4891182 0.03484751    8555
+## 6 ulfelder_democracy 0.5227449 0.5998478 0.4550329 0.03454693    7684
+## 7         wth_democ1 0.7435024 0.9141761 0.6038916 0.07123001    7429</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg_dichotomous &lt;-<span class="st"> </span><span class="kw">mean</span>(dichotomous_cutpoints<span class="op">$</span>estimate)
 
 avg_dichotomous</code></pre></div>
-<pre><code>## [1] 0.6343909</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span>extended_scores %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">adj_z1 =</span> z1 -<span class="st"> </span>avg_dichotomous, 
-                                        <span class="dt">adj_pct025 =</span> z1_pct025 -<span class="st"> </span>avg_dichotomous, 
-                                        <span class="dt">adj_pct975 =</span>z1_pct975 -<span class="st"> </span>avg_dichotomous,
+<pre><code>## [1] 0.6276155</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span>extended_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">adj_z1 =</span> z1 <span class="op">-</span><span class="st"> </span>avg_dichotomous, 
+                                        <span class="dt">adj_pct025 =</span> z1_pct025 <span class="op">-</span><span class="st"> </span>avg_dichotomous, 
+                                        <span class="dt">adj_pct975 =</span>z1_pct975 <span class="op">-</span><span class="st"> </span>avg_dichotomous,
                                         <span class="dt">index =</span> <span class="kw">pnorm</span>(adj_z1),
                                         <span class="dt">index_pct025 =</span> <span class="kw">pnorm</span>(adj_pct025),
                                         <span class="dt">index_pct975 =</span> <span class="kw">pnorm</span>(adj_pct975))
 
-<span class="kw">ggplot</span>(<span class="dt">data =</span> extended_scores %&gt;%<span class="st"> </span><span class="kw">filter</span>(extended_country_name %in%<span class="st"> </span>countries), 
+<span class="kw">ggplot</span>(<span class="dt">data =</span> extended_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(extended_country_name <span class="op">%in%</span><span class="st"> </span>countries), 
        <span class="kw">aes</span>(<span class="dt">x=</span> year, <span class="dt">y =</span> index, 
-           <span class="dt">ymin =</span> index_pct025, <span class="dt">ymax =</span> index_pct975)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_path</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year</span><span class="ch">\n</span><span class="st">converted to 0-1 probability scale"</span>)  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol=</span><span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow=</span><span class="dv">1</span>)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="fl">0.5</span>,<span class="dt">color=</span><span class="st">"red"</span>) +
-<span class="st">  </span><span class="kw">facet_wrap</span>(~extended_country_name,<span class="dt">ncol=</span><span class="dv">2</span>)  </code></pre></div>
+           <span class="dt">ymin =</span> index_pct025, <span class="dt">ymax =</span> index_pct975)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Latent unified democracy scores,</span><span class="ch">\n</span><span class="st">per year</span><span class="ch">\n</span><span class="st">converted to 0-1 probability scale"</span>)  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">ncol=</span><span class="dv">1</span>),<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow=</span><span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="fl">0.5</span>,<span class="dt">color=</span><span class="st">"red"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>extended_country_name,<span class="dt">ncol=</span><span class="dv">2</span>)  </code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-15-1.png" width="672"></p>
 <p>A pre-computed version of the extended UDS scores, with data from all the indexes mentioned above, plus the participation-enhanced Polity Scores of Moon et al (2006), a trichotomous democracy indicator calculated from Magaloni, Min, and Chu’s “Autocracies of the World” datset (Magaloni, Min and Chu 2013), a dichotomous democracy indicator calculated from Hsu (2008), the REIGN dataset of Bell (2016), and an indicator of democracy used by the Political Instability Task Force (Goldstein et. al 2010; Taylor and Ulfelder 2015), is included with the package; it can be loaded by simply typing <code>extended_uds</code>. Use <code><a href="../reference/extended_uds.html">?extended_uds</a></code> to examine the documentation for all its variables; see my working paper (<a href="http://ssrn.com/abstract=2753830">Marquez 2016</a>) for more detail on the data and its uses.</p>
 </div>
@@ -522,12 +523,12 @@ replication_2011_cutpoints</code></pre></div>
 
 <span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_cutpoints, 
        <span class="kw">aes</span>(<span class="dt">x =</span> variable, <span class="dt">y =</span> estimate, 
-           <span class="dt">ymin =</span> pct025, <span class="dt">ymax =</span> pct975))  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">""</span>,<span class="dt">y=</span><span class="st">"Unified democracy level rater cutoffs"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span><span class="dv">0</span>, <span class="dt">color=</span><span class="st">"red"</span>) +<span class="st"> </span>
+           <span class="dt">ymin =</span> pct025, <span class="dt">ymax =</span> pct975))  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">""</span>,<span class="dt">y=</span><span class="st">"Unified democracy level rater cutoffs"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span><span class="dv">0</span>, <span class="dt">color=</span><span class="st">"red"</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-16-1.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We can also plot discrimination parameters, which are in a different scale:</span>
@@ -553,12 +554,12 @@ replication_2011_discrimination</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_discrimination, 
        <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(variable,estimate),
            <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> pct025, 
-           <span class="dt">ymax =</span> pct975))  +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
+           <span class="dt">ymax =</span> pct975))  <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">""</span>,<span class="dt">y=</span><span class="st">"Discrimination parameter for each rater</span>
-<span class="st">       </span><span class="ch">\n</span><span class="st">(higher value means fewer idiosyncratic</span><span class="ch">\n</span><span class="st">errors relative to latent score)"</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>() +<span class="st"> </span>
+<span class="st">       </span><span class="ch">\n</span><span class="st">(higher value means fewer idiosyncratic</span><span class="ch">\n</span><span class="st">errors relative to latent score)"</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-16-2.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># And we can plot item information curves for each rater:</span>
@@ -578,18 +579,18 @@ replication_2011_info</code></pre></div>
 ##  9 pmm_arat  -4.4 3.480865e-04
 ## 10 pmm_arat  -4.2 7.059443e-04
 ## # ... with 722 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_info, <span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>info)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_path</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(~rater) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_bw</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Latent democracy score"</span>,<span class="dt">y =</span> <span class="st">"Information"</span>) +<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_info, <span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>info)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>rater) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Latent democracy score"</span>,<span class="dt">y =</span> <span class="st">"Information"</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</code></pre></div>
 <p><img src="Replicating_and_extending_the_UD_scores_files/figure-html/unnamed-chunk-16-3.png" width="672"></p>
 <p>Finally, the package offers a simple function to estimate the probability that a given country is more democratic than another in a given year, accounting for the uncertainty in the UD-style measures. For example, suppose we want to know the probability that the USA was more democratic than France in the year 2000 for both the replicated 2011 scores and our extended model:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(replication_2011_scores, <span class="st">"United States of America"</span>,<span class="st">"France"</span>, <span class="dv">2000</span>)</code></pre></div>
 <pre><code>## [1] 0.8778951</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(extended_scores, <span class="st">"United States of America"</span>,<span class="st">"France"</span>, <span class="dv">2000</span>)</code></pre></div>
-<pre><code>## [1] 0.4828191</code></pre>
+<pre><code>## [1] 0.5269027</code></pre>
 <p>Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(replication_2011_scores, 
           <span class="st">"United States of America"</span>,
@@ -600,7 +601,7 @@ replication_2011_info</code></pre></div>
           <span class="st">"United States of America"</span>,
           <span class="st">"United States of America"</span>, 
           <span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">1953</span>))</code></pre></div>
-<pre><code>## [1] 0.99984</code></pre>
+<pre><code>## [1] 0.9998804</code></pre>
 <p>If you find this package useful, cite both it and Pemstein, Meserve, and Melton’s original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using <code>citation</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">"QuickUDS"</span>)</code></pre></div>
 <pre><code>## 

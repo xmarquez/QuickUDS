@@ -117,7 +117,7 @@ scale as the latent variable.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Replicate the official UDS 2011 release and calculate its cutpoints</span>
-<span class='no'>replication_2011_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='democracy_model.html'>democracy_model</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select_helpers'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>replication_2011_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='democracy_model.html'>democracy_model</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>cutpoints</span>(<span class='no'>replication_2011_model</span>)</div><div class='output co'>#&gt; # A tibble: 82 x 6
 #&gt;      variable     estimate        pct025      pct975          se num_obs
 #&gt;         &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;int&gt;

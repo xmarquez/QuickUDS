@@ -4,7 +4,7 @@
 \name{democracy}
 \alias{democracy}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 27786 rows and 79 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 27801 rows and 79 columns.}
 \usage{
 democracy
 }
@@ -337,12 +337,12 @@ Pemstein, Meserve, and Melton 2013.}
 Governance Indicators. Taken from \url{http://www.govindicators.org}.}
 
 \item{fh_total_reversed}{Average civil liberties + political rights score
-(reversed so higher values are more democratic) from Freedom House. 2015.
+(reversed so higher values are more democratic) from Freedom House. 2018.
 "Freedom in the World." Original data available at
 \url{http://www.freedomhouse.org}. Goes from 0 (least democratic) to 13
 (most democratic). In this version, the index does not include a value for
 1981. This is based on the latest Freedom House data going all the way to
-2016.}
+2017.}
 
 \item{pmm_fh}{Same as previous but taken from Pemstein, Meserve, and Melton
 2013. Goes from 1 (least democratic) to 7 (most democratic). In this
@@ -354,7 +354,7 @@ the World index, see
 \item{fh_electoral}{An indicator of whether a country is an "electoral
 democracy" in Freedom House's estimation (1 = yes, 0 - no). Original data
 available at \url{http://www.freedomhouse.org}. Available only from 1989.
-This is based on the latest Freedom House data going all the way to 2016.}
+This is based on the latest Freedom House electoral democracies list going all the way to 2016.}
 
 \item{gwf_democracy}{Dichotmous democracy/autocracy indicator from Geddes,
 Wright, and Frantz 2014. 0 = autocracy, 1 = democracy.}
@@ -766,7 +766,7 @@ Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
 World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
 \url{http://dx.doi.org/10.1017/S0043887100016580}.
 
-Freedom House. 2017. "Freedom in the World." Original data available at
+Freedom House. 2018. "Freedom in the World." Original data available at
 \url{http://www.freedomhouse.org}.
 
 Gasiorowski, Mark J. 1996. "An Overview of the Political Regime Change

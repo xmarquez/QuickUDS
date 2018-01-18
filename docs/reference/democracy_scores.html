@@ -95,7 +95,7 @@ instead of a matrix. More fine-grained control can be achieved by using
     <tr>
       <th>...</th>
       <td><p><a href='democracy.html'>democracy</a> variables to use for the model. Can be bare column
-names or strings, or a <a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>dplyr::select</a> expression.</p></td>
+names or strings, or a <a href='http://dplyr.tidyverse.org/reference/select.html'>dplyr::select</a> expression.</p></td>
     </tr>
     <tr>
       <th>model</th>
@@ -185,7 +185,7 @@ default:</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Replicate the official UDS scores (2011 release)</span>
-<span class='fu'>democracy_scores</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select_helpers'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 9,137 x 20
+<span class='fu'>democracy_scores</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 9,137 x 20
 #&gt;    extended_country_name  year   GWn  cown uds_2010_mean uds_2011_mean
 #&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
 #&gt;  1           Afghanistan  1946   700   700     -1.840259     -1.864836

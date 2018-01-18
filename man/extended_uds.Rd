@@ -4,7 +4,7 @@
 \name{extended_uds}
 \alias{extended_uds}
 \title{Extended UDS}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 26258 rows and 18 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 26273 rows and 18 columns.}
 \usage{
 extended_uds
 }

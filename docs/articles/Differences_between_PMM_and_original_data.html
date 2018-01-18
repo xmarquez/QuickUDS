@@ -57,7 +57,7 @@
       <h1>Differences between PMM’s replication data and original democracy data sources</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2017-09-26</h4>
+            <h4 class="date">2018-01-19</h4>
           </div>
 
     
@@ -69,16 +69,16 @@
 <a href="#freedom-house" class="anchor"></a>Freedom House</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuickUDS)
 <span class="kw">library</span>(dplyr)
-comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/prepare_data.html">prepare_data</a></span>() %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)</code></pre></div>
+comparison &lt;-<span class="st"> </span>democracy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/prepare_data.html">prepare_data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2008</span>, year <span class="op">&gt;=</span><span class="dv">1946</span>)</code></pre></div>
 <p>There are in total 443 differences between PMM’s replication data and the current Freedom House data (Freedom House 2017). These differences seem to be due to data revisions since 2010 in the Freedom House dataset, plus the inclusion of non-state territories in this dataset, and the treatment of 1981, which is conventionally taken to be “missing data” in the Freedom House series but which appears to be interpolated in PMM’s replication dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_fh) &amp;<span class="st"> </span><span class="kw">is.na</span>(fh_total_reversed)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_fh) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(fh_total_reversed)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_fh !=<span class="st"> </span>fh_total_reversed)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_fh, fh_total_reversed) %&gt;%
-<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">", "</span>), <span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_fh) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(fh_total_reversed)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_fh) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(fh_total_reversed)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_fh <span class="op">!=</span><span class="st"> </span>fh_total_reversed)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_fh, fh_total_reversed) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">", "</span>), <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">arrange</span>(years),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's FH values and current FH data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"Freedom House value in PMM"</span>,
@@ -1849,11 +1849,11 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#the-mainwaring-et-al--dataset" class="anchor"></a>The Mainwaring et al. dataset</h2>
 <p>PMM’s replication data is missing 405 the data points in the original data by Mainwaring et al (Mainwaring, Brinks, and Perez Linan 2008), but the original data is not missing any of their data points, and there are no differences between the data points wherever both the original and the replication data have values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_mainwaring) &amp;<span class="st"> </span><span class="kw">is.na</span>(mainwaring)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_mainwaring) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(mainwaring)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_mainwaring !=<span class="st"> </span>mainwaring)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_mainwaring, mainwaring) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_mainwaring) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(mainwaring)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_mainwaring) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(mainwaring)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_mainwaring <span class="op">!=</span><span class="st"> </span>mainwaring)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_mainwaring, mainwaring) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's Mainwaring et al values and original Mainwaring et al data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"Mainwaring et al value in PMM"</span>,
@@ -2027,11 +2027,11 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#the-ddpaclaclp-dataset" class="anchor"></a>The DD/PACL/ACLP dataset</h2>
 <p>48 country-years in the original PACL/DD dataset (Cheibub, Gandhi, and Vreeland 2010) are missing from PMM’s replication dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_pacl) &amp;<span class="st"> </span><span class="kw">is.na</span>(pacl)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_pacl) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(pacl)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_pacl !=<span class="st"> </span>pacl)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_pacl, pacl) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_pacl) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(pacl)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_pacl) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(pacl)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_pacl <span class="op">!=</span><span class="st"> </span>pacl)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_pacl, pacl) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's PACL values and original PACL data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"PACL value in PMM"</span>,
@@ -2085,12 +2085,12 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#the-polity-iv-dataset" class="anchor"></a>The Polity IV dataset</h2>
 <p>There are 252 country-years where PMM’s replication data differ from the latest version of Polity IV, either because they have no data, or because they have a different value. These differences seem to be due to minor data revisions since 2010 in the Polity IV dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_polity) &amp;<span class="st"> </span><span class="kw">is.na</span>(polity2)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_polity) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(polity2)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_polity !=<span class="st"> </span>polity2)) %&gt;%
-<span class="st">        </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">matches</span>(<span class="st">"polity"</span>)), <span class="kw">funs</span>(. -<span class="st"> </span><span class="dv">11</span>)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_polity, polity2) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_polity) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(polity2)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_polity) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(polity2)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_polity <span class="op">!=</span><span class="st"> </span>polity2)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">matches</span>(<span class="st">"polity"</span>)), <span class="kw">funs</span>(. <span class="op">-</span><span class="st"> </span><span class="dv">11</span>)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_polity, polity2) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's Polity2 values and latest Polity IV data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"Polity2 value in PMM"</span>,
@@ -2400,13 +2400,13 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#the-polyarchy-dataset" class="anchor"></a>The Polyarchy dataset</h2>
 <p>30 country-years differ between PMM’s replication data and the original Polyarchy dataset (Coppedge and Reinicke 1991). These seem to be due to simple transcription errors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_polyarchy) &amp;<span class="st"> </span><span class="kw">is.na</span>(polyarchy_original_polyarchy)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_polyarchy) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(polyarchy_original_polyarchy)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_polyarchy !=<span class="st"> </span>polyarchy_original_polyarchy)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_polyarchy) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(polyarchy_original_polyarchy)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_polyarchy) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(polyarchy_original_polyarchy)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_polyarchy <span class="op">!=</span><span class="st"> </span>polyarchy_original_polyarchy)) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">group_by</span>(extended_country_name, 
                  pmm_polyarchy,
-                 polyarchy_original_polyarchy) %&gt;%
+                 polyarchy_original_polyarchy) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(year), <span class="dt">max=</span> <span class="kw">max</span>(year), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's Polyarchy values and original Polyarchy data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"Polyarchy value in PMM"</span>,
@@ -2668,12 +2668,12 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#the-political-regime-change-prc-dataset" class="anchor"></a>The Political Regime Change (PRC) dataset</h2>
 <p>The PRC dataset (Gasiorowski 1996, revised in Reich 2002) has more than one value per country-year for some country-years due to transitions between regimes; and these transitions are not consistently treated in PMM’s replication dataset (sometimes the value for the beginning of the year is used, sometimes the value for the end of the year, and sometimes the value for the middle of the year). This results in 249 differences between the datasets. In this package, I use the last value in a given year for the regime in the PRC dataset, and code “transitions” (prc = 2) as missing values (<code>NA</code>), which results in the following changes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">prc =</span> <span class="kw">ifelse</span>(prc ==<span class="st"> </span><span class="dv">1</span>, prc, prc +<span class="st"> </span><span class="dv">1</span>)) %&gt;%
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_prc) &amp;<span class="st"> </span><span class="kw">is.na</span>(prc)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_prc) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(prc)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_prc !=<span class="st"> </span>prc)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_prc, prc) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">prc =</span> <span class="kw">ifelse</span>(prc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, prc, prc <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_prc) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(prc)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_prc) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(prc)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_prc <span class="op">!=</span><span class="st"> </span>prc)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name, pmm_prc, prc) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">", "</span>), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's PRC values and original PRC data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"PRC value in PMM"</span>,
@@ -3982,15 +3982,15 @@ comparison &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </spa
 <h2 class="hasAnchor">
 <a href="#vanhanen-dataset" class="anchor"></a>Vanhanen dataset</h2>
 <p>There are 15 missing values in PMM’s data compared to the original Vanhanen dataset (Vanhanen 2012):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison2 &lt;-<span class="st"> </span>democracy %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(extended_country_name, GWn, year, vanhanen_democratization, pmm_vanhanen) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(year &lt;=<span class="st"> </span><span class="dv">2008</span>, year &gt;=<span class="dv">1946</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparison2 &lt;-<span class="st"> </span>democracy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(extended_country_name, GWn, year, vanhanen_democratization, pmm_vanhanen) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2008</span>, year <span class="op">&gt;=</span><span class="dv">1946</span>)
 
-<span class="kw">kable</span>(comparison2 %&gt;%<span class="st"> </span>
-<span class="st">        </span><span class="kw">filter</span>((!<span class="kw">is.na</span>(pmm_vanhanen) &amp;<span class="st"> </span><span class="kw">is.na</span>(vanhanen_democratization)) |<span class="st"> </span>
-<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_vanhanen) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(vanhanen_democratization)) |<span class="st"> </span>
-<span class="st">                 </span>(pmm_vanhanen !=<span class="st"> </span>vanhanen_democratization)) %&gt;%
-<span class="st">        </span><span class="kw">group_by</span>(extended_country_name,pmm_vanhanen,vanhanen_democratization) %&gt;%
+<span class="kw">kable</span>(comparison2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_vanhanen) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(vanhanen_democratization)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(<span class="kw">is.na</span>(pmm_vanhanen) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(vanhanen_democratization)) <span class="op">|</span><span class="st"> </span>
+<span class="st">                 </span>(pmm_vanhanen <span class="op">!=</span><span class="st"> </span>vanhanen_democratization)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">group_by</span>(extended_country_name,pmm_vanhanen,vanhanen_democratization) <span class="op">%&gt;%</span>
 <span class="st">        </span><span class="kw">summarise</span>(<span class="dt">years =</span> <span class="kw">paste</span>(year,<span class="dt">collapse=</span><span class="st">", "</span>), <span class="dt">n =</span> <span class="kw">n</span>()),
       <span class="dt">caption =</span> <span class="st">"Differences between PMM's Vanhanen values and original Vanhanen data"</span>,
       <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">"Country name"</span>,<span class="st">"Vanhanen value in PMM"</span>,

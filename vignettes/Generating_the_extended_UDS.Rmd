@@ -15,8 +15,10 @@ The ```extended_uds``` dataset can be generated with the following code:
 library(dplyr)
 library(QuickUDS)
 
-measures <- c("pmm_arat", "blm", "bmr_democracy",
-              "bnr_extended", "pmm_bollen", "doorenspleet",
+measures <- c("pmm_arat", "blm", 
+              "bmr_democracy_femalesuffrage",
+              "bnr_extended", "pmm_bollen", "csvmdi",
+              "doorenspleet", "eiu",
               "wgi_democracy","fh_total_reversed", 
               "fh_electoral", "gwf_democracy_extended", 
               "pmm_hadenius", "kailitz_tri",
@@ -171,7 +173,7 @@ ggplot() +
               filter(extended_country_name %in% countries[1:round(length(countries)/2)]), 
             aes(xmin = start, xmax = end, ymin = 0, ymax = 1), 
             alpha = 0.2, fill = "blue") +
-  coord_cartesian(xlim = c(1800:2016))
+  coord_cartesian(xlim = c(1800:2017))
 
 ```
 
@@ -202,7 +204,7 @@ ggplot() +
               filter(extended_country_name %in% countries[(round(length(countries)/2) + 1):length(countries)]), 
             aes(xmin = start, xmax = end, ymin = 0, ymax = 1), 
             alpha = 0.2, fill = "blue") +
-  coord_cartesian(xlim = c(1800:2016))
+  coord_cartesian(xlim = c(1800:2017))
 
 
 

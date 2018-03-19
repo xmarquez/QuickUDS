@@ -145,6 +145,10 @@ default:</p>
  differs from Gleditsch and Ward's numeric country code in a few cases. See
  <a href='http://www.correlatesofwar.org/data-sets/state-system-membership'>http://www.correlatesofwar.org/data-sets/state-system-membership</a> for
  the full list.</p></dd>
+    <dt>polity_ccode</dt><dd><p>The Polity IV country code, 2017 version. This
+ differs from Gleditsch and Ward's numeric country code and COW in a few cases. See
+ <a href='http://www.systemicpeace.org/inscrdata.html'>http://www.systemicpeace.org/inscrdata.html</a> for
+ the full list.</p></dd>
     <dt>in_GW_system</dt><dd><p>Whether the state is "in system" (that is, is
  independent and sovereign), according to Gleditsch and Ward, for this
  particular date. Matches at the end of the year; so, for example South
@@ -185,24 +189,25 @@ default:</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Replicate the official UDS scores (2011 release)</span>
-<span class='fu'>democracy_scores</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 9,137 x 20
-#&gt;    extended_country_name  year   GWn  cown uds_2010_mean uds_2011_mean
-#&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
-#&gt;  1           Afghanistan  1946   700   700     -1.840259     -1.864836
-#&gt;  2           Afghanistan  1947   700   700     -1.839920     -1.859613
-#&gt;  3           Afghanistan  1948   700   700     -1.536447     -1.561680
-#&gt;  4           Afghanistan  1949   700   700     -1.526101     -1.560645
-#&gt;  5           Afghanistan  1950   700   700     -1.391321     -1.457614
-#&gt;  6           Afghanistan  1951   700   700     -1.523480     -1.562312
-#&gt;  7           Afghanistan  1952   700   700     -1.521900     -1.562706
-#&gt;  8           Afghanistan  1953   700   700     -1.514145     -1.560713
-#&gt;  9           Afghanistan  1954   700   700     -1.528626     -1.570623
-#&gt; 10           Afghanistan  1955   700   700     -1.393404     -1.459222
-#&gt; # ... with 9,127 more rows, and 14 more variables: uds_2014_mean &lt;dbl&gt;,
-#&gt; #   z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;, z1_pct975 &lt;dbl&gt;, z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;,
-#&gt; #   z1_pct975_adj &lt;dbl&gt;, z1_pct025_adj &lt;dbl&gt;, z1_as_prob &lt;dbl&gt;,
-#&gt; #   z1_pct975_as_prob &lt;dbl&gt;, z1_pct025_as_prob &lt;dbl&gt;, z1_adj_as_prob &lt;dbl&gt;,
-#&gt; #   z1_pct975_adj_as_prob &lt;dbl&gt;, z1_pct025_adj_as_prob &lt;dbl&gt;</div></pre>
+<span class='fu'>democracy_scores</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 9,137 x 22
+#&gt;    extended_country_~  year   GWn  cown polity_ccode in_GW_system uds_2010_mean
+#&gt;    &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;lgl&gt;                &lt;dbl&gt;
+#&gt;  1 Afghanistan         1946   700   700          180 T                    -1.84
+#&gt;  2 Afghanistan         1947   700   700          180 T                    -1.84
+#&gt;  3 Afghanistan         1948   700   700          180 T                    -1.54
+#&gt;  4 Afghanistan         1949   700   700          180 T                    -1.53
+#&gt;  5 Afghanistan         1950   700   700          180 T                    -1.39
+#&gt;  6 Afghanistan         1951   700   700          180 T                    -1.52
+#&gt;  7 Afghanistan         1952   700   700          180 T                    -1.52
+#&gt;  8 Afghanistan         1953   700   700          180 T                    -1.51
+#&gt;  9 Afghanistan         1954   700   700          180 T                    -1.53
+#&gt; 10 Afghanistan         1955   700   700          180 T                    -1.39
+#&gt; # ... with 9,127 more rows, and 15 more variables: uds_2011_mean &lt;dbl&gt;,
+#&gt; #   uds_2014_mean &lt;dbl&gt;, z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;, z1_pct975 &lt;dbl&gt;,
+#&gt; #   z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;, z1_pct975_adj &lt;dbl&gt;, z1_pct025_adj &lt;dbl&gt;,
+#&gt; #   z1_as_prob &lt;dbl&gt;, z1_pct975_as_prob &lt;dbl&gt;, z1_pct025_as_prob &lt;dbl&gt;,
+#&gt; #   z1_adj_as_prob &lt;dbl&gt;, z1_pct975_adj_as_prob &lt;dbl&gt;,
+#&gt; #   z1_pct025_adj_as_prob &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

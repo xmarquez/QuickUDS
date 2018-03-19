@@ -4,7 +4,7 @@
 \name{democracy}
 \alias{democracy}
 \title{All Democracy Scores Dataset}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 27801 rows and 79 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 28492 rows and 86 columns.}
 \usage{
 democracy
 }
@@ -39,23 +39,23 @@ non-democracy. Most of them follow a fairly minimalist conception of
 democracy, focused on political competition while giving little weight to
 the extent of the suffrage or thicker civil or economic rights. These
 include the Boix, Miller, and Rosato (2012) indicator of democracy
-(\code{bmr_democracy} and \code{bmr_democracy_omitteddata}); the Bernhard,
-Nordstrom and Reenock index of democracy (\code{bnr} and \code{bnr_extended}),
-originally developed for event history analysis (Bernhard, Nordstrom, and
-Reenock 2001); Renske Doorenspleet's indicator of democracy
-(\code{doorenspleet}), based on the Polity III data and a measure of the
-extent of suffrage (Doorenspleet 2000); Freedom House's list of electoral
-democracies (\code{fh_electoral}); the Cheibub, Gandhi, and Vreeland (2013)
-extension of the PACL (Przeworski, Alvarez, Cheibub and Limongi)
-democracy/dictatorship dataset (\code{pacl}); Jay Ulfelder's indicator of
-democracy (\code{ulfelder_democracy} and \code{ulfelder_democracy_extended}),
-based on a recoding of the Polity IV data (Ulfelder 2012); a calculated
-measure of democracy from the PIPE (Prezeworski et al 2010) dataset
-(\code{PIPE_democracy} - use with care as it may be incorrectly calculated) and
-a number of dichotomous democracy/non-democracy indicators
-(\code{gwf_democracy}, \code{gwf_democracy_extended}, \code{kailitz_binary},
-\code{magaloni_democracy}, \code{magaloni_democracy_extended},
-\code{svolik_democracy}, \code{utip_dichotomous},
+(\code{bmr_democracy}, \code{bmr_democracy_omitteddata}, and
+\code{bmr_democracy_femalesuffrage}); the Bernhard, Nordstrom and Reenock index
+of democracy (\code{bnr} and \code{bnr_extended}), originally developed for
+event history analysis (Bernhard, Nordstrom, and Reenock 2001); Renske
+Doorenspleet's indicator of democracy (\code{doorenspleet}), based on the
+Polity III data and a measure of the extent of suffrage (Doorenspleet
+2000); Freedom House's list of electoral democracies (\code{fh_electoral});
+the Cheibub, Gandhi, and Vreeland (2013) extension of the PACL (Przeworski,
+Alvarez, Cheibub and Limongi) democracy/dictatorship dataset (\code{pacl});
+Jay Ulfelder's indicator of democracy (\code{ulfelder_democracy} and
+\code{ulfelder_democracy_extended}), based on a recoding of the Polity IV data
+(Ulfelder 2012); a calculated measure of democracy from the PIPE
+(Prezeworski et al 2010) dataset (\code{PIPE_democracy} - use with care as it
+may be incorrectly calculated) and a number of dichotomous
+democracy/non-democracy indicators (\code{gwf_democracy},
+\code{gwf_democracy_extended}, \code{kailitz_binary}, \code{magaloni_democracy},
+\code{magaloni_democracy_extended}, \code{svolik_democracy}, \code{utip_dichotomous},
 \code{utip_dichotomous_strict}, \code{reign}, \code{wth_democ1}, and
 \code{wth_democrobust}) from datasets concerned with the identification of
 authoritarian regime types (Bell 2016; Geddes, Wright, and Frantz 2014;
@@ -271,6 +271,11 @@ since the original data does not provide an unambiguous measure.
  \url{http://www.correlatesofwar.org/data-sets/state-system-membership} for
  the full list.}
 
+ \item{polity_ccode}{The Polity IV country code, 2017 version. This
+ differs from Gleditsch and Ward's numeric country code and COW in a few cases. See
+ \url{http://www.systemicpeace.org/inscrdata.html} for
+ the full list.}
+
  \item{in_GW_system}{Whether the state is "in system" (that is, is
  independent and sovereign), according to Gleditsch and Ward, for this
  particular date. Matches at the end of the year; so, for example South
@@ -289,6 +294,10 @@ since the original data does not provide an unambiguous measure.
 
 \describe{
 
+\item{anckar_democracy}{The Anckar-Fredriksson 2018 measure of democracy,
+as a numeric value. Up to 2010 this should be identical to
+\code{bmr_democracy_omitteddata}. 0 = non-democracy, 1 = democracy.}
+
 \item{arat_pmm}{Democracy score from Arat 1991. Taken from Pemstein,
 Meserve, and Melton 2013. Min = 29, max = 109, n = 3873.}
 
@@ -305,15 +314,20 @@ Included here in order to replicate the original model from Pemstein,
 Meserve, and Melton 2011.}
 
 \item{bmr_democracy}{Dichotomous measure of regime type from Boix, Miller,
-and 2012. 1 = democracy, 0 = non-democracy. N = 16987.}
+and 2012, version 3.0. 1 = democracy, 0 = non-democracy. N = 16987.}
 
 \item{bmr_democracy_omitteddata}{Dichotomous measure of regime type from
-Boix, Miller, and 2012. 1 = democracy, 0 = non-democracy. This is the same
-measure as \code{bmr_democracy}, except it records an \code{NA} for countries
-occupied during an international war (e.g., the Netherlands 1940-44) or
-experiencing state collapse during a civil war (e.g., Lebanon 1976-89). The
-democracy variable instead fills in these years as continuations of the
-same regime type. N = 16762.}
+Boix, Miller, and 2012, version 3.0. 1 = democracy, 0 = non-democracy. This
+is the same measure as \code{bmr_democracy}, except it records an \code{NA} for
+countries occupied during an international war (e.g., the Netherlands
+1940-44) or experiencing state collapse during a civil war (e.g., Lebanon
+1976-89). The democracy variable instead fills in these years as
+continuations of the same regime type. N = 16762.}
+
+\item{bmr_democracy_femalesuffrage}{According to the BMR version 3.0
+codebook, this is the same measure as \code{bmr_democracy}, except that it also
+requires that at least half of adult women have the right to vote. 30
+countries change values.}
 
 \item{bnr}{Dichotomous indicator of democracy from the Bernhard, Nordstrom
 & Reenock 2001.}
@@ -332,6 +346,8 @@ Pemstein, Meserve, and Melton 2013.}
 
 \item{doorenspleet}{Dichotomous index of democracy from Doorenspleet 2000.
 1 = authoritarian, 2 = democracy. Omits periods of interruption.}
+
+\item{eiu}{The Economist Intelligence Unit's democracy index.}
 
 \item{wgi_democracy}{Voice and Accountability index from the World
 Governance Indicators. Taken from \url{http://www.govindicators.org}.}
@@ -354,7 +370,8 @@ the World index, see
 \item{fh_electoral}{An indicator of whether a country is an "electoral
 democracy" in Freedom House's estimation (1 = yes, 0 - no). Original data
 available at \url{http://www.freedomhouse.org}. Available only from 1989.
-This is based on the latest Freedom House electoral democracies list going all the way to 2016.}
+This is based on the latest Freedom House electoral democracies list going
+all the way to 2016.}
 
 \item{gwf_democracy}{Dichotmous democracy/autocracy indicator from Geddes,
 Wright, and Frantz 2014. 0 = autocracy, 1 = democracy.}
@@ -617,6 +634,15 @@ the government -- has occurred."}
 coding all presidential and parliamentary democracies as 1, all other
 regimes as 0.}
 
+\item{csvmdi}{The continuous Support Vector Machine democracy index from
+Grundler and Krieger 2018.}
+
+\item{svmdi_2016}{The continuous Support Vector Machine democracy index
+from  Grundler and Krieger 2016.}
+
+\item{dsvmdi}{The dichotomous Support Vector Machine democracy index from
+Grundler and Krieger 2018.}
+
 \item{svolik_democracy}{Dichotomous indicator of democracy from Svolik
 2012. 0 = authoritarian, 1 = democracy.}
 
@@ -712,6 +738,11 @@ to the \code{regimenyrobust} variable, 0 all other regimes.}
 }
 
 \references{
+Anckar, Carsten and C. Fredriksson. 2018. "Classifying political regimes
+1800-2016: a typology and a new dataset".  European Political Science. DOI:
+10.1057/s41304-018-0149-8. Data and codebook available at
+\url{https://doi.org/10.1057/s41304-018-0149-8}.
+
 Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 Boulder: Lynne Rienner Publishers.
 
@@ -726,7 +757,7 @@ OEF research. Data available at \url{http://oefresearch.org/datasets/reign}
 Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
 of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
 1523-1554. Original data available at
-\url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}
+\url{https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/FJLMKT}
 
 Bollen, Kenneth A. 2001. "Cross-National Indicators of Liberal Democracy,
 1950-1990." 2nd ICPSR version. Chapel Hill, NC: University of North Carolina,
@@ -785,6 +816,14 @@ Goldstone, Jack, Robert Bates, David Epstein, Ted Gurr, Michael Lustik, Monty
 Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for
 Forecasting Political Instability. American Journal of Political Science 54
 (1): 190-208. DOI:10.1111/j.1540-5907.2009.00426.x
+
+Grundler, K. and T. Krieger. 2018. "Machine Learning Indices, Political
+Institutions, and Economic Development". Report. CESifo Group Munich, 2018.
+\url{https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf}.
+
+Grundler, K. and T. Krieger. 2016. "Democracy and growth: Evidence from a
+machine learning indicator". European Journal of Political Economy 45, pp.
+85-107. DOI: \url{https://doi.org/10.1016/j.ejpoleco.2016.05.005}.
 
 Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge
 University Press.
@@ -855,6 +894,8 @@ Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
 Democracy Status (May 20, 2015). Available at SSRN:
 \url{http://ssrn.com/abstract=2726962} or
 \url{http://dx.doi.org/10.2139/ssrn.2726962}
+
+The Economist Intelligence Unit. 2018. Democracy Index 2017: Free Speech under Attack.
 
 Ulfelder, Jay. 2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
 \url{http://hdl.handle.net/1902.1/18836}.

@@ -85,7 +85,7 @@
     
 
     <pre class="usage"><span class='fu'>prepare_democracy</span>(<span class='no'>...</span>, <span class='kw'>identifiers</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"extended_country_name"</span>, <span class='st'>"year"</span>, <span class='st'>"GWn"</span>,
-  <span class='st'>"cown"</span>, <span class='st'>"in_GW_system"</span>))</pre>
+  <span class='st'>"cown"</span>, <span class='st'>"polity_ccode"</span>, <span class='st'>"in_GW_system"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -99,7 +99,7 @@ expression (but dplyr must be loaded for this to work).</p></td>
     <tr>
       <th>identifiers</th>
       <td><p>A set of identifiers to return with the data. Defaults to
-<code>c("extended_country_name", "year", "GWn", "cown", "in_GW_system")</code>.
+<code>c("extended_country_name", "year", "GWn", "cown", "polity_ccode", "in_GW_system")</code>.
 Must exist in the <a href='democracy.html'>democracy</a> dataset.</p></td>
     </tr>
     </table>
@@ -110,23 +110,23 @@ Must exist in the <a href='democracy.html'>democracy</a> dataset.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>prepare_democracy</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>))</div><div class='output co'>#&gt; # A tibble: 9,137 x 17
-#&gt;    extended_country_name  year   GWn  cown in_GW_system pmm_arat pmm_blm
-#&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;lgl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1           Afghanistan  1946   700   700         TRUE       NA      NA
-#&gt;  2           Afghanistan  1947   700   700         TRUE       NA      NA
-#&gt;  3           Afghanistan  1948   700   700         TRUE        2      NA
-#&gt;  4           Afghanistan  1949   700   700         TRUE        2      NA
-#&gt;  5           Afghanistan  1950   700   700         TRUE        2      NA
-#&gt;  6           Afghanistan  1951   700   700         TRUE        2      NA
-#&gt;  7           Afghanistan  1952   700   700         TRUE        2      NA
-#&gt;  8           Afghanistan  1953   700   700         TRUE        2      NA
-#&gt;  9           Afghanistan  1954   700   700         TRUE        2      NA
-#&gt; 10           Afghanistan  1955   700   700         TRUE        2      NA
-#&gt; # ... with 9,127 more rows, and 10 more variables: pmm_bollen &lt;dbl&gt;,
-#&gt; #   pmm_fh &lt;dbl&gt;, pmm_hadenius &lt;dbl&gt;, pmm_mainwaring &lt;dbl&gt;, pmm_munck &lt;dbl&gt;,
-#&gt; #   pmm_pacl &lt;dbl&gt;, pmm_polity &lt;dbl&gt;, pmm_polyarchy &lt;dbl&gt;, pmm_prc &lt;dbl&gt;,
-#&gt; #   pmm_vanhanen &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>prepare_democracy</span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>))</div><div class='output co'>#&gt; # A tibble: 9,137 x 18
+#&gt;    extended_country_name  year   GWn  cown polity_ccode in_GW_system pmm_arat
+#&gt;    &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;lgl&gt;           &lt;dbl&gt;
+#&gt;  1 Afghanistan            1946   700   700          180 T               NA   
+#&gt;  2 Afghanistan            1947   700   700          180 T               NA   
+#&gt;  3 Afghanistan            1948   700   700          180 T                2.00
+#&gt;  4 Afghanistan            1949   700   700          180 T                2.00
+#&gt;  5 Afghanistan            1950   700   700          180 T                2.00
+#&gt;  6 Afghanistan            1951   700   700          180 T                2.00
+#&gt;  7 Afghanistan            1952   700   700          180 T                2.00
+#&gt;  8 Afghanistan            1953   700   700          180 T                2.00
+#&gt;  9 Afghanistan            1954   700   700          180 T                2.00
+#&gt; 10 Afghanistan            1955   700   700          180 T                2.00
+#&gt; # ... with 9,127 more rows, and 11 more variables: pmm_blm &lt;dbl&gt;,
+#&gt; #   pmm_bollen &lt;dbl&gt;, pmm_fh &lt;dbl&gt;, pmm_hadenius &lt;dbl&gt;, pmm_mainwaring &lt;dbl&gt;,
+#&gt; #   pmm_munck &lt;dbl&gt;, pmm_pacl &lt;dbl&gt;, pmm_polity &lt;dbl&gt;, pmm_polyarchy &lt;dbl&gt;,
+#&gt; #   pmm_prc &lt;dbl&gt;, pmm_vanhanen &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

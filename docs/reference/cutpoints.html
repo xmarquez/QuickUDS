@@ -119,18 +119,18 @@ scale as the latent variable.</p>
     <pre class="examples"><div class='input'><span class='co'># Replicate the official UDS 2011 release and calculate its cutpoints</span>
 <span class='no'>replication_2011_model</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='democracy_model.html'>democracy_model</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_helpers.html'>matches</a></span>(<span class='st'>"pmm"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>cutpoints</span>(<span class='no'>replication_2011_model</span>)</div><div class='output co'>#&gt; # A tibble: 82 x 6
-#&gt;      variable     estimate        pct025      pct975          se num_obs
-#&gt;         &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;int&gt;
-#&gt;  1   pmm_arat -1.433460078 -1.4437423325 -1.42419659 0.004726270    3873
-#&gt;  2   pmm_arat -1.016967994 -1.0140094933 -1.01963337 0.001359884    3873
-#&gt;  3   pmm_arat -0.426523421 -0.4022889387 -0.44835675 0.011139453    3873
-#&gt;  4   pmm_arat -0.041868426 -0.0004390298 -0.07919300 0.019043148    3873
-#&gt;  5   pmm_arat  0.420924863  0.4917617920  0.35710646 0.032560410    3873
-#&gt;  6   pmm_arat  1.421166192  1.5775573068  1.28027031 0.071885652    3873
-#&gt;  7    pmm_blm -0.002480625  0.0906628959 -0.04447325 0.021424811     275
-#&gt;  8    pmm_blm  0.474438069  1.0384741177  0.22014923 0.129739202     275
-#&gt;  9 pmm_bollen -1.525696187 -1.5540409858 -1.50437217 0.010879603     510
-#&gt; 10 pmm_bollen -1.077099399 -1.0818698799 -1.07351053 0.001831057     510
+#&gt;    variable   estimate    pct025  pct975      se num_obs
+#&gt;    &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+#&gt;  1 pmm_arat   -1.43    -1.44     -1.42   0.00473    3873
+#&gt;  2 pmm_arat   -1.02    -1.01     -1.02   0.00136    3873
+#&gt;  3 pmm_arat   -0.427   -0.402    -0.448  0.0111     3873
+#&gt;  4 pmm_arat   -0.0419  -0.000439 -0.0792 0.0190     3873
+#&gt;  5 pmm_arat    0.421    0.492     0.357  0.0326     3873
+#&gt;  6 pmm_arat    1.42     1.58      1.28   0.0719     3873
+#&gt;  7 pmm_blm    -0.00248  0.0907   -0.0445 0.0214      275
+#&gt;  8 pmm_blm     0.474    1.04      0.220  0.130       275
+#&gt;  9 pmm_bollen -1.53    -1.55     -1.50   0.0109      510
+#&gt; 10 pmm_bollen -1.08    -1.08     -1.07   0.00183     510
 #&gt; # ... with 72 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

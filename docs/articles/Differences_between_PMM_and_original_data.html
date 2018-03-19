@@ -57,7 +57,7 @@
       <h1>Differences between PMM’s replication data and original democracy data sources</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2018-01-19</h4>
+            <h4 class="date">2018-03-19</h4>
           </div>
 
     
@@ -72,7 +72,7 @@
 comparison &lt;-<span class="st"> </span>democracy <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/prepare_data.html">prepare_data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2008</span>, year <span class="op">&gt;=</span><span class="dv">1946</span>)</code></pre></div>
-<p>There are in total 443 differences between PMM’s replication data and the current Freedom House data (Freedom House 2017). These differences seem to be due to data revisions since 2010 in the Freedom House dataset, plus the inclusion of non-state territories in this dataset, and the treatment of 1981, which is conventionally taken to be “missing data” in the Freedom House series but which appears to be interpolated in PMM’s replication dataset.</p>
+<p>There are in total 441 differences between PMM’s replication data and the current Freedom House data (Freedom House 2017). These differences seem to be due to data revisions since 2010 in the Freedom House dataset, plus the inclusion of non-state territories in this dataset, and the treatment of 1981, which is conventionally taken to be “missing data” in the Freedom House series but which appears to be interpolated in PMM’s replication dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(comparison <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">        </span><span class="kw">filter</span>((<span class="op">!</span><span class="kw">is.na</span>(pmm_fh) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(fh_total_reversed)) <span class="op">|</span><span class="st"> </span>
 <span class="st">                 </span>(<span class="kw">is.na</span>(pmm_fh) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(fh_total_reversed)) <span class="op">|</span><span class="st"> </span>
@@ -1706,8 +1706,8 @@ comparison &lt;-<span class="st"> </span>democracy <span class="op">%&gt;%</span
 <td align="left">Palestine, State of</td>
 <td align="right">NA</td>
 <td align="right">4</td>
-<td align="left">1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2007, 2007, 2008, 2008</td>
-<td align="right">16</td>
+<td align="left">1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2007, 2008</td>
+<td align="right">14</td>
 </tr>
 <tr class="odd">
 <td align="left">Monaco</td>

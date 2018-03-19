@@ -58,6 +58,11 @@ instead of a matrix. More fine-grained control can be achieved by using
  \url{http://www.correlatesofwar.org/data-sets/state-system-membership} for
  the full list.}
 
+ \item{polity_ccode}{The Polity IV country code, 2017 version. This
+ differs from Gleditsch and Ward's numeric country code and COW in a few cases. See
+ \url{http://www.systemicpeace.org/inscrdata.html} for
+ the full list.}
+
  \item{in_GW_system}{Whether the state is "in system" (that is, is
  independent and sovereign), according to Gleditsch and Ward, for this
  particular date. Matches at the end of the year; so, for example South

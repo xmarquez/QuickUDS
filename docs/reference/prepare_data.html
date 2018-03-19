@@ -96,10 +96,10 @@ the colum names, which variables contain democracy scores.</p>
       <th>data</th>
       <td><p>A dataset of democracy scores. For the function to do anything,
 the column names must contain at least one of the following strings:
-<code>arat</code>, <code>blm</code>, <code>bmr</code>, <code>bollen</code>, <code>doorenspleet</code>,
+<code>anckar</code>, <code>arat</code>, <code>blm</code>, <code>bmr</code>, <code>bollen</code>, <code>doorenspleet</code>,
 <code>wgi</code>, <code>gwf</code>, <code>hadenius</code>, <code>kailitz</code>, <code>lied</code>,
 <code>munck</code>, <code>pacl</code>, <code>peps</code>, <code>polyarchy</code>, <code>polity</code>,
-<code>prc</code>, <code>PIPE</code>, <code>svolik</code>, <code>ulfelder</code>, <code>utip</code>,
+<code>prc</code>, <code>PIPE</code>, <code>svmdi</code>, <code>svolik</code>, <code>ulfelder</code>, <code>utip</code>,
 <code>v2x</code>, <code>vanhanen_democratization</code>, <code>vanhanen_pmm</code>, or
 <code>wth</code>. For details of these variables, see the documentation for
 <code><a href='democracy.html'>democracy</a></code>.</p></td>
@@ -109,35 +109,42 @@ the column names must contain at least one of the following strings:
       <td><p>A names list of functions to modify the columns. It defaults to
 the following:
 
-<code>funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
-  labels = 1:7, include.lowest = TRUE, right = FALSE),
+<code>funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109), labels
+ = 1:7, include.lowest = TRUE, right = FALSE),
 
-  hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
-  include.lowest = TRUE, right = FALSE),
+ hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
+ include.lowest = TRUE, right = FALSE),
 
-  bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
-  labels = 1:10, include.lowest = TRUE, right = FALSE),
+ bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+ labels = 1:10, include.lowest = TRUE, right = FALSE),
 
+ vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
+ 1:8, include.lowest = TRUE, right = FALSE),
 
-  vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
-  1:8, include.lowest = TRUE, right = FALSE),
+ munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
+ include.lowest = TRUE, right = FALSE),
 
-  munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
-  include.lowest = TRUE, right = FALSE),
+ polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
+ FALSE, ordered_result = TRUE),
 
+ polity = ifelse(. &lt; -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
+ TRUE, right = FALSE, ordered_result = TRUE),
 
-  polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
-  FALSE, ordered_result = TRUE),
+ v2x_* = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+ ordered_result = TRUE),
 
-  polity = ifelse(. &lt; -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
-  TRUE, right = FALSE, ordered_result = TRUE),
+ svmdi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+ ordered_result = TRUE),
 
-  wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
-  ordered_result = TRUE),
+ eiu = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+ ordered_result = TRUE),
 
-  peps = round(.),
+ wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+ ordered_result = TRUE),
 
-  other = as.numeric(unclass(factor(.))))</code></p></td>
+ peps = round(.),
+
+ other = as.numeric(unclass(factor(.))))</code></p></td>
     </tr>
     </table>
     
@@ -165,29 +172,28 @@ democracy score into 7 intervals with the following cutoffs: 50, 60, 70, 80,
 acocuntability is included in the file, the function cuts it into 20
 categories. The resulting score is ordinal from 1 to 20.
     <code>hadenius</code>: Following Pemstein, Meserve, and Melton's replication code
-(Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s
-0-10 democracy score into 8 intervals with the following cutoffs: 1, 2,3,4,
-7, 8, and 9. The resulting score is ordinal from 1 to 8.
+(Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s 0-10
+democracy score into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8,
+and 9. The resulting score is ordinal from 1 to 8.
     <code>munck</code>: Following Pemstein, Meserve, and Melton's replication code
 (Pemstein, Meserve, and Melton 2013), the function cuts Munck's (2009)'s 0-1
-democracy score into 4 intervals with the following cutoffs: 0.5,0.5,0.75,
-and 0.99. The resulting score is ordinal from 1 to 4.
-    <code>peps</code>: If any of the variants of the Participation-Enhanced Polity
-Score (Moon et al 2006) is included in the file, the function rounds its
-value (eliminates the decimal) and then transforms it into an ordinal measure
-from 1 to 21.
+democracy score into 4 intervals with the following cutoffs: 0.5,0.5,0.75, and
+0.99. The resulting score is ordinal from 1 to 4.
+    <code>peps</code>: If any of the variants of the Participation-Enhanced Polity Score
+(Moon et al 2006) is included in the file, the function rounds its value
+(eliminates the decimal) and then transforms it into an ordinal measure from 1
+to 21.
     <code>polity</code>: Following Pemstein, Meserve, and Melton's replication code
-(Pemstein, Meserve, and Melton 2013), the function takes the polity scores
-and puts NA for any values below -10, and then transforms it into an ordinal
+(Pemstein, Meserve, and Melton 2013), the function takes the polity scores and
+puts NA for any values below -10, and then transforms it into an ordinal
 measure from 1 to 21.
-    <code>polyarchy_inclusion_dimension</code>,
-<code>polyarchy_contestation_dimension</code>: If any of the polyarchy inclusion or
-contestation dimensions from Coppedge, Alvarez and Maldonado (2008)  are
-included, it cuts them into into 20 categories. The resulting score is
-ordinal from 1 to 20.
+    <code>polyarchy_inclusion_dimension</code>, <code>polyarchy_contestation_dimension</code>:
+If any of the polyarchy inclusion or contestation dimensions from Coppedge,
+Alvarez and Maldonado (2008)  are included, it cuts them into into 20
+categories. The resulting score is ordinal from 1 to 20.
     <code>v2x</code>: If any of the v2x_ continuous indexes of democracy from the V-Dem
-dataset (Coppedge et al 2015) are included in the file, the function cuts
-them into 20 categories. The resulting score is ordinal from 1 to 20.
+dataset (Coppedge et al 2015) are included in the file, the function cuts them
+into 20 categories. The resulting score is ordinal from 1 to 20.
     <code>vanhanen_democratization</code> or <code>vanhanen_pmm</code>: Following Pemstein,
 Meserve, and Melton's replication code (Pemstein, Meserve, and Melton 2013),
 the function cuts Vanhanen's (2012)'s index of democratization into 8
@@ -195,27 +201,27 @@ intervals with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting
 score is ordinal from 1 to 8.</p>
 <p>The function also recognizes the following column names (or partial column
 names - it also recognizes, e.g., pmm_blm) as measures of democracy:
-<code>blm</code> (from Bowman, Lehoucq, and Mahoney 2005), <code>bmr</code> (from Boix,
-Miller, and Rosato 2012), <code>doorenspleet</code> (from Doorenspleet 2000),
-<code>e_v2x</code> (the "ordinal" indexes from the V-dem project, Coppedge at al
-2015), <code>freedomhouse</code> or <code>fh</code> (from Freedom House - freedom scale
-must be reversed so that "more freedom" is higher), <code>gwf</code> (from Geddes,
-Wright, and Frantz 2014 - the dichotomous democracy indicator only),
-<code>kailitz</code> (from Kailitz 2013 - democracy/non-democracy indicator),
-<code>lied</code> or <code>lexical_index</code> (from Skaaning, Gerring, and
-Bartusevicius 2015), <code>mainwaring</code> (from Mainwaring and Perez Linan
-2008), <code>magaloni</code> (from Magaloni, Min, Chu 2013 -
+<code>anckar</code> (from Anckar and Fredriksson 2018), <code>blm</code> (from Bowman,
+Lehoucq, and Mahoney 2005), <code>bmr</code> (from Boix, Miller, and Rosato 2012),
+<code>doorenspleet</code> (from Doorenspleet 2000), <code>e_v2x</code> (the "ordinal"
+indexes from the V-dem project, Coppedge at al 2015), <code>freedomhouse</code> or
+<code>fh</code> (from Freedom House - freedom scale must be reversed so that "more
+freedom" is higher), <code>gwf</code> (from Geddes, Wright, and Frantz 2014 - the
+dichotomous democracy indicator only), <code>kailitz</code> (from Kailitz 2013 -
+democracy/non-democracy indicator), <code>lied</code> or <code>lexical_index</code> (from
+Skaaning, Gerring, and Bartusevicius 2015), <code>mainwaring</code> (from Mainwaring
+and Perez Linan 2008), <code>magaloni</code> (from Magaloni, Min, Chu 2013 -
 democracy/non-democracy indicator), <code>pacl</code> (from Cheibub, Gandhi, and
 Vreeland 2010), <code>pitf</code> (from Goldstone et al 2010 or Taylor and Ulfelder
 2015), <code>polyarchy</code> (from Coppedge and Reinicke 1991), <code>prc</code> (from
 Gasiorowski 1996 or Reich 2002), <code>PIPE</code> (from Przeworski 2010),
-<code>reign</code> (from Bell 2016), <code>svolik</code> (from Svolik 2012,
-democracy/dictatorship indicator only), <code>ulfelder</code> (from Ulfelder 2012),
-<code>utip</code> (from Hsu 2008), and <code>wth</code> or <code>wahman_teorell_hadenius</code>
-(from Wahman, Teorell, and Hadenius 2013). In each of these cases the
-function transforms the values of these scores by running
-<code>as.numeric(unclass(factor(x)))</code>, which transforms them into ordinal
-variables from 1 to the number of categories.</p>
+<code>reign</code> (from Bell 2016), <code>svmdi</code> (from Grundler and Krieger 2018,
+2016), <code>svolik</code> (from Svolik 2012, democracy/dictatorship indicator
+only), <code>ulfelder</code> (from Ulfelder 2012), <code>utip</code> (from Hsu 2008), and
+<code>wth</code> or <code>wahman_teorell_hadenius</code> (from Wahman, Teorell, and
+Hadenius 2013). In each of these cases the function transforms the values of
+these scores by running <code>as.numeric(unclass(factor(x)))</code>, which
+transforms them into ordinal variables from 1 to the number of categories.</p>
 <p>For details of these scores, see the documentation for
 <code><a href='democracy.html'>democracy</a></code>.</p>
 <p>It is also possible to change these defaults.</p>
@@ -228,7 +234,11 @@ check the results make sense.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Arat, Zehra F. 1991. Democracy and human rights in developing countries.
+    <p>Anckar, Carsten and C. Fredriksson. 2018. "Classifying political regimes
+1800-2016: a typology and a new dataset".  European Political Science. DOI:
+10.1057/s41304-018-0149-8. Data and codebook available at
+<a href='https://doi.org/10.1057/s41304-018-0149-8'>https://doi.org/10.1057/s41304-018-0149-8</a>.</p>
+<p>Arat, Zehra F. 1991. Democracy and human rights in developing countries.
 Boulder: Lynne Rienner Publishers.</p>
 <p>Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset
 (REIGN).<a href='http://oefresearch.org/datasets/reign'>http://oefresearch.org/datasets/reign</a></p>
@@ -247,21 +257,21 @@ Political Studies 38 (8): 939-970.
 <a href='http://cps.sagepub.com/content/38/8/939'>http://cps.sagepub.com/content/38/8/939</a>. Data available at
 <a href='http://www.blmdemocracy.gatech.edu/'>http://www.blmdemocracy.gatech.edu/</a>.</p>
 <p>Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010.
-"Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101.
-Original data available at
+"Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101. Original
+data available at
 <a href='https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited'>https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited</a>.</p>
-<p>Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
-and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
-Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+<p>Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and
+Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
 Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy
-(V-Dem) Project. Original data available at <a href='https://v-dem.net/en/data/'>https://v-dem.net/en/data/</a>.</p>
+Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy (V-Dem)
+Project. Original data available at <a href='https://v-dem.net/en/data/'>https://v-dem.net/en/data/</a>.</p>
 <p>Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On
 Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
 Brunswuck, NJ: Transaction pp. 47-68.</p>
 <p>Coppedge, A. Alvarez and C. Maldonado. 2008. "Two Persistent Dimensions of
-Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03,
-pp. 632-647. DOI: 10.1017/S0022381608080663.</p>
+Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03, pp.
+632-647. DOI: 10.1017/S0022381608080663.</p>
 <p>Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
 World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
 <a href='http://dx.doi.org/10.1017/S0043887100016580'>http://dx.doi.org/10.1017/S0043887100016580</a>.</p>
@@ -278,6 +288,12 @@ and Regime Transitions: A New Data Set. Perspectives on Politics 12 (1):
 Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for
 Forecasting Political Instability. American Journal of Political Science 54
 (1): 190-208. DOI:10.1111/j.1540-5907.2009.00426.x</p>
+<p>Grundler, K. and T. Krieger. 2018. "Machine Learning Indices, Political
+Institutions, and Economic Development". Report. CESifo Group Munich, 2018.
+<a href='https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf'>https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf</a>.</p>
+<p>Grundler, K. and T. Krieger. 2016. "Democracy and growth: Evidence from a
+machine learning indicator". European Journal of Political Economy 45, pp.
+85-107. DOI: <a href='https://doi.org/10.1016/j.ejpoleco.2016.05.005'>https://doi.org/10.1016/j.ejpoleco.2016.05.005</a>.</p>
 <p>Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge
 University Press.</p>
 <p>Hadenius, Axel &amp; Jan Teorell. 2007. "Pathways from Authoritarianism", Journal
@@ -291,13 +307,13 @@ and durability. Democratization 20 (1): 39-60. Original data available at
 <p>Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. "Political
 Regimes in Latin America, 1900-2007." Original data available from
 <a href='http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf'>http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf</a>.</p>
-<p>Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the
-World, 1950-2012 (Version 1.0). Dataset, Stanford University. Original data
-and codebook available at
+<p>Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
+1950-2012 (Version 1.0). Dataset, Stanford University. Original data and
+codebook available at
 <a href='http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/'>http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/</a></p>
 <p>Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV:
-Political Regime Characteristics and Transitions, 1800-2012." Updated to
-2015. Original data available from
+Political Regime Characteristics and Transitions, 1800-2012." Updated to 2015.
+Original data available from
 <a href='http://www.systemicpeace.org/polity/polity4.htm'>http://www.systemicpeace.org/polity/polity4.htm</a>.</p>
 <p>Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett,
 Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong
@@ -311,9 +327,8 @@ Politics. Baltimore: Johns Hopkins University Press.</p>
 Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.
 Political Analysis 18 (4): 426-449.</p>
 <p>Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
-data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
-of Regime Type." In: Harvard Dataverse.
-<a href='http://hdl.handle.net/1902.1/PMM'>http://hdl.handle.net/1902.1/PMM</a></p>
+data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures of
+Regime Type." In: Harvard Dataverse. <a href='http://hdl.handle.net/1902.1/PMM'>http://hdl.handle.net/1902.1/PMM</a></p>
 <p>Przeworski, Adam et al. 2013. Political Institutions and Political Events
 (PIPE) Data Set. Department of Politics, New York University.
 <a href='https://sites.google.com/a/nyu.edu/adam-przeworski/home/data'>https://sites.google.com/a/nyu.edu/adam-przeworski/home/data</a></p>
@@ -333,8 +348,8 @@ Democracy Status (May 20, 2015). Available at SSRN:
 <a href='http://dx.doi.org/10.2139/ssrn.2726962'>http://dx.doi.org/10.2139/ssrn.2726962</a></p>
 <p>Ulfelder, Jay. 2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
 <a href='http://hdl.handle.net/1902.1/18836'>http://hdl.handle.net/1902.1/18836</a>.</p>
-<p>Vanhanen, Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original
-data available from
+<p>Vanhanen, Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original data
+available from
 <a href='http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html'>http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html</a></p>
 <p>Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
 types revisited: updated data in comparative perspective. Contemporary
@@ -342,357 +357,389 @@ Politics 19 (1): 19-34.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>summary</span>(<span class='no'>democracy</span>)</div><div class='output co'>#&gt;  extended_country_name      GWn             cown       in_GW_system   
-#&gt;  Length:27801          Min.   :  2.0   Min.   :  2.0   Mode :logical  
-#&gt;  Class :character      1st Qu.:225.0   1st Qu.:223.0   FALSE:9232     
-#&gt;  Mode  :character      Median :432.0   Median :420.0   TRUE :18569    
-#&gt;                        Mean   :441.4   Mean   :439.6                  
-#&gt;                        3rd Qu.:651.0   3rd Qu.:651.0                  
-#&gt;                        Max.   :990.0   Max.   :990.0                  
-#&gt;                        NA's   :609     NA's   :912                    
-#&gt;       year           blm        bmr_democracy   bmr_democracy_omitteddata
-#&gt;  Min.   :1502   Min.   :0.000   Min.   :0.000   Min.   :0.000            
-#&gt;  1st Qu.:1894   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000            
-#&gt;  Median :1945   Median :0.000   Median :0.000   Median :0.000            
-#&gt;  Mean   :1929   Mean   :0.252   Mean   :0.319   Mean   :0.321            
-#&gt;  3rd Qu.:1984   3rd Qu.:0.500   3rd Qu.:1.000   3rd Qu.:1.000            
-#&gt;  Max.   :2017   Max.   :1.000   Max.   :1.000   Max.   :1.000            
-#&gt;                 NA's   :27296   NA's   :10814   NA's   :11039            
-#&gt;       bnr         bnr_extended    doorenspleet    fh_electoral  
-#&gt;  Min.   :0.000   Min.   :0.000   Min.   :1.000   Min.   :0.000  
-#&gt;  1st Qu.:1.000   1st Qu.:0.000   1st Qu.:1.000   1st Qu.:0.000  
-#&gt;  Median :1.000   Median :0.000   Median :1.000   Median :1.000  
-#&gt;  Mean   :0.983   Mean   :0.344   Mean   :1.179   Mean   :0.598  
-#&gt;  3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#&gt;  Max.   :1.000   Max.   :1.000   Max.   :2.000   Max.   :1.000  
-#&gt;  NA's   :24150   NA's   :17481   NA's   :14792   NA's   :22481  
-#&gt;  fh_total_reversed gwf_democracy   gwf_democracy_extended
-#&gt;  Min.   : 0.000    Min.   :0.000   Min.   :0.000         
-#&gt;  1st Qu.: 3.000    1st Qu.:0.000   1st Qu.:0.000         
-#&gt;  Median : 7.000    Median :0.000   Median :0.000         
-#&gt;  Mean   : 6.487    Mean   :0.402   Mean   :0.419         
-#&gt;  3rd Qu.:11.000    3rd Qu.:1.000   3rd Qu.:1.000         
-#&gt;  Max.   :12.000    Max.   :1.000   Max.   :1.000         
-#&gt;  NA's   :19463     NA's   :19847   NA's   :18390         
-#&gt;  gwf_democracy_extended_strict gwf_democracy_strict kailitz_binary 
-#&gt;  Min.   :0.000                 Min.   :0.00         Min.   :0.000  
-#&gt;  1st Qu.:0.000                 1st Qu.:0.00         1st Qu.:0.000  
-#&gt;  Median :0.000                 Median :0.00         Median :0.000  
-#&gt;  Mean   :0.426                 Mean   :0.41         Mean   :0.412  
-#&gt;  3rd Qu.:1.000                 3rd Qu.:1.00         3rd Qu.:1.000  
-#&gt;  Max.   :1.000                 Max.   :1.00         Max.   :1.000  
-#&gt;  NA's   :18558                 NA's   :20014        NA's   :18195  
-#&gt;   kailitz_tri    lexical_index   magaloni_democracy magaloni_democracy_extended
-#&gt;  Min.   :0.000   Min.   :0.000   Min.   :0.000      Min.   :0.000              
-#&gt;  1st Qu.:0.000   1st Qu.:1.000   1st Qu.:0.000      1st Qu.:0.000              
-#&gt;  Median :1.000   Median :3.000   Median :0.000      Median :0.000              
-#&gt;  Mean   :0.989   Mean   :2.783   Mean   :0.396      Mean   :0.424              
-#&gt;  3rd Qu.:2.000   3rd Qu.:6.000   3rd Qu.:1.000      3rd Qu.:1.000              
-#&gt;  Max.   :2.000   Max.   :6.000   Max.   :1.000      Max.   :1.000              
-#&gt;  NA's   :18195   NA's   :9272    NA's   :19173      NA's   :17513              
-#&gt;    mainwaring         pacl           PEPS1i            PEPS1q       
-#&gt;  Min.   :0.000   Min.   :0.000   Min.   :-10.000   Min.   :-10.000  
-#&gt;  1st Qu.:0.000   1st Qu.:0.000   1st Qu.: -9.000   1st Qu.: -9.000  
-#&gt;  Median :0.000   Median :0.000   Median : -7.000   Median : -6.242  
-#&gt;  Mean   :0.338   Mean   :0.438   Mean   : -3.199   Mean   : -3.176  
-#&gt;  3rd Qu.:0.500   3rd Qu.:1.000   3rd Qu.:  3.700   3rd Qu.:  3.477  
-#&gt;  Max.   :1.000   Max.   :1.000   Max.   : 10.000   Max.   : 10.000  
-#&gt;  NA's   :25645   NA's   :18686   NA's   :18638     NA's   :18362    
-#&gt;      PEPS1v            PEPS2i           PEPS2q            PEPS2v       
-#&gt;  Min.   :-10.000   Min.   :-9.587   Min.   :-10.000   Min.   :-10.000  
-#&gt;  1st Qu.: -7.000   1st Qu.: 0.174   1st Qu.: -8.500   1st Qu.: -7.500  
-#&gt;  Median : -4.000   Median : 4.999   Median : -1.455   Median : -3.550  
-#&gt;  Mean   : -2.869   Mean   : 3.716   Mean   : -1.126   Mean   : -2.427  
-#&gt;  3rd Qu.:  1.500   3rd Qu.: 7.448   3rd Qu.:  5.886   3rd Qu.:  1.937  
-#&gt;  Max.   : 10.000   Max.   :10.000   Max.   : 10.000   Max.   : 10.000  
-#&gt;  NA's   :13712     NA's   :23676    NA's   :20911     NA's   :14560    
-#&gt;  PIPE_democracy   PIPE_regime         pitf        pitf_binary   
-#&gt;  Min.   :0.000   Min.   :0.000   Min.   :0.000   Min.   :0.000  
-#&gt;  1st Qu.:0.000   1st Qu.:1.000   1st Qu.:0.000   1st Qu.:0.000  
-#&gt;  Median :0.000   Median :1.000   Median :1.000   Median :0.000  
-#&gt;  Mean   :0.202   Mean   :1.523   Mean   :1.433   Mean   :0.367  
-#&gt;  3rd Qu.:0.000   3rd Qu.:2.000   3rd Qu.:3.000   3rd Qu.:1.000  
-#&gt;  Max.   :1.000   Max.   :3.000   Max.   :4.000   Max.   :1.000  
-#&gt;  NA's   :10083   NA's   :9831    NA's   :11551   NA's   :11551  
-#&gt;     pmm_arat        pmm_blm        pmm_bollen         pmm_fh     
-#&gt;  Min.   : 29.0   Min.   :0.00    Min.   :  0.00   Min.   :1.00   
-#&gt;  1st Qu.: 58.0   1st Qu.:0.00    1st Qu.: 22.84   1st Qu.:2.50   
-#&gt;  Median : 69.0   Median :0.00    Median : 53.59   Median :4.00   
-#&gt;  Mean   : 73.2   Mean   :0.36    Mean   : 55.46   Mean   :4.15   
-#&gt;  3rd Qu.: 92.0   3rd Qu.:0.50    3rd Qu.: 90.95   3rd Qu.:6.00   
-#&gt;  Max.   :109.0   Max.   :1.00    Max.   :100.00   Max.   :7.00   
-#&gt;  NA's   :23928   NA's   :27526   NA's   :27291    NA's   :21363  
-#&gt;   pmm_hadenius    pmm_mainwaring     pmm_munck        pmm_pacl    
-#&gt;  Min.   : 0.000   Min.   :-1.000   Min.   :0.000   Min.   :0.000  
-#&gt;  1st Qu.: 1.500   1st Qu.:-1.000   1st Qu.:0.750   1st Qu.:0.000  
-#&gt;  Median : 3.100   Median : 0.000   Median :1.000   Median :0.000  
-#&gt;  Mean   : 4.509   Mean   : 0.122   Mean   :0.838   Mean   :0.436  
-#&gt;  3rd Qu.: 8.300   3rd Qu.: 1.000   3rd Qu.:1.000   3rd Qu.:1.000  
-#&gt;  Max.   :10.000   Max.   : 1.000   Max.   :1.000   Max.   :1.000  
-#&gt;  NA's   :27672    NA's   :26966    NA's   :27459   NA's   :18734  
-#&gt;    pmm_polity      pmm_polyarchy       pmm_prc       pmm_vanhanen  
-#&gt;  Min.   :-10.000   Min.   : 0.000   Min.   :1.000   Min.   : 0.00  
-#&gt;  1st Qu.: -7.000   1st Qu.: 3.000   1st Qu.:1.000   1st Qu.: 0.00  
-#&gt;  Median : -1.000   Median : 7.000   Median :1.000   Median : 5.90  
-#&gt;  Mean   :  0.129   Mean   : 6.329   Mean   :2.147   Mean   :11.31  
-#&gt;  3rd Qu.:  8.000   3rd Qu.:10.000   3rd Qu.:4.000   3rd Qu.:20.70  
-#&gt;  Max.   : 10.000   Max.   :10.000   Max.   :4.000   Max.   :49.00  
-#&gt;  NA's   :19751     NA's   :27448    NA's   :21799   NA's   :18836  
-#&gt;      polity          polity2       polyarchy_contestation_dimension
-#&gt;  Min.   :-10.00   Min.   :-10.00   Min.   :-2.067                  
-#&gt;  1st Qu.: -7.00   1st Qu.: -7.00   1st Qu.:-0.876                  
-#&gt;  Median : -3.00   Median : -3.00   Median :-0.214                  
-#&gt;  Mean   : -0.54   Mean   : -0.55   Mean   :-0.005                  
-#&gt;  3rd Qu.:  7.00   3rd Qu.:  7.00   3rd Qu.: 0.918                  
-#&gt;  Max.   : 10.00   Max.   : 10.00   Max.   : 1.909                  
-#&gt;  NA's   :11350    NA's   :10815    NA's   :20268                   
-#&gt;  polyarchy_inclusion_dimension polyarchy_original_contestation
-#&gt;  Min.   :-3.952                Min.   :1.000                  
-#&gt;  1st Qu.:-0.297                1st Qu.:3.750                  
-#&gt;  Median : 0.379                Median :6.000                  
-#&gt;  Mean   :-0.002                Mean   :5.881                  
-#&gt;  3rd Qu.: 0.672                3rd Qu.:9.000                  
-#&gt;  Max.   : 1.858                Max.   :9.000                  
-#&gt;  NA's   :20268                 NA's   :27441                  
-#&gt;  polyarchy_original_polyarchy      prc        reign_democracy svolik_democracy
-#&gt;  Min.   : 0.000               Min.   :1.000   Min.   :0.000   Min.   :0.00    
-#&gt;  1st Qu.: 3.000               1st Qu.:1.000   1st Qu.:0.000   1st Qu.:0.00    
-#&gt;  Median : 7.000               Median :1.000   Median :0.000   Median :0.00    
-#&gt;  Mean   : 6.401               Mean   :2.002   Mean   :0.478   Mean   :0.45    
-#&gt;  3rd Qu.:10.000               3rd Qu.:3.000   3rd Qu.:1.000   3rd Qu.:1.00    
-#&gt;  Max.   :10.000               Max.   :4.000   Max.   :1.000   Max.   :1.00    
-#&gt;  NA's   :27447                NA's   :16918   NA's   :14891   NA's   :19246   
-#&gt;  uds_2010_mean    uds_2010_median  uds_2011_mean    uds_2011_median 
-#&gt;  Min.   :-2.063   Min.   :-2.001   Min.   :-2.103   Min.   :-2.053  
-#&gt;  1st Qu.:-0.840   1st Qu.:-0.837   1st Qu.:-0.860   1st Qu.:-0.850  
-#&gt;  Median :-0.193   Median :-0.190   Median :-0.139   Median :-0.136  
-#&gt;  Mean   :-0.002   Mean   :-0.003   Mean   : 0.002   Mean   : 0.000  
-#&gt;  3rd Qu.: 0.823   3rd Qu.: 0.815   3rd Qu.: 0.797   3rd Qu.: 0.791  
-#&gt;  Max.   : 2.197   Max.   : 2.151   Max.   : 2.117   Max.   : 2.066  
-#&gt;  NA's   :20245    NA's   :20245    NA's   :18664    NA's   :18664   
-#&gt;  uds_2014_mean    uds_2014_median  ulfelder_democracy
-#&gt;  Min.   :-2.112   Min.   :-2.058   Min.   :0.000     
-#&gt;  1st Qu.:-0.858   1st Qu.:-0.850   1st Qu.:0.000     
-#&gt;  Median :-0.116   Median :-0.115   Median :0.000     
-#&gt;  Mean   : 0.001   Mean   : 0.000   Mean   :0.412     
-#&gt;  3rd Qu.: 0.787   3rd Qu.: 0.783   3rd Qu.:1.000     
-#&gt;  Max.   : 2.263   Max.   : 2.206   Max.   :1.000     
-#&gt;  NA's   :17951    NA's   :17951    NA's   :20117     
-#&gt;  ulfelder_democracy_extended utip_dichotomous utip_dichotomous_strict
-#&gt;  Min.   :0.000               Min.   :0.000    Min.   :0.00           
-#&gt;  1st Qu.:0.000               1st Qu.:0.000    1st Qu.:0.00           
-#&gt;  Median :0.000               Median :1.000    Median :0.00           
-#&gt;  Mean   :0.322               Mean   :0.517    Mean   :0.48           
-#&gt;  3rd Qu.:1.000               3rd Qu.:1.000    3rd Qu.:1.00           
-#&gt;  Max.   :1.000               Max.   :1.000    Max.   :1.00           
-#&gt;  NA's   :16256               NA's   :21586    NA's   :21586          
-#&gt;  utip_trichotomous vanhanen_competition vanhanen_democratization
-#&gt;  Min.   :0.000     Min.   : 0.00        Min.   : 0.000          
-#&gt;  1st Qu.:0.000     1st Qu.: 0.00        1st Qu.: 0.000          
-#&gt;  Median :1.000     Median :20.00        Median : 1.100          
-#&gt;  Mean   :0.997     Mean   :25.22        Mean   : 8.434          
-#&gt;  3rd Qu.:2.000     3rd Qu.:49.10        3rd Qu.:15.400          
-#&gt;  Max.   :2.000     Max.   :70.00        Max.   :49.000          
-#&gt;  NA's   :21586     NA's   :12066        NA's   :12066           
-#&gt;  vanhanen_participation wgi_democracy      wth_democ1    wth_democrobust
-#&gt;  Min.   : 0.0           Min.   :-2.313   Min.   :0.000   Min.   :0.00   
-#&gt;  1st Qu.: 0.0           1st Qu.:-0.827   1st Qu.:0.000   1st Qu.:0.00   
-#&gt;  Median :14.0           Median : 0.036   Median :0.000   Median :0.00   
-#&gt;  Mean   :21.1           Mean   :-0.002   Mean   :0.436   Mean   :0.41   
-#&gt;  3rd Qu.:40.4           3rd Qu.: 0.931   3rd Qu.:1.000   3rd Qu.:1.00   
-#&gt;  Max.   :71.0           Max.   : 1.801   Max.   :1.000   Max.   :1.00   
-#&gt;  NA's   :12066          NA's   :24059    NA's   :20372   NA's   :20381  
-#&gt;  v2x_polyarchy      v2x_api         v2x_mpi        v2x_libdem   
-#&gt;  Min.   :0.009   Min.   :0.017   Min.   :0.000   Min.   :0.009  
-#&gt;  1st Qu.:0.092   1st Qu.:0.185   1st Qu.:0.000   1st Qu.:0.080  
-#&gt;  Median :0.206   Median :0.407   Median :0.001   Median :0.151  
-#&gt;  Mean   :0.318   Mean   :0.464   Mean   :0.172   Mean   :0.260  
-#&gt;  3rd Qu.:0.524   3rd Qu.:0.766   3rd Qu.:0.282   3rd Qu.:0.373  
-#&gt;  Max.   :0.947   Max.   :0.978   Max.   :0.916   Max.   :0.916  
-#&gt;  NA's   :10765   NA's   :10765   NA's   :10765   NA's   :10766  
-#&gt;  v2x_partipdem    v2x_delibdem    v2x_egaldem   
-#&gt;  Min.   :0.005   Min.   :0.000   Min.   :0.011  
-#&gt;  1st Qu.:0.048   1st Qu.:0.014   1st Qu.:0.069  
-#&gt;  Median :0.105   Median :0.068   Median :0.148  
-#&gt;  Mean   :0.192   Mean   :0.209   Mean   :0.242  
-#&gt;  3rd Qu.:0.295   3rd Qu.:0.346   3rd Qu.:0.335  
-#&gt;  Max.   :0.814   Max.   :0.913   Max.   :0.890  
-#&gt;  NA's   :10766   NA's   :10766   NA's   :10765  </div><div class='input'><span class='fu'>summary</span>(<span class='fu'>prepare_data</span>(<span class='no'>democracy</span>))</div><div class='output co'>#&gt;  extended_country_name      GWn             cown       in_GW_system   
-#&gt;  Length:27801          Min.   :  2.0   Min.   :  2.0   Mode :logical  
-#&gt;  Class :character      1st Qu.:225.0   1st Qu.:223.0   FALSE:9232     
-#&gt;  Mode  :character      Median :432.0   Median :420.0   TRUE :18569    
-#&gt;                        Mean   :441.4   Mean   :439.6                  
-#&gt;                        3rd Qu.:651.0   3rd Qu.:651.0                  
-#&gt;                        Max.   :990.0   Max.   :990.0                  
-#&gt;                        NA's   :609     NA's   :912                    
-#&gt;       year           blm        bmr_democracy   bmr_democracy_omitteddata
-#&gt;  Min.   :1502   Min.   :1.000   Min.   :1.000   Min.   :1.000            
-#&gt;  1st Qu.:1894   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.000            
-#&gt;  Median :1945   Median :1.000   Median :1.000   Median :1.000            
-#&gt;  Mean   :1929   Mean   :1.505   Mean   :1.319   Mean   :1.321            
-#&gt;  3rd Qu.:1984   3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:2.000            
-#&gt;  Max.   :2017   Max.   :3.000   Max.   :2.000   Max.   :2.000            
-#&gt;                 NA's   :27296   NA's   :10814   NA's   :11039            
-#&gt;       bnr         bnr_extended    doorenspleet    fh_electoral  
-#&gt;  Min.   :0.000   Min.   :0.000   Min.   :1.000   Min.   :1.000  
-#&gt;  1st Qu.:1.000   1st Qu.:0.000   1st Qu.:1.000   1st Qu.:1.000  
-#&gt;  Median :1.000   Median :0.000   Median :1.000   Median :2.000  
-#&gt;  Mean   :0.983   Mean   :0.344   Mean   :1.179   Mean   :1.598  
-#&gt;  3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:2.000  
-#&gt;  Max.   :1.000   Max.   :1.000   Max.   :2.000   Max.   :2.000  
-#&gt;  NA's   :24150   NA's   :17481   NA's   :14792   NA's   :22481  
-#&gt;  fh_total_reversed gwf_democracy   gwf_democracy_extended
-#&gt;  Min.   : 1.000    Min.   :1.000   Min.   :1.000         
-#&gt;  1st Qu.: 4.000    1st Qu.:1.000   1st Qu.:1.000         
-#&gt;  Median : 8.000    Median :1.000   Median :1.000         
-#&gt;  Mean   : 7.487    Mean   :1.402   Mean   :1.419         
-#&gt;  3rd Qu.:12.000    3rd Qu.:2.000   3rd Qu.:2.000         
-#&gt;  Max.   :13.000    Max.   :2.000   Max.   :2.000         
-#&gt;  NA's   :19463     NA's   :19847   NA's   :18390         
-#&gt;  gwf_democracy_extended_strict gwf_democracy_strict kailitz_binary 
-#&gt;  Min.   :1.000                 Min.   :1.00         Min.   :1.000  
-#&gt;  1st Qu.:1.000                 1st Qu.:1.00         1st Qu.:1.000  
-#&gt;  Median :1.000                 Median :1.00         Median :1.000  
-#&gt;  Mean   :1.426                 Mean   :1.41         Mean   :1.412  
-#&gt;  3rd Qu.:2.000                 3rd Qu.:2.00         3rd Qu.:2.000  
-#&gt;  Max.   :2.000                 Max.   :2.00         Max.   :2.000  
-#&gt;  NA's   :18558                 NA's   :20014        NA's   :18195  
-#&gt;   kailitz_tri    lexical_index   magaloni_democracy magaloni_democracy_extended
-#&gt;  Min.   :1.000   Min.   :1.000   Min.   :1.000      Min.   :1.000              
-#&gt;  1st Qu.:1.000   1st Qu.:2.000   1st Qu.:1.000      1st Qu.:1.000              
-#&gt;  Median :2.000   Median :4.000   Median :1.000      Median :1.000              
-#&gt;  Mean   :1.989   Mean   :3.783   Mean   :1.396      Mean   :1.424              
-#&gt;  3rd Qu.:3.000   3rd Qu.:7.000   3rd Qu.:2.000      3rd Qu.:2.000              
-#&gt;  Max.   :3.000   Max.   :7.000   Max.   :2.000      Max.   :2.000              
-#&gt;  NA's   :18195   NA's   :9272    NA's   :19173      NA's   :17513              
-#&gt;    mainwaring         pacl           PEPS1i           PEPS1q      
-#&gt;  Min.   :1.000   Min.   :1.000   Min.   : 1.000   Min.   : 1.000  
-#&gt;  1st Qu.:1.000   1st Qu.:1.000   1st Qu.: 2.000   1st Qu.: 2.000  
-#&gt;  Median :1.000   Median :1.000   Median : 4.000   Median : 5.000  
-#&gt;  Mean   :1.675   Mean   :1.438   Mean   : 7.805   Mean   : 7.828  
-#&gt;  3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:15.000   3rd Qu.:14.000  
-#&gt;  Max.   :3.000   Max.   :2.000   Max.   :21.000   Max.   :21.000  
-#&gt;  NA's   :25645   NA's   :18686   NA's   :18638    NA's   :18362   
-#&gt;      PEPS1v           PEPS2i          PEPS2q           PEPS2v     
-#&gt;  Min.   : 1.000   Min.   : 1.00   Min.   : 1.000   Min.   : 1.0   
-#&gt;  1st Qu.: 4.000   1st Qu.:11.00   1st Qu.: 3.000   1st Qu.: 3.0   
-#&gt;  Median : 7.000   Median :16.00   Median :10.000   Median : 7.0   
-#&gt;  Mean   : 8.117   Mean   :14.71   Mean   : 9.917   Mean   : 8.6   
-#&gt;  3rd Qu.:12.000   3rd Qu.:18.00   3rd Qu.:17.000   3rd Qu.:13.0   
-#&gt;  Max.   :21.000   Max.   :21.00   Max.   :21.000   Max.   :21.0   
-#&gt;  NA's   :13712    NA's   :23676   NA's   :20911    NA's   :14560  
-#&gt;  PIPE_democracy   PIPE_regime         pitf        pitf_binary   
-#&gt;  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
-#&gt;  1st Qu.:1.000   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:1.000  
-#&gt;  Median :1.000   Median :2.000   Median :2.000   Median :1.000  
-#&gt;  Mean   :1.202   Mean   :2.523   Mean   :2.433   Mean   :1.367  
-#&gt;  3rd Qu.:1.000   3rd Qu.:3.000   3rd Qu.:4.000   3rd Qu.:2.000  
-#&gt;  Max.   :2.000   Max.   :4.000   Max.   :5.000   Max.   :2.000  
-#&gt;  NA's   :10083   NA's   :9831    NA's   :11551   NA's   :11551  
-#&gt;     pmm_arat        pmm_blm        pmm_bollen         pmm_fh      
-#&gt;  Min.   :1.000   Min.   :1.00    Min.   : 1.000   Min.   : 1.000  
-#&gt;  1st Qu.:2.000   1st Qu.:1.00    1st Qu.: 3.000   1st Qu.: 4.000  
-#&gt;  Median :3.000   Median :1.00    Median : 6.000   Median : 7.000  
-#&gt;  Mean   :3.878   Mean   :1.72    Mean   : 6.006   Mean   : 7.301  
-#&gt;  3rd Qu.:6.000   3rd Qu.:2.00    3rd Qu.:10.000   3rd Qu.:11.000  
-#&gt;  Max.   :7.000   Max.   :3.00    Max.   :10.000   Max.   :13.000  
-#&gt;  NA's   :23928   NA's   :27526   NA's   :27291    NA's   :21363   
-#&gt;   pmm_hadenius   pmm_mainwaring    pmm_munck        pmm_pacl    
-#&gt;  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
-#&gt;  1st Qu.:2.000   1st Qu.:1.000   1st Qu.:3.000   1st Qu.:1.000  
-#&gt;  Median :4.000   Median :2.000   Median :4.000   Median :1.000  
-#&gt;  Mean   :4.279   Mean   :2.122   Mean   :3.333   Mean   :1.436  
-#&gt;  3rd Qu.:7.000   3rd Qu.:3.000   3rd Qu.:4.000   3rd Qu.:2.000  
-#&gt;  Max.   :8.000   Max.   :3.000   Max.   :4.000   Max.   :2.000  
-#&gt;  NA's   :27672   NA's   :26966   NA's   :27459   NA's   :18734  
-#&gt;    pmm_polity    pmm_polyarchy       pmm_prc       pmm_vanhanen  
-#&gt;  Min.   : 1.00   Min.   : 1.000   Min.   :1.000   Min.   :1.000  
-#&gt;  1st Qu.: 4.00   1st Qu.: 4.000   1st Qu.:1.000   1st Qu.:1.000  
-#&gt;  Median :10.00   Median : 8.000   Median :1.000   Median :2.000  
-#&gt;  Mean   :11.13   Mean   : 7.329   Mean   :2.147   Mean   :2.939  
-#&gt;  3rd Qu.:19.00   3rd Qu.:11.000   3rd Qu.:4.000   3rd Qu.:5.000  
-#&gt;  Max.   :21.00   Max.   :11.000   Max.   :4.000   Max.   :8.000  
-#&gt;  NA's   :19751   NA's   :27448    NA's   :21799   NA's   :18836  
-#&gt;      polity         polity2      polyarchy_contestation_dimension
-#&gt;  Min.   : 1.00   Min.   : 1.00   Min.   : 1.00                   
-#&gt;  1st Qu.: 4.00   1st Qu.: 4.00   1st Qu.: 6.00                   
-#&gt;  Median : 8.00   Median : 8.00   Median :10.00                   
-#&gt;  Mean   :10.46   Mean   :10.45   Mean   :10.88                   
-#&gt;  3rd Qu.:18.00   3rd Qu.:18.00   3rd Qu.:16.00                   
-#&gt;  Max.   :21.00   Max.   :21.00   Max.   :20.00                   
-#&gt;  NA's   :11350   NA's   :10815   NA's   :20268                   
-#&gt;  polyarchy_inclusion_dimension polyarchy_original_contestation
-#&gt;  Min.   : 1.0                  Min.   :1.000                  
-#&gt;  1st Qu.:13.0                  1st Qu.:3.750                  
-#&gt;  Median :15.0                  Median :6.000                  
-#&gt;  Mean   :14.1                  Mean   :5.881                  
-#&gt;  3rd Qu.:16.0                  3rd Qu.:9.000                  
-#&gt;  Max.   :20.0                  Max.   :9.000                  
-#&gt;  NA's   :20268                 NA's   :27441                  
-#&gt;  polyarchy_original_polyarchy      prc        reign_democracy svolik_democracy
-#&gt;  Min.   : 1.000               Min.   :1.000   Min.   :1.000   Min.   :1.00    
-#&gt;  1st Qu.: 4.000               1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.00    
-#&gt;  Median : 8.000               Median :1.000   Median :1.000   Median :1.00    
-#&gt;  Mean   : 7.401               Mean   :1.621   Mean   :1.478   Mean   :1.45    
-#&gt;  3rd Qu.:11.000               3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:2.00    
-#&gt;  Max.   :11.000               Max.   :3.000   Max.   :2.000   Max.   :2.00    
-#&gt;  NA's   :27447                NA's   :16918   NA's   :14891   NA's   :19246   
-#&gt;  uds_2010_mean    uds_2010_median  uds_2011_mean    uds_2011_median 
-#&gt;  Min.   :-2.063   Min.   :-2.001   Min.   :-2.103   Min.   :-2.053  
-#&gt;  1st Qu.:-0.840   1st Qu.:-0.837   1st Qu.:-0.860   1st Qu.:-0.850  
-#&gt;  Median :-0.193   Median :-0.190   Median :-0.139   Median :-0.136  
-#&gt;  Mean   :-0.002   Mean   :-0.003   Mean   : 0.002   Mean   : 0.000  
-#&gt;  3rd Qu.: 0.823   3rd Qu.: 0.815   3rd Qu.: 0.797   3rd Qu.: 0.791  
-#&gt;  Max.   : 2.197   Max.   : 2.151   Max.   : 2.117   Max.   : 2.066  
-#&gt;  NA's   :20245    NA's   :20245    NA's   :18664    NA's   :18664   
-#&gt;  uds_2014_mean    uds_2014_median  ulfelder_democracy
-#&gt;  Min.   :-2.112   Min.   :-2.058   Min.   :1.000     
-#&gt;  1st Qu.:-0.858   1st Qu.:-0.850   1st Qu.:1.000     
-#&gt;  Median :-0.116   Median :-0.115   Median :1.000     
-#&gt;  Mean   : 0.001   Mean   : 0.000   Mean   :1.412     
-#&gt;  3rd Qu.: 0.787   3rd Qu.: 0.783   3rd Qu.:2.000     
-#&gt;  Max.   : 2.263   Max.   : 2.206   Max.   :2.000     
-#&gt;  NA's   :17951    NA's   :17951    NA's   :20117     
-#&gt;  ulfelder_democracy_extended utip_dichotomous utip_dichotomous_strict
-#&gt;  Min.   :1.000               Min.   :1.000    Min.   :1.00           
-#&gt;  1st Qu.:1.000               1st Qu.:1.000    1st Qu.:1.00           
-#&gt;  Median :1.000               Median :2.000    Median :1.00           
-#&gt;  Mean   :1.322               Mean   :1.517    Mean   :1.48           
-#&gt;  3rd Qu.:2.000               3rd Qu.:2.000    3rd Qu.:2.00           
-#&gt;  Max.   :2.000               Max.   :2.000    Max.   :2.00           
-#&gt;  NA's   :16256               NA's   :21586    NA's   :21586          
-#&gt;  utip_trichotomous vanhanen_competition vanhanen_democratization
-#&gt;  Min.   :1.000     Min.   :  1.0        Min.   :1.000           
-#&gt;  1st Qu.:1.000     1st Qu.:  1.0        1st Qu.:1.000           
-#&gt;  Median :2.000     Median :176.0        Median :1.000           
-#&gt;  Mean   :1.997     Mean   :240.3        Mean   :2.422           
-#&gt;  3rd Qu.:3.000     3rd Qu.:463.0        3rd Qu.:4.000           
-#&gt;  Max.   :3.000     Max.   :693.0        Max.   :8.000           
-#&gt;  NA's   :21586     NA's   :12066        NA's   :12066           
-#&gt;  vanhanen_participation wgi_democracy     wth_democ1    wth_democrobust
-#&gt;  Min.   :  1.0          Min.   : 1.00   Min.   :1.000   Min.   :1.00   
-#&gt;  1st Qu.:  1.0          1st Qu.: 8.00   1st Qu.:1.000   1st Qu.:1.00   
-#&gt;  Median :140.0          Median :12.00   Median :1.000   Median :1.00   
-#&gt;  Mean   :228.8          Mean   :11.72   Mean   :1.436   Mean   :1.41   
-#&gt;  3rd Qu.:438.0          3rd Qu.:16.00   3rd Qu.:2.000   3rd Qu.:2.00   
-#&gt;  Max.   :760.0          Max.   :20.00   Max.   :2.000   Max.   :2.00   
-#&gt;  NA's   :12066          NA's   :24059   NA's   :20372   NA's   :20381  
-#&gt;  v2x_polyarchy       v2x_api          v2x_mpi         v2x_libdem    
+    <pre class="examples"><div class='input'><span class='fu'>summary</span>(<span class='no'>democracy</span>)</div><div class='output co'>#&gt;  extended_country_name      GWn             cown        polity_ccode  
+#&gt;  Length:28492          Min.   :  2.0   Min.   :  2.0   Min.   :  2.0  
+#&gt;  Class :character      1st Qu.:225.0   1st Qu.:225.0   1st Qu.:223.0  
+#&gt;  Mode  :character      Median :420.0   Median :411.0   Median :420.0  
+#&gt;                        Mean   :441.1   Mean   :439.4   Mean   :439.6  
+#&gt;                        3rd Qu.:651.0   3rd Qu.:651.0   3rd Qu.:651.0  
+#&gt;                        Max.   :990.0   Max.   :990.0   Max.   :990.0  
+#&gt;                        NA's   :598     NA's   :901     NA's   :936    
+#&gt;  in_GW_system         year      anckar_democracy      blm       
+#&gt;  Mode :logical   Min.   :1502   Min.   :0.000    Min.   :0.000  
+#&gt;  FALSE:9818      1st Qu.:1896   1st Qu.:0.000    1st Qu.:0.000  
+#&gt;  TRUE :18674     Median :1946   Median :0.000    Median :0.000  
+#&gt;                  Mean   :1930   Mean   :0.348    Mean   :0.252  
+#&gt;                  3rd Qu.:1984   3rd Qu.:1.000    3rd Qu.:0.500  
+#&gt;                  Max.   :2017   Max.   :1.000    Max.   :1.000  
+#&gt;                                 NA's   :10723    NA's   :27987  
+#&gt;  bmr_democracy   bmr_democracy_femalesuffrage bmr_democracy_omitteddata
+#&gt;  Min.   :0.000   Min.   :0.000                Min.   :-1.000           
+#&gt;  1st Qu.:0.000   1st Qu.:0.000                1st Qu.: 0.000           
+#&gt;  Median :0.000   Median :0.000                Median : 0.000           
+#&gt;  Mean   :0.334   Mean   :0.286                Mean   : 0.337           
+#&gt;  3rd Qu.:1.000   3rd Qu.:1.000                3rd Qu.: 1.000           
+#&gt;  Max.   :1.000   Max.   :1.000                Max.   : 1.000           
+#&gt;  NA's   :10338   NA's   :10249                NA's   :10770            
+#&gt;       bnr         bnr_extended       csvmdi       doorenspleet  
+#&gt;  Min.   :0.000   Min.   :0.000   Min.   :0.000   Min.   :1.000  
+#&gt;  1st Qu.:1.000   1st Qu.:0.000   1st Qu.:0.044   1st Qu.:1.000  
+#&gt;  Median :1.000   Median :0.000   Median :0.359   Median :1.000  
+#&gt;  Mean   :0.983   Mean   :0.344   Mean   :0.452   Mean   :1.179  
+#&gt;  3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:0.912   3rd Qu.:1.000  
+#&gt;  Max.   :1.000   Max.   :1.000   Max.   :0.974   Max.   :2.000  
+#&gt;  NA's   :24841   NA's   :18172   NA's   :18262   NA's   :15483  
+#&gt;      dsvmdi           eiu         fh_electoral   fh_total_reversed
+#&gt;  Min.   :0.000   Min.   :0.860   Min.   :0.000   Min.   : 0.000   
+#&gt;  1st Qu.:0.000   1st Qu.:3.530   1st Qu.:0.000   1st Qu.: 3.000   
+#&gt;  Median :0.000   Median :5.840   Median :1.000   Median : 7.000   
+#&gt;  Mean   :0.461   Mean   :5.517   Mean   :0.598   Mean   : 6.491   
+#&gt;  3rd Qu.:1.000   3rd Qu.:7.285   3rd Qu.:1.000   3rd Qu.:11.000   
+#&gt;  Max.   :1.000   Max.   :9.930   Max.   :1.000   Max.   :12.000   
+#&gt;  NA's   :18262   NA's   :26989   NA's   :23172   NA's   :20164    
+#&gt;  gwf_democracy   gwf_democracy_extended gwf_democracy_extended_strict
+#&gt;  Min.   :0.000   Min.   :0.000          Min.   :0.000                
+#&gt;  1st Qu.:0.000   1st Qu.:0.000          1st Qu.:0.000                
+#&gt;  Median :0.000   Median :0.000          Median :0.000                
+#&gt;  Mean   :0.402   Mean   :0.419          Mean   :0.426                
+#&gt;  3rd Qu.:1.000   3rd Qu.:1.000          3rd Qu.:1.000                
+#&gt;  Max.   :1.000   Max.   :1.000          Max.   :1.000                
+#&gt;  NA's   :20538   NA's   :19081          NA's   :19249                
+#&gt;  gwf_democracy_strict kailitz_binary   kailitz_tri    lexical_index  
+#&gt;  Min.   :0.00         Min.   :0.000   Min.   :0.000   Min.   :0.000  
+#&gt;  1st Qu.:0.00         1st Qu.:0.000   1st Qu.:0.000   1st Qu.:1.000  
+#&gt;  Median :0.00         Median :0.000   Median :1.000   Median :3.000  
+#&gt;  Mean   :0.41         Mean   :0.412   Mean   :0.989   Mean   :2.783  
+#&gt;  3rd Qu.:1.00         3rd Qu.:1.000   3rd Qu.:2.000   3rd Qu.:6.000  
+#&gt;  Max.   :1.00         Max.   :1.000   Max.   :2.000   Max.   :6.000  
+#&gt;  NA's   :20705        NA's   :18886   NA's   :18886   NA's   :9963   
+#&gt;  magaloni_democracy magaloni_democracy_extended   mainwaring         pacl      
+#&gt;  Min.   :0.000      Min.   :0.000               Min.   :0.000   Min.   :0.000  
+#&gt;  1st Qu.:0.000      1st Qu.:0.000               1st Qu.:0.000   1st Qu.:0.000  
+#&gt;  Median :0.000      Median :0.000               Median :0.000   Median :0.000  
+#&gt;  Mean   :0.396      Mean   :0.424               Mean   :0.338   Mean   :0.438  
+#&gt;  3rd Qu.:1.000      3rd Qu.:1.000               3rd Qu.:0.500   3rd Qu.:1.000  
+#&gt;  Max.   :1.000      Max.   :1.000               Max.   :1.000   Max.   :1.000  
+#&gt;  NA's   :19864      NA's   :18204               NA's   :26336   NA's   :19377  
+#&gt;      PEPS1i            PEPS1q            PEPS1v            PEPS2i      
+#&gt;  Min.   :-10.000   Min.   :-10.000   Min.   :-10.000   Min.   :-9.587  
+#&gt;  1st Qu.: -9.000   1st Qu.: -9.000   1st Qu.: -7.000   1st Qu.: 0.174  
+#&gt;  Median : -7.000   Median : -6.242   Median : -4.000   Median : 4.999  
+#&gt;  Mean   : -3.199   Mean   : -3.176   Mean   : -2.869   Mean   : 3.716  
+#&gt;  3rd Qu.:  3.700   3rd Qu.:  3.477   3rd Qu.:  1.500   3rd Qu.: 7.448  
+#&gt;  Max.   : 10.000   Max.   : 10.000   Max.   : 10.000   Max.   :10.000  
+#&gt;  NA's   :19329     NA's   :19053     NA's   :14403     NA's   :24367   
+#&gt;      PEPS2q            PEPS2v        PIPE_democracy   PIPE_regime   
+#&gt;  Min.   :-10.000   Min.   :-10.000   Min.   :0.000   Min.   :0.000  
+#&gt;  1st Qu.: -8.500   1st Qu.: -7.500   1st Qu.:0.000   1st Qu.:1.000  
+#&gt;  Median : -1.455   Median : -3.550   Median :0.000   Median :1.000  
+#&gt;  Mean   : -1.126   Mean   : -2.427   Mean   :0.202   Mean   :1.523  
+#&gt;  3rd Qu.:  5.886   3rd Qu.:  1.937   3rd Qu.:0.000   3rd Qu.:2.000  
+#&gt;  Max.   : 10.000   Max.   : 10.000   Max.   :1.000   Max.   :3.000  
+#&gt;  NA's   :21602     NA's   :15251     NA's   :10774   NA's   :10522  
+#&gt;       pitf        pitf_binary       pmm_arat        pmm_blm     
+#&gt;  Min.   :0.000   Min.   :0.000   Min.   : 29.0   Min.   :0.00   
+#&gt;  1st Qu.:0.000   1st Qu.:0.000   1st Qu.: 58.0   1st Qu.:0.00   
+#&gt;  Median :1.000   Median :0.000   Median : 69.0   Median :0.00   
+#&gt;  Mean   :1.433   Mean   :0.367   Mean   : 73.2   Mean   :0.36   
+#&gt;  3rd Qu.:3.000   3rd Qu.:1.000   3rd Qu.: 92.0   3rd Qu.:0.50   
+#&gt;  Max.   :4.000   Max.   :1.000   Max.   :109.0   Max.   :1.00   
+#&gt;  NA's   :12242   NA's   :12242   NA's   :24619   NA's   :28217  
+#&gt;    pmm_bollen         pmm_fh       pmm_hadenius    pmm_mainwaring  
+#&gt;  Min.   :  0.00   Min.   :1.00    Min.   : 0.000   Min.   :-1.000  
+#&gt;  1st Qu.: 22.84   1st Qu.:2.50    1st Qu.: 1.500   1st Qu.:-1.000  
+#&gt;  Median : 53.59   Median :4.00    Median : 3.100   Median : 0.000  
+#&gt;  Mean   : 55.46   Mean   :4.15    Mean   : 4.509   Mean   : 0.122  
+#&gt;  3rd Qu.: 90.95   3rd Qu.:6.00    3rd Qu.: 8.300   3rd Qu.: 1.000  
+#&gt;  Max.   :100.00   Max.   :7.00    Max.   :10.000   Max.   : 1.000  
+#&gt;  NA's   :27982    NA's   :22054   NA's   :28363    NA's   :27657   
+#&gt;    pmm_munck        pmm_pacl       pmm_polity      pmm_polyarchy   
+#&gt;  Min.   :0.000   Min.   :0.000   Min.   :-10.000   Min.   : 0.000  
+#&gt;  1st Qu.:0.750   1st Qu.:0.000   1st Qu.: -7.000   1st Qu.: 3.000  
+#&gt;  Median :1.000   Median :0.000   Median : -1.000   Median : 7.000  
+#&gt;  Mean   :0.838   Mean   :0.436   Mean   :  0.129   Mean   : 6.329  
+#&gt;  3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:  8.000   3rd Qu.:10.000  
+#&gt;  Max.   :1.000   Max.   :1.000   Max.   : 10.000   Max.   :10.000  
+#&gt;  NA's   :28150   NA's   :19425   NA's   :20442     NA's   :28139   
+#&gt;     pmm_prc       pmm_vanhanen       polity          polity2      
+#&gt;  Min.   :1.000   Min.   : 0.00   Min.   :-10.00   Min.   :-10.00  
+#&gt;  1st Qu.:1.000   1st Qu.: 0.00   1st Qu.: -7.00   1st Qu.: -7.00  
+#&gt;  Median :1.000   Median : 5.90   Median : -3.00   Median : -3.00  
+#&gt;  Mean   :2.147   Mean   :11.31   Mean   : -0.54   Mean   : -0.55  
+#&gt;  3rd Qu.:4.000   3rd Qu.:20.70   3rd Qu.:  7.00   3rd Qu.:  7.00  
+#&gt;  Max.   :4.000   Max.   :49.00   Max.   : 10.00   Max.   : 10.00  
+#&gt;  NA's   :22490   NA's   :19527   NA's   :12041    NA's   :11506   
+#&gt;  polyarchy_contestation_dimension polyarchy_inclusion_dimension
+#&gt;  Min.   :-2.067                   Min.   :-3.952               
+#&gt;  1st Qu.:-0.876                   1st Qu.:-0.297               
+#&gt;  Median :-0.214                   Median : 0.379               
+#&gt;  Mean   :-0.005                   Mean   :-0.002               
+#&gt;  3rd Qu.: 0.918                   3rd Qu.: 0.672               
+#&gt;  Max.   : 1.909                   Max.   : 1.858               
+#&gt;  NA's   :20959                    NA's   :20959                
+#&gt;  polyarchy_original_contestation polyarchy_original_polyarchy      prc       
+#&gt;  Min.   :1.000                   Min.   : 0.000               Min.   :1.000  
+#&gt;  1st Qu.:3.750                   1st Qu.: 3.000               1st Qu.:1.000  
+#&gt;  Median :6.000                   Median : 7.000               Median :1.000  
+#&gt;  Mean   :5.881                   Mean   : 6.401               Mean   :2.002  
+#&gt;  3rd Qu.:9.000                   3rd Qu.:10.000               3rd Qu.:3.000  
+#&gt;  Max.   :9.000                   Max.   :10.000               Max.   :4.000  
+#&gt;  NA's   :28132                   NA's   :28138                NA's   :17609  
+#&gt;  reign_democracy   svmdi_2016    svolik_democracy uds_2010_mean   
+#&gt;  Min.   :0.000   Min.   :0.007   Min.   :0.00     Min.   :-2.063  
+#&gt;  1st Qu.:0.000   1st Qu.:0.063   1st Qu.:0.00     1st Qu.:-0.840  
+#&gt;  Median :0.000   Median :0.465   Median :0.00     Median :-0.193  
+#&gt;  Mean   :0.478   Mean   :0.480   Mean   :0.45     Mean   :-0.002  
+#&gt;  3rd Qu.:1.000   3rd Qu.:0.926   3rd Qu.:1.00     3rd Qu.: 0.823  
+#&gt;  Max.   :1.000   Max.   :0.981   Max.   :1.00     Max.   : 2.197  
+#&gt;  NA's   :15582   NA's   :23116   NA's   :19937    NA's   :20936   
+#&gt;  uds_2010_median  uds_2011_mean    uds_2011_median  uds_2014_mean   
+#&gt;  Min.   :-2.001   Min.   :-2.103   Min.   :-2.053   Min.   :-2.112  
+#&gt;  1st Qu.:-0.837   1st Qu.:-0.860   1st Qu.:-0.850   1st Qu.:-0.858  
+#&gt;  Median :-0.190   Median :-0.139   Median :-0.136   Median :-0.116  
+#&gt;  Mean   :-0.003   Mean   : 0.002   Mean   : 0.000   Mean   : 0.001  
+#&gt;  3rd Qu.: 0.815   3rd Qu.: 0.797   3rd Qu.: 0.791   3rd Qu.: 0.787  
+#&gt;  Max.   : 2.151   Max.   : 2.117   Max.   : 2.066   Max.   : 2.263  
+#&gt;  NA's   :20936    NA's   :19355    NA's   :19355    NA's   :18642   
+#&gt;  uds_2014_median  ulfelder_democracy ulfelder_democracy_extended
+#&gt;  Min.   :-2.058   Min.   :0.000      Min.   :0.000              
+#&gt;  1st Qu.:-0.850   1st Qu.:0.000      1st Qu.:0.000              
+#&gt;  Median :-0.115   Median :0.000      Median :0.000              
+#&gt;  Mean   : 0.000   Mean   :0.412      Mean   :0.322              
+#&gt;  3rd Qu.: 0.783   3rd Qu.:1.000      3rd Qu.:1.000              
+#&gt;  Max.   : 2.206   Max.   :1.000      Max.   :1.000              
+#&gt;  NA's   :18642    NA's   :20808      NA's   :16947              
+#&gt;  utip_dichotomous utip_dichotomous_strict utip_trichotomous
+#&gt;  Min.   :0.000    Min.   :0.00            Min.   :0.000    
+#&gt;  1st Qu.:0.000    1st Qu.:0.00            1st Qu.:0.000    
+#&gt;  Median :1.000    Median :0.00            Median :1.000    
+#&gt;  Mean   :0.517    Mean   :0.48            Mean   :0.997    
+#&gt;  3rd Qu.:1.000    3rd Qu.:1.00            3rd Qu.:2.000    
+#&gt;  Max.   :1.000    Max.   :1.00            Max.   :2.000    
+#&gt;  NA's   :22277    NA's   :22277           NA's   :22277    
+#&gt;  vanhanen_competition vanhanen_democratization vanhanen_participation
+#&gt;  Min.   : 0.00        Min.   : 0.000           Min.   : 0.0          
+#&gt;  1st Qu.: 0.00        1st Qu.: 0.000           1st Qu.: 0.0          
+#&gt;  Median :20.00        Median : 1.100           Median :14.0          
+#&gt;  Mean   :25.22        Mean   : 8.434           Mean   :21.1          
+#&gt;  3rd Qu.:49.10        3rd Qu.:15.400           3rd Qu.:40.4          
+#&gt;  Max.   :70.00        Max.   :49.000           Max.   :71.0          
+#&gt;  NA's   :12757        NA's   :12757            NA's   :12757         
+#&gt;  wgi_democracy      wth_democ1    wth_democrobust v2x_polyarchy  
+#&gt;  Min.   :-2.313   Min.   :0.000   Min.   :0.00    Min.   :0.009  
+#&gt;  1st Qu.:-0.823   1st Qu.:0.000   1st Qu.:0.00    1st Qu.:0.092  
+#&gt;  Median : 0.043   Median :0.000   Median :0.00    Median :0.206  
+#&gt;  Mean   : 0.000   Mean   :0.436   Mean   :0.41    Mean   :0.318  
+#&gt;  3rd Qu.: 0.933   3rd Qu.:1.000   3rd Qu.:1.00    3rd Qu.:0.525  
+#&gt;  Max.   : 1.801   Max.   :1.000   Max.   :1.00    Max.   :0.947  
+#&gt;  NA's   :24760    NA's   :21063   NA's   :21072   NA's   :11467  
+#&gt;     v2x_api         v2x_mpi        v2x_libdem    v2x_partipdem  
+#&gt;  Min.   :0.017   Min.   :0.000   Min.   :0.009   Min.   :0.005  
+#&gt;  1st Qu.:0.185   1st Qu.:0.000   1st Qu.:0.080   1st Qu.:0.048  
+#&gt;  Median :0.407   Median :0.001   Median :0.151   Median :0.105  
+#&gt;  Mean   :0.464   Mean   :0.172   Mean   :0.260   Mean   :0.192  
+#&gt;  3rd Qu.:0.766   3rd Qu.:0.283   3rd Qu.:0.374   3rd Qu.:0.296  
+#&gt;  Max.   :0.978   Max.   :0.916   Max.   :0.916   Max.   :0.814  
+#&gt;  NA's   :11467   NA's   :11467   NA's   :11468   NA's   :11468  
+#&gt;   v2x_delibdem    v2x_egaldem   
+#&gt;  Min.   :0.000   Min.   :0.011  
+#&gt;  1st Qu.:0.014   1st Qu.:0.069  
+#&gt;  Median :0.069   Median :0.148  
+#&gt;  Mean   :0.209   Mean   :0.242  
+#&gt;  3rd Qu.:0.346   3rd Qu.:0.335  
+#&gt;  Max.   :0.913   Max.   :0.890  
+#&gt;  NA's   :11468   NA's   :11467  </div><div class='input'><span class='fu'>summary</span>(<span class='fu'>prepare_data</span>(<span class='no'>democracy</span>))</div><div class='output co'>#&gt;  extended_country_name      GWn             cown        polity_ccode  
+#&gt;  Length:28492          Min.   :  2.0   Min.   :  2.0   Min.   :  1.0  
+#&gt;  Class :character      1st Qu.:225.0   1st Qu.:225.0   1st Qu.: 45.0  
+#&gt;  Mode  :character      Median :420.0   Median :411.0   Median :110.0  
+#&gt;                        Mean   :441.1   Mean   :439.4   Mean   :109.5  
+#&gt;                        3rd Qu.:651.0   3rd Qu.:651.0   3rd Qu.:166.0  
+#&gt;                        Max.   :990.0   Max.   :990.0   Max.   :227.0  
+#&gt;                        NA's   :598     NA's   :901     NA's   :936    
+#&gt;  in_GW_system         year      anckar_democracy      blm       
+#&gt;  Mode :logical   Min.   :1502   Min.   :1.000    Min.   :1.000  
+#&gt;  FALSE:9818      1st Qu.:1896   1st Qu.:1.000    1st Qu.:1.000  
+#&gt;  TRUE :18674     Median :1946   Median :1.000    Median :1.000  
+#&gt;                  Mean   :1930   Mean   :1.348    Mean   :1.505  
+#&gt;                  3rd Qu.:1984   3rd Qu.:2.000    3rd Qu.:2.000  
+#&gt;                  Max.   :2017   Max.   :2.000    Max.   :3.000  
+#&gt;                                 NA's   :10723    NA's   :27987  
+#&gt;  bmr_democracy   bmr_democracy_femalesuffrage bmr_democracy_omitteddata
+#&gt;  Min.   :1.000   Min.   :1.000                Min.   :1.000            
+#&gt;  1st Qu.:1.000   1st Qu.:1.000                1st Qu.:2.000            
+#&gt;  Median :1.000   Median :1.000                Median :2.000            
+#&gt;  Mean   :1.334   Mean   :1.286                Mean   :2.337            
+#&gt;  3rd Qu.:2.000   3rd Qu.:2.000                3rd Qu.:3.000            
+#&gt;  Max.   :2.000   Max.   :2.000                Max.   :3.000            
+#&gt;  NA's   :10338   NA's   :10249                NA's   :10770            
+#&gt;       bnr         bnr_extended       csvmdi        doorenspleet  
+#&gt;  Min.   :0.000   Min.   :0.000   Min.   : 1.000   Min.   :1.000  
+#&gt;  1st Qu.:1.000   1st Qu.:0.000   1st Qu.: 1.000   1st Qu.:1.000  
+#&gt;  Median :1.000   Median :0.000   Median : 8.000   Median :1.000  
+#&gt;  Mean   :0.983   Mean   :0.344   Mean   : 9.748   Mean   :1.179  
+#&gt;  3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:19.000   3rd Qu.:1.000  
+#&gt;  Max.   :1.000   Max.   :1.000   Max.   :20.000   Max.   :2.000  
+#&gt;  NA's   :24841   NA's   :18172   NA's   :18262    NA's   :15483  
+#&gt;      dsvmdi           eiu         fh_electoral   fh_total_reversed
+#&gt;  Min.   :1.000   Min.   : 1.00   Min.   :1.000   Min.   : 1.000   
+#&gt;  1st Qu.:1.000   1st Qu.: 6.00   1st Qu.:1.000   1st Qu.: 4.000   
+#&gt;  Median :1.000   Median :11.00   Median :2.000   Median : 8.000   
+#&gt;  Mean   :1.461   Mean   :10.78   Mean   :1.598   Mean   : 7.491   
+#&gt;  3rd Qu.:2.000   3rd Qu.:15.00   3rd Qu.:2.000   3rd Qu.:12.000   
+#&gt;  Max.   :2.000   Max.   :20.00   Max.   :2.000   Max.   :13.000   
+#&gt;  NA's   :18262   NA's   :26989   NA's   :23172   NA's   :20164    
+#&gt;  gwf_democracy   gwf_democracy_extended gwf_democracy_extended_strict
+#&gt;  Min.   :1.000   Min.   :1.000          Min.   :1.000                
+#&gt;  1st Qu.:1.000   1st Qu.:1.000          1st Qu.:1.000                
+#&gt;  Median :1.000   Median :1.000          Median :1.000                
+#&gt;  Mean   :1.402   Mean   :1.419          Mean   :1.426                
+#&gt;  3rd Qu.:2.000   3rd Qu.:2.000          3rd Qu.:2.000                
+#&gt;  Max.   :2.000   Max.   :2.000          Max.   :2.000                
+#&gt;  NA's   :20538   NA's   :19081          NA's   :19249                
+#&gt;  gwf_democracy_strict kailitz_binary   kailitz_tri    lexical_index  
+#&gt;  Min.   :1.00         Min.   :1.000   Min.   :1.000   Min.   :1.000  
+#&gt;  1st Qu.:1.00         1st Qu.:1.000   1st Qu.:1.000   1st Qu.:2.000  
+#&gt;  Median :1.00         Median :1.000   Median :2.000   Median :4.000  
+#&gt;  Mean   :1.41         Mean   :1.412   Mean   :1.989   Mean   :3.783  
+#&gt;  3rd Qu.:2.00         3rd Qu.:2.000   3rd Qu.:3.000   3rd Qu.:7.000  
+#&gt;  Max.   :2.00         Max.   :2.000   Max.   :3.000   Max.   :7.000  
+#&gt;  NA's   :20705        NA's   :18886   NA's   :18886   NA's   :9963   
+#&gt;  magaloni_democracy magaloni_democracy_extended   mainwaring         pacl      
+#&gt;  Min.   :1.000      Min.   :1.000               Min.   :1.000   Min.   :1.000  
+#&gt;  1st Qu.:1.000      1st Qu.:1.000               1st Qu.:1.000   1st Qu.:1.000  
+#&gt;  Median :1.000      Median :1.000               Median :1.000   Median :1.000  
+#&gt;  Mean   :1.396      Mean   :1.424               Mean   :1.675   Mean   :1.438  
+#&gt;  3rd Qu.:2.000      3rd Qu.:2.000               3rd Qu.:2.000   3rd Qu.:2.000  
+#&gt;  Max.   :2.000      Max.   :2.000               Max.   :3.000   Max.   :2.000  
+#&gt;  NA's   :19864      NA's   :18204               NA's   :26336   NA's   :19377  
+#&gt;      PEPS1i           PEPS1q           PEPS1v           PEPS2i     
+#&gt;  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.00  
+#&gt;  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 4.000   1st Qu.:11.00  
+#&gt;  Median : 4.000   Median : 5.000   Median : 7.000   Median :16.00  
+#&gt;  Mean   : 7.805   Mean   : 7.828   Mean   : 8.117   Mean   :14.71  
+#&gt;  3rd Qu.:15.000   3rd Qu.:14.000   3rd Qu.:12.000   3rd Qu.:18.00  
+#&gt;  Max.   :21.000   Max.   :21.000   Max.   :21.000   Max.   :21.00  
+#&gt;  NA's   :19329    NA's   :19053    NA's   :14403    NA's   :24367  
+#&gt;      PEPS2q           PEPS2v      PIPE_democracy   PIPE_regime   
+#&gt;  Min.   : 1.000   Min.   : 1.0    Min.   :1.000   Min.   :1.000  
+#&gt;  1st Qu.: 3.000   1st Qu.: 3.0    1st Qu.:1.000   1st Qu.:2.000  
+#&gt;  Median :10.000   Median : 7.0    Median :1.000   Median :2.000  
+#&gt;  Mean   : 9.917   Mean   : 8.6    Mean   :1.202   Mean   :2.523  
+#&gt;  3rd Qu.:17.000   3rd Qu.:13.0    3rd Qu.:1.000   3rd Qu.:3.000  
+#&gt;  Max.   :21.000   Max.   :21.0    Max.   :2.000   Max.   :4.000  
+#&gt;  NA's   :21602    NA's   :15251   NA's   :10774   NA's   :10522  
+#&gt;       pitf        pitf_binary       pmm_arat        pmm_blm     
+#&gt;  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.00   
+#&gt;  1st Qu.:1.000   1st Qu.:1.000   1st Qu.:2.000   1st Qu.:1.00   
+#&gt;  Median :2.000   Median :1.000   Median :3.000   Median :1.00   
+#&gt;  Mean   :2.433   Mean   :1.367   Mean   :3.878   Mean   :1.72   
+#&gt;  3rd Qu.:4.000   3rd Qu.:2.000   3rd Qu.:6.000   3rd Qu.:2.00   
+#&gt;  Max.   :5.000   Max.   :2.000   Max.   :7.000   Max.   :3.00   
+#&gt;  NA's   :12242   NA's   :12242   NA's   :24619   NA's   :28217  
+#&gt;    pmm_bollen         pmm_fh        pmm_hadenius   pmm_mainwaring 
+#&gt;  Min.   : 1.000   Min.   : 1.000   Min.   :1.000   Min.   :1.000  
+#&gt;  1st Qu.: 3.000   1st Qu.: 4.000   1st Qu.:2.000   1st Qu.:1.000  
+#&gt;  Median : 6.000   Median : 7.000   Median :4.000   Median :2.000  
+#&gt;  Mean   : 6.006   Mean   : 7.301   Mean   :4.279   Mean   :2.122  
+#&gt;  3rd Qu.:10.000   3rd Qu.:11.000   3rd Qu.:7.000   3rd Qu.:3.000  
+#&gt;  Max.   :10.000   Max.   :13.000   Max.   :8.000   Max.   :3.000  
+#&gt;  NA's   :27982    NA's   :22054    NA's   :28363   NA's   :27657  
+#&gt;    pmm_munck        pmm_pacl       pmm_polity    pmm_polyarchy   
+#&gt;  Min.   :1.000   Min.   :1.000   Min.   : 1.00   Min.   : 1.000  
+#&gt;  1st Qu.:3.000   1st Qu.:1.000   1st Qu.: 4.00   1st Qu.: 4.000  
+#&gt;  Median :4.000   Median :1.000   Median :10.00   Median : 8.000  
+#&gt;  Mean   :3.333   Mean   :1.436   Mean   :11.13   Mean   : 7.329  
+#&gt;  3rd Qu.:4.000   3rd Qu.:2.000   3rd Qu.:19.00   3rd Qu.:11.000  
+#&gt;  Max.   :4.000   Max.   :2.000   Max.   :21.00   Max.   :11.000  
+#&gt;  NA's   :28150   NA's   :19425   NA's   :20442   NA's   :28139   
+#&gt;     pmm_prc       pmm_vanhanen       polity         polity2     
+#&gt;  Min.   :1.000   Min.   :1.000   Min.   : 1.00   Min.   : 1.00  
+#&gt;  1st Qu.:1.000   1st Qu.:1.000   1st Qu.: 4.00   1st Qu.: 4.00  
+#&gt;  Median :1.000   Median :2.000   Median : 8.00   Median : 8.00  
+#&gt;  Mean   :2.147   Mean   :2.939   Mean   :10.46   Mean   :10.45  
+#&gt;  3rd Qu.:4.000   3rd Qu.:5.000   3rd Qu.:18.00   3rd Qu.:18.00  
+#&gt;  Max.   :4.000   Max.   :8.000   Max.   :21.00   Max.   :21.00  
+#&gt;  NA's   :22490   NA's   :19527   NA's   :12041   NA's   :11506  
+#&gt;  polyarchy_contestation_dimension polyarchy_inclusion_dimension
+#&gt;  Min.   : 1.00                    Min.   : 1.0                 
+#&gt;  1st Qu.: 6.00                    1st Qu.:13.0                 
+#&gt;  Median :10.00                    Median :15.0                 
+#&gt;  Mean   :10.88                    Mean   :14.1                 
+#&gt;  3rd Qu.:16.00                    3rd Qu.:16.0                 
+#&gt;  Max.   :20.00                    Max.   :20.0                 
+#&gt;  NA's   :20959                    NA's   :20959                
+#&gt;  polyarchy_original_contestation polyarchy_original_polyarchy      prc       
+#&gt;  Min.   :1.000                   Min.   : 1.000               Min.   :1.000  
+#&gt;  1st Qu.:3.750                   1st Qu.: 4.000               1st Qu.:1.000  
+#&gt;  Median :6.000                   Median : 8.000               Median :1.000  
+#&gt;  Mean   :5.881                   Mean   : 7.401               Mean   :1.621  
+#&gt;  3rd Qu.:9.000                   3rd Qu.:11.000               3rd Qu.:2.000  
+#&gt;  Max.   :9.000                   Max.   :11.000               Max.   :3.000  
+#&gt;  NA's   :28132                   NA's   :28138                NA's   :17609  
+#&gt;  reign_democracy   svmdi_2016    svolik_democracy uds_2010_mean   
+#&gt;  Min.   :1.000   Min.   : 1.00   Min.   :1.00     Min.   :-2.063  
+#&gt;  1st Qu.:1.000   1st Qu.: 2.00   1st Qu.:1.00     1st Qu.:-0.840  
+#&gt;  Median :1.000   Median :10.00   Median :1.00     Median :-0.193  
+#&gt;  Mean   :1.478   Mean   :10.22   Mean   :1.45     Mean   :-0.002  
+#&gt;  3rd Qu.:2.000   3rd Qu.:19.00   3rd Qu.:2.00     3rd Qu.: 0.823  
+#&gt;  Max.   :2.000   Max.   :20.00   Max.   :2.00     Max.   : 2.197  
+#&gt;  NA's   :15582   NA's   :23116   NA's   :19937    NA's   :20936   
+#&gt;  uds_2010_median  uds_2011_mean    uds_2011_median  uds_2014_mean   
+#&gt;  Min.   :-2.001   Min.   :-2.103   Min.   :-2.053   Min.   :-2.112  
+#&gt;  1st Qu.:-0.837   1st Qu.:-0.860   1st Qu.:-0.850   1st Qu.:-0.858  
+#&gt;  Median :-0.190   Median :-0.139   Median :-0.136   Median :-0.116  
+#&gt;  Mean   :-0.003   Mean   : 0.002   Mean   : 0.000   Mean   : 0.001  
+#&gt;  3rd Qu.: 0.815   3rd Qu.: 0.797   3rd Qu.: 0.791   3rd Qu.: 0.787  
+#&gt;  Max.   : 2.151   Max.   : 2.117   Max.   : 2.066   Max.   : 2.263  
+#&gt;  NA's   :20936    NA's   :19355    NA's   :19355    NA's   :18642   
+#&gt;  uds_2014_median  ulfelder_democracy ulfelder_democracy_extended
+#&gt;  Min.   :-2.058   Min.   :1.000      Min.   :1.000              
+#&gt;  1st Qu.:-0.850   1st Qu.:1.000      1st Qu.:1.000              
+#&gt;  Median :-0.115   Median :1.000      Median :1.000              
+#&gt;  Mean   : 0.000   Mean   :1.412      Mean   :1.322              
+#&gt;  3rd Qu.: 0.783   3rd Qu.:2.000      3rd Qu.:2.000              
+#&gt;  Max.   : 2.206   Max.   :2.000      Max.   :2.000              
+#&gt;  NA's   :18642    NA's   :20808      NA's   :16947              
+#&gt;  utip_dichotomous utip_dichotomous_strict utip_trichotomous
+#&gt;  Min.   :1.000    Min.   :1.00            Min.   :1.000    
+#&gt;  1st Qu.:1.000    1st Qu.:1.00            1st Qu.:1.000    
+#&gt;  Median :2.000    Median :1.00            Median :2.000    
+#&gt;  Mean   :1.517    Mean   :1.48            Mean   :1.997    
+#&gt;  3rd Qu.:2.000    3rd Qu.:2.00            3rd Qu.:3.000    
+#&gt;  Max.   :2.000    Max.   :2.00            Max.   :3.000    
+#&gt;  NA's   :22277    NA's   :22277           NA's   :22277    
+#&gt;  vanhanen_competition vanhanen_democratization vanhanen_participation
+#&gt;  Min.   :  1.0        Min.   :1.000            Min.   :  1.0         
+#&gt;  1st Qu.:  1.0        1st Qu.:1.000            1st Qu.:  1.0         
+#&gt;  Median :176.0        Median :1.000            Median :140.0         
+#&gt;  Mean   :240.3        Mean   :2.422            Mean   :228.8         
+#&gt;  3rd Qu.:463.0        3rd Qu.:4.000            3rd Qu.:438.0         
+#&gt;  Max.   :693.0        Max.   :8.000            Max.   :760.0         
+#&gt;  NA's   :12757        NA's   :12757            NA's   :12757         
+#&gt;  wgi_democracy     wth_democ1    wth_democrobust v2x_polyarchy   
+#&gt;  Min.   : 1.00   Min.   :1.000   Min.   :1.00    Min.   : 1.000  
+#&gt;  1st Qu.: 8.00   1st Qu.:1.000   1st Qu.:1.00    1st Qu.: 2.000  
+#&gt;  Median :12.00   Median :1.000   Median :1.00    Median : 5.000  
+#&gt;  Mean   :11.73   Mean   :1.436   Mean   :1.41    Mean   : 7.114  
+#&gt;  3rd Qu.:16.00   3rd Qu.:2.000   3rd Qu.:2.00    3rd Qu.:11.000  
+#&gt;  Max.   :20.00   Max.   :2.000   Max.   :2.00    Max.   :20.000  
+#&gt;  NA's   :24760   NA's   :21063   NA's   :21072   NA's   :11467   
+#&gt;     v2x_api          v2x_mpi         v2x_libdem     v2x_partipdem   
 #&gt;  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
-#&gt;  1st Qu.: 2.000   1st Qu.: 4.000   1st Qu.: 1.000   1st Qu.: 2.000  
-#&gt;  Median : 5.000   Median : 9.000   Median : 1.000   Median : 4.000  
-#&gt;  Mean   : 7.112   Mean   : 9.791   Mean   : 4.538   Mean   : 6.053  
-#&gt;  3rd Qu.:11.000   3rd Qu.:16.000   3rd Qu.: 7.000   3rd Qu.: 9.000  
-#&gt;  Max.   :20.000   Max.   :20.000   Max.   :20.000   Max.   :20.000  
-#&gt;  NA's   :10765    NA's   :10765    NA's   :10765    NA's   :10766   
-#&gt;  v2x_partipdem     v2x_delibdem    v2x_egaldem    
-#&gt;  Min.   : 1.000   Min.   : 1.00   Min.   : 1.000  
-#&gt;  1st Qu.: 2.000   1st Qu.: 1.00   1st Qu.: 2.000  
-#&gt;  Median : 3.000   Median : 2.00   Median : 4.000  
-#&gt;  Mean   : 5.121   Mean   : 5.16   Mean   : 5.754  
-#&gt;  3rd Qu.: 8.000   3rd Qu.: 8.00   3rd Qu.: 8.000  
-#&gt;  Max.   :19.000   Max.   :20.00   Max.   :20.000  
-#&gt;  NA's   :10766    NA's   :10766   NA's   :10765   </div></pre>
+#&gt;  1st Qu.: 4.000   1st Qu.: 1.000   1st Qu.: 2.000   1st Qu.: 2.000  
+#&gt;  Median : 9.000   Median : 1.000   Median : 4.000   Median : 3.000  
+#&gt;  Mean   : 9.794   Mean   : 4.541   Mean   : 6.055   Mean   : 5.121  
+#&gt;  3rd Qu.:16.000   3rd Qu.: 7.000   3rd Qu.: 9.000   3rd Qu.: 8.000  
+#&gt;  Max.   :20.000   Max.   :20.000   Max.   :20.000   Max.   :19.000  
+#&gt;  NA's   :11467    NA's   :11467    NA's   :11468    NA's   :11468   
+#&gt;   v2x_delibdem     v2x_egaldem    
+#&gt;  Min.   : 1.000   Min.   : 1.000  
+#&gt;  1st Qu.: 1.000   1st Qu.: 2.000  
+#&gt;  Median : 2.000   Median : 4.000  
+#&gt;  Mean   : 5.162   Mean   : 5.755  
+#&gt;  3rd Qu.: 8.000   3rd Qu.: 8.000  
+#&gt;  Max.   :20.000   Max.   :20.000  
+#&gt;  NA's   :11468    NA's   :11467   </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

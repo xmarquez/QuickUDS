@@ -5,16 +5,17 @@
 \title{Produce a UD model from democracy data}
 \usage{
 democracy_model(..., identifiers = c("extended_country_name", "year", "GWn",
-  "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean", "in_GW_system"),
-  verbose = TRUE, technical = list(NCYCLES = 2500))
+  "cown", "polity_ccode", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean",
+  "in_GW_system"), verbose = TRUE, technical = list(NCYCLES = 2500))
 }
 \arguments{
-\item{...}{\link{democracy} variables to use for the model. Can be bare column names
-or strings, or a \link[dplyr:select]{dplyr::select} expression.}
+\item{...}{\link{democracy} variables to use for the model. Can be bare column
+names or strings, or a \link[dplyr:select]{dplyr::select} expression.}
 
 \item{identifiers}{Identifier columns. Can be any combination of columns in
 the \link{democracy} dataset. Defaults to \code{c("extended_country_name",
-  "year", "GWn", "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean")}.}
+  "year", "GWn", "cown", "polity_ccode", "uds_2010_mean", "uds_2011_mean",
+  "uds_2014_mean")}.}
 
 \item{verbose}{Passed to \link[mirt:mirt]{mirt::mirt}; whether to print a running commentary.
 Default is \code{TRUE}.}

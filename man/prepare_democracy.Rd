@@ -5,7 +5,7 @@
 \title{Prepares selected indexes in the democracy dataset for use in a UD model}
 \usage{
 prepare_democracy(..., identifiers = c("extended_country_name", "year", "GWn",
-  "cown", "in_GW_system"))
+  "cown", "polity_ccode", "in_GW_system"))
 }
 \arguments{
 \item{...}{a set of measures of democracy in the \code{\link{democracy}}
@@ -13,7 +13,7 @@ dataset (either bare column names, or strings). Can be a \link[dplyr:select]{dpl
 expression (but \link{dplyr} must be loaded for this to work).}
 
 \item{identifiers}{A set of identifiers to return with the data. Defaults to
-\code{c("extended_country_name", "year", "GWn", "cown", "in_GW_system")}.
+\code{c("extended_country_name", "year", "GWn", "cown", "polity_ccode", "in_GW_system")}.
 Must exist in the \link{democracy} dataset.}
 }
 \value{

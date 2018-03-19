@@ -1,8 +1,8 @@
 Package: QuickUDS
 Type: Package
 Title: Extend the Unified Democracy Scores easily
-Version: 0.2.2
-Date: 2017-09-26
+Version: 0.2.3
+Date: 2018-03-19
 Authors@R: person("Xavier", "Marquez", role=c("aut", "cre"),
   email = "marquez.x@gmail.com")
 Description: Contains convenience functions to extend the Unified Democracy Scores of Pemstein, Meserve, and Melton. The package also includes an "extended UDS" dataset with latent democracy scores going back to the 19th century and a replication dataset with 82 different democracy measurements from over 30 different projects to measure democracy.

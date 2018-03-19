@@ -4,7 +4,7 @@
 \name{extended_uds}
 \alias{extended_uds}
 \title{Extended UDS}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 26273 rows and 18 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 27133 rows and 19 columns.}
 \usage{
 extended_uds
 }
@@ -78,6 +78,11 @@ generate the scores.
  \item{cown}{The Correlates of War numeric country code, 2016 version. This
  differs from Gleditsch and Ward's numeric country code in a few cases. See
  \url{http://www.correlatesofwar.org/data-sets/state-system-membership} for
+ the full list.}
+
+ \item{polity_ccode}{The Polity IV country code, 2017 version. This
+ differs from Gleditsch and Ward's numeric country code and COW in a few cases. See
+ \url{http://www.systemicpeace.org/inscrdata.html} for
  the full list.}
 
  \item{in_GW_system}{Whether the state is "in system" (that is, is

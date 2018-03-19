@@ -29,7 +29,7 @@ vdem <- extract_vdem_filter(section == 1, !grepl("component", label), include_un
   select(-GW_startdate:-lon, -vdem_country_name:-vdem_country_text_id, -historical_date:-vdem_cown)
 
 democracy_full <- full_join(democracy, vdem) %>%
-  distinct() %>%
+  distinct(extended_country_name, cown, GWn, year, .keep_all = TRUE) %>%
   filter(!is.na(extended_country_name))
 
 democracy_full %>% 
@@ -38,12 +38,43 @@ democracy_full %>%
   group_by(extended_country_name, cown, GWn) %>%
   summarise(min(year), max(year), n())
 
-democracy <- democracy_full
+countries <- democracy_full %>%
+  select(extended_country_name, year, GWn) %>%
+  rename(country = extended_country_name,
+         GWn_code = GWn) %>%
+  country_year_coder(country, year, code_col = GWn_code, 
+                     code_type = "GWn", to_system = "polity", 
+                     include_in_output = c("extended_country_name", "GWn", "polity_ccode")) %>%
+  mutate(polity_ccode = case_when(GWn_code == 300 ~ NA_real_,
+                                  GWn_code == 815 ~ NA_real_,
+                                  TRUE ~ polity_ccode)) %>%
+  select(country, GWn_code, polity_ccode, year) %>%
+  rename(extended_country_name = country,
+         GWn = GWn_code)
+
+democracy_full <- left_join(democracy_full, countries) %>%
+  select(extended_country_name:cown, polity_ccode, in_GW_system, everything())
+
+democracy_full %>% 
+  group_by(extended_country_name, year) %>% 
+  filter(n() > 1) %>%
+  group_by(extended_country_name, cown, GWn, polity_ccode) %>%
+  summarise(min(year), max(year), n())
+
+democracy <- democracy_full %>%
+  distinct(extended_country_name, cown, GWn, year, .keep_all = TRUE) 
+
+democracy %>% 
+  group_by(extended_country_name, year) %>% 
+  filter(n() > 1) %>%
+  group_by(extended_country_name, cown, GWn, polity_ccode) %>%
+  summarise(min(year), max(year), n())
 
 devtools::use_data(democracy, overwrite = TRUE)
 devtools::use_data(uds_2014, overwrite = TRUE)
 devtools::use_data(uds_2011, overwrite = TRUE)
 devtools::use_data(uds_2010, overwrite = TRUE)
+
 ```
 
 

@@ -57,7 +57,7 @@
       <h1>Generating the Extended Unified Democracy Scores</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2018-01-19</h4>
+            <h4 class="date">2018-03-19</h4>
           </div>
 
     
@@ -76,10 +76,13 @@
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuickUDS)</code></pre></div>
 <pre><code>## Loading required package: mirt</code></pre>
+<pre><code>## Warning: package 'mirt' was built under R version 3.4.3</code></pre>
 <pre><code>## Loading required package: stats4</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">measures &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"pmm_arat"</span>, <span class="st">"blm"</span>, <span class="st">"bmr_democracy"</span>,
-              <span class="st">"bnr_extended"</span>, <span class="st">"pmm_bollen"</span>, <span class="st">"doorenspleet"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">measures &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"pmm_arat"</span>, <span class="st">"blm"</span>, 
+              <span class="st">"bmr_democracy_femalesuffrage"</span>,
+              <span class="st">"bnr_extended"</span>, <span class="st">"pmm_bollen"</span>, <span class="st">"csvmdi"</span>,
+              <span class="st">"doorenspleet"</span>, <span class="st">"eiu"</span>,
               <span class="st">"wgi_democracy"</span>,<span class="st">"fh_total_reversed"</span>, 
               <span class="st">"fh_electoral"</span>, <span class="st">"gwf_democracy_extended"</span>, 
               <span class="st">"pmm_hadenius"</span>, <span class="st">"kailitz_tri"</span>,
@@ -97,13 +100,14 @@
 
 extended_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_model.html">democracy_model</a></span>(measures, 
                                   <span class="dt">verbose =</span> <span class="ot">FALSE</span>, 
-                                  <span class="dt">technical =</span> <span class="kw">list</span>(<span class="dt">NCYCLES =</span> <span class="dv">2500</span>))
-
-extended_scores &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_scores.html">democracy_scores</a></span>(<span class="dt">model =</span> extended_model)</code></pre></div>
+                                  <span class="dt">technical =</span> <span class="kw">list</span>(<span class="dt">NCYCLES =</span> <span class="dv">2500</span>))</code></pre></div>
+<pre><code>## Warning: Log-likelihood was decreasing near the ML solution. EM method may
+## be unstable</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_scores.html">democracy_scores</a></span>(<span class="dt">model =</span> extended_model)</code></pre></div>
 <p>The model takes about 1-2 minutes to converge on my machine, and accounts for more than 90 per cent of the variance in the various democracy indexes used:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_model<span class="op">@</span>time</code></pre></div>
 <pre><code>## TOTAL:   Data  Estep  Mstep     SE   Post 
-##  98.36   1.28  40.02  47.64   9.36   0.00</code></pre>
+##  68.45   1.24   9.59  43.90  13.62   0.00</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Number of iterations, log likelihood, etc.</span>
 extended_model</code></pre></div>
 <pre><code>## 
@@ -112,54 +116,56 @@ extended_model</code></pre></div>
 ##     itemtype = "graded", SE = TRUE, verbose = verbose, technical = technical)
 ## 
 ## Full-information item factor analysis with 1 factor(s).
-## Converged within 1e-04 tolerance after 1720 EM iterations.
-## mirt version: 1.25 
+## Converged within 1e-04 tolerance after 343 EM iterations.
+## mirt version: 1.26.3 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay 
 ## Number of rectangular quadrature: 61
 ## 
 ## Information matrix estimated with method: Oakes
-## Condition number of information matrix = 9638.871
+## Condition number of information matrix = 15874.99
 ## Second-order test: model is a possible local maximum
 ## 
-## Log-likelihood = -211366.9
-## Estimated parameters: 189 
-## AIC = 423111.9; AICc = 423114.6
-## BIC = 424657.2; SABIC = 424056.6</code></pre>
+## Log-likelihood = -230681.4
+## Estimated parameters: 229 
+## AIC = 461820.9; AICc = 461824.8
+## BIC = 463700.6; SABIC = 462972.8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Correlations of latent factor with source variables, variance accounted for, etc.</span>
 <span class="kw">summary</span>(extended_model)</code></pre></div>
 <pre><code>##                                    F1    h2
-## pmm_arat                        0.897 0.804
-## blm                             0.981 0.962
-## bmr_democracy                   0.981 0.963
-## bnr_extended                    0.964 0.928
-## pmm_bollen                      0.922 0.850
-## doorenspleet                    0.966 0.934
-## wgi_democracy                   0.954 0.910
-## fh_total_reversed               0.936 0.876
-## fh_electoral                    0.986 0.972
-## gwf_democracy_extended          0.956 0.913
-## pmm_hadenius                    0.954 0.911
-## kailitz_tri                     0.938 0.880
-## lexical_index                   0.918 0.843
-## mainwaring                      0.973 0.946
-## magaloni_democracy_extended     0.970 0.942
+## pmm_arat                        0.904 0.818
+## blm                             0.981 0.961
+## bmr_democracy_femalesuffrage    0.976 0.953
+## bnr_extended                    0.964 0.929
+## pmm_bollen                      0.927 0.860
+## csvmdi                          0.942 0.888
+## doorenspleet                    0.972 0.944
+## eiu                             0.955 0.912
+## wgi_democracy                   0.959 0.919
+## fh_total_reversed               0.937 0.878
+## fh_electoral                    0.985 0.971
+## gwf_democracy_extended          0.954 0.909
+## pmm_hadenius                    0.956 0.915
+## kailitz_tri                     0.939 0.882
+## lexical_index                   0.923 0.853
+## mainwaring                      0.971 0.943
+## magaloni_democracy_extended     0.969 0.938
 ## pmm_munck                       0.939 0.881
-## pacl                            0.958 0.917
-## PEPS1v                          0.992 0.983
-## pitf                            0.974 0.949
-## polity2                         0.988 0.975
-## reign_democracy                 0.957 0.916
-## polyarchy_original_contestation 0.944 0.892
-## prc                             0.955 0.912
-## svolik_democracy                0.960 0.922
-## ulfelder_democracy_extended     0.968 0.937
-## utip_dichotomous_strict         0.954 0.910
-## v2x_polyarchy                   0.942 0.888
-## vanhanen_democratization        0.933 0.871
-## wth_democ1                      0.992 0.985
+## pacl                            0.956 0.914
+## PEPS1v                          0.991 0.982
+## pitf                            0.971 0.942
+## polity2                         0.985 0.969
+## reign_democracy                 0.950 0.903
+## polyarchy_original_contestation 0.946 0.896
+## prc                             0.956 0.914
+## svolik_democracy                0.959 0.919
+## ulfelder_democracy_extended     0.969 0.939
+## utip_dichotomous_strict         0.951 0.905
+## v2x_polyarchy                   0.945 0.893
+## vanhanen_democratization        0.938 0.879
+## wth_democ1                      0.991 0.983
 ## 
-## SS loadings:  26.571 
+## SS loadings:  28.391 
 ## Proportion Var:  0.916 
 ## 
 ## Factor correlations: 
@@ -225,7 +231,7 @@ xmax &lt;-<span class="st"> </span>xmax <span class="op">+</span><span class="st
 <h2 class="hasAnchor">
 <a href="#score-types-and-scores-by-country" class="anchor"></a>Score types and scores by country</h2>
 <p>The <code>democracy_scores</code> function produces three types of scores: the original latent variable (<code>z1</code>), an “adjusted” score where 0 equals the cutpoint of the dichotomous democracy indexes (<code>z1_adj</code>) and a probability score (<code>z1_*_as_prob</code>) that is normalizes the other two to a 0-1 index, and can be interepreted as a kind of probability measure: country-years with scores close to 1 are almost certainly democratic, while country-years with scores close to 0 are almost certainly not, while 0.5 represents the cut-off between democracy and non-democracy.</p>
-<p>These extended UD scores are available for <code>26273</code> country-years (<code>248</code> unique countries and non-sovereign territories):</p>
+<p>These extended UD scores are available for <code>27133</code> country-years (<code>248</code> unique countries and non-sovereign territories):</p>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 <p><img src="Generating_the_extended_UDS_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 <p>(Grey shaded areas represent 95% confidence intervals; blue shaded areas are periods where the country is either deemed to be a member of the system of states in the <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">Gleditsch and Ward list of state system membership since 1816</a>, i.e., independent, or is a <a href="http://privatewww.essex.ac.uk/~ksg/statelist.html">microstate in Gleditsch’s tentative list</a>).</p>

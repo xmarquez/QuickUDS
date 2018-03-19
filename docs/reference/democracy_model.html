@@ -90,22 +90,23 @@ the UD scores.</p>
     
 
     <pre class="usage"><span class='fu'>democracy_model</span>(<span class='no'>...</span>, <span class='kw'>identifiers</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"extended_country_name"</span>, <span class='st'>"year"</span>, <span class='st'>"GWn"</span>,
-  <span class='st'>"cown"</span>, <span class='st'>"uds_2010_mean"</span>, <span class='st'>"uds_2011_mean"</span>, <span class='st'>"uds_2014_mean"</span>, <span class='st'>"in_GW_system"</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>technical</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>NCYCLES</span> <span class='kw'>=</span> <span class='fl'>2500</span>))</pre>
+  <span class='st'>"cown"</span>, <span class='st'>"polity_ccode"</span>, <span class='st'>"uds_2010_mean"</span>, <span class='st'>"uds_2011_mean"</span>, <span class='st'>"uds_2014_mean"</span>,
+  <span class='st'>"in_GW_system"</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>technical</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>NCYCLES</span> <span class='kw'>=</span> <span class='fl'>2500</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p><a href='democracy.html'>democracy</a> variables to use for the model. Can be bare column names
-or strings, or a <a href='http://dplyr.tidyverse.org/reference/select.html'>dplyr::select</a> expression.</p></td>
+      <td><p><a href='democracy.html'>democracy</a> variables to use for the model. Can be bare column
+names or strings, or a <a href='http://dplyr.tidyverse.org/reference/select.html'>dplyr::select</a> expression.</p></td>
     </tr>
     <tr>
       <th>identifiers</th>
       <td><p>Identifier columns. Can be any combination of columns in
 the <a href='democracy.html'>democracy</a> dataset. Defaults to <code>c("extended_country_name",
-  "year", "GWn", "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean")</code>.</p></td>
+  "year", "GWn", "cown", "polity_ccode", "uds_2010_mean", "uds_2011_mean",
+  "uds_2014_mean")</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -134,7 +135,7 @@ scores suitable for use by <code><a href='democracy_scores.html'>democracy_score
 #&gt; 
 #&gt; Full-information item factor analysis with 1 factor(s).
 #&gt; Converged within 1e-04 tolerance after 151 EM iterations.
-#&gt; mirt version: 1.25 
+#&gt; mirt version: 1.26.3 
 #&gt; M-step optimizer: BFGS 
 #&gt; EM acceleration: Ramsay 
 #&gt; Number of rectangular quadrature: 61

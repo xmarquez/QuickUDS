@@ -57,7 +57,7 @@
       <h1>Replicating and Extending the UD scores of Pemstein, Meserve, and Melton</h1>
                         <h4 class="author">Xavier Marquez</h4>
             
-            <h4 class="date">2018-01-19</h4>
+            <h4 class="date">2018-03-19</h4>
           </div>
 
     
@@ -71,6 +71,7 @@
 <p>Though you can use your own custom democracy indexes to generate latent (unified) democracy scores, the package provides a dataset, <code>democracy</code>, which contains a large number of democracy measures (from more than 30 different datasets, of varying reliability and coverage) that you can use to generate custom unified democracy scores. (Use <code><a href="../reference/democracy.html">?democracy</a></code> to view which measures are included in the dataset as well as links to their sources; they are also listed in the references below). For example, suppose we wanted to replicate exactly the <a href="http://www.unified-democracy-scores.org/archive.html">2011 release of the UD scores</a>. PMM’s replication data for that release is included in the <code>democracy</code> dataset: we just need to select the variable names ending in <code>_pmm</code> and use the function <code>prepare_democracy</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuickUDS)</code></pre></div>
 <pre><code>## Loading required package: mirt</code></pre>
+<pre><code>## Warning: package 'mirt' was built under R version 3.4.3</code></pre>
 <pre><code>## Loading required package: stats4</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mirt)
@@ -85,48 +86,51 @@
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)</code></pre></div>
-<pre><code>## Warning: package 'tidyr' was built under R version 3.4.2</code></pre>
+<pre><code>## Warning: package 'tidyr' was built under R version 3.4.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(democracy)</code></pre></div>
 <pre><code>##  [1] "extended_country_name"            "GWn"                             
-##  [3] "cown"                             "in_GW_system"                    
-##  [5] "year"                             "blm"                             
-##  [7] "bmr_democracy"                    "bmr_democracy_omitteddata"       
-##  [9] "bnr"                              "bnr_extended"                    
-## [11] "doorenspleet"                     "fh_electoral"                    
-## [13] "fh_total_reversed"                "gwf_democracy"                   
-## [15] "gwf_democracy_extended"           "gwf_democracy_extended_strict"   
-## [17] "gwf_democracy_strict"             "kailitz_binary"                  
-## [19] "kailitz_tri"                      "lexical_index"                   
-## [21] "magaloni_democracy"               "magaloni_democracy_extended"     
-## [23] "mainwaring"                       "pacl"                            
-## [25] "PEPS1i"                           "PEPS1q"                          
-## [27] "PEPS1v"                           "PEPS2i"                          
-## [29] "PEPS2q"                           "PEPS2v"                          
-## [31] "PIPE_democracy"                   "PIPE_regime"                     
-## [33] "pitf"                             "pitf_binary"                     
-## [35] "pmm_arat"                         "pmm_blm"                         
-## [37] "pmm_bollen"                       "pmm_fh"                          
-## [39] "pmm_hadenius"                     "pmm_mainwaring"                  
-## [41] "pmm_munck"                        "pmm_pacl"                        
-## [43] "pmm_polity"                       "pmm_polyarchy"                   
-## [45] "pmm_prc"                          "pmm_vanhanen"                    
-## [47] "polity"                           "polity2"                         
-## [49] "polyarchy_contestation_dimension" "polyarchy_inclusion_dimension"   
-## [51] "polyarchy_original_contestation"  "polyarchy_original_polyarchy"    
-## [53] "prc"                              "reign_democracy"                 
-## [55] "svolik_democracy"                 "uds_2010_mean"                   
-## [57] "uds_2010_median"                  "uds_2011_mean"                   
-## [59] "uds_2011_median"                  "uds_2014_mean"                   
-## [61] "uds_2014_median"                  "ulfelder_democracy"              
-## [63] "ulfelder_democracy_extended"      "utip_dichotomous"                
-## [65] "utip_dichotomous_strict"          "utip_trichotomous"               
-## [67] "vanhanen_competition"             "vanhanen_democratization"        
-## [69] "vanhanen_participation"           "wgi_democracy"                   
-## [71] "wth_democ1"                       "wth_democrobust"                 
-## [73] "v2x_polyarchy"                    "v2x_api"                         
-## [75] "v2x_mpi"                          "v2x_libdem"                      
-## [77] "v2x_partipdem"                    "v2x_delibdem"                    
-## [79] "v2x_egaldem"</code></pre>
+##  [3] "cown"                             "polity_ccode"                    
+##  [5] "in_GW_system"                     "year"                            
+##  [7] "anckar_democracy"                 "blm"                             
+##  [9] "bmr_democracy"                    "bmr_democracy_femalesuffrage"    
+## [11] "bmr_democracy_omitteddata"        "bnr"                             
+## [13] "bnr_extended"                     "csvmdi"                          
+## [15] "doorenspleet"                     "dsvmdi"                          
+## [17] "eiu"                              "fh_electoral"                    
+## [19] "fh_total_reversed"                "gwf_democracy"                   
+## [21] "gwf_democracy_extended"           "gwf_democracy_extended_strict"   
+## [23] "gwf_democracy_strict"             "kailitz_binary"                  
+## [25] "kailitz_tri"                      "lexical_index"                   
+## [27] "magaloni_democracy"               "magaloni_democracy_extended"     
+## [29] "mainwaring"                       "pacl"                            
+## [31] "PEPS1i"                           "PEPS1q"                          
+## [33] "PEPS1v"                           "PEPS2i"                          
+## [35] "PEPS2q"                           "PEPS2v"                          
+## [37] "PIPE_democracy"                   "PIPE_regime"                     
+## [39] "pitf"                             "pitf_binary"                     
+## [41] "pmm_arat"                         "pmm_blm"                         
+## [43] "pmm_bollen"                       "pmm_fh"                          
+## [45] "pmm_hadenius"                     "pmm_mainwaring"                  
+## [47] "pmm_munck"                        "pmm_pacl"                        
+## [49] "pmm_polity"                       "pmm_polyarchy"                   
+## [51] "pmm_prc"                          "pmm_vanhanen"                    
+## [53] "polity"                           "polity2"                         
+## [55] "polyarchy_contestation_dimension" "polyarchy_inclusion_dimension"   
+## [57] "polyarchy_original_contestation"  "polyarchy_original_polyarchy"    
+## [59] "prc"                              "reign_democracy"                 
+## [61] "svmdi_2016"                       "svolik_democracy"                
+## [63] "uds_2010_mean"                    "uds_2010_median"                 
+## [65] "uds_2011_mean"                    "uds_2011_median"                 
+## [67] "uds_2014_mean"                    "uds_2014_median"                 
+## [69] "ulfelder_democracy"               "ulfelder_democracy_extended"     
+## [71] "utip_dichotomous"                 "utip_dichotomous_strict"         
+## [73] "utip_trichotomous"                "vanhanen_competition"            
+## [75] "vanhanen_democratization"         "vanhanen_participation"          
+## [77] "wgi_democracy"                    "wth_democ1"                      
+## [79] "wth_democrobust"                  "v2x_polyarchy"                   
+## [81] "v2x_api"                          "v2x_mpi"                         
+## [83] "v2x_libdem"                       "v2x_partipdem"                   
+## [85] "v2x_delibdem"                     "v2x_egaldem"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indexes &lt;-<span class="st"> </span><span class="kw">names</span>(democracy)[<span class="kw">grep</span>(<span class="st">"pmm"</span>,<span class="kw">names</span>(democracy))]
 indexes <span class="co"># The measures of democracy used to generate the 2011 release of the UDS</span></code></pre></div>
 <pre><code>##  [1] "pmm_arat"       "pmm_blm"        "pmm_bollen"     "pmm_fh"        
@@ -141,16 +145,20 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
 <li><p>If a selected index contains the string <code>arat</code>, the function assumes the index is Arat (1991)’s 0-109 democracy score, and cuts it into 7 intervals with the following cutoffs: 50, 60, 70, 80, 90, and 100. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton’s advice).</p></li>
 <li><p>If a selected index contains the string <code>bollen</code>, the function assumes the index is Bollen’s (2001)’s 0-100 democracy score, and cuts it into 10 intervals with the following cutoffs: 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10 (following Pemstein, Meserve, and Melton’s advice).</p></li>
 <li><p>If a selected index contains the string <code>wgi</code>, the function assumes the index is the World Governance Indicator’s “Voice and Accountability” index, and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.</p></li>
+<li><p>If a selected index contains the string <code>eiu</code>, the function assumes the index is the Economist Intelligence Unit’s democracy index, and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.</p></li>
 <li><p>If a selected index contains the string <code>hadenius</code>, the function assumes the index is Hadenius (1992)’s 0-10 democracy score, and it will cut it into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8, and 9. The resulting score is ordinal from 1 to 8 (following Pemstein, Meserve, and Melton’s advice).</p></li>
 <li><p>If the selected index contains the string <code>munck</code>, the function assumes the index is Munck’s (2009)’s 0-1 democracy score, and it will cut it into 4 intervals with the following cutoffs: 0.5,0.5,0.75, and 0.99. The resulting score is ordinal from 1 to 4 (following Pemstein, Meserve, and Melton’s advice).</p></li>
 <li><p>If the selected index contains the string <code>peps</code>, the function assumes the index is one of the variants of the Participation-Enhanced Polity Score (Moon et al 2006), and it will round its value (eliminating the decimal) and then transform it into an ordinal measure from 1 to 21.</p></li>
 <li><p>If the selected index contains the string <code>polity</code>, the function assumes this is the Polity IV score, and it set any values below -10 to NA and then transform them into an ordinal measure from 1 to 21.</p></li>
 <li><p>If the selected index contains the string <code>polyarchy_inclusion_dimension</code> or <code>polyarchy_contestation_dimension</code>, the function assumes this is one of the two dimensions of polyarchy estimated by Coppedge, Alvarez, and Maldonado (2008), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.</p></li>
 <li><p>If the selected index contains the string <code>v2x</code>, the function assumes this is one of the v2x_ continuous indexes of democracy from the V-Dem dataset (Coppedge et al 2015), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.</p></li>
+<li><p>If the selected index contains the string <code>csvdmi</code> or <code>svdmi_2016</code>, the function assumes this is one of the continuous indexes of democracy from the SVMDI dataset (Grundler and Krieger 2016, 2018), and it will cut it into 20 categories. The resulting score is ordinal from 1 to 20.</p></li>
 <li><p>If the selected index contains the string <code>vanhanen_democratization</code> or <code>vanhanen_pmm</code>, the function assumes this is Vanhanen’s (2012)’s index of democratization, and it will cut it into 8 intervals with the following cutoffs: 5,10,15,20,25,30, and 35 (following Pemstein, Meserve, and Melton’s advice). The resulting score is ordinal from 1 to 8.</p></li>
 </ul>
 <p><code>prepare_data</code> will also work on column names that contain the following strings:</p>
 <ul>
+<li>
+<code>anckar</code> (assumes it’s the democrayc indicator from Anckar and Fredriksson 2018)</li>
 <li>
 <code>blm</code> (assumes it’s from Bowman, Lehoucq, and Mahoney 2005)</li>
 <li>
@@ -206,7 +214,7 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
 <p>Fitting this model is reasonably fast:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_model<span class="op">@</span>time</code></pre></div>
 <pre><code>## TOTAL:   Data  Estep  Mstep     SE   Post 
-##   8.78   0.18   0.67   7.08   0.79   0.00</code></pre>
+##   8.94   0.28   0.66   7.13   0.83   0.00</code></pre>
 <p>There is a convenient wrapper for the entire procedure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_model &lt;-<span class="st"> </span><span class="kw"><a href="../reference/democracy_model.html">democracy_model</a></span>(<span class="kw">matches</span>(<span class="st">"pmm"</span>), <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>We can easily check that this model converges and that accounts for most of the variance in the democracy indexes:</p>
@@ -218,7 +226,7 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
 ## 
 ## Full-information item factor analysis with 1 factor(s).
 ## Converged within 1e-04 tolerance after 151 EM iterations.
-## mirt version: 1.25 
+## mirt version: 1.26.3 
 ## M-step optimizer: BFGS 
 ## EM acceleration: Ramsay 
 ## Number of rectangular quadrature: 61
@@ -267,22 +275,22 @@ indexes <span class="co"># The measures of democracy used to generate the 2011 r
 
 <span class="co"># A data frame with confidence intervals:</span>
 replication_2011_scores</code></pre></div>
-<pre><code>## # A tibble: 9,137 x 21
-##    extended_country_name  year   GWn  cown uds_2010_mean uds_2011_mean
-##                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
-##  1           Afghanistan  1946   700   700     -1.840259     -1.864836
-##  2           Afghanistan  1947   700   700     -1.839920     -1.859613
-##  3           Afghanistan  1948   700   700     -1.536447     -1.561680
-##  4           Afghanistan  1949   700   700     -1.526101     -1.560645
-##  5           Afghanistan  1950   700   700     -1.391321     -1.457614
-##  6           Afghanistan  1951   700   700     -1.523480     -1.562312
-##  7           Afghanistan  1952   700   700     -1.521900     -1.562706
-##  8           Afghanistan  1953   700   700     -1.514145     -1.560713
-##  9           Afghanistan  1954   700   700     -1.528626     -1.570623
-## 10           Afghanistan  1955   700   700     -1.393404     -1.459222
-## # ... with 9,127 more rows, and 15 more variables: uds_2014_mean &lt;dbl&gt;,
-## #   in_GW_system &lt;lgl&gt;, z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;, z1_pct975 &lt;dbl&gt;,
-## #   z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;, z1_pct975_adj &lt;dbl&gt;,
+<pre><code>## # A tibble: 9,137 x 22
+##    extended_country_name  year   GWn  cown polity_ccode uds_2010_mean
+##    &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Afghanistan            1946   700   700          180         -1.84
+##  2 Afghanistan            1947   700   700          180         -1.84
+##  3 Afghanistan            1948   700   700          180         -1.54
+##  4 Afghanistan            1949   700   700          180         -1.53
+##  5 Afghanistan            1950   700   700          180         -1.39
+##  6 Afghanistan            1951   700   700          180         -1.52
+##  7 Afghanistan            1952   700   700          180         -1.52
+##  8 Afghanistan            1953   700   700          180         -1.51
+##  9 Afghanistan            1954   700   700          180         -1.53
+## 10 Afghanistan            1955   700   700          180         -1.39
+## # ... with 9,127 more rows, and 16 more variables: uds_2011_mean &lt;dbl&gt;,
+## #   uds_2014_mean &lt;dbl&gt;, in_GW_system &lt;lgl&gt;, z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;,
+## #   z1_pct975 &lt;dbl&gt;, z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;, z1_pct975_adj &lt;dbl&gt;,
 ## #   z1_pct025_adj &lt;dbl&gt;, z1_as_prob &lt;dbl&gt;, z1_pct975_as_prob &lt;dbl&gt;,
 ## #   z1_pct025_as_prob &lt;dbl&gt;, z1_adj_as_prob &lt;dbl&gt;,
 ## #   z1_pct975_adj_as_prob &lt;dbl&gt;, z1_pct025_adj_as_prob &lt;dbl&gt;</code></pre>
@@ -302,7 +310,7 @@ replication_2011_scores</code></pre></div>
 <a href="#extending-the-model" class="anchor"></a>Extending the model</h2>
 <p>Now suppose you want to create a new Unified Democracy score derived from Pemstein, Meserve, and Melton’s original source measures but that also maximizes the democracy information available in other datasets, including:</p>
 <ul>
-<li>The dichotomous indicator of democracy in the Boix, Miller and Rosato dataset of political regimes (Boix Miller and Rosato 2012)</li>
+<li>The dichotomous indicator of democracy, adjusted for female suffrage, in version 3.0 of the Boix, Miller and Rosato dataset of political regimes (Boix Miller and Rosato 2012)</li>
 <li>The full extent of the Political Regime Change dataset (Gasiorowski 1996 and Reich 2002), Vanhanen’s index of democratization (Vanhanen 2012), Bowman, Lehoucq, and Mahoney’s data on Central America (Bowman, Lehoucq, and Mahoney 2005) and Mainwaring, Brinks and Perez-Linan’s data on Latin America (Mainwaring, Brinks, and Perez-Linan 2008), all of which go back to the beginning of the 20th century or before but are not used to the fullest extent in the official UD releases.</li>
 <li>One of the new V-Dem indexes of democracy, ordinal or continuous (Coppedge et al 2015)</li>
 <li>Renske Doorenspleet’s dichotomous indicator of democracy including suffrage info (Doorenspleet 2000)</li>
@@ -313,11 +321,11 @@ replication_2011_scores</code></pre></div>
 <li>Jay Ulfelder’s dichotomous indicator of democracy (Ulfelder 2012)</li>
 </ul>
 <p>This package makes the process extremely simple:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indexes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"pmm_arat"</span>,<span class="st">"blm"</span>,<span class="st">"bmr_democracy"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indexes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"pmm_arat"</span>,<span class="st">"blm"</span>,<span class="st">"bmr_democracy_femalesuffrage"</span>,
              <span class="st">"pmm_bollen"</span>,<span class="st">"doorenspleet"</span>,<span class="st">"wgi_democracy"</span>,<span class="st">"fh_total_reversed"</span>,
              <span class="st">"gwf_democracy"</span>,<span class="st">"pmm_hadenius"</span>,<span class="st">"kailitz_tri"</span>,<span class="st">"lexical_index"</span>,
              <span class="st">"mainwaring"</span>,<span class="st">"pmm_munck"</span>,<span class="st">"pacl"</span>,
-             <span class="st">"polity2"</span>,<span class="st">"polyarchy_original_contestation"</span>,<span class="st">"prc"</span>,
+             <span class="st">"polity2"</span>,<span class="st">"polyarchy_original_contestation"</span>,<span class="st">"prc"</span>, 
              <span class="st">"svolik_democracy"</span>,<span class="st">"ulfelder_democracy"</span>,
              <span class="st">"v2x_polyarchy"</span>, <span class="st">"vanhanen_democratization"</span>,<span class="st">"wth_democ1"</span>) 
 
@@ -325,30 +333,30 @@ extended_model &lt;-<span class="st"> </span><span class="kw"><a href="../refere
 
 <span class="kw">summary</span>(extended_model)</code></pre></div>
 <pre><code>##                                    F1    h2
-## pmm_arat                        0.949 0.901
-## blm                             0.985 0.970
-## bmr_democracy                   0.986 0.973
-## pmm_bollen                      0.958 0.918
-## doorenspleet                    0.965 0.930
-## wgi_democracy                   0.970 0.942
-## fh_total_reversed               0.954 0.911
-## gwf_democracy                   0.966 0.932
-## pmm_hadenius                    0.980 0.960
-## kailitz_tri                     0.956 0.914
-## lexical_index                   0.964 0.928
-## mainwaring                      0.983 0.967
+## pmm_arat                        0.949 0.900
+## blm                             0.984 0.968
+## bmr_democracy_femalesuffrage    0.984 0.968
+## pmm_bollen                      0.957 0.916
+## doorenspleet                    0.974 0.948
+## wgi_democracy                   0.970 0.941
+## fh_total_reversed               0.954 0.910
+## gwf_democracy                   0.965 0.930
+## pmm_hadenius                    0.978 0.957
+## kailitz_tri                     0.954 0.911
+## lexical_index                   0.965 0.931
+## mainwaring                      0.981 0.963
 ## pmm_munck                       0.933 0.871
-## pacl                            0.966 0.934
-## polity2                         0.933 0.870
-## polyarchy_original_contestation 0.960 0.922
+## pacl                            0.965 0.931
+## polity2                         0.927 0.860
+## polyarchy_original_contestation 0.960 0.921
 ## prc                             0.978 0.956
-## svolik_democracy                0.970 0.940
+## svolik_democracy                0.969 0.938
 ## ulfelder_democracy              0.975 0.950
 ## v2x_polyarchy                   0.972 0.944
-## vanhanen_democratization        0.936 0.876
-## wth_democ1                      0.989 0.979
+## vanhanen_democratization        0.939 0.881
+## wth_democ1                      0.990 0.981
 ## 
-## SS loadings:  20.488 
+## SS loadings:  20.477 
 ## Proportion Var:  0.931 
 ## 
 ## Factor correlations: 
@@ -430,32 +438,33 @@ data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span clas
 <span class="co"># These are equal to z1_as_prob, which is automatically calculated:</span>
 
 extended_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(index <span class="op">!=</span><span class="st"> </span>z1_as_prob)</code></pre></div>
-<pre><code>## # A tibble: 0 x 24
-## # ... with 24 variables: extended_country_name &lt;chr&gt;, year &lt;dbl&gt;,
-## #   GWn &lt;dbl&gt;, cown &lt;int&gt;, uds_2010_mean &lt;dbl&gt;, uds_2011_mean &lt;dbl&gt;,
-## #   uds_2014_mean &lt;dbl&gt;, in_GW_system &lt;lgl&gt;, z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;,
-## #   z1_pct975 &lt;dbl&gt;, z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;, z1_pct975_adj &lt;dbl&gt;,
-## #   z1_pct025_adj &lt;dbl&gt;, z1_as_prob &lt;dbl&gt;, z1_pct975_as_prob &lt;dbl&gt;,
-## #   z1_pct025_as_prob &lt;dbl&gt;, z1_adj_as_prob &lt;dbl&gt;,
-## #   z1_pct975_adj_as_prob &lt;dbl&gt;, z1_pct025_adj_as_prob &lt;dbl&gt;, index &lt;dbl&gt;,
-## #   index_pct025 &lt;dbl&gt;, index_pct975 &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 0 x 25
+## # ... with 25 variables: extended_country_name &lt;chr&gt;, year &lt;dbl&gt;,
+## #   GWn &lt;dbl&gt;, cown &lt;int&gt;, polity_ccode &lt;dbl&gt;, uds_2010_mean &lt;dbl&gt;,
+## #   uds_2011_mean &lt;dbl&gt;, uds_2014_mean &lt;dbl&gt;, in_GW_system &lt;lgl&gt;,
+## #   z1 &lt;dbl&gt;, se_z1 &lt;dbl&gt;, z1_pct975 &lt;dbl&gt;, z1_pct025 &lt;dbl&gt;, z1_adj &lt;dbl&gt;,
+## #   z1_pct975_adj &lt;dbl&gt;, z1_pct025_adj &lt;dbl&gt;, z1_as_prob &lt;dbl&gt;,
+## #   z1_pct975_as_prob &lt;dbl&gt;, z1_pct025_as_prob &lt;dbl&gt;,
+## #   z1_adj_as_prob &lt;dbl&gt;, z1_pct975_adj_as_prob &lt;dbl&gt;,
+## #   z1_pct025_adj_as_prob &lt;dbl&gt;, index &lt;dbl&gt;, index_pct025 &lt;dbl&gt;,
+## #   index_pct975 &lt;dbl&gt;</code></pre>
 <p>It is also possible to to set the cutpoint for this index at, for example, the average cutpoint in the latent variable of the dichotomous indexes of democracy (so that 0.5 correponds more naturally to the point at which a regime could be either democratic or non-democratic according to the dichotomous measures of democracy included in your model). These scores are also automatically calculated (they are in the column <code>z1_adj</code>) but they can also be manuallyadded as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cutpoints_extended &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(extended_model)
 
 cutpoints_extended</code></pre></div>
 <pre><code>## # A tibble: 131 x 6
-##         variable    estimate      pct025      pct975           se num_obs
-##            &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;
-##  1      pmm_arat -0.81146023 -0.81172567 -0.81121826 0.0001234534    3873
-##  2      pmm_arat -0.46311899 -0.45483056 -0.47067458 0.0038548906    3873
-##  3      pmm_arat  0.01382959  0.04157779 -0.01146518 0.0129054953    3873
-##  4      pmm_arat  0.34535473  0.39484415  0.30024105 0.0230171829    3873
-##  5      pmm_arat  0.79005600  0.87617041  0.71155563 0.0400512086    3873
-##  6      pmm_arat  1.68036646  1.84304596  1.53207071 0.0756610948    3873
-##  7           blm  0.32706741  0.50474390  0.20853514 0.0604756490     505
-##  8           blm  0.98028038  1.46336209  0.65800492 0.1644262549     505
-##  9 bmr_democracy  0.54958162  0.62331191  0.48427102 0.0333217385   16987
-## 10    pmm_bollen -0.94641611 -0.94771251 -0.94539360 0.0005216919     510
+##    variable                     estimate  pct025   pct975       se num_obs
+##    &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;int&gt;
+##  1 pmm_arat                      -0.808  -0.808  -0.808    1.80e-5    3873
+##  2 pmm_arat                      -0.456  -0.448  -0.464    4.03e-3    3873
+##  3 pmm_arat                       0.0246  0.0531 -0.00136  1.33e-2    3873
+##  4 pmm_arat                       0.360   0.411   0.314    2.36e-2    3873
+##  5 pmm_arat                       0.806   0.893   0.726    4.06e-2    3873
+##  6 pmm_arat                       1.69    1.85    1.54     7.58e-2    3873
+##  7 blm                            0.339   0.519   0.218    6.17e-2     505
+##  8 blm                            1.00    1.48    0.680    1.65e-1     505
+##  9 bmr_democracy_femalesuffrage   0.728   0.819   0.647    4.13e-2   18243
+## 10 pmm_bollen                    -0.948  -0.948  -0.947    2.16e-4     510
 ## # ... with 121 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dichotomous_cutpoints &lt;-<span class="st"> </span>cutpoints_extended <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
@@ -464,19 +473,19 @@ cutpoints_extended</code></pre></div>
 dichotomous_cutpoints</code></pre></div>
 <pre><code>## # A tibble: 7 x 6
 ## # Groups:   variable [7]
-##             variable  estimate    pct025    pct975         se num_obs
-##                &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;   &lt;int&gt;
-## 1      bmr_democracy 0.5495816 0.6233119 0.4842710 0.03332174   16987
-## 2       doorenspleet 0.8728086 0.9783085 0.7788562 0.04793490   13009
-## 3      gwf_democracy 0.5868977 0.6665564 0.5162304 0.03605472    7954
-## 4               pacl 0.5603541 0.6345866 0.4941752 0.03376471    9115
-## 5   svolik_democracy 0.5574193 0.6343991 0.4891182 0.03484751    8555
-## 6 ulfelder_democracy 0.5227449 0.5998478 0.4550329 0.03454693    7684
-## 7         wth_democ1 0.7435024 0.9141761 0.6038916 0.07123001    7429</code></pre>
+##   variable                     estimate pct025 pct975     se num_obs
+##   &lt;chr&gt;                           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;int&gt;
+## 1 bmr_democracy_femalesuffrage    0.728  0.819  0.647 0.0413   18243
+## 2 doorenspleet                    0.837  0.948  0.739 0.0498   13009
+## 3 gwf_democracy                   0.612  0.695  0.539 0.0374    7954
+## 4 pacl                            0.587  0.664  0.518 0.0351    9115
+## 5 svolik_democracy                0.584  0.664  0.513 0.0362    8555
+## 6 ulfelder_democracy              0.550  0.631  0.479 0.0363    7684
+## 7 wth_democ1                      0.778  0.968  0.625 0.0783    7429</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avg_dichotomous &lt;-<span class="st"> </span><span class="kw">mean</span>(dichotomous_cutpoints<span class="op">$</span>estimate)
 
 avg_dichotomous</code></pre></div>
-<pre><code>## [1] 0.6276155</code></pre>
+<pre><code>## [1] 0.6680447</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extended_scores &lt;-<span class="st"> </span>extended_scores <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">adj_z1 =</span> z1 <span class="op">-</span><span class="st"> </span>avg_dichotomous, 
                                         <span class="dt">adj_pct025 =</span> z1_pct025 <span class="op">-</span><span class="st"> </span>avg_dichotomous, 
                                         <span class="dt">adj_pct975 =</span>z1_pct975 <span class="op">-</span><span class="st"> </span>avg_dichotomous,
@@ -505,18 +514,18 @@ avg_dichotomous</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">replication_2011_cutpoints &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cutpoints.html">cutpoints</a></span>(replication_2011_model, <span class="dt">type =</span><span class="st">"score"</span>)
 replication_2011_cutpoints</code></pre></div>
 <pre><code>## # A tibble: 82 x 6
-##      variable     estimate        pct025      pct975          se num_obs
-##         &lt;chr&gt;        &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;int&gt;
-##  1   pmm_arat -1.433460078 -1.4437423325 -1.42419659 0.004726270    3873
-##  2   pmm_arat -1.016967994 -1.0140094933 -1.01963337 0.001359884    3873
-##  3   pmm_arat -0.426523421 -0.4022889387 -0.44835675 0.011139453    3873
-##  4   pmm_arat -0.041868426 -0.0004390298 -0.07919300 0.019043148    3873
-##  5   pmm_arat  0.420924863  0.4917617920  0.35710646 0.032560410    3873
-##  6   pmm_arat  1.421166192  1.5775573068  1.28027031 0.071885652    3873
-##  7    pmm_blm -0.002480625  0.0906628959 -0.04447325 0.021424811     275
-##  8    pmm_blm  0.474438069  1.0384741177  0.22014923 0.129739202     275
-##  9 pmm_bollen -1.525696187 -1.5540409858 -1.50437217 0.010879603     510
-## 10 pmm_bollen -1.077099399 -1.0818698799 -1.07351053 0.001831057     510
+##    variable   estimate    pct025  pct975      se num_obs
+##    &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+##  1 pmm_arat   -1.43    -1.44     -1.42   0.00473    3873
+##  2 pmm_arat   -1.02    -1.01     -1.02   0.00136    3873
+##  3 pmm_arat   -0.427   -0.402    -0.448  0.0111     3873
+##  4 pmm_arat   -0.0419  -0.000439 -0.0792 0.0190     3873
+##  5 pmm_arat    0.421    0.492     0.357  0.0326     3873
+##  6 pmm_arat    1.42     1.58      1.28   0.0719     3873
+##  7 pmm_blm    -0.00248  0.0907   -0.0445 0.0214      275
+##  8 pmm_blm     0.474    1.04      0.220  0.130       275
+##  9 pmm_bollen -1.53    -1.55     -1.50   0.0109      510
+## 10 pmm_bollen -1.08    -1.08     -1.07   0.00183     510
 ## # ... with 72 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We plot the "normalized" cutpoints ("estimate," in the same scale as the latent scores), </span>
 <span class="co"># not the untransformed ones ("par")</span>
@@ -537,20 +546,20 @@ replication_2011_discrimination &lt;-<span class="st"> </span><span class="kw"><
 
 replication_2011_discrimination</code></pre></div>
 <pre><code>## # A tibble: 12 x 5
-##          variable  estimate    pct025    pct975 num_obs
-##             &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;int&gt;
-##  1       pmm_arat  3.535713  3.351424  3.720002    3873
-##  2        pmm_blm 13.617171  8.462885 18.771457     275
-##  3     pmm_bollen  5.220558  4.482623  5.958493     510
-##  4         pmm_fh  4.715818  4.513078  4.918557    6438
-##  5   pmm_hadenius 10.174185  6.280147 14.068223     129
-##  6 pmm_mainwaring 16.113440 11.157009 21.069872     835
-##  7      pmm_munck  5.473575  4.324470  6.622680     342
-##  8       pmm_pacl  6.500113  6.047577  6.952649    9067
-##  9     pmm_polity  5.431672  5.203303  5.660042    8050
-## 10  pmm_polyarchy  6.301146  5.217195  7.385097     353
-## 11        pmm_prc  6.635171  6.213469  7.056874    6002
-## 12   pmm_vanhanen  4.232100  4.075556  4.388643    8965</code></pre>
+##    variable       estimate pct025 pct975 num_obs
+##    &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;int&gt;
+##  1 pmm_arat           3.54   3.35   3.72    3873
+##  2 pmm_blm           13.6    8.46  18.8      275
+##  3 pmm_bollen         5.22   4.48   5.96     510
+##  4 pmm_fh             4.72   4.51   4.92    6438
+##  5 pmm_hadenius      10.2    6.28  14.1      129
+##  6 pmm_mainwaring    16.1   11.2   21.1      835
+##  7 pmm_munck          5.47   4.32   6.62     342
+##  8 pmm_pacl           6.50   6.05   6.95    9067
+##  9 pmm_polity         5.43   5.20   5.66    8050
+## 10 pmm_polyarchy      6.30   5.22   7.39     353
+## 11 pmm_prc            6.64   6.21   7.06    6002
+## 12 pmm_vanhanen       4.23   4.08   4.39    8965</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_discrimination, 
        <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(variable,estimate),
            <span class="dt">y =</span> estimate, <span class="dt">ymin =</span> pct025, 
@@ -566,18 +575,18 @@ replication_2011_discrimination</code></pre></div>
 replication_2011_info &lt;-<span class="st"> </span><span class="kw"><a href="../reference/raterinfo.html">raterinfo</a></span>(replication_2011_model)
 replication_2011_info</code></pre></div>
 <pre><code>## # A tibble: 732 x 3
-##       rater theta         info
-##       &lt;chr&gt; &lt;dbl&gt;        &lt;dbl&gt;
-##  1 pmm_arat  -6.0 1.215755e-06
-##  2 pmm_arat  -5.8 2.465780e-06
-##  3 pmm_arat  -5.6 5.001062e-06
-##  4 pmm_arat  -5.4 1.014308e-05
-##  5 pmm_arat  -5.2 2.057204e-05
-##  6 pmm_arat  -5.0 4.172382e-05
-##  7 pmm_arat  -4.8 8.462315e-05
-##  8 pmm_arat  -4.6 1.716292e-04
-##  9 pmm_arat  -4.4 3.480865e-04
-## 10 pmm_arat  -4.2 7.059443e-04
+##    rater    theta       info
+##    &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+##  1 pmm_arat -6.00 0.00000122
+##  2 pmm_arat -5.80 0.00000247
+##  3 pmm_arat -5.60 0.00000500
+##  4 pmm_arat -5.40 0.0000101 
+##  5 pmm_arat -5.20 0.0000206 
+##  6 pmm_arat -5.00 0.0000417 
+##  7 pmm_arat -4.80 0.0000846 
+##  8 pmm_arat -4.60 0.000172  
+##  9 pmm_arat -4.40 0.000348  
+## 10 pmm_arat -4.20 0.000706  
 ## # ... with 722 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> replication_2011_info, <span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>info)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_path</span>() <span class="op">+</span><span class="st"> </span>
@@ -590,7 +599,7 @@ replication_2011_info</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(replication_2011_scores, <span class="st">"United States of America"</span>,<span class="st">"France"</span>, <span class="dv">2000</span>)</code></pre></div>
 <pre><code>## [1] 0.8778951</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(extended_scores, <span class="st">"United States of America"</span>,<span class="st">"France"</span>, <span class="dv">2000</span>)</code></pre></div>
-<pre><code>## [1] 0.5269027</code></pre>
+<pre><code>## [1] 0.5053987</code></pre>
 <p>Or perhaps we wish to know the probability that the United States was more democratic in the year 2000 than in the year 1953:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/prob_more.html">prob_more</a></span>(replication_2011_scores, 
           <span class="st">"United States of America"</span>,
@@ -601,7 +610,7 @@ replication_2011_info</code></pre></div>
           <span class="st">"United States of America"</span>,
           <span class="st">"United States of America"</span>, 
           <span class="kw">c</span>(<span class="dv">2000</span>,<span class="dv">1953</span>))</code></pre></div>
-<pre><code>## [1] 0.9998804</code></pre>
+<pre><code>## [1] 0.999903</code></pre>
 <p>If you find this package useful, cite both it and Pemstein, Meserve, and Melton’s original paper (Pemstein Meserve and Melton 2010). Citation information can be automatically generated by using <code>citation</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">"QuickUDS"</span>)</code></pre></div>
 <pre><code>## 
@@ -624,9 +633,10 @@ replication_2011_info</code></pre></div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
+<p>Anckar, C. and C. Fredriksson. 2018. “Classifying political regimes 1800-2016: a typology and a new dataset”. European Political Science. DOI: 10.1057/s41304-018-0149-8. <a href="https://doi.org/10.1057/s41304-018-0149-8" class="uri">https://doi.org/10.1057/s41304-018-0149-8</a></p>
 <p>Arat, Zehra F. 1991. Democracy and human rights in developing countries. Boulder: Lynne Rienner Publishers.</p>
 <p>Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset (REIGN). 2016. <a href="http://oefresearch.org/datasets/reign" class="uri">http://oefresearch.org/datasets/reign</a>.</p>
-<p>Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set of Political Regimes, 1800–2007. Comparative Political Studies 46 (12): 1523-1554. <a href="DOI:10.1177/0010414012463905" class="uri">DOI:10.1177/0010414012463905</a>. Original data available at <a href="https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0" class="uri">https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0</a></p>
+<p>Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set of Political Regimes, 1800–2007. Comparative Political Studies 46 (12): 1523-1554. <a href="DOI:10.1177/0010414012463905" class="uri">DOI:10.1177/0010414012463905</a>. Original data available at <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/FJLMKT" class="uri">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/FJLMKT</a></p>
 <p>Bollen, Kenneth A. 2001. “Cross-National Indicators of Liberal Democracy, 1950-1990.” 2nd ICPSR version. Chapel Hill, NC: University of North Carolina, 1998. Ann Arbor, MI: Inter-university Consortium for Political and Social Research, 2001. Original data available at <a href="http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml" class="uri">http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml</a>.</p>
 <p>Bowman, Kirk, Fabrice Lehoucq, and James Mahoney. 2005. Measuring Political Democracy: Case Expertise, Data Adequacy, and Central America. Comparative Political Studies 38 (8): 939-970. <a href="http://cps.sagepub.com/content/38/8/939" class="uri">http://cps.sagepub.com/content/38/8/939</a>. Data available at <a href="http://www.blmdemocracy.gatech.edu/" class="uri">http://www.blmdemocracy.gatech.edu/</a>.</p>
 <p>Chalmers, R. Philip. 2012. “Mirt: A Multidimensional Item Response Theory Package for the R Environment.” 2012 48(6): 1-29. <a href="http://www.jstatsoft.org/v48/i06/" class="uri">http://www.jstatsoft.org/v48/i06/</a></p>
@@ -640,6 +650,8 @@ replication_2011_info</code></pre></div>
 <p>Gasiorowski, Mark J. 1996. “An Overview of the Political Regime Change Dataset.” Comparative Political Studies 29(4):469-483. <a href="DOI:10.1177/0010414096029004004" class="uri">DOI:10.1177/0010414096029004004</a></p>
 <p>Geddes, Barbara, Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown and Regime Transitions: A New Data Set. Perspectives on Politics 12 (1): 313-331. <a href="DOI:10.1017/S1537592714000851" class="uri">DOI:10.1017/S1537592714000851</a>. Original data available at <a href="http://dictators.la.psu.edu/" class="uri">http://dictators.la.psu.edu/</a>.</p>
 <p>Goldstone, Jack, Robert Bates, David Epstein, Ted Gurr, Michael Lustik, Monty Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for Forecasting Political Instability. American Journal of Political Science 54 (1): 190-208. <a href="DOI:10.1111/j.1540-5907.2009.00426.x" class="uri">DOI:10.1111/j.1540-5907.2009.00426.x</a></p>
+<p>Gründler K. and T. Krieger. 2018. “Machine Learning Indices, Political Institutions, and Economic Development”. Report. CESifo Group Munich. <a href="https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf" class="uri">https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf</a></p>
+<p>Gründler K. and T. Krieger. 2016. “Democracy and growth: Evidence from a machine learning indicator”. European Journal of Political Economy 45, pp. 85-107. DOI: <a href="https://doi.org/10.1016/j.ejpoleco.2016.05.005" class="uri">https://doi.org/10.1016/j.ejpoleco.2016.05.005</a>.</p>
 <p>Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge University Press.</p>
 <p>Hadenius, Axel &amp; Jan Teorell. 2007. “Pathways from Authoritarianism”, Journal of Democracy 18(1): 143-156.</p>
 <p>Hsu, Sara “The Effect of Political Regimes on Inequality, 1963-2002,” UTIP Working Paper No. 53 (2008), <a href="http://utip.gov.utexas.edu/papers/utip_53.pdf" class="uri">http://utip.gov.utexas.edu/papers/utip_53.pdf</a>. Data available for download at <a href="http://utip.gov.utexas.edu/data/" class="uri">http://utip.gov.utexas.edu/data/</a>.</p>
@@ -656,6 +668,7 @@ replication_2011_info</code></pre></div>
 <p>Skaaning, Svend-Erik, John Gerring, and Henrikas Bartusevičius. 2015. A Lexical Index of Electoral Democracy. Comparative Political Studies 48 (12): 1491-1525. <a href="DOI:10.1177/0010414015581050" class="uri">DOI:10.1177/0010414015581050</a>. Original data available from <a href="http://thedata.harvard.edu/dvn/dv/skaaning" class="uri">http://thedata.harvard.edu/dvn/dv/skaaning</a>.</p>
 <p>Svolik, Milan. 2012. The Politics of Authoritarian Rule. Cambridge and New York: Cambridge University Press. Original data available from <a href="http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/" class="uri">http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/</a>.</p>
 <p>Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous Democracy Status (May 20, 2015). Available at SSRN: <a href="http://ssrn.com/abstract=2726962" class="uri">http://ssrn.com/abstract=2726962</a></p>
+<p>The Economist Intelligence Unit. 2018. Democracy Index 2017: Free Speech under Attack.</p>
 <p>Ulfelder, Jay. 2012. “Democracy/Autocracy Data Set.” In: Harvard Dataverse. <a href="http://hdl.handle.net/1902.1/18836" class="uri">http://hdl.handle.net/1902.1/18836</a>.</p>
 <p>Vanhanen, Tatu. 2012. “FSD1289 Measures of Democracy 1810-2012.” Original data available from <a href="http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html" class="uri">http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html</a></p>
 <p>Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime types revisited: updated data in comparative perspective. Contemporary Politics 19 (1): 19-34. <a href="DOI:10.1080/13569775.2013.773200" class="uri">DOI:10.1080/13569775.2013.773200</a></p>

@@ -1,303 +1,321 @@
 
-#' Prepare democracy data before replicating the UDS model
+#'Prepare democracy data before replicating the UDS model
 #'
-#' This function is designed to take the democracy data included in this package
-#' and put it in a form suitable for use with the \code{\link{mirt}} package to
-#' replicate the UDS model. It takes a data frame and tries to determine, from
-#' the colum names, which variables contain democracy scores.
+#'This function is designed to take the democracy data included in this package
+#'and put it in a form suitable for use with the \code{\link{mirt}} package to
+#'replicate the UDS model. It takes a data frame and tries to determine, from
+#'the colum names, which variables contain democracy scores.
 #'
-#' If the column names contain the strings \code{arat}, \code{blm},
-#' \code{bollen},\code{wgi}, \code{hadenius}, \code{munck}, \code{pacl},
-#' \code{peps}, \code{polyarchy_inclusion_dimension},
-#' \code{polyarchy_contestation_dimension}, \code{polity}, \code{prc},
-#' \code{v2x}, \code{vanhanen_pmm}, or \code{vanhanen_democratization}, the
-#' function performs the following transformations by default:
+#'If the column names contain the strings \code{arat}, \code{blm},
+#'\code{bollen},\code{wgi}, \code{hadenius}, \code{munck}, \code{pacl},
+#'\code{peps}, \code{polyarchy_inclusion_dimension},
+#'\code{polyarchy_contestation_dimension}, \code{polity}, \code{prc},
+#'\code{v2x}, \code{vanhanen_pmm}, or \code{vanhanen_democratization}, the
+#'function performs the following transformations by default:
 #'
-#' \code{arat}: Following Pemstein, Meserve, and Melton's replication code
-#' (Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
-#' democracy score into 7 intervals with the following cutoffs: 50, 60, 70, 80,
-#' 90, and 100. The resulting score is ordinal from 1 to 8.
+#'\code{arat}: Following Pemstein, Meserve, and Melton's replication code
+#'(Pemstein, Meserve, and Melton 2013), the function cuts Arat (1991)'s 0-109
+#'democracy score into 7 intervals with the following cutoffs: 50, 60, 70, 80,
+#'90, and 100. The resulting score is ordinal from 1 to 8.
 #'
-#' \code{bollen}: Following Pemstein, Meserve, and Melton's replication code
-#' (Pemstein, Meserve, and Melton 2013), the function cuts Bollen's (2001)'s
-#' 0-100 democracy score into 10 intervals with the following cutoffs:
-#' 10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10.
+#'\code{bollen}: Following Pemstein, Meserve, and Melton's replication code
+#'(Pemstein, Meserve, and Melton 2013), the function cuts Bollen's (2001)'s
+#'0-100 democracy score into 10 intervals with the following cutoffs:
+#'10,20,30,40,50,60,70,80, and 90. The resulting score is ordinal from 1 to 10.
 #'
-#' \code{wgi}: If the World Governance Indicator's index of voice and
-#' acocuntability is included in the file, the function cuts it into 20
-#' categories. The resulting score is ordinal from 1 to 20.
+#'\code{wgi}: If the World Governance Indicator's index of voice and
+#'acocuntability is included in the file, the function cuts it into 20
+#'categories. The resulting score is ordinal from 1 to 20.
 #'
-#' \code{hadenius}: Following Pemstein, Meserve, and Melton's replication code
-#' (Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s
-#' 0-10 democracy score into 8 intervals with the following cutoffs: 1, 2,3,4,
-#' 7, 8, and 9. The resulting score is ordinal from 1 to 8.
+#'\code{hadenius}: Following Pemstein, Meserve, and Melton's replication code
+#'(Pemstein, Meserve, and Melton 2013), the function cuts Hadenius (1992)'s 0-10
+#'democracy score into 8 intervals with the following cutoffs: 1, 2,3,4, 7, 8,
+#'and 9. The resulting score is ordinal from 1 to 8.
 #'
-#' \code{munck}: Following Pemstein, Meserve, and Melton's replication code
-#' (Pemstein, Meserve, and Melton 2013), the function cuts Munck's (2009)'s 0-1
-#' democracy score into 4 intervals with the following cutoffs: 0.5,0.5,0.75,
-#' and 0.99. The resulting score is ordinal from 1 to 4.
+#'\code{munck}: Following Pemstein, Meserve, and Melton's replication code
+#'(Pemstein, Meserve, and Melton 2013), the function cuts Munck's (2009)'s 0-1
+#'democracy score into 4 intervals with the following cutoffs: 0.5,0.5,0.75, and
+#'0.99. The resulting score is ordinal from 1 to 4.
 #'
-#' \code{peps}: If any of the variants of the Participation-Enhanced Polity
-#' Score (Moon et al 2006) is included in the file, the function rounds its
-#' value (eliminates the decimal) and then transforms it into an ordinal measure
-#' from 1 to 21.
+#'\code{peps}: If any of the variants of the Participation-Enhanced Polity Score
+#'(Moon et al 2006) is included in the file, the function rounds its value
+#'(eliminates the decimal) and then transforms it into an ordinal measure from 1
+#'to 21.
 #'
-#' \code{polity}: Following Pemstein, Meserve, and Melton's replication code
-#' (Pemstein, Meserve, and Melton 2013), the function takes the polity scores
-#' and puts NA for any values below -10, and then transforms it into an ordinal
-#' measure from 1 to 21.
+#'\code{polity}: Following Pemstein, Meserve, and Melton's replication code
+#'(Pemstein, Meserve, and Melton 2013), the function takes the polity scores and
+#'puts NA for any values below -10, and then transforms it into an ordinal
+#'measure from 1 to 21.
 #'
-#' \code{polyarchy_inclusion_dimension},
-#' \code{polyarchy_contestation_dimension}: If any of the polyarchy inclusion or
-#' contestation dimensions from Coppedge, Alvarez and Maldonado (2008)  are
-#' included, it cuts them into into 20 categories. The resulting score is
-#' ordinal from 1 to 20.
+#'\code{polyarchy_inclusion_dimension}, \code{polyarchy_contestation_dimension}:
+#'If any of the polyarchy inclusion or contestation dimensions from Coppedge,
+#'Alvarez and Maldonado (2008)  are included, it cuts them into into 20
+#'categories. The resulting score is ordinal from 1 to 20.
 #'
-#' \code{v2x}: If any of the v2x_ continuous indexes of democracy from the V-Dem
-#' dataset (Coppedge et al 2015) are included in the file, the function cuts
-#' them into 20 categories. The resulting score is ordinal from 1 to 20.
+#'\code{v2x}: If any of the v2x_ continuous indexes of democracy from the V-Dem
+#'dataset (Coppedge et al 2015) are included in the file, the function cuts them
+#'into 20 categories. The resulting score is ordinal from 1 to 20.
 #'
-#' \code{vanhanen_democratization} or \code{vanhanen_pmm}: Following Pemstein,
-#' Meserve, and Melton's replication code (Pemstein, Meserve, and Melton 2013),
-#' the function cuts Vanhanen's (2012)'s index of democratization into 8
-#' intervals with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting
-#' score is ordinal from 1 to 8.
+#'\code{vanhanen_democratization} or \code{vanhanen_pmm}: Following Pemstein,
+#'Meserve, and Melton's replication code (Pemstein, Meserve, and Melton 2013),
+#'the function cuts Vanhanen's (2012)'s index of democratization into 8
+#'intervals with the following cutoffs: 5,10,15,20,25,30, and 35. The resulting
+#'score is ordinal from 1 to 8.
 #'
-#' The function also recognizes the following column names (or partial column
-#' names - it also recognizes, e.g., pmm_blm) as measures of democracy:
-#' \code{blm} (from Bowman, Lehoucq, and Mahoney 2005), \code{bmr} (from Boix,
-#' Miller, and Rosato 2012), \code{doorenspleet} (from Doorenspleet 2000),
-#' \code{e_v2x} (the "ordinal" indexes from the V-dem project, Coppedge at al
-#' 2015), \code{freedomhouse} or \code{fh} (from Freedom House - freedom scale
-#' must be reversed so that "more freedom" is higher), \code{gwf} (from Geddes,
-#' Wright, and Frantz 2014 - the dichotomous democracy indicator only),
-#' \code{kailitz} (from Kailitz 2013 - democracy/non-democracy indicator),
-#' \code{lied} or \code{lexical_index} (from Skaaning, Gerring, and
-#' Bartusevicius 2015), \code{mainwaring} (from Mainwaring and Perez Linan
-#' 2008), \code{magaloni} (from Magaloni, Min, Chu 2013 -
-#' democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi, and
-#' Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and Ulfelder
-#' 2015), \code{polyarchy} (from Coppedge and Reinicke 1991), \code{prc} (from
-#' Gasiorowski 1996 or Reich 2002), \code{PIPE} (from Przeworski 2010),
-#' \code{reign} (from Bell 2016), \code{svolik} (from Svolik 2012,
-#' democracy/dictatorship indicator only), \code{ulfelder} (from Ulfelder 2012),
-#' \code{utip} (from Hsu 2008), and \code{wth} or \code{wahman_teorell_hadenius}
-#' (from Wahman, Teorell, and Hadenius 2013). In each of these cases the
-#' function transforms the values of these scores by running
-#' \code{as.numeric(unclass(factor(x)))}, which transforms them into ordinal
-#' variables from 1 to the number of categories.
+#'The function also recognizes the following column names (or partial column
+#'names - it also recognizes, e.g., pmm_blm) as measures of democracy:
+#'\code{anckar} (from Anckar and Fredriksson 2018), \code{blm} (from Bowman,
+#'Lehoucq, and Mahoney 2005), \code{bmr} (from Boix, Miller, and Rosato 2012),
+#'\code{doorenspleet} (from Doorenspleet 2000), \code{e_v2x} (the "ordinal"
+#'indexes from the V-dem project, Coppedge at al 2015), \code{freedomhouse} or
+#'\code{fh} (from Freedom House - freedom scale must be reversed so that "more
+#'freedom" is higher), \code{gwf} (from Geddes, Wright, and Frantz 2014 - the
+#'dichotomous democracy indicator only), \code{kailitz} (from Kailitz 2013 -
+#'democracy/non-democracy indicator), \code{lied} or \code{lexical_index} (from
+#'Skaaning, Gerring, and Bartusevicius 2015), \code{mainwaring} (from Mainwaring
+#'and Perez Linan 2008), \code{magaloni} (from Magaloni, Min, Chu 2013 -
+#'democracy/non-democracy indicator), \code{pacl} (from Cheibub, Gandhi, and
+#'Vreeland 2010), \code{pitf} (from Goldstone et al 2010 or Taylor and Ulfelder
+#'2015), \code{polyarchy} (from Coppedge and Reinicke 1991), \code{prc} (from
+#'Gasiorowski 1996 or Reich 2002), \code{PIPE} (from Przeworski 2010),
+#'\code{reign} (from Bell 2016), \code{svmdi} (from Grundler and Krieger 2018,
+#'2016), \code{svolik} (from Svolik 2012, democracy/dictatorship indicator
+#'only), \code{ulfelder} (from Ulfelder 2012), \code{utip} (from Hsu 2008), and
+#'\code{wth} or \code{wahman_teorell_hadenius} (from Wahman, Teorell, and
+#'Hadenius 2013). In each of these cases the function transforms the values of
+#'these scores by running \code{as.numeric(unclass(factor(x)))}, which
+#'transforms them into ordinal variables from 1 to the number of categories.
 #'
-#' For details of these scores, see the documentation for
-#' \code{\link{democracy}}.
+#'For details of these scores, see the documentation for
+#'\code{\link{democracy}}.
 #'
-#' It is also possible to change these defaults.
+#'It is also possible to change these defaults.
 #'
-#' @section Note: Warning! The function does not perform any sanity checks. It
-#'   will try to transform anything that has the right name. You should always
-#'   check the results make sense.
+#'@section Note: Warning! The function does not perform any sanity checks. It
+#'  will try to transform anything that has the right name. You should always
+#'  check the results make sense.
 #'
-#' @param data A dataset of democracy scores. For the function to do anything,
-#'   the column names must contain at least one of the following strings:
-#'   \code{arat}, \code{blm}, \code{bmr}, \code{bollen}, \code{doorenspleet},
-#'   \code{wgi}, \code{gwf}, \code{hadenius}, \code{kailitz}, \code{lied},
-#'   \code{munck}, \code{pacl}, \code{peps}, \code{polyarchy}, \code{polity},
-#'   \code{prc}, \code{PIPE}, \code{svolik}, \code{ulfelder}, \code{utip},
-#'   \code{v2x}, \code{vanhanen_democratization}, \code{vanhanen_pmm}, or
-#'   \code{wth}. For details of these variables, see the documentation for
-#'   \code{\link{democracy}}.
-#' @param .funs A names list of functions to modify the columns. It defaults to
-#'   the following:
+#'@param data A dataset of democracy scores. For the function to do anything,
+#'  the column names must contain at least one of the following strings:
+#'  \code{anckar}, \code{arat}, \code{blm}, \code{bmr}, \code{bollen}, \code{doorenspleet},
+#'  \code{wgi}, \code{gwf}, \code{hadenius}, \code{kailitz}, \code{lied},
+#'  \code{munck}, \code{pacl}, \code{peps}, \code{polyarchy}, \code{polity},
+#'  \code{prc}, \code{PIPE}, \code{svmdi}, \code{svolik}, \code{ulfelder}, \code{utip},
+#'  \code{v2x}, \code{vanhanen_democratization}, \code{vanhanen_pmm}, or
+#'  \code{wth}. For details of these variables, see the documentation for
+#'  \code{\link{democracy}}.
+#'@param .funs A names list of functions to modify the columns. It defaults to
+#'  the following:
 #'
-#'   \code{funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109),
-#'   labels = 1:7, include.lowest = TRUE, right = FALSE),
+#'  \code{funs(arat = cut(., breaks = c(0, 50, 60, 70, 80, 90, 100, 109), labels
+#'  = 1:7, include.lowest = TRUE, right = FALSE),
 #'
-#'   hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
-#'   include.lowest = TRUE, right = FALSE),
+#'  hadenius = cut(., breaks =  c(0, 1, 2, 3, 4, 7, 8, 9, 10), labels = 1:8,
+#'  include.lowest = TRUE, right = FALSE),
 #'
-#'   bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
-#'   labels = 1:10, include.lowest = TRUE, right = FALSE),
+#'  bollen = cut(., breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+#'  labels = 1:10, include.lowest = TRUE, right = FALSE),
 #'
+#'  vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
+#'  1:8, include.lowest = TRUE, right = FALSE),
 #'
-#'   vanhanen = cut(., breaks = c(0, 5, 10, 15, 20, 25, 30, 35, 50), labels =
-#'   1:8, include.lowest = TRUE, right = FALSE),
+#'  munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
+#'  include.lowest = TRUE, right = FALSE),
 #'
-#'   munck = cut(., breaks = c(0, 0.5, 0.75, 0.99, 1), labels = 1:4,
-#'   include.lowest = TRUE, right = FALSE),
+#'  polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
+#'  FALSE, ordered_result = TRUE),
 #'
+#'  polity = ifelse(. < -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
+#'  TRUE, right = FALSE, ordered_result = TRUE),
 #'
-#'   polyarchy_dimensions = cut(., breaks = 20, include.lowest = TRUE, right =
-#'   FALSE, ordered_result = TRUE),
+#'  v2x_* = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+#'  ordered_result = TRUE),
 #'
-#'   polity = ifelse(. < -10, NA, .), v2x = cut(., breaks = 20, include.lowest =
-#'   TRUE, right = FALSE, ordered_result = TRUE),
+#'  svmdi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+#'  ordered_result = TRUE),
 #'
-#'   wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
-#'   ordered_result = TRUE),
+#'  eiu = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+#'  ordered_result = TRUE),
 #'
-#'   peps = round(.),
+#'  wgi = cut(., breaks = 20, include.lowest = TRUE, right = FALSE,
+#'  ordered_result = TRUE),
 #'
-#'   other = as.numeric(unclass(factor(.))))}
+#'  peps = round(.),
 #'
-#' @return A data frame with the transformed scores, if any.
-#' @import dplyr
-#' @export
+#'  other = as.numeric(unclass(factor(.))))}
+#'
+#'@return A data frame with the transformed scores, if any.
+#'@import dplyr
+#'@export
 #'
 #' @examples
 #' summary(democracy)
 #' summary(prepare_data(democracy))
-#' @references
+#'@references
 #'
-#' Arat, Zehra F. 1991. Democracy and human rights in developing countries.
-#' Boulder: Lynne Rienner Publishers.
+#' Anckar, Carsten and C. Fredriksson. 2018. "Classifying political regimes
+#' 1800-2016: a typology and a new dataset".  European Political Science. DOI:
+#' 10.1057/s41304-018-0149-8. Data and codebook available at
+#' \url{https://doi.org/10.1057/s41304-018-0149-8}.
 #'
-#' Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset
-#' (REIGN).\url{http://oefresearch.org/datasets/reign}
+#'Arat, Zehra F. 1991. Democracy and human rights in developing countries.
+#'Boulder: Lynne Rienner Publishers.
 #'
-#' Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
-#' of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
-#' 1523-1554. Original data available at
-#' \url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}
+#'Bell, Curtis. 2016. The Rulers, Elections, and Irregular Governance Dataset
+#'(REIGN).\url{http://oefresearch.org/datasets/reign}
 #'
-#' Bollen, Kenneth A. 2001. "Cross-National Indicators of Liberal Democracy,
-#' 1950-1990." 2nd ICPSR version. Chapel Hill, NC: University of North Carolina,
-#' 1998. Ann Arbor, MI: Inter-university Consortium for Political and Social
-#' Research, 2001. Original data available at
-#' \url{http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml}.
+#'Boix, Carles, Michael Miller, and Sebastian Rosato. 2012. A Complete Data Set
+#'of Political Regimes, 1800-2007. Comparative Political Studies 46 (12):
+#'1523-1554. Original data available at
+#'\url{https://sites.google.com/site/mkmtwo/democracy-v2.0.dta?attredirects=0}
 #'
-#' Bowman, Kirk, Fabrice Lehoucq, and James Mahoney. 2005. Measuring Political
-#' Democracy: Case Expertise, Data Adequacy, and Central America. Comparative
-#' Political Studies 38 (8): 939-970.
-#' \url{http://cps.sagepub.com/content/38/8/939}. Data available at
-#' \url{http://www.blmdemocracy.gatech.edu/}.
+#'Bollen, Kenneth A. 2001. "Cross-National Indicators of Liberal Democracy,
+#'1950-1990." 2nd ICPSR version. Chapel Hill, NC: University of North Carolina,
+#'1998. Ann Arbor, MI: Inter-university Consortium for Political and Social
+#'Research, 2001. Original data available at
+#'\url{http://webapp.icpsr.umich.edu/cocoon/ICPSR-STUDY/02532.xml}.
 #'
-#' Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010.
-#' "Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101.
-#' Original data available at
-#' \url{https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited}.
+#'Bowman, Kirk, Fabrice Lehoucq, and James Mahoney. 2005. Measuring Political
+#'Democracy: Case Expertise, Data Adequacy, and Central America. Comparative
+#'Political Studies 38 (8): 939-970.
+#'\url{http://cps.sagepub.com/content/38/8/939}. Data available at
+#'\url{http://www.blmdemocracy.gatech.edu/}.
 #'
-#' Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning,
-#' and Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam
-#' Glynn, Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
-#' Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
-#' Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy
-#' (V-Dem) Project. Original data available at \url{https://v-dem.net/en/data/}.
+#'Cheibub, Jose Antonio, Jennifer Gandhi, and James Raymond Vreeland. 2010.
+#'"Democracy and Dictatorship Revisited." Public Choice. 143(1):67-101. Original
+#'data available at
+#'\url{https://sites.google.com/site/joseantoniocheibub/datasets/democracy-and-dictatorship-revisited}.
 #'
-#' Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On
-#' Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
-#' Brunswuck, NJ: Transaction pp. 47-68.
+#'Coppedge, Michael, John Gerring, Staffan I. Lindberg, Svend-Erik Skaaning, and
+#'Jan Teorell, with David Altman, Michael Bernhard, M. Steven Fish, Adam Glynn,
+#'Allen Hicken, Carl Henrik Knutsen, Kelly McMann, Pamela Paxton, Daniel
+#'Pemstein, Jeffrey Staton, Brigitte Zimmerman, Frida Andersson, Valeriya
+#'Mechkova, Farhad Miri. 2015. V-Dem Codebook v5. Varieties of Democracy (V-Dem)
+#'Project. Original data available at \url{https://v-dem.net/en/data/}.
 #'
-#' Coppedge, A. Alvarez and C. Maldonado. 2008. "Two Persistent Dimensions of
-#' Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03,
-#' pp. 632-647. DOI: 10.1017/S0022381608080663.
+#'Coppedge, Michael and Wolfgang H. Reinicke. 1991. Measuring Polyarchy. In On
+#'Measuring Democracy: Its Consequences and Concomitants, ed. Alex Inkeles. New
+#'Brunswuck, NJ: Transaction pp. 47-68.
 #'
-#' Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
-#' World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
-#' \url{http://dx.doi.org/10.1017/S0043887100016580}.
+#'Coppedge, A. Alvarez and C. Maldonado. 2008. "Two Persistent Dimensions of
+#'Democracy: Contestation and Inclusiveness". The Journal of Politics 70.03, pp.
+#'632-647. DOI: 10.1017/S0022381608080663.
 #'
-#' Kaufmann, D. and A. Kraay. 2016. Worldwide Governance Indicators. 2016.
-#' \url{http://www.govindicators.org}.
+#'Doorenspleet, Renske. 2000. Reassessing the Three Waves of Democratization.
+#'World Politics 52 (03): 384-406. DOI: 10.1017/S0043887100016580.
+#'\url{http://dx.doi.org/10.1017/S0043887100016580}.
 #'
-#' Freedom House. 2015. "Freedom in the World." Original data available at
-#' \url{http://www.freedomhouse.org}.
+#'Kaufmann, D. and A. Kraay. 2016. Worldwide Governance Indicators. 2016.
+#'\url{http://www.govindicators.org}.
 #'
-#' Gasiorowski, Mark J. 1996. "An Overview of the Political Regime Change
-#' Dataset." Comparative Political Studies 29(4):469-483.
+#'Freedom House. 2015. "Freedom in the World." Original data available at
+#'\url{http://www.freedomhouse.org}.
 #'
-#' Geddes, Barbara, Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown
-#' and Regime Transitions: A New Data Set. Perspectives on Politics 12 (1):
-#' 313-331. Original data available at \url{http://dictators.la.psu.edu/}.
+#'Gasiorowski, Mark J. 1996. "An Overview of the Political Regime Change
+#'Dataset." Comparative Political Studies 29(4):469-483.
 #'
-#' Goldstone, Jack, Robert Bates, David Epstein, Ted Gurr, Michael Lustik, Monty
-#' Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for
-#' Forecasting Political Instability. American Journal of Political Science 54
-#' (1): 190-208. DOI:10.1111/j.1540-5907.2009.00426.x
+#'Geddes, Barbara, Joseph Wright, and Erica Frantz. 2014. Autocratic Breakdown
+#'and Regime Transitions: A New Data Set. Perspectives on Politics 12 (1):
+#'313-331. Original data available at \url{http://dictators.la.psu.edu/}.
 #'
-#' Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge
-#' University Press.
+#'Goldstone, Jack, Robert Bates, David Epstein, Ted Gurr, Michael Lustik, Monty
+#'Marshall, Jay Ulfelder, and Mark Woodward. 2010. A Global Model for
+#'Forecasting Political Instability. American Journal of Political Science 54
+#'(1): 190-208. DOI:10.1111/j.1540-5907.2009.00426.x
 #'
-#' Hadenius, Axel & Jan Teorell. 2007. "Pathways from Authoritarianism", Journal
-#' of Democracy 18(1): 143-156.
+#' Grundler, K. and T. Krieger. 2018. "Machine Learning Indices, Political
+#' Institutions, and Economic Development". Report. CESifo Group Munich, 2018.
+#' \url{https://www.cesifo-group.de/DocDL/cesifo1_wp6930.pdf}.
 #'
-#' Hsu, Sara "The Effect of Political Regimes on Inequality, 1963-2002," UTIP
-#' Working Paper No. 53 (2008), http://utip.gov.utexas.edu/papers/utip_53.pdf.
-#' Data available for download at http://utip.gov.utexas.edu/data/.
+#' Grundler, K. and T. Krieger. 2016. "Democracy and growth: Evidence from a
+#' machine learning indicator". European Journal of Political Economy 45, pp.
+#' 85-107. DOI: \url{https://doi.org/10.1016/j.ejpoleco.2016.05.005}.
 #'
-#' Kailitz, Steffen. 2013. Classifying political regimes revisited: legitimation
-#' and durability. Democratization 20 (1): 39-60. Original data available at
-#' \url{http://dx.doi.org/10.1080/13510347.2013.738861}.
+#'Hadenius, Axel. 1992. Democracy and Development. Cambridge: Cambridge
+#'University Press.
 #'
-#' Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. "Political
-#' Regimes in Latin America, 1900-2007." Original data available from
-#' \url{http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf}.
+#'Hadenius, Axel & Jan Teorell. 2007. "Pathways from Authoritarianism", Journal
+#'of Democracy 18(1): 143-156.
 #'
-#' Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the
-#' World, 1950-2012 (Version 1.0). Dataset, Stanford University. Original data
-#' and codebook available at
-#' \url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}
+#'Hsu, Sara "The Effect of Political Regimes on Inequality, 1963-2002," UTIP
+#'Working Paper No. 53 (2008), http://utip.gov.utexas.edu/papers/utip_53.pdf.
+#'Data available for download at http://utip.gov.utexas.edu/data/.
 #'
-#' Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV:
-#' Political Regime Characteristics and Transitions, 1800-2012." Updated to
-#' 2015. Original data available from
-#' \url{http://www.systemicpeace.org/polity/polity4.htm}.
+#'Kailitz, Steffen. 2013. Classifying political regimes revisited: legitimation
+#'and durability. Democratization 20 (1): 39-60. Original data available at
+#'\url{http://dx.doi.org/10.1080/13510347.2013.738861}.
 #'
-#' Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett,
-#' Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong
-#' (2006) "Voting Counts: Participation in the Measurement of Democracy" Studies
-#' in Comparative International Development 42, 2 (Summer, 2006). The complete
-#' dataset is available here:
-#' \url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}.
+#'Mainwaring, Scott, Daniel Brinks, and Anibal Perez Linan. 2008. "Political
+#'Regimes in Latin America, 1900-2007." Original data available from
+#'\url{http://kellogg.nd.edu/scottmainwaring/Political_Regimes.pdf}.
 #'
-#' Munck, Gerardo L. 2009. Measuring Democracy: A Bridge Between Scholarship and
-#' Politics. Baltimore: Johns Hopkins University Press.
+#'Magaloni, Beatriz, Jonathan Chu, and Eric Min. 2013. Autocracies of the World,
+#'1950-2012 (Version 1.0). Dataset, Stanford University. Original data and
+#'codebook available at
+#'\url{http://cddrl.fsi.stanford.edu/research/autocracies_of_the_world_dataset/}
 #'
-#' Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic
-#' Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.
-#' Political Analysis 18 (4): 426-449.
+#'Marshall, Monty G., Ted Robert Gurr, and Keith Jaggers. 2012. "Polity IV:
+#'Political Regime Characteristics and Transitions, 1800-2012." Updated to 2015.
+#'Original data available from
+#'\url{http://www.systemicpeace.org/polity/polity4.htm}.
 #'
-#' Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
-#' data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures
-#' of Regime Type." In: Harvard Dataverse.
-#' \url{http://hdl.handle.net/1902.1/PMM}
+#'Moon, Bruce E., Jennifer Harvey Birdsall, Sylvia Ceisluk, Lauren M. Garlett,
+#'Joshua J. Hermias, Elizabeth Mendenhall, Patrick D. Schmid, and Wai Hong Wong
+#'(2006) "Voting Counts: Participation in the Measurement of Democracy" Studies
+#'in Comparative International Development 42, 2 (Summer, 2006). The complete
+#'dataset is available here:
+#'\url{http://www.lehigh.edu/~bm05/democracy/Obtain_data.htm}.
 #'
-#' Przeworski, Adam et al. 2013. Political Institutions and Political Events
-#' (PIPE) Data Set. Department of Politics, New York University.
-#' \url{https://sites.google.com/a/nyu.edu/adam-przeworski/home/data}
+#'Munck, Gerardo L. 2009. Measuring Democracy: A Bridge Between Scholarship and
+#'Politics. Baltimore: Johns Hopkins University Press.
 #'
-#' Reich, G. 2002. Categorizing Political Regimes: New Data for Old Problems.
-#' Democratization 9 (4): 1-24.
-#' \url{http://www.tandfonline.com/doi/pdf/10.1080/714000289}.
+#'Pemstein, Daniel, Stephen Meserve, and James Melton. 2010. Democratic
+#'Compromise: A Latent Variable Analysis of Ten Measures of Regime Type.
+#'Political Analysis 18 (4): 426-449.
 #'
-#' Skaaning, Svend-Erik, John Gerring, and Henrikas Bartusevicius. 2015. A
-#' Lexical Index of Electoral Democracy. Comparative Political Studies 48 (12):
-#' 1491-1525. Original data available from
-#' \url{http://thedata.harvard.edu/dvn/dv/skaaning}.
+#'Pemstein, Daniel, Stephen A. Meserve, and James Melton. 2013. "Replication
+#'data for: Democratic Compromise: A Latent Variable Analysis of Ten Measures of
+#'Regime Type." In: Harvard Dataverse. \url{http://hdl.handle.net/1902.1/PMM}
 #'
-#' Svolik, Milan. 2012. The Politics of Authoritarian Rule. Cambridge and New
-#' York: Cambridge University Press. Original data available from
-#' \url{http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/}.
+#'Przeworski, Adam et al. 2013. Political Institutions and Political Events
+#'(PIPE) Data Set. Department of Politics, New York University.
+#'\url{https://sites.google.com/a/nyu.edu/adam-przeworski/home/data}
 #'
-#' Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
-#' Democracy Status (May 20, 2015). Available at SSRN:
-#' \url{http://ssrn.com/abstract=2726962} or
-#' \url{http://dx.doi.org/10.2139/ssrn.2726962}
+#'Reich, G. 2002. Categorizing Political Regimes: New Data for Old Problems.
+#'Democratization 9 (4): 1-24.
+#'\url{http://www.tandfonline.com/doi/pdf/10.1080/714000289}.
 #'
-#' Ulfelder, Jay. 2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
-#' \url{http://hdl.handle.net/1902.1/18836}.
+#'Skaaning, Svend-Erik, John Gerring, and Henrikas Bartusevicius. 2015. A
+#'Lexical Index of Electoral Democracy. Comparative Political Studies 48 (12):
+#'1491-1525. Original data available from
+#'\url{http://thedata.harvard.edu/dvn/dv/skaaning}.
 #'
-#' Vanhanen, Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original
-#' data available from
-#' \url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}
+#'Svolik, Milan. 2012. The Politics of Authoritarian Rule. Cambridge and New
+#'York: Cambridge University Press. Original data available from
+#'\url{http://campuspress.yale.edu/svolik/the-politics-of-authoritarian-rule/}.
 #'
-#' Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
-#' types revisited: updated data in comparative perspective. Contemporary
-#' Politics 19 (1): 19-34.
+#'Taylor, Sean J. and Ulfelder, Jay, A Measurement Error Model of Dichotomous
+#'Democracy Status (May 20, 2015). Available at SSRN:
+#'\url{http://ssrn.com/abstract=2726962} or
+#'\url{http://dx.doi.org/10.2139/ssrn.2726962}
+#'
+#'Ulfelder, Jay. 2012. "Democracy/Autocracy Data Set." In: Harvard Dataverse.
+#'\url{http://hdl.handle.net/1902.1/18836}.
+#'
+#'Vanhanen, Tatu. 2012. "FSD1289 Measures of Democracy 1810-2012." Original data
+#'available from
+#'\url{http://www.fsd.uta.fi/english/data/catalogue/FSD1289/meF1289e.html}
+#'
+#'Wahman, Michael, Jan Teorell, and Axel Hadenius. 2013. Authoritarian regime
+#'types revisited: updated data in comparative perspective. Contemporary
+#'Politics 19 (1): 19-34.
 prepare_data <- function(data,
                          .funs) {
 
-  other_vars <- c("blm", "bmr", "doorenspleet", "fh|freedomhouse", "gwf",
+  other_vars <- c("anckar", "blm", "bmr", "doorenspleet", "fh|freedomhouse", "gwf",
                   "lied|lexical_index", "mainwaring",
                   "magaloni", "pacl", "pitf", "polyarchy",
-                  "prc", "PIPE|przeworski", "svolik",
+                  "prc", "PIPE|przeworski", "svolik", "svmdi_2016",
                   "ulfelder", "utip", "kailitz", "e_v2x",
                   "wth|wahman_teorell", "reign")
 
@@ -320,7 +338,11 @@ prepare_data <- function(data,
       polity = ifelse(. < -10, NA, .),
       v2x = cut(., breaks = 20, include.lowest = TRUE,
                 right = FALSE, ordered_result = TRUE),
+      svmdi = cut(., breaks = 20, include.lowest = TRUE,
+                right = FALSE, ordered_result = TRUE),
       wgi = cut(., breaks = 20, include.lowest = TRUE,
+                right = FALSE, ordered_result = TRUE),
+      eiu = cut(., breaks = 20, include.lowest = TRUE,
                 right = FALSE, ordered_result = TRUE),
       peps = round(.),
       other = as.numeric(unclass(factor(.))))
@@ -334,7 +356,9 @@ prepare_data <- function(data,
                            "munck",
                            "polity",
                            "v2x",
+                           "svmdi",
                            "wgi",
+                           "eiu",
                            "peps"),collapse="|")
 
   data <- data %>%
@@ -348,7 +372,9 @@ prepare_data <- function(data,
               .funs[['polyarchy_dimensions']]) %>%
     mutate_at(vars(matches("polity")), .funs[['polity']]) %>%
     mutate_at(vars(starts_with("v2x")), .funs[['v2x']]) %>%
+    mutate_at(vars(starts_with("csvmdi"), starts_with("svmdi_2016")), .funs[['svmdi']]) %>%
     mutate_at(vars(matches("wgi")), .funs[['wgi']]) %>%
+    mutate_at(vars(matches("eiu")), .funs[['eiu']]) %>%
     mutate_at(vars(matches("peps")), .funs[['peps']]) %>%
     mutate_at(vars(matches(other_pattern)), .funs[['other']])
 
@@ -362,7 +388,7 @@ prepare_data <- function(data,
 #'   dataset (either bare column names, or strings). Can be a [dplyr::select]
 #'   expression (but [dplyr] must be loaded for this to work).
 #' @param identifiers A set of identifiers to return with the data. Defaults to
-#'   \code{c("extended_country_name", "year", "GWn", "cown", "in_GW_system")}.
+#'   \code{c("extended_country_name", "year", "GWn", "cown", "polity_ccode", "in_GW_system")}.
 #'   Must exist in the [democracy] dataset.
 #'
 #' @return A dataset ready for use with \code{\link{democracy_model}}
@@ -374,7 +400,7 @@ prepare_data <- function(data,
 #' prepare_democracy(dplyr::matches("pmm"))
 prepare_democracy <- function(...,
                               identifiers = c("extended_country_name", "year",
-                                              "GWn", "cown", "in_GW_system")) {
+                                              "GWn", "cown", "polity_ccode", "in_GW_system")) {
 
   cols <- check_vars(..., identifiers = identifiers)
 
@@ -400,7 +426,7 @@ check_vars <- function(..., identifiers) {
   vars <- quos(...)
 
   non_selectable <- c("extended_country_name", "year",
-                      "GWn", "cown", "in_GW_system",
+                      "GWn", "cown", "polity_ccode", "in_GW_system",
                       "uds_2010_mean","uds_2010_median",
                       "uds_2011_mean", "uds_2011_median",
                       "uds_2014_mean", "uds_2014_median")
@@ -622,11 +648,12 @@ raterinfo <- function(model) {
 #' \code{\link{mirt}} directly; see the Vignette on replicating and extending
 #' the UD scores.
 #'
-#' @param ... [democracy] variables to use for the model. Can be bare column names
-#'   or strings, or a [dplyr::select] expression.
+#' @param ... [democracy] variables to use for the model. Can be bare column
+#'   names or strings, or a [dplyr::select] expression.
 #' @param identifiers Identifier columns. Can be any combination of columns in
 #'   the [democracy] dataset. Defaults to \code{c("extended_country_name",
-#'   "year", "GWn", "cown", "uds_2010_mean", "uds_2011_mean", "uds_2014_mean")}.
+#'   "year", "GWn", "cown", "polity_ccode", "uds_2010_mean", "uds_2011_mean",
+#'   "uds_2014_mean")}.
 #' @param verbose Passed to [mirt::mirt]; whether to print a running commentary.
 #'   Default is `TRUE`.
 #' @param technical Passed to [mirt::mirt]. Defaults to \code{list(NCYCLES =
@@ -648,6 +675,7 @@ democracy_model <- function(..., identifiers = c("extended_country_name",
                                             "year",
                                             "GWn",
                                             "cown",
+                                            "polity_ccode",
                                             "uds_2010_mean",
                                             "uds_2011_mean",
                                             "uds_2014_mean",
@@ -727,6 +755,8 @@ democracy_scores <- function(..., model,
                   "year",
                   "GWn",
                   "cown",
+                  "polity_ccode",
+                  "in_GW_system",
                   "uds_2010_mean",
                   "uds_2011_mean",
                   "uds_2014_mean")
